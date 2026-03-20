@@ -1,0 +1,542 @@
+[
+  {
+    "cpId": "E0-LOGIN-ADMIN-01",
+    "bloque": "BD1",
+    "escenario": "Validar que sistema permita autenticarse con el rol de usuario correspondiente",
+    "titulo": "Validar que el rol adminsitrador tiene acceso al sistema",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E4-C-01.1",
+    "bloque": "BD1",
+    "escenario": "Validación de la carga de los archivos Comunes en formato permitido ",
+    "titulo": "Carga del archivo Líneas definido en el proceso Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E4-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validación de la carga de los archivos Comunes en formato permitido ",
+    "titulo": "Carga del archivo Grupo Producto definido en el proceso Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E4-C-01.3",
+    "bloque": "BD1",
+    "escenario": "Validación de la carga de los archivos Comunes en formato permitido ",
+    "titulo": "Carga del archivo Canales definido en el proceso Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E4-C-01.4",
+    "bloque": "BD1",
+    "escenario": "Validación de la carga de los archivos Comunes en formato permitido ",
+    "titulo": "Carga del archivo Subcanales definido en el proceso Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E4-C-01.5",
+    "bloque": "BD1",
+    "escenario": "Validación de la carga de los archivos Comunes en formato permitido ",
+    "titulo": "Carga del archivo Maestro UoA definido en el proceso Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E4-C-01.6",
+    "bloque": "BD1",
+    "escenario": "Validación de la carga de los archivos Comunes en formato permitido ",
+    "titulo": "Traer archivo Unidades de Cuenta - BBA/VFA definido en el proceso Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.1",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Líneas del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Grupo Producto del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.3",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Canales del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.4",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Subcanales del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.5",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Maestro UoA del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.6",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Unidades de Cuenta - BBA/VFA del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E9-C-01.7",
+    "bloque": "BD1",
+    "escenario": "Validar que se muestren en el FronEnd los datos de los archivos cargados en el  flujo de comunes",
+    "titulo": "Validar que se muestren en el FronEnd los datos de archivo Configuración de Parches del proceso de Comunes",
+    "estatus": "Failed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel"
+  },
+  {
+    "cpId": "E10-C-01.1",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Líneas del proceso de Comunes",
+    "estatus": "Failed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E10-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Grupo Producto del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E10-C-01.3",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Canales del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E10-C-01.4",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Subcanales del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E10-C-01.5",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Maestro UoA del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E10-C-01.6",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Unidades de Cuenta - BBA/VFA del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E10-C-01.7",
+    "bloque": "BD1",
+    "escenario": "Validar la correcta ejecución del flujo de descargas de los archivos cargados en el  proceso de Comunes",
+    "titulo": "Validar la correcta ejecución del flujo de descargas del archivo Configuración de Parches del proceso de Comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E35-C-01.1",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda agregar un nuevo registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de agregar un nuevo registro en el  flujo de comunes de Líneas ",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E35-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda agregar un nuevo registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de agregar un nuevo registro en el  flujo de comunes de Grupo Producto",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E35-C-01.3",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda agregar un nuevo registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de agregar un nuevo registro en el  flujo de comunes de Canales",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E35-C-01.5",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda agregar un nuevo registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de agregar un nuevo registro en el  flujo de comunes de Configuración de Parches",
+    "estatus": "Blocked",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "angel Farro"
+  },
+  {
+    "cpId": "E36-C-01.1",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda editar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de editar un registro de Líneas en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda editar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de editar un registro de Grupo Producto en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-01.3",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda editar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de editar un registro de Canales en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-01.4",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda editar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de editar un registro de Subcanales en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-01.5",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda editar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de editar un registro de Configuración de Parches en el  flujo de comunes ",
+    "estatus": "Failed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-02.1",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro de Líneas porque no cumplen con las reglas definidas de negocio en el flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-02.2",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro de Grupo Producto porque no cumplen con las reglas definidas de negocio en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-02.3",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al editar un registro en el  flujo de comunes",
+    "titulo": null,
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-02.4",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro de Subcanales porque no cumplen con las reglas definidas de negocio en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-02.5",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro de Configuración de Parches porque no cumplen con las reglas definidas de negocio en el  flujo de comunes  ",
+    "estatus": "Blocked",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-03.1",
+    "bloque": "BD1",
+    "escenario": "Validar el formato y campos obligatorios del formulario al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro de Líneas por error de formato de los campos en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-03.2",
+    "bloque": "BD1",
+    "escenario": "Validar el formato y campos obligatorios del formulario al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que se pueda editar un nuevo registro de Grupo Producto por error de formato de los campos en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-03.3",
+    "bloque": "BD1",
+    "escenario": "Validar el formato y campos obligatorios del formulario al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que se pueda editar un nuevo registro de Canales por error de formato de los campos en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-03.4",
+    "bloque": "BD1",
+    "escenario": "Validar el formato y campos obligatorios del formulario al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que se pueda editar un nuevo registro de Subcanales por error de formato de los campos en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E36-C-03.5",
+    "bloque": "BD1",
+    "escenario": "Validar el formato y campos obligatorios del formulario al editar un registro en el  flujo de comunes",
+    "titulo": "Validar que se pueda editar un nuevo registro de Configuración de Parches por error de formato de los campos en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de eliminar un registro de Líneas en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-01.2",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de eliminar un registro de Grupo Producto en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-01.3",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de eliminar un registro de Canales en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-01.4",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de eliminar un registro de Subcanales en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-01.5",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de eliminar un registro de Maestro UoA en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-01.6",
+    "bloque": "BD1",
+    "escenario": "Validar que el sistema pueda eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de eliminar un registro de Configuración de Parche en el  flujo de comunes ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-02.1",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro porque no cumplen con las reglas definidas de negocio en el  flujo de comunes de Líneas ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-02.2",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro porque no cumplen con las reglas definidas de negocio en el  flujo de comunes de Grupo Producto ",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-02.3",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro porque no cumplen con las reglas definidas de negocio en el  flujo de comunes de Canales",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-02.4",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro porque no cumplen con las reglas definidas de negocio en el  flujo de comunes de Subcanales",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "CAROlina"
+  },
+  {
+    "cpId": "E37-C-02.5",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro porque no cumplen con las reglas definidas de negocio en el  flujo de comunes de Maestro UoA",
+    "estatus": "Passed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E37-C-02.6",
+    "bloque": "BD1",
+    "escenario": "Validar las reglas de negocio al eliminar un registro en el  flujo de comunes",
+    "titulo": "Validar que no se pueda editar un nuevo registro porque no cumplen con las reglas definidas de negocio en el  flujo de comunes de Configuración de Parches",
+    "estatus": "Failed",
+    "prioridad": "Medio",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E56-C-01.1",
+    "bloque": "BD1",
+    "escenario": "Validar el funcionamiento integral del paginador en el  flujo de comunes",
+    "titulo": "Validar el correcto funcionamiento de los elementos del paginador en el  flujo de comunes",
+    "estatus": "Passed",
+    "prioridad": "Baja",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  },
+  {
+    "cpId": "E63-BUS-01",
+    "bloque": "BD1",
+    "escenario": "Validar el funcionamiento integral del buscador en la vista de distribución",
+    "titulo": "Validar el correcto funcionamiento del buscador en la vista de distribución o en las vistas de la sección Comunes",
+    "estatus": "Passed",
+    "prioridad": "Alta",
+    "tipo": "Automatizada",
+    "ejecutadoPor": "Angel Farro"
+  }
+]

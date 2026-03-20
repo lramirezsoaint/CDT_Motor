@@ -1,0 +1,7 @@
+{
+  "admin": {
+    "usernameEnv": "MOTOR_USERNAME",
+    "passwordEnv": "MOTOR_PASSWORD",
+    "roleLabel": "Administrador"
+  }
+}

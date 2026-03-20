@@ -1,0 +1,27 @@
+{
+  "name": "distribucion-playwright-framework",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Base refactorizada de Playwright para Motor de Distribucion",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:critical": "playwright test --grep @critical",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:list": "playwright test --list",
+    "report": "playwright show-report",
+    "cases:bd1": "node scripts/export-bd1-case-matrix.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^25.0.9",
+    "csv-parse": "^6.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "xlsx": "^0.18.5"
+  }
+}

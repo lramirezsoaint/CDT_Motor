@@ -1,0 +1,26 @@
+name: Playwright QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:smoke
+        env:
+          MOTOR_BASE_URL: ${{ secrets.MOTOR_BASE_URL }}
+          MOTOR_USERNAME: ${{ secrets.MOTOR_USERNAME }}
+          MOTOR_PASSWORD: ${{ secrets.MOTOR_PASSWORD }}
+          PW_WORKERS: 1
+          HEADLESS: true

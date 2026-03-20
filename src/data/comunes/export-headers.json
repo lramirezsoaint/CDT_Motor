@@ -1,0 +1,28 @@
+{
+  "lineas": [
+    "Codigo Linea",
+    "Nombre Linea",
+    "Estatus",
+    "Negocio"
+  ],
+  "grupoProducto": [
+    "Código",
+    "Nombre",
+    "Código linea",
+    "Nombre línea",
+    "Método de valoración",
+    "Estado"
+  ],
+  "canales": [
+    "Codigo",
+    "Nombre",
+    "Estado"
+  ],
+  "subcanales": [
+    "Codigo",
+    "Nombre",
+    "Codigo Canal",
+    "Nombre Canal",
+    "Estado"
+  ]
+}
