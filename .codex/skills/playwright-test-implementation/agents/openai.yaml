@@ -1,0 +1,4 @@
+interface:
+  display_name: "Playwright Test Impl"
+  short_description: "Implementa casos E2E Playwright desde Markdown"
+  default_prompt: "Use $playwright-test-implementation to implementar un caso Playwright desde un archivo Markdown con escenario, pasos y criterios."
