@@ -6,6 +6,8 @@ When implementing cases from `catalogo_casos_prueba.md`, keep progress in a trac
 
 The catalog mirrors the Excel source and should preserve original IDs and source wording as much as possible. Progress, automation readiness, and follow-up notes belong in a tracking artifact, not as ad hoc edits to the source catalog.
 
+If a case appears without a visible scenario association in the generated catalog, treat that as a traceability condition, not as an automatic implementation blocker.
+
 ## Recommended tracking fields
 
 For each case, track at least:
@@ -18,6 +20,7 @@ For each case, track at least:
 - `human_validation_status`
 - `blocking_reason`
 - `notes`
+- `visible_scenario_association`
 
 ## Recommended values
 
@@ -53,6 +56,7 @@ Use one of:
 - `implementation_status` reflects the real state in the repository.
 - `automation_readiness` reflects whether the case can be automated with current information and system support.
 - `human_validation_status` reflects the mandatory human checkpoint when working case-by-case.
+- `visible_scenario_association` can be used to distinguish `assigned` vs `unassigned`, without implying the case is invalid.
 
 ## Example row
 
@@ -75,3 +79,4 @@ notes: Catalog says not implemented, but matching Playwright coverage exists in 
 - If a case exists in code but still needs review, use `already_in_code` plus the appropriate human validation status.
 - In human-gated mode, update tracking after each case and stop for review.
 - In batch mode, continue updating tracking per case and stop on the first blocker that makes the next decision ambiguous.
+- Do not treat `unassigned` as `blocked` by default. A case without visible scenario association may still be fully implementable from its own fields.
