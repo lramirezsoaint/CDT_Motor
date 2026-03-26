@@ -67,11 +67,17 @@ If the case is not automatable now, do not generate speculative code. Record the
 4. Decide where the new logic belongs:
 - spec only for single-use assertions
 - Page Object for reusable UI actions or reusable validations
-5. Preserve the current structure:
+5. Before automating a context switch in the application shell, verify whether that context is already selected:
+- current flow
+- current module family
+- current mode or preset
+- current region or company scope
+Avoid re-selecting the active state when the visible chip, badge, or trigger text only reflects the current selection.
+6. Preserve the current structure:
 - `test.describe()` grouped by tags and case ID
 - `test()` title containing tags and readable intent
 - `test.step()` blocks using explicit business intent; Given/When/Then is recommended, not mandatory, unless the nearest module already uses it consistently
-6. Add or update only the minimum code required by the scenario.
+7. Add or update only the minimum code required by the scenario.
 
 ## Selector strategy
 

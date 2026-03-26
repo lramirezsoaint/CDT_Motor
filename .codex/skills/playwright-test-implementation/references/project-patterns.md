@@ -65,3 +65,4 @@ await expect(locator, 'Debe mostrar el buscador principal en el home').toBeVisib
 - If the Markdown asks for a business rule, assert that rule directly in the UI with readable messages.
 - Prefer `storageState`, fixture reuse, and `LoginPage` before adding any new auth handling.
 - Prefer URL and locator expectations over `networkidle` and static waits.
+- Before changing a global app context such as flow, module, company, period preset, or execution mode, verify whether the desired state is already active. Do not re-click badges, chips, or trigger labels that only reflect the current state.
