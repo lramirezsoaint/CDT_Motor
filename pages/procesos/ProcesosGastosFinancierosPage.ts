@@ -13,7 +13,7 @@ export class ProcesosGastosFinancierosPage {
   constructor(private readonly page: Page) {}
 
   private get procesoHeading(): Locator {
-    return this.page.getByRole('main').getByText(/^Procesos$/i).or(this.page.getByText(/^Procesos$/i)).first();
+    return this.page.getByRole('heading', { name: /^Procesos$/i }).first();
   }
 
   private get periodoInput(): Locator {
@@ -33,6 +33,10 @@ export class ProcesosGastosFinancierosPage {
       .getByText(/^Descripci[oó]n Regi[oó]n$/i)
       .first()
       .locator('xpath=following::button[1]');
+  }
+
+  private get regionDropdown(): Locator {
+    return this.page.locator('[data-radix-popper-content-wrapper]').filter({ hasText: /Exactus|AMED|AP Vida/i }).last();
   }
 
   private get ejecutarTodoButton(): Locator {
@@ -71,7 +75,7 @@ export class ProcesosGastosFinancierosPage {
 
     const regionTrigger = await this.openRegionSelector();
     for (const region of input.regiones) {
-      const checkbox = this.page.getByRole('checkbox', { name: new RegExp(region, 'i') });
+      const checkbox = this.regionDropdown.getByRole('checkbox', { name: new RegExp(region, 'i') });
       await expect(checkbox).toBeVisible({ timeout: 10_000 });
       if (!(await checkbox.isChecked().catch(() => false))) {
         await checkbox.check({ force: true });
@@ -191,10 +195,7 @@ export class ProcesosGastosFinancierosPage {
       .first();
     const realBadge = flowTrigger.locator('span').filter({ hasText: /^REAL$/i }).first();
 
-    if (!(await flowTrigger.isVisible({ timeout: 10_000 }).catch(() => false))) {
-      return;
-    }
-
+    await expect(flowTrigger).toBeVisible({ timeout: 10_000 });
     await flowTrigger.click({ timeout: 10_000 });
 
     const flowDropdown = this.page
@@ -212,12 +213,8 @@ export class ProcesosGastosFinancierosPage {
 
     await expect(realOption).toBeVisible({ timeout: 10_000 });
     await realOption.click({ timeout: 10_000 });
-
     await expect(realBadge).toBeVisible({ timeout: 15_000 });
-
-    if (await this.page.locator('[data-radix-popper-content-wrapper]').isVisible().catch(() => false)) {
-      await this.page.keyboard.press('Escape').catch(() => undefined);
-    }
+    await expect(flowDropdown).toBeHidden({ timeout: 10_000 });
   }
 
   private async selectGastosFinancierosModule(): Promise<void> {
@@ -237,11 +234,8 @@ export class ProcesosGastosFinancierosPage {
     await expect(moduleDropdown).toBeVisible({ timeout: 10_000 });
 
     const gastosFinancierosOption = moduleDropdown.locator('div[role="menuitem"]').filter({ hasText: /^Gastos Financieros$/i }).first();
-
-    if (await gastosFinancierosOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
-      await gastosFinancierosOption.click({ timeout: 10_000 });
-    }
-
+    await expect(gastosFinancierosOption).toBeVisible({ timeout: 10_000 });
+    await gastosFinancierosOption.click({ timeout: 10_000 });
     await expect(moduleTrigger).toContainText(/Gastos Financieros/i, { timeout: 15_000 });
   }
 
@@ -271,32 +265,28 @@ export class ProcesosGastosFinancierosPage {
 
   private async openRegionSelector(): Promise<Locator> {
     const selectedRegionsButton = this.descripcionRegionTrigger;
-    if (await selectedRegionsButton.isVisible({ timeout: 3_000 }).catch(() => false)) {
-      await selectedRegionsButton.click({ timeout: 5_000 });
-      const regionCheckbox = this.page.getByRole('checkbox', { name: /Exactus/i });
-      if (await regionCheckbox.isVisible({ timeout: 2_000 }).catch(() => false)) {
-        return selectedRegionsButton;
-      }
-      await this.page.keyboard.press('Escape').catch(() => undefined);
-    }
+    await expect(selectedRegionsButton).toBeVisible({ timeout: 10_000 });
+    await selectedRegionsButton.click({ timeout: 5_000 });
+    const regionCheckbox = this.regionDropdown.getByRole('checkbox', { name: /Exactus/i });
+    await expect(regionCheckbox, 'El combo de Descripción Región debe exponer sus opciones al abrirse.').toBeVisible({
+      timeout: 10_000,
+    });
+    return selectedRegionsButton;
 
-    throw new Error('No se pudo identificar el selector de regiones del módulo Procesos de Gastos Financieros.');
   }
 
   private async closeRegionSelector(selectedRegionsButton: Locator): Promise<void> {
-    const openDropdown = this.page.locator('[data-radix-popper-content-wrapper]').filter({ hasText: /Exactus|AMED|AP Vida/i }).last();
-
-    if (!(await openDropdown.isVisible({ timeout: 2_000 }).catch(() => false))) {
+    if (!(await this.regionDropdown.isVisible({ timeout: 2_000 }).catch(() => false))) {
       return;
     }
 
     await selectedRegionsButton.click({ timeout: 5_000 }).catch(() => undefined);
 
-    if (await openDropdown.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    if (await this.regionDropdown.isVisible({ timeout: 2_000 }).catch(() => false)) {
       await this.page.keyboard.press('Escape').catch(() => undefined);
     }
 
-    await expect(openDropdown, 'El selector de regiones debe quedar cerrado antes de continuar con FASE 3.').toBeHidden({
+    await expect(this.regionDropdown, 'El selector de regiones debe quedar cerrado antes de continuar con FASE 3.').toBeHidden({
       timeout: 10_000,
     });
   }
