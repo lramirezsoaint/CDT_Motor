@@ -142,6 +142,14 @@ Se dejó el flujo sin heurísticas globales ni reescaneo genérico de botones.
 
 `Descripción Región` se maneja con su trigger propio, y el cierre se hace reutilizando el mismo locator con el que fue abierto.
 
+Durante la depuración posterior al primer pass se reforzó además esta regla:
+
+- no usar lógica global de “cerrar cualquier popup”
+- no volver a abrir `Modo de Ejecución` después de seleccionar `Resumido`
+- no reexplorar botones genéricos del `main` para encontrar `Descripción Región`
+
+La limpieza del POM confirmó que el flujo más robusto era también el más simple: cada combo se manipula solo con su propio trigger.
+
 **Referencia**
 
 - [ProcesosGastosFinancierosPage.ts](/Users/jorgeinfante/repos/proyectos/soaint/QA-Aldis/MotordeDistribucion/pages/procesos/ProcesosGastosFinancierosPage.ts)
@@ -169,6 +177,14 @@ Cerrar explícitamente el combo correcto antes de continuar:
 - `Descripción Región` se cierra reutilizando el mismo trigger con el que fue abierto
 
 No introducir cierres globales o genéricos que vuelvan ambiguo el flujo.
+
+En la pasada de limpieza posterior se confirmó además que el verdadero problema no era “cerrar popups en general”, sino mantener una relación exacta entre:
+
+- trigger que abre
+- opciones que se marcan
+- trigger que cierra
+
+Ese patrón debe preferirse frente a cualquier solución más genérica.
 
 ### 7. El checkbox de `FASE 3` no puede modelarse solo por accesibilidad
 
@@ -242,6 +258,8 @@ Evitar como solución final:
 - escribir atributos directamente por `evaluate`
 - confiar solo en texto o solo en `role="checkbox"`
 
+La versión final del POM quedó precisamente en esa línea: sin writes manuales al DOM y validando el cambio observable del componente.
+
 ### 9. La grabación de Playwright no debe copiarse literalmente
 
 **Problema**
@@ -293,6 +311,12 @@ Cruzar siempre:
 - DOM inspeccionado manualmente
 - screenshot/trace de la corrida real
 
+Además, cuando la prueba ya pasó, conviene hacer una segunda revisión con objetivo distinto:
+
+- detectar código experimental que quedó de intentos previos
+- eliminar ramas silenciosas o permisivas
+- dejar solo los locators y validaciones que realmente corresponden al flujo exitoso
+
 ### 11. La validación de porcentajes debía reflejar la regla de negocio real
 
 **Problema**
@@ -316,6 +340,41 @@ Se dejó una espera explícita de `15s` documentada con `TODO` y la validación 
 - [ProcesosGastosFinancierosPage.ts](/Users/jorgeinfante/repos/proyectos/soaint/QA-Aldis/MotordeDistribucion/pages/procesos/ProcesosGastosFinancierosPage.ts)
 - [gastos-financieros.critical.spec.ts](/Users/jorgeinfante/repos/proyectos/soaint/QA-Aldis/MotordeDistribucion/tests/e2e/procesos/gastos-financieros.critical.spec.ts)
 
+### 12. Un pass inicial no significa que el POM ya esté limpio
+
+**Problema**
+
+Después del primer pass exitoso seguían existiendo restos de implementación exploratoria:
+
+- ramas silenciosas con `catch(() => false)` o `if` permisivos
+- rutas que intentaban “no fallar” aunque el locator no fuera el correcto
+- búsquedas demasiado globales para elementos que ya estaban claramente identificados
+
+Eso no rompía el test en esa corrida, pero dejaba deuda técnica y riesgo de falsos positivos o de estabilidad aparente.
+
+**Solución**
+
+Hacer una pasada de depuración posterior al primer pass:
+
+- endurecer los locators que ya se entendieron
+- quitar ramas de fallback innecesarias
+- restringir las checkboxes de región al popper correcto
+- exigir visibilidad del trigger correcto en vez de resolver “si aparece”
+
+Luego rerunear el caso para confirmar que la versión más estricta sigue pasando.
+
+**Resultado**
+
+La prueba volvió a pasar después de esa limpieza, lo que confirma que:
+
+- sí era posible simplificar
+- el flujo final ya estaba suficientemente entendido
+- parte del código anterior sí era ruido acumulado de los intentos
+
+**Referencia**
+
+- [ProcesosGastosFinancierosPage.ts](/Users/jorgeinfante/repos/proyectos/soaint/QA-Aldis/MotordeDistribucion/pages/procesos/ProcesosGastosFinancierosPage.ts)
+
 ## Reglas reutilizables para otros casos
 
 - No asumir que dos combos con apariencia similar se manipulan igual.
@@ -324,6 +383,7 @@ Se dejó una espera explícita de `15s` documentada con `TODO` y la validación 
 - No mezclar exploración manual con implementación literal del recorder.
 - Si Playwright y el DOM visual no coinciden, revisar screenshot, trace y árbol accesible antes de cambiar el locator.
 - Para componentes React controlados, validar siempre el estado final observable y no solo el click.
+- Después del primer pass, hacer una pasada de limpieza del POM para eliminar lógica experimental que ya no aporta.
 
 ## Archivos relacionados
 
