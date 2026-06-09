@@ -1,0 +1,7 @@
+{
+  "archivo": "REAL Grupo Producto.xlsx",
+  "expected": {
+    "columnas": ["Codigo", "Nombre", "Codigo Linea", "Nombre Linea", "Metodo de Valoracion", "Estado"],
+    "filasMinimas": 1
+  }
+}

@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "fotoaparát"
+   },
+   "Copy": {
+      "message": "kópie"
+   },
+   "DefaultText": {
+      "message": "Zatiaľ sa nezistil žiadny QR kód. Naskenujte jeden a mal by sa zobraziť tu."
+   },
+   "Image": {
+      "message": "Obrázok"
+   },
+   "Open": {
+      "message": "Otvorené"
+   },
+   "PermissionPage_Denied": {
+      "message": "Zablokovali ste aplikácii prístup k záznamovému zariadeniu. Bez nej nemôže fungovať. Odblokovanie nájdete na nasledujúcom snímke obrazovky."
+   },
+   "PermissionPage_Granted": {
+      "message": "Povolili ste aplikáciu. Aplikáciu môžete teraz použiť!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "Potrebujeme vaše povolenie na prístup k záznamovým zariadeniam. Po zobrazení prehľadávača kliknite na položku Povoliť."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "Kliknite na ikonu Blokovať na konci panela s adresou a potom vyberte možnosť Vždy povoliť .... Potom túto stránku znova načítajte."
+   },
+   "RateUs": {
+      "message": "Ohodnoťte nás"
+   },
+   "Share": {
+      "message": "Zdieľajte našu aplikáciu"
+   },
+   "Tab": {
+      "message": "Aktuálna tab"
+   }
+}

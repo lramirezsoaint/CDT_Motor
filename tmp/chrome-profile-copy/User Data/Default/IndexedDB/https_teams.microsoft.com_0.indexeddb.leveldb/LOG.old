@@ -1,0 +1,7 @@
+2026/05/11-09:59:21.700 4494 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_teams.microsoft.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/11-09:59:21.700 4494 Recovering log #73
+2026/05/11-09:59:21.701 4494 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_teams.microsoft.com_0.indexeddb.leveldb/000073.log 
+2026/05/11-09:59:22.329 734 Level-0 table #78: started
+2026/05/11-09:59:22.337 734 Level-0 table #78: 15685 bytes OK
+2026/05/11-09:59:22.343 734 Delete type=0 #73
+2026/05/11-09:59:22.344 734 Manual compaction at level-0 from '\x00\x1e\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x1f\x00\x00\x00' @ 0 : 0; will stop at (end)

@@ -1,0 +1,58 @@
+2026/05/17-08:20:13.218 1030 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\chrome-extension_hnmpcagpplmpfojmgmnngilcnanddlhb_0.indexeddb.leveldb/MANIFEST-848728
+2026/05/17-08:20:13.222 1030 Recovering log #853171
+2026/05/17-08:20:13.223 1030 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\chrome-extension_hnmpcagpplmpfojmgmnngilcnanddlhb_0.indexeddb.leveldb/853171.log 
+2026/05/17-08:20:13.237 455c Level-0 table #853189: started
+2026/05/17-08:20:13.243 455c Level-0 table #853189: 23901 bytes OK
+2026/05/17-08:20:13.246 455c Delete type=0 #853171
+2026/05/17-08:20:13.247 455c Manual compaction at level-0 from '@\xb1\xd7\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '@\xb2\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at '@\xb1\xd7\x01\x00\x00\x05' @ 44862731 : 1
+2026/05/17-08:20:13.247 455c Compacting 1@0 + 3@1 files
+2026/05/17-08:20:13.250 455c Generated table #853190@0: 412 keys, 7315 bytes
+2026/05/17-08:20:13.261 455c Generated table #853191@0: 5677 keys, 109826 bytes
+2026/05/17-08:20:13.280 455c Generated table #853192@0: 10982 keys, 221148 bytes
+2026/05/17-08:20:13.287 455c Generated table #853193@0: 1870 keys, 42278 bytes
+2026/05/17-08:20:13.288 455c Compacted 1@0 + 3@1 files => 380567 bytes
+2026/05/17-08:20:13.289 455c compacted to: files[ 0 4 201 0 0 0 0 ]
+2026/05/17-08:20:13.292 455c Delete type=2 #853189
+2026/05/17-08:20:13.293 1030 Manual compaction at level-0 from '@\xb1\xd7\x01\x00\x00\x05' @ 44862731 : 1 .. '@\xb2\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/17-08:20:13.294 1030 Level-0 table #853195: started
+2026/05/17-08:20:13.297 1030 Level-0 table #853195: 4066 bytes OK
+2026/05/17-08:20:13.300 1030 Delete type=2 #853174
+2026/05/17-08:20:13.300 1030 Delete type=2 #853175
+2026/05/17-08:20:13.300 1030 Delete type=2 #853176
+2026/05/17-08:20:13.301 1030 Delete type=0 #853188
+2026/05/17-08:20:13.303 1030 Manual compaction at level-0 from '@\xb2\xd7\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '@\xb3\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at '@\xb2\xd7\x01\x00\x00\x05' @ 44862748 : 1
+2026/05/17-08:20:13.304 1030 Compacting 1@0 + 4@1 files
+2026/05/17-08:20:13.307 1030 Generated table #853196@0: 444 keys, 9033 bytes
+2026/05/17-08:20:13.318 1030 Generated table #853197@0: 5681 keys, 109920 bytes
+2026/05/17-08:20:13.333 1030 Generated table #853198@0: 10990 keys, 221300 bytes
+2026/05/17-08:20:13.338 1030 Generated table #853199@0: 1870 keys, 42278 bytes
+2026/05/17-08:20:13.338 1030 Compacted 1@0 + 4@1 files => 382531 bytes
+2026/05/17-08:20:13.339 1030 compacted to: files[ 0 4 201 0 0 0 0 ]
+2026/05/17-08:20:13.340 1030 Delete type=2 #853195
+2026/05/17-08:20:13.341 1030 Manual compaction at level-0 from '@\xb2\xd7\x01\x00\x00\x05' @ 44862748 : 1 .. '@\xb3\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/17-08:20:13.359 a40 Compacting 1@1 + 9@2 files
+2026/05/17-08:20:13.422 a40 Generated table #853200@1: 106716 keys, 2264849 bytes
+2026/05/17-08:20:13.490 a40 Generated table #853201@1: 110385 keys, 2270508 bytes
+2026/05/17-08:20:13.652 a40 Generated table #853202@1: 109057 keys, 2268354 bytes
+2026/05/17-08:20:13.802 a40 Generated table #853203@1: 110429 keys, 2270435 bytes
+2026/05/17-08:20:13.927 a40 Generated table #853204@1: 113662 keys, 2273408 bytes
+2026/05/17-08:20:14.056 a40 Generated table #853205@1: 113008 keys, 2273837 bytes
+2026/05/17-08:20:14.166 a40 Generated table #853206@1: 112959 keys, 2272484 bytes
+2026/05/17-08:20:14.230 a40 Generated table #853207@1: 112767 keys, 2273482 bytes
+2026/05/17-08:20:14.321 a40 Generated table #853208@1: 113022 keys, 2271052 bytes
+2026/05/17-08:20:14.321 a40 Compacted 1@1 + 9@2 files => 20438409 bytes
+2026/05/17-08:20:14.322 a40 compacted to: files[ 0 3 201 0 0 0 0 ]
+2026/05/17-08:20:14.323 a40 Delete type=2 #853177
+2026/05/17-08:20:14.323 a40 Delete type=2 #853178
+2026/05/17-08:20:14.323 a40 Delete type=2 #853179
+2026/05/17-08:20:14.323 a40 Delete type=2 #853180
+2026/05/17-08:20:14.323 a40 Delete type=2 #853181
+2026/05/17-08:20:14.323 a40 Delete type=2 #853182
+2026/05/17-08:20:14.323 a40 Delete type=2 #853183
+2026/05/17-08:20:14.323 a40 Delete type=2 #853184
+2026/05/17-08:20:14.323 a40 Delete type=2 #853185
+2026/05/17-08:20:14.323 a40 Delete type=2 #853190
+2026/05/17-08:20:14.323 a40 Delete type=2 #853191
+2026/05/17-08:20:14.323 a40 Delete type=2 #853192
+2026/05/17-08:20:14.323 a40 Delete type=2 #853193
+2026/05/17-08:20:14.323 a40 Delete type=2 #853196

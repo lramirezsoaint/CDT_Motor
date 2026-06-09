@@ -1,0 +1,42 @@
+2026/05/17-08:22:13.324 1030 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\chrome-extension_hnmpcagpplmpfojmgmnngilcnanddlhb_0.indexeddb.leveldb/MANIFEST-848728
+2026/05/17-08:22:13.327 1030 Recovering log #853194
+2026/05/17-08:22:13.328 1030 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\chrome-extension_hnmpcagpplmpfojmgmnngilcnanddlhb_0.indexeddb.leveldb/853194.log 
+2026/05/17-08:22:13.334 455c Manual compaction at level-0 from '@\xb3\xd7\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '@\xb4\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/17-08:22:13.339 455c Level-0 table #853211: started
+2026/05/17-08:22:13.344 455c Level-0 table #853211: 11263 bytes OK
+2026/05/17-08:22:13.345 455c Delete type=0 #853194
+2026/05/17-08:22:13.346 a40 Manual compaction at level-0 from '@\xb4\xd7\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '@\xb5\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at '@\xb4\xd7\x01\x00\x00\x05' @ 44863374 : 1
+2026/05/17-08:22:13.346 a40 Compacting 1@0 + 3@1 files
+2026/05/17-08:22:13.348 a40 Generated table #853212@0: 274 keys, 4128 bytes
+2026/05/17-08:22:13.353 a40 Generated table #853213@0: 5692 keys, 110118 bytes
+2026/05/17-08:22:13.359 a40 Generated table #853214@0: 11011 keys, 221671 bytes
+2026/05/17-08:22:13.362 a40 Generated table #853215@0: 1875 keys, 42452 bytes
+2026/05/17-08:22:13.363 a40 Compacted 1@0 + 3@1 files => 378369 bytes
+2026/05/17-08:22:13.363 a40 compacted to: files[ 0 4 201 0 0 0 0 ]
+2026/05/17-08:22:13.365 a40 Delete type=2 #853211
+2026/05/17-08:22:13.365 a40 Manual compaction at level-0 from '@\xb4\xd7\x01\x00\x00\x05' @ 44863374 : 1 .. '@\xb5\xd7\x01\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/17-08:22:13.389 1030 Compacting 1@1 + 9@2 files
+2026/05/17-08:22:13.437 1030 Generated table #853216@1: 106721 keys, 2264793 bytes
+2026/05/17-08:22:13.489 1030 Generated table #853217@1: 110413 keys, 2271213 bytes
+2026/05/17-08:22:13.542 1030 Generated table #853218@1: 109025 keys, 2268261 bytes
+2026/05/17-08:22:13.600 1030 Generated table #853219@1: 110409 keys, 2269859 bytes
+2026/05/17-08:22:13.655 1030 Generated table #853220@1: 113663 keys, 2273303 bytes
+2026/05/17-08:22:13.709 1030 Generated table #853221@1: 112994 keys, 2273691 bytes
+2026/05/17-08:22:13.770 1030 Generated table #853222@1: 112969 keys, 2272479 bytes
+2026/05/17-08:22:13.829 1030 Generated table #853223@1: 112797 keys, 2273309 bytes
+2026/05/17-08:22:13.885 1030 Generated table #853224@1: 112977 keys, 2270555 bytes
+2026/05/17-08:22:13.885 1030 Compacted 1@1 + 9@2 files => 20437463 bytes
+2026/05/17-08:22:13.886 1030 compacted to: files[ 0 3 201 0 0 0 0 ]
+2026/05/17-08:22:13.887 1030 Delete type=2 #853197
+2026/05/17-08:22:13.887 1030 Delete type=2 #853198
+2026/05/17-08:22:13.887 1030 Delete type=2 #853199
+2026/05/17-08:22:13.887 1030 Delete type=2 #853200
+2026/05/17-08:22:13.887 1030 Delete type=2 #853201
+2026/05/17-08:22:13.887 1030 Delete type=2 #853202
+2026/05/17-08:22:13.887 1030 Delete type=2 #853203
+2026/05/17-08:22:13.887 1030 Delete type=2 #853204
+2026/05/17-08:22:13.887 1030 Delete type=2 #853205
+2026/05/17-08:22:13.887 1030 Delete type=2 #853206
+2026/05/17-08:22:13.887 1030 Delete type=2 #853207
+2026/05/17-08:22:13.887 1030 Delete type=2 #853208
+2026/05/17-08:22:13.887 1030 Delete type=2 #853212

@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "Kamera"
+   },
+   "Copy": {
+      "message": "Kopieren"
+   },
+   "DefaultText": {
+      "message": "Noch kein QR erkannt. Scannen Sie eines und es sollte hier erscheinen."
+   },
+   "Image": {
+      "message": "Bild"
+   },
+   "Open": {
+      "message": "Öffnen"
+   },
+   "PermissionPage_Denied": {
+      "message": "Sie haben die App für den Zugriff auf das Aufnahmegerät gesperrt. Ohne kann es nicht funktionieren. Bitte beziehen Sie sich auf den folgenden Screenshot, um die Blockierung aufzuheben."
+   },
+   "PermissionPage_Granted": {
+      "message": "Sie haben die Berechtigung für die App erteilt. Sie können die App jetzt verwenden!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "Wir benötigen Ihre Erlaubnis, um auf Ihre Aufnahmegeräte zugreifen zu können. Bitte klicken Sie auf Zulassen, wenn der Browser dazu auffordert."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "Klicken Sie auf das Block-Symbol am Ende der Adressleiste und wählen Sie dann die Option Immer zulassen ... Dann laden Sie bitte diese Seite neu."
+   },
+   "RateUs": {
+      "message": "Bitte bewerten Sie uns"
+   },
+   "Share": {
+      "message": "Teilen Sie unsere App"
+   },
+   "Tab": {
+      "message": "Aktuelle Registerkarte"
+   }
+}

@@ -1,106 +1,74 @@
 # AGENTS
 
-## Purpose
+## High-Signal Context
 
-This repository contains a local Codex skill intended to implement Playwright tests from business test cases written in Markdown.
+This repository is a customized Playwright framework for testing **Motor de Distribución**. 
+Before writing or changing code, review this document to avoid common agent pitfalls and run validation steps correctly.
 
-The local skill lives at:
+### 🛠️ Developer Commands & Execution Quirks
 
-- `.codex/skills/playwright-test-implementation/`
+Do not guess or assume standard Playwright commands. The workspace relies on custom TypeScript loaders and scripts for execution.
 
-Use it when the task is to create or update Playwright specs from a written case definition, especially when the implementation must follow this repository's existing fixtures, Page Objects, selector constraints, and test-tag conventions.
+- **Run all tests with history tracking (Default):**
+  ```bash
+  npm test
+  ```
+- **Direct Playwright execution (No hooks):**
+  ```bash
+  npm run test:raw
+  ```
+- **Run focused groups via tags:**
+  ```bash
+  npm run test:smoke      # Basic sanity checks
+  npm run test:critical   # Core functional flows
+  ```
+- **Run specific Bloque 1 tests sequentially:**
+  ```bash
+  npm run test:block1:sequential
+  ```
+- **Execute or target a single spec:**
+  ```bash
+  npx playwright test tests/e2e/bloque-3/E9-GF-03.3/E9-GF-03.3.spec.ts
+  ```
 
-## Recommended activation
+---
 
-To activate the local skill in a prompt, explicitly mention:
+### 🔑 Authentication & Roles
 
-- `$playwright-test-implementation`
+The framework enforces strict separation between roles. Playing tests under the wrong role leads to false passes or hard-to-debug failures.
 
-Recommended prompt shape:
+- **Storage State:** Session auth states are resolved dynamically from `.auth/admin.json`, `.auth/gestor.json`, or the legacy fallback `storageState.json` via `playwright.config.ts`.
+- **Role Scoping:**
+  - **Administrador:** Runs on the `chromium` project.
+  - **Gestor (Gastos Financieros / GF):** Runs on the `chromium-gestor` project.
+  - *Never* execute Gestor GF tests using an Admin's `storageState.json`. This causes failures due to menu mismatch permissions.
+- **Regenerating Sessions:** Use `scripts/create-auth.js` or `scripts/create-bloque3-auth.js` to refresh storage states when they expire or when `No hay distribuciones disponibles` states block the UI.
 
-`Use $playwright-test-implementation with catalogo_casos_prueba.md and implement the case E0-LOGIN-ADMIN-01`
+---
 
-## Operating modes
+### 📐 Project Conventions & Selector Best Practices
 
-This repo expects two valid ways of working:
+Rigorously adhere to these custom design-patterns instead of standard Playwright strategies:
 
-### 1. Human-gated mode
+- **Fixtures:** Always import from and extend `@fixtures/base.fixture` or bloque-specific fixtures (e.g., `@bloque3/_shared/bloque3.fixture`).
+- **Wait Strategies:**
+  - **DO NOT** use `page.waitForTimeout(ms)` or default to `networkidle` strategies.
+  - Prefer explicit web-first assertions: `await expect(locator).toBeVisible({ timeout })` or `.toBeEnabled()`.
+- **Locators:**
+  - **DO NOT** use JavaScript OR `||` fallbacks. Always use Playwright's native `.or(...)` operator or write explicit conditions.
+  - Prefer `data-testid` where available. Fall back to semantic buttons/roles and visible text.
+  - Do not use absolute XPath unless encapsulated as a last-resort fallback.
+- **Sub-module Isolation:**
+  - Before growing or updating tests in a module (e.g., Bloque 3 / Gastos Financieros), ensure the sub-module dropdown selector actually switches the header shell context to `Gastos Financieros`.
+  - Validate that the sidebar sections match the specific module's profile, and that unauthorized views/actions (like "Comunes > Lineas" or delete/trash icons) are hidden.
 
-This is the default and preferred mode at the start.
+---
 
-- the human asks for one exact case
-- the agent implements only that case
-- the agent stops and waits for human testing and validation
-- the next case starts only after explicit user approval
+### 📝 Tracking, Specs, & Reports
 
-Typical prompts:
-
-- `Use $playwright-test-implementation with catalogo_casos_prueba.md and implement E0-LOGIN-ADMIN-01`
-- `Use $playwright-test-implementation and implement the next pending case`
-
-### 2. Authorized batch mode
-
-This mode is allowed only after the human has validated that the skill is producing correct results.
-
-- the human explicitly authorizes implementing multiple remaining cases
-- the agent may continue with the rest of the requested pending cases
-- the agent must still stop on ambiguity, missing information, or failing validation
-
-Typical prompts:
-
-- `Use $playwright-test-implementation and implement the remaining login cases`
-- `Use $playwright-test-implementation and continue with the rest of the pending cases`
-- `Use $playwright-test-implementation and implement the remaining cases automatically`
-
-## Expected input
-
-The main input format currently used in this repo is:
-
-- `catalogo_casos_prueba.md`
-
-That catalog is not guaranteed to be fully curated. It may contain:
-
-- implemented and non-implemented cases mixed together
-- incomplete cases
-- inconsistent IDs
-- sensitive credential examples that must not be copied into committed files
-
-Those inconsistent IDs must be preserved exactly as they appear, because they map back to the source Excel.
-
-Before implementing a case, the agent should:
-
-1. isolate one exact case ID
-2. verify whether the case already exists in `tests/e2e/`
-3. validate that the case has enough information to automate safely
-4. prefer existing auth fixtures and environment variables over catalog credentials
-
-In human-gated mode, the agent must stop after step 4 for the selected case once implementation and local verification are finished, and wait for user confirmation before moving on.
-
-The agent should also update the repository tracking document:
-
-- `seguimiento_casos_prueba.md`
-
-That file exists to track real implementation status, automation readiness, and human validation without altering the original catalog semantics.
-
-## Repository conventions
-
-Prefer these repository-local rules over generic Playwright habits when they conflict:
-
-- reuse `@fixtures/base.fixture`
-- inspect the closest existing spec in the same module before creating a new one
-- extend existing Page Objects only when the interaction is reusable
-- avoid `waitForTimeout()` and avoid using `networkidle` as the default synchronization strategy
-- avoid JavaScript `||` as locator fallback logic
-- avoid fallbacks that change the module under test
-- do not weaken business assertions just to get a passing test
-
-## References
-
-The skill contains project-specific references here:
-
-- `.codex/skills/playwright-test-implementation/references/levantamiento.md`
-- `.codex/skills/playwright-test-implementation/references/project-patterns.md`
-- `.codex/skills/playwright-test-implementation/references/tracking-guidelines.md`
-- `.codex/skills/playwright-test-implementation/references/workflow.md`
-
-When updating the skill, keep those references aligned with the actual codebase.
+- **Spec Location:**
+  - Bloque 1 tests: `tests/e2e/bloque-1/...`
+  - Bloque 3 tests: `tests/e2e/bloque-3/...`
+- **Catalog Integration:** Keep spec IDs exactly matching the markdown files (`catalogo_casos_prueba_bloque3.md`, etc.). These match original Excel IDs.
+- **Progress Tracking:** Update `seguimiento_casos_prueba.md` to indicate real status, automation readiness, or human validation.
+- **Generators:** Clean up and analyze runs with `npm run report:executive` to build custom executive PDF/JSON summaries after testing runs.

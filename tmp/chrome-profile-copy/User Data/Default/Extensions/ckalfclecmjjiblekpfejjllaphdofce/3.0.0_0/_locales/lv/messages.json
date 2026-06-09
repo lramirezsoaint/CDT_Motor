@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "Kamera"
+   },
+   "Copy": {
+      "message": "Kopēt"
+   },
+   "DefaultText": {
+      "message": "QR vēl nav atrasts. Skenējiet vienu, un tam vajadzētu parādīties šeit."
+   },
+   "Image": {
+      "message": "Attēls"
+   },
+   "Open": {
+      "message": "Atvērt"
+   },
+   "PermissionPage_Denied": {
+      "message": "Jūs esat bloķējis lietotnes piekļuvi ierakstīšanas ierīcei. Bez tā nevar darboties. Lūdzu, skatiet zemāk redzamo ekrānuzņēmumu, lai to atbloķētu."
+   },
+   "PermissionPage_Granted": {
+      "message": "Jūs esat piešķīris atļauju lietotnei. Jūs varat lietotni tagad!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "Lai piekļūtu ierakstīšanas ierīcēm, jums nepieciešama jūsu atļauja. Lūdzu, noklikšķiniet uz Atļaut, kad pārlūks to prasa."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "Noklikšķiniet uz ikonas Bloķēt adreses joslas beigās un pēc tam izvēlieties opciju Vienmēr atļaut ... Pēc tam, lūdzu, atkārtoti ielādējiet šo lapu."
+   },
+   "RateUs": {
+      "message": "Lūdzu, novērtējiet mūs"
+   },
+   "Share": {
+      "message": "Kopīgojiet mūsu lietotni"
+   },
+   "Tab": {
+      "message": "Pašreizējā cilne"
+   }
+}

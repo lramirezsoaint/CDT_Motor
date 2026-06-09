@@ -1,0 +1,20 @@
+2026/05/11-09:59:36.707 5080 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_teams.microsoft.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/11-09:59:36.707 5080 Recovering log #77
+2026/05/11-09:59:36.708 5080 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_teams.microsoft.com_0.indexeddb.leveldb/000077.log 
+2026/05/11-09:59:36.714 734 Level-0 table #81: started
+2026/05/11-09:59:36.716 734 Level-0 table #81: 10914 bytes OK
+2026/05/11-09:59:36.718 734 Delete type=0 #77
+2026/05/11-09:59:36.719 4494 Manual compaction at level-0 from '\x00\x1f\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00 \x00\x00\x00' @ 0 : 0; will stop at '\x00\x1f\x00\x00\x05' @ 5476 : 1
+2026/05/11-09:59:36.719 4494 Compacting 1@0 + 1@1 files
+2026/05/11-09:59:36.722 4494 Generated table #82@0: 188 keys, 6721 bytes
+2026/05/11-09:59:36.722 4494 Compacted 1@0 + 1@1 files => 6721 bytes
+2026/05/11-09:59:36.723 4494 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/05/11-09:59:36.723 4494 Delete type=2 #81
+2026/05/11-09:59:36.724 4494 Manual compaction at level-0 from '\x00\x1f\x00\x00\x05' @ 5476 : 1 .. '\x00 \x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/11-10:00:56.720 5080 Compacting 1@1 + 1@2 files
+2026/05/11-10:00:56.728 5080 Generated table #83@1: 257 keys, 13341 bytes
+2026/05/11-10:00:56.728 5080 Compacted 1@1 + 1@2 files => 13341 bytes
+2026/05/11-10:00:56.730 5080 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/05/11-10:00:56.732 5080 Delete type=2 #75
+2026/05/11-10:00:56.732 5080 Delete type=2 #78
+2026/05/11-10:00:56.733 5080 Delete type=2 #82

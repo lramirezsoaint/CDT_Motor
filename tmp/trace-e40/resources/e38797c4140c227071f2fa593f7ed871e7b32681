@@ -1,0 +1,482 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - img "Logo de Pacifico" [ref=e7]
+        - generic [ref=e8]: Motor de Distribución
+      - generic [ref=e9]:
+        - generic [ref=e10]: Gestor de Gastos Financieros
+        - button "Prueba QA REAL" [ref=e11]:
+          - generic [ref=e12]:
+            - generic [ref=e13]: Prueba QA
+            - generic [ref=e14]: REAL
+          - img
+        - link "Distribución" [ref=e15] [cursor=pointer]:
+          - /url: /distribuciones/
+          - button "Distribución" [disabled]:
+            - img
+            - text: Distribución
+    - generic [ref=e16]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - list [ref=e22]:
+            - listitem [ref=e25]:
+              - button "Parametrización" [ref=e26]:
+                - img [ref=e27]
+                - generic [ref=e31]: Parametrización
+                - img [ref=e32]
+            - listitem [ref=e36]:
+              - button "Aprovisionamiento" [ref=e37]:
+                - img [ref=e38]
+                - generic [ref=e42]: Aprovisionamiento
+                - img [ref=e43]
+            - listitem [ref=e47]:
+              - button "Asignaciones" [ref=e48]:
+                - img [ref=e49]
+                - generic [ref=e52]: Asignaciones
+                - img [ref=e53]
+            - listitem [ref=e57]:
+              - button "Procesos" [ref=e58]:
+                - generic [ref=e59]:
+                  - img [ref=e60]
+                  - generic [ref=e71]: Procesos
+          - generic [ref=e72]:
+            - generic [ref=e73]: Herramientas
+            - list [ref=e75]:
+              - listitem [ref=e76]:
+                - button "Reportes" [ref=e77]:
+                  - generic [ref=e78]:
+                    - img [ref=e79]
+                    - generic [ref=e83]: Reportes
+        - list [ref=e85]:
+          - listitem [ref=e86]:
+            - button "F Fernando Rogelio Alva Alvarado Gestor de Gastos Financieros" [ref=e87] [cursor=pointer]:
+              - generic [ref=e89]: F
+              - generic [ref=e90]:
+                - generic [ref=e91]: Fernando Rogelio Alva Alvarado
+                - generic "Gestor de Gastos Financieros" [ref=e92]
+              - img [ref=e93]
+      - main [ref=e96]:
+        - generic [ref=e98]:
+          - button "Toggle Sidebar" [ref=e99]:
+            - img
+            - generic [ref=e100]: Toggle Sidebar
+          - navigation "breadcrumb" [ref=e101]:
+            - list [ref=e102]:
+              - listitem [ref=e103]:
+                - link "Distribuciones" [disabled] [ref=e104]
+        - generic [ref=e106]:
+          - heading "Distribuciones" [level=1] [ref=e108]
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - generic [ref=e116]: Buscar
+                  - generic [ref=e117]:
+                    - img
+                    - textbox "Buscar" [ref=e118]
+                - generic [ref=e119]:
+                  - generic [ref=e120]: Tipo de Distribución
+                  - combobox [ref=e121]:
+                    - img
+                - generic [ref=e122]:
+                  - generic [ref=e123]: Año
+                  - generic [ref=e124]:
+                    - img
+                    - textbox "Año" [ref=e125]
+                - generic [ref=e126]:
+                  - generic [ref=e127]: Período
+                  - combobox [ref=e128]:
+                    - img
+              - generic [ref=e130]:
+                - button "Nueva Distribución" [ref=e131] [cursor=pointer]:
+                  - img
+                  - text: Nueva Distribución
+                - button [ref=e132] [cursor=pointer]:
+                  - img
+            - generic [ref=e136]:
+              - table [ref=e139]:
+                - rowgroup [ref=e140]:
+                  - row "Nombre Tipo Período Versión Tasa de Cambio Secciones Estado Modificado Acciones" [ref=e141]:
+                    - columnheader "Nombre" [ref=e142]:
+                      - generic [ref=e143]: Nombre
+                    - columnheader "Tipo" [ref=e144]:
+                      - generic [ref=e145]: Tipo
+                    - columnheader "Período" [ref=e146]:
+                      - generic [ref=e147]: Período
+                    - columnheader "Versión" [ref=e148]:
+                      - generic [ref=e149]: Versión
+                    - columnheader "Tasa de Cambio" [ref=e150]:
+                      - generic [ref=e151]: Tasa de Cambio
+                    - columnheader "Secciones" [ref=e152]:
+                      - generic [ref=e153]: Secciones
+                    - columnheader "Estado" [ref=e154]:
+                      - generic [ref=e155]: Estado
+                    - columnheader "Modificado" [ref=e156]:
+                      - generic [ref=e157]: Modificado
+                    - columnheader "Acciones" [ref=e158]
+                - rowgroup [ref=e159]:
+                  - row "TestDist_1779050743791 Real Local 202501 1 13.98 Flujo del mes Creada 17/05/2026 20:45:54" [ref=e160] [cursor=pointer]:
+                    - cell "TestDist_1779050743791" [ref=e161]:
+                      - generic [ref=e162]: TestDist_1779050743791
+                    - cell "Real Local" [ref=e163]:
+                      - generic [ref=e164]: Real Local
+                    - cell "202501" [ref=e165]:
+                      - generic [ref=e166]: "202501"
+                    - cell "1" [ref=e167]:
+                      - generic [ref=e168]: "1"
+                    - cell "13.98" [ref=e169]:
+                      - generic [ref=e170]: "13.98"
+                    - cell "Flujo del mes" [ref=e171]:
+                      - generic [ref=e172]: Flujo del mes
+                    - cell "Creada" [ref=e173]:
+                      - generic [ref=e174]: Creada
+                    - cell "17/05/2026 20:45:54" [ref=e175]:
+                      - generic [ref=e176]: 17/05/2026 20:45:54
+                    - cell [ref=e177]:
+                      - button [ref=e178]:
+                        - img
+                  - row "202601_Real NIIF_Flujo del mes_1_0 Real NIIF 202601 1 3.7 Flujo del mes Creada 15/05/2026 21:20:52" [ref=e179] [cursor=pointer]:
+                    - cell "202601_Real NIIF_Flujo del mes_1_0" [ref=e180]:
+                      - generic [ref=e181]: 202601_Real NIIF_Flujo del mes_1_0
+                    - cell "Real NIIF" [ref=e182]:
+                      - generic [ref=e183]: Real NIIF
+                    - cell "202601" [ref=e184]:
+                      - generic [ref=e185]: "202601"
+                    - cell "1" [ref=e186]:
+                      - generic [ref=e187]: "1"
+                    - cell "3.7" [ref=e188]:
+                      - generic [ref=e189]: "3.7"
+                    - cell "Flujo del mes" [ref=e190]:
+                      - generic [ref=e191]: Flujo del mes
+                    - cell "Creada" [ref=e192]:
+                      - generic [ref=e193]: Creada
+                    - cell "15/05/2026 21:20:52" [ref=e194]:
+                      - generic [ref=e195]: 15/05/2026 21:20:52
+                    - cell [ref=e196]:
+                      - button [ref=e197]:
+                        - img
+                  - row "202506_Real NIIF_Flujo del mes QA Real NIIF 202506 1 1 Flujo del mes Creada 15/05/2026 18:49:39" [ref=e198] [cursor=pointer]:
+                    - cell "202506_Real NIIF_Flujo del mes QA" [ref=e199]:
+                      - generic [ref=e200]: 202506_Real NIIF_Flujo del mes QA
+                    - cell "Real NIIF" [ref=e201]:
+                      - generic [ref=e202]: Real NIIF
+                    - cell "202506" [ref=e203]:
+                      - generic [ref=e204]: "202506"
+                    - cell "1" [ref=e205]:
+                      - generic [ref=e206]: "1"
+                    - cell "1" [ref=e207]:
+                      - generic [ref=e208]: "1"
+                    - cell "Flujo del mes" [ref=e209]:
+                      - generic [ref=e210]: Flujo del mes
+                    - cell "Creada" [ref=e211]:
+                      - generic [ref=e212]: Creada
+                    - cell "15/05/2026 18:49:39" [ref=e213]:
+                      - generic [ref=e214]: 15/05/2026 18:49:39
+                    - cell [ref=e215]:
+                      - button [ref=e216]:
+                        - img
+                  - row "202506_Real NIIF_Flujo del mes_PruFunc15May Real NIIF 202506 5 1.16 Flujo del mes Creada 15/05/2026 18:10:46" [ref=e217] [cursor=pointer]:
+                    - cell "202506_Real NIIF_Flujo del mes_PruFunc15May" [ref=e218]:
+                      - generic [ref=e219]: 202506_Real NIIF_Flujo del mes_PruFunc15May
+                    - cell "Real NIIF" [ref=e220]:
+                      - generic [ref=e221]: Real NIIF
+                    - cell "202506" [ref=e222]:
+                      - generic [ref=e223]: "202506"
+                    - cell "5" [ref=e224]:
+                      - generic [ref=e225]: "5"
+                    - cell "1.16" [ref=e226]:
+                      - generic [ref=e227]: "1.16"
+                    - cell "Flujo del mes" [ref=e228]:
+                      - generic [ref=e229]: Flujo del mes
+                    - cell "Creada" [ref=e230]:
+                      - generic [ref=e231]: Creada
+                    - cell "15/05/2026 18:10:46" [ref=e232]:
+                      - generic [ref=e233]: 15/05/2026 18:10:46
+                    - cell [ref=e234]:
+                      - button [ref=e235]:
+                        - img
+                  - row "202511_Real Local_Ajustes de corrección Real Local 202511 1 3.2566 Ajustes de corrección Creada 15/05/2026 09:04:52" [ref=e236] [cursor=pointer]:
+                    - cell "202511_Real Local_Ajustes de corrección" [ref=e237]:
+                      - generic [ref=e238]: 202511_Real Local_Ajustes de corrección
+                    - cell "Real Local" [ref=e239]:
+                      - generic [ref=e240]: Real Local
+                    - cell "202511" [ref=e241]:
+                      - generic [ref=e242]: "202511"
+                    - cell "1" [ref=e243]:
+                      - generic [ref=e244]: "1"
+                    - cell "3.2566" [ref=e245]:
+                      - generic [ref=e246]: "3.2566"
+                    - cell "Ajustes de corrección" [ref=e247]:
+                      - generic [ref=e248]: Ajustes de corrección
+                    - cell "Creada" [ref=e249]:
+                      - generic [ref=e250]: Creada
+                    - cell "15/05/2026 09:04:52" [ref=e251]:
+                      - generic [ref=e252]: 15/05/2026 09:04:52
+                    - cell [ref=e253]:
+                      - button [ref=e254]:
+                        - img
+                  - row "202605_Real NIIF_Flujo del mes Real NIIF 202605 1 3.254 Flujo del mes Creada 14/05/2026 16:46:26" [ref=e255] [cursor=pointer]:
+                    - cell "202605_Real NIIF_Flujo del mes" [ref=e256]:
+                      - generic [ref=e257]: 202605_Real NIIF_Flujo del mes
+                    - cell "Real NIIF" [ref=e258]:
+                      - generic [ref=e259]: Real NIIF
+                    - cell "202605" [ref=e260]:
+                      - generic [ref=e261]: "202605"
+                    - cell "1" [ref=e262]:
+                      - generic [ref=e263]: "1"
+                    - cell "3.254" [ref=e264]:
+                      - generic [ref=e265]: "3.254"
+                    - cell "Flujo del mes" [ref=e266]:
+                      - generic [ref=e267]: Flujo del mes
+                    - cell "Creada" [ref=e268]:
+                      - generic [ref=e269]: Creada
+                    - cell "14/05/2026 16:46:26" [ref=e270]:
+                      - generic [ref=e271]: 14/05/2026 16:46:26
+                    - cell [ref=e272]:
+                      - button [ref=e273]:
+                        - img
+                  - row "202506_Real NIIF_Flujo del mes Real NIIF 202506 4 1234.1234 Flujo del mes Creada 14/05/2026 14:35:17" [ref=e274] [cursor=pointer]:
+                    - cell "202506_Real NIIF_Flujo del mes" [ref=e275]:
+                      - generic [ref=e276]: 202506_Real NIIF_Flujo del mes
+                    - cell "Real NIIF" [ref=e277]:
+                      - generic [ref=e278]: Real NIIF
+                    - cell "202506" [ref=e279]:
+                      - generic [ref=e280]: "202506"
+                    - cell "4" [ref=e281]:
+                      - generic [ref=e282]: "4"
+                    - cell "1234.1234" [ref=e283]:
+                      - generic [ref=e284]: "1234.1234"
+                    - cell "Flujo del mes" [ref=e285]:
+                      - generic [ref=e286]: Flujo del mes
+                    - cell "Creada" [ref=e287]:
+                      - generic [ref=e288]: Creada
+                    - cell "14/05/2026 14:35:17" [ref=e289]:
+                      - generic [ref=e290]: 14/05/2026 14:35:17
+                    - cell [ref=e291]:
+                      - button [ref=e292]:
+                        - img
+                  - row "202602_WeatherReport Real Local 202602 1 3.33 Flujo del mes Creada 13/05/2026 17:05:14" [ref=e293] [cursor=pointer]:
+                    - cell "202602_WeatherReport" [ref=e294]:
+                      - generic [ref=e295]: 202602_WeatherReport
+                    - cell "Real Local" [ref=e296]:
+                      - generic [ref=e297]: Real Local
+                    - cell "202602" [ref=e298]:
+                      - generic [ref=e299]: "202602"
+                    - cell "1" [ref=e300]:
+                      - generic [ref=e301]: "1"
+                    - cell "3.33" [ref=e302]:
+                      - generic [ref=e303]: "3.33"
+                    - cell "Flujo del mes" [ref=e304]:
+                      - generic [ref=e305]: Flujo del mes
+                    - cell "Creada" [ref=e306]:
+                      - generic [ref=e307]: Creada
+                    - cell "13/05/2026 17:05:14" [ref=e308]:
+                      - generic [ref=e309]: 13/05/2026 17:05:14
+                    - cell [ref=e310]:
+                      - button [ref=e311]:
+                        - img
+                  - row "202506_CrazyDiamond Real Local 202506 5 3.344 Flujo del mes Creada 13/05/2026 17:00:09" [ref=e312] [cursor=pointer]:
+                    - cell "202506_CrazyDiamond" [ref=e313]:
+                      - generic [ref=e314]: 202506_CrazyDiamond
+                    - cell "Real Local" [ref=e315]:
+                      - generic [ref=e316]: Real Local
+                    - cell "202506" [ref=e317]:
+                      - generic [ref=e318]: "202506"
+                    - cell "5" [ref=e319]:
+                      - generic [ref=e320]: "5"
+                    - cell "3.344" [ref=e321]:
+                      - generic [ref=e322]: "3.344"
+                    - cell "Flujo del mes" [ref=e323]:
+                      - generic [ref=e324]: Flujo del mes
+                    - cell "Creada" [ref=e325]:
+                      - generic [ref=e326]: Creada
+                    - cell "13/05/2026 17:00:09" [ref=e327]:
+                      - generic [ref=e328]: 13/05/2026 17:00:09
+                    - cell [ref=e329]:
+                      - button [ref=e330]:
+                        - img
+                  - row "SilverChariot Real Local 202602 15 3.3551 Reversa Creada 12/05/2026 20:16:06" [ref=e331] [cursor=pointer]:
+                    - cell "SilverChariot" [ref=e332]:
+                      - generic [ref=e333]: SilverChariot
+                    - cell "Real Local" [ref=e334]:
+                      - generic [ref=e335]: Real Local
+                    - cell "202602" [ref=e336]:
+                      - generic [ref=e337]: "202602"
+                    - cell "15" [ref=e338]:
+                      - generic [ref=e339]: "15"
+                    - cell "3.3551" [ref=e340]:
+                      - generic [ref=e341]: "3.3551"
+                    - cell "Reversa" [ref=e342]:
+                      - generic [ref=e343]: Reversa
+                    - cell "Creada" [ref=e344]:
+                      - generic [ref=e345]: Creada
+                    - cell "12/05/2026 20:16:06" [ref=e346]:
+                      - generic [ref=e347]: 12/05/2026 20:16:06
+                    - cell [ref=e348]:
+                      - button [ref=e349]:
+                        - img
+                  - row "202506_Real Local_Prueba_UoA Real Local 202506 3 3.335 Flujo del mes Creada 11/05/2026 19:44:51" [ref=e350] [cursor=pointer]:
+                    - cell "202506_Real Local_Prueba_UoA" [ref=e351]:
+                      - generic [ref=e352]: 202506_Real Local_Prueba_UoA
+                    - cell "Real Local" [ref=e353]:
+                      - generic [ref=e354]: Real Local
+                    - cell "202506" [ref=e355]:
+                      - generic [ref=e356]: "202506"
+                    - cell "3" [ref=e357]:
+                      - generic [ref=e358]: "3"
+                    - cell "3.335" [ref=e359]:
+                      - generic [ref=e360]: "3.335"
+                    - cell "Flujo del mes" [ref=e361]:
+                      - generic [ref=e362]: Flujo del mes
+                    - cell "Creada" [ref=e363]:
+                      - generic [ref=e364]: Creada
+                    - cell "11/05/2026 19:44:51" [ref=e365]:
+                      - generic [ref=e366]: 11/05/2026 19:44:51
+                    - cell [ref=e367]:
+                      - button [ref=e368]:
+                        - img
+                  - row "202506_PruebaOC Real Local 202506 2 3.335 Flujo del mes Creada 11/05/2026 19:43:30" [ref=e369] [cursor=pointer]:
+                    - cell "202506_PruebaOC" [ref=e370]:
+                      - generic [ref=e371]: 202506_PruebaOC
+                    - cell "Real Local" [ref=e372]:
+                      - generic [ref=e373]: Real Local
+                    - cell "202506" [ref=e374]:
+                      - generic [ref=e375]: "202506"
+                    - cell "2" [ref=e376]:
+                      - generic [ref=e377]: "2"
+                    - cell "3.335" [ref=e378]:
+                      - generic [ref=e379]: "3.335"
+                    - cell "Flujo del mes" [ref=e380]:
+                      - generic [ref=e381]: Flujo del mes
+                    - cell "Creada" [ref=e382]:
+                      - generic [ref=e383]: Creada
+                    - cell "11/05/2026 19:43:30" [ref=e384]:
+                      - generic [ref=e385]: 11/05/2026 19:43:30
+                    - cell [ref=e386]:
+                      - button [ref=e387]:
+                        - img
+                  - row "SilverChariot Real Local 202501 2 3.343 Flujo del mes Creada 11/05/2026 19:37:36" [ref=e388] [cursor=pointer]:
+                    - cell "SilverChariot" [ref=e389]:
+                      - generic [ref=e390]: SilverChariot
+                    - cell "Real Local" [ref=e391]:
+                      - generic [ref=e392]: Real Local
+                    - cell "202501" [ref=e393]:
+                      - generic [ref=e394]: "202501"
+                    - cell "2" [ref=e395]:
+                      - generic [ref=e396]: "2"
+                    - cell "3.343" [ref=e397]:
+                      - generic [ref=e398]: "3.343"
+                    - cell "Flujo del mes" [ref=e399]:
+                      - generic [ref=e400]: Flujo del mes
+                    - cell "Creada" [ref=e401]:
+                      - generic [ref=e402]: Creada
+                    - cell "11/05/2026 19:37:36" [ref=e403]:
+                      - generic [ref=e404]: 11/05/2026 19:37:36
+                    - cell [ref=e405]:
+                      - button [ref=e406]:
+                        - img
+                  - row "StarPlatinum Presupuesto 202600 1 0.123 Flujo del mes Creada 11/05/2026 19:36:30" [ref=e407] [cursor=pointer]:
+                    - cell "StarPlatinum" [ref=e408]:
+                      - generic [ref=e409]: StarPlatinum
+                    - cell "Presupuesto" [ref=e410]:
+                      - generic [ref=e411]: Presupuesto
+                    - cell "202600" [ref=e412]:
+                      - generic [ref=e413]: "202600"
+                    - cell "1" [ref=e414]:
+                      - generic [ref=e415]: "1"
+                    - cell "0.123" [ref=e416]:
+                      - generic [ref=e417]: "0.123"
+                    - cell "Flujo del mes" [ref=e418]:
+                      - generic [ref=e419]: Flujo del mes
+                    - cell "Creada" [ref=e420]:
+                      - generic [ref=e421]: Creada
+                    - cell "11/05/2026 19:36:30" [ref=e422]:
+                      - generic [ref=e423]: 11/05/2026 19:36:30
+                    - cell [ref=e424]:
+                      - button [ref=e425]:
+                        - img
+                  - row "TTTS_Prueba Real Local 202601 1 99.9999 Flujo del mes Creada 11/05/2026 19:34:18" [ref=e426] [cursor=pointer]:
+                    - cell "TTTS_Prueba" [ref=e427]:
+                      - generic [ref=e428]: TTTS_Prueba
+                    - cell "Real Local" [ref=e429]:
+                      - generic [ref=e430]: Real Local
+                    - cell "202601" [ref=e431]:
+                      - generic [ref=e432]: "202601"
+                    - cell "1" [ref=e433]:
+                      - generic [ref=e434]: "1"
+                    - cell "99.9999" [ref=e435]:
+                      - generic [ref=e436]: "99.9999"
+                    - cell "Flujo del mes" [ref=e437]:
+                      - generic [ref=e438]: Flujo del mes
+                    - cell "Creada" [ref=e439]:
+                      - generic [ref=e440]: Creada
+                    - cell "11/05/2026 19:34:18" [ref=e441]:
+                      - generic [ref=e442]: 11/05/2026 19:34:18
+                    - cell [ref=e443]:
+                      - button [ref=e444]:
+                        - img
+                  - row "202604_Real Local_Flujo del mes Real Local 202604 1 3.3333 Flujo del mes Creada 11/05/2026 19:22:12" [ref=e445] [cursor=pointer]:
+                    - cell "202604_Real Local_Flujo del mes" [ref=e446]:
+                      - generic [ref=e447]: 202604_Real Local_Flujo del mes
+                    - cell "Real Local" [ref=e448]:
+                      - generic [ref=e449]: Real Local
+                    - cell "202604" [ref=e450]:
+                      - generic [ref=e451]: "202604"
+                    - cell "1" [ref=e452]:
+                      - generic [ref=e453]: "1"
+                    - cell "3.3333" [ref=e454]:
+                      - generic [ref=e455]: "3.3333"
+                    - cell "Flujo del mes" [ref=e456]:
+                      - generic [ref=e457]: Flujo del mes
+                    - cell "Creada" [ref=e458]:
+                      - generic [ref=e459]: Creada
+                    - cell "11/05/2026 19:22:12" [ref=e460]:
+                      - generic [ref=e461]: 11/05/2026 19:22:12
+                    - cell [ref=e462]:
+                      - button [ref=e463]:
+                        - img
+                  - row "202506_Real Local_Flujo del mes Real Local 202506 1 3.334 Flujo del mes Creada 11/05/2026 19:21:50" [ref=e464] [cursor=pointer]:
+                    - cell "202506_Real Local_Flujo del mes" [ref=e465]:
+                      - generic [ref=e466]: 202506_Real Local_Flujo del mes
+                    - cell "Real Local" [ref=e467]:
+                      - generic [ref=e468]: Real Local
+                    - cell "202506" [ref=e469]:
+                      - generic [ref=e470]: "202506"
+                    - cell "1" [ref=e471]:
+                      - generic [ref=e472]: "1"
+                    - cell "3.334" [ref=e473]:
+                      - generic [ref=e474]: "3.334"
+                    - cell "Flujo del mes" [ref=e475]:
+                      - generic [ref=e476]: Flujo del mes
+                    - cell "Creada" [ref=e477]:
+                      - generic [ref=e478]: Creada
+                    - cell "11/05/2026 19:21:50" [ref=e479]:
+                      - generic [ref=e480]: 11/05/2026 19:21:50
+                    - cell [ref=e481]:
+                      - button [ref=e482]:
+                        - img
+              - generic [ref=e484]:
+                - generic [ref=e486]: Mostrando 1 a 17 de 17 resultados
+                - generic [ref=e487]:
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: Filas por página
+                    - combobox [ref=e490]:
+                      - generic: "20"
+                      - img
+                  - generic [ref=e491]:
+                    - button [disabled]:
+                      - img
+                    - button [disabled]:
+                      - img
+                    - button "1" [ref=e493] [cursor=pointer]
+                    - button [disabled]:
+                      - img
+                    - button [disabled]:
+                      - img
+  - region "Notifications alt+T"
+```

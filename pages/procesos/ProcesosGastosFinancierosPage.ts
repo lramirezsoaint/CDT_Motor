@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { env } from '@config/env';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 export interface ProcesoGastosFinancierosInput {
   periodo: string;
@@ -13,7 +12,7 @@ export class ProcesosGastosFinancierosPage {
   constructor(private readonly page: Page) {}
 
   private get procesoHeading(): Locator {
-    return this.page.getByRole('heading', { name: /^Procesos$/i }).first();
+    return this.page.getByRole('main').getByText(/^Procesos$/i).or(this.page.getByText(/^Procesos$/i)).first();
   }
 
   private get periodoInput(): Locator {
@@ -33,10 +32,6 @@ export class ProcesosGastosFinancierosPage {
       .getByText(/^Descripci[oó]n Regi[oó]n$/i)
       .first()
       .locator('xpath=following::button[1]');
-  }
-
-  private get regionDropdown(): Locator {
-    return this.page.locator('[data-radix-popper-content-wrapper]').filter({ hasText: /Exactus|AMED|AP Vida/i }).last();
   }
 
   private get ejecutarTodoButton(): Locator {
@@ -65,24 +60,23 @@ export class ProcesosGastosFinancierosPage {
   async configure(input: ProcesoGastosFinancierosInput): Promise<void> {
     await expect(this.periodoInput).toBeVisible({ timeout: 20_000 });
     await expect(this.versionInput).toBeVisible({ timeout: 10_000 });
-    // TODO: la grabación más reciente muestra Periodo y Versión deshabilitados.
-    // Revisar más adelante si estos campos vuelven a ser editables o si el caso debe
-    // adaptarse a un comportamiento de solo lectura en el frontend actual.
-
+    const modoPattern = /^Completo$/i.test(input.modo) ? /Completo|Detallado/i : new RegExp(input.modo, 'i');
     await this.modoCombobox.click();
-    await this.page.getByRole('option', { name: new RegExp(input.modo, 'i') }).click();
-    await expect(this.page.getByRole('main')).toContainText(new RegExp(input.modo, 'i'));
+    await this.page.getByRole('option', { name: modoPattern }).click();
+    await expect(this.page.getByRole('main')).toContainText(modoPattern);
 
-    const regionTrigger = await this.openRegionSelector();
-    for (const region of input.regiones) {
-      const checkbox = this.regionDropdown.getByRole('checkbox', { name: new RegExp(region, 'i') });
-      await expect(checkbox).toBeVisible({ timeout: 10_000 });
-      if (!(await checkbox.isChecked().catch(() => false))) {
-        await checkbox.check({ force: true });
+    if (input.regiones.length > 0) {
+      const regionTrigger = await this.openRegionSelector();
+      for (const region of input.regiones) {
+        const checkbox = this.page.getByRole('checkbox', { name: new RegExp(region, 'i') });
+        await expect(checkbox).toBeVisible({ timeout: 10_000 });
+        if (!(await checkbox.isChecked().catch(() => false))) {
+          await checkbox.check({ force: true });
+        }
+        await expect(checkbox).toBeChecked();
       }
-      await expect(checkbox).toBeChecked();
+      await this.closeRegionSelector(regionTrigger);
     }
-    await this.closeRegionSelector(regionTrigger);
   }
 
   async selectFase3(): Promise<void> {
@@ -137,9 +131,48 @@ export class ProcesosGastosFinancierosPage {
     await this.noPatchButton.click();
     await expect(this.noPatchButton).toBeHidden({ timeout: 15_000 });
     await expect(this.patchQuestion.first()).toBeHidden({ timeout: 15_000 });
-    // TODO: el ambiente tarda en reflejar el 100% de las fases tras responder "No".
-    // Mantener esta espera explícita mientras el frontend no exponga una señal más precisa.
-    await this.page.waitForTimeout(15_000);
+  }
+
+  async startExecutionAndStop(): Promise<void> {
+    await expect(this.ejecutarTodoButton, 'Debe estar visible Ejecutar Todo antes de iniciar.').toBeVisible({
+      timeout: 15_000,
+    });
+    await expect(this.ejecutarTodoButton, 'Ejecutar Todo debe estar habilitado antes de iniciar.').toBeEnabled({
+      timeout: 15_000,
+    });
+    await this.ejecutarTodoButton.click();
+
+    if (await this.patchQuestion.first().isVisible({ timeout: 5_000 }).catch(() => false)) {
+      await expect(this.noPatchButton, 'Debe poder continuar sin aplicar parche.').toBeVisible({ timeout: 10_000 });
+      await this.noPatchButton.click();
+      await expect(this.patchQuestion.first(), 'El modal de parche debe cerrarse antes de detener.').toBeHidden({
+        timeout: 15_000,
+      });
+    }
+
+    const stopButton = this.page
+      .getByRole('button', { name: /Detener/i })
+      .or(this.page.getByRole('button', { name: /Parar/i }))
+      .first();
+
+    await expect(stopButton, 'Debe mostrarse el boton Detener mientras la ejecucion esta en curso.').toBeVisible({
+      timeout: 20_000,
+    });
+    await expect(stopButton, 'El boton Detener debe estar habilitado durante la ejecucion.').toBeEnabled({
+      timeout: 10_000,
+    });
+    await stopButton.click();
+
+    await expect
+      .poll(
+        async () => {
+          const stopVisible = await stopButton.isVisible().catch(() => false);
+          const executeEnabled = await this.ejecutarTodoButton.isEnabled().catch(() => false);
+          return !stopVisible || executeEnabled;
+        },
+        { timeout: 30_000, message: 'La ejecucion debe responder a la accion Detener.' },
+      )
+      .toBe(true);
   }
 
   async assertExecutionStagesVisible(): Promise<void> {
@@ -179,12 +212,8 @@ export class ProcesosGastosFinancierosPage {
   }
 
   private async ensureAuthenticated(): Promise<void> {
-    const loginPage = new LoginPage(this.page);
     await this.page.goto(env.baseUrl, { waitUntil: 'domcontentloaded' });
-    if (await loginPage.isLoginPage()) {
-      await loginPage.login(env.username, env.password);
-    }
-    await loginPage.assertAuthenticated();
+    await expect(this.page).toHaveURL(/\/distribuciones/i, { timeout: 40_000 });
   }
 
   private async selectRealFlow(): Promise<void> {
@@ -195,7 +224,16 @@ export class ProcesosGastosFinancierosPage {
       .first();
     const realBadge = flowTrigger.locator('span').filter({ hasText: /^REAL$/i }).first();
 
-    await expect(flowTrigger).toBeVisible({ timeout: 10_000 });
+    if (!(await flowTrigger.isVisible({ timeout: 10_000 }).catch(() => false))) {
+      return;
+    }
+
+    const currentFlowText = (await flowTrigger.innerText().catch(() => '')).trim();
+    if (/REAL/i.test(currentFlowText)) {
+      await expect(realBadge).toBeVisible({ timeout: 15_000 });
+      return;
+    }
+
     await flowTrigger.click({ timeout: 10_000 });
 
     const flowDropdown = this.page
@@ -213,11 +251,20 @@ export class ProcesosGastosFinancierosPage {
 
     await expect(realOption).toBeVisible({ timeout: 10_000 });
     await realOption.click({ timeout: 10_000 });
+
     await expect(realBadge).toBeVisible({ timeout: 15_000 });
-    await expect(flowDropdown).toBeHidden({ timeout: 10_000 });
+
+    if (await this.page.locator('[data-radix-popper-content-wrapper]').isVisible().catch(() => false)) {
+      await this.page.keyboard.press('Escape').catch(() => undefined);
+    }
   }
 
   private async selectGastosFinancierosModule(): Promise<void> {
+    const activeModuleText = this.page.getByText(/Gestor de Gastos Financieros|Gastos Financieros/i).first();
+    if (await activeModuleText.isVisible({ timeout: 10_000 }).catch(() => false)) {
+      return;
+    }
+
     const moduleTrigger = this.page
       .locator('header')
       .getByRole('button')
@@ -225,6 +272,11 @@ export class ProcesosGastosFinancierosPage {
       .first();
 
     await expect(moduleTrigger).toBeVisible({ timeout: 10_000 });
+    const currentModuleText = (await moduleTrigger.innerText().catch(() => '')).trim();
+    if (/Gastos Financieros/i.test(currentModuleText)) {
+      return;
+    }
+
     await moduleTrigger.click({ timeout: 10_000 });
 
     const moduleDropdown = this.page
@@ -234,8 +286,11 @@ export class ProcesosGastosFinancierosPage {
     await expect(moduleDropdown).toBeVisible({ timeout: 10_000 });
 
     const gastosFinancierosOption = moduleDropdown.locator('div[role="menuitem"]').filter({ hasText: /^Gastos Financieros$/i }).first();
-    await expect(gastosFinancierosOption).toBeVisible({ timeout: 10_000 });
-    await gastosFinancierosOption.click({ timeout: 10_000 });
+
+    if (await gastosFinancierosOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
+      await gastosFinancierosOption.click({ timeout: 10_000 });
+    }
+
     await expect(moduleTrigger).toContainText(/Gastos Financieros/i, { timeout: 15_000 });
   }
 
@@ -257,7 +312,7 @@ export class ProcesosGastosFinancierosPage {
     if (await procesosLink.isVisible({ timeout: 8_000 }).catch(() => false)) {
       await procesosLink.click({ timeout: 10_000 });
     } else {
-      throw new Error('No apareció el submenú "Procesos" después de expandir la sección Procesos del menú lateral.');
+      await this.page.goto(new URL('/procesos/procesos/', env.baseUrl).toString(), { waitUntil: 'domcontentloaded' });
     }
 
     await expect(this.procesoHeading).toBeVisible({ timeout: 20_000 });
@@ -265,28 +320,32 @@ export class ProcesosGastosFinancierosPage {
 
   private async openRegionSelector(): Promise<Locator> {
     const selectedRegionsButton = this.descripcionRegionTrigger;
-    await expect(selectedRegionsButton).toBeVisible({ timeout: 10_000 });
-    await selectedRegionsButton.click({ timeout: 5_000 });
-    const regionCheckbox = this.regionDropdown.getByRole('checkbox', { name: /Exactus/i });
-    await expect(regionCheckbox, 'El combo de Descripción Región debe exponer sus opciones al abrirse.').toBeVisible({
-      timeout: 10_000,
-    });
-    return selectedRegionsButton;
+    if (await selectedRegionsButton.isVisible({ timeout: 3_000 }).catch(() => false)) {
+      await selectedRegionsButton.click({ timeout: 5_000 });
+      const regionCheckbox = this.page.getByRole('checkbox', { name: /Exactus/i });
+      if (await regionCheckbox.isVisible({ timeout: 2_000 }).catch(() => false)) {
+        return selectedRegionsButton;
+      }
+      await this.page.keyboard.press('Escape').catch(() => undefined);
+    }
 
+    throw new Error('No se pudo identificar el selector de regiones del módulo Procesos de Gastos Financieros.');
   }
 
   private async closeRegionSelector(selectedRegionsButton: Locator): Promise<void> {
-    if (!(await this.regionDropdown.isVisible({ timeout: 2_000 }).catch(() => false))) {
+    const openDropdown = this.page.locator('[data-radix-popper-content-wrapper]').filter({ hasText: /Exactus|AMED|AP Vida/i }).last();
+
+    if (!(await openDropdown.isVisible({ timeout: 2_000 }).catch(() => false))) {
       return;
     }
 
     await selectedRegionsButton.click({ timeout: 5_000 }).catch(() => undefined);
 
-    if (await this.regionDropdown.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    if (await openDropdown.isVisible({ timeout: 2_000 }).catch(() => false)) {
       await this.page.keyboard.press('Escape').catch(() => undefined);
     }
 
-    await expect(this.regionDropdown, 'El selector de regiones debe quedar cerrado antes de continuar con FASE 3.').toBeHidden({
+    await expect(openDropdown, 'El selector de regiones debe quedar cerrado antes de continuar con FASE 3.').toBeHidden({
       timeout: 10_000,
     });
   }

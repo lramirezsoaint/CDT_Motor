@@ -21,9 +21,9 @@ export class LoginPage {
   }
 
   async loginWithMicrosoft(username: string, password: string): Promise<void> {
-    const entryButton = this.page
-      .getByRole('button', { name: /iniciar sesi\u00f3n/i })
-      .or(this.page.getByText(/iniciar sesi\u00f3n/i));
+    const entryButton = this.page.getByRole('button', {
+  name: /iniciar sesión/i
+});
 
     try {
       await entryButton.first().waitFor({ state: 'visible', timeout: 30_000 });
@@ -35,17 +35,25 @@ export class LoginPage {
 
     await this.page.waitForURL(/login\.microsoftonline\.com|\.pacificotest\.com\.pe\/login/, { timeout: 60_000 });
 
-    const emailInput = this.page.locator('#i0116');
-    await emailInput.waitFor({ state: 'visible', timeout: 20_000 });
-    await emailInput.fill(username);
-    await this.page.locator('#idSIButton9').click();
+    try{
+      const emailInput = this.page
+        .getByRole('textbox', { name: /enter your email, phone, or/i })
+        .or(this.page.locator('#i0116'));
+      await emailInput.first().waitFor({ state: 'visible', timeout: 20_000 });
+      await emailInput.first().fill(username);
+      await this.page.getByRole('button', { name: /next/i }).first().click();
+    } catch (error) {
+      console.error('Error occurred while filling email:', error);
+    }
 
-    const passwordInput = this.page.locator('#i0118');
-    await passwordInput.waitFor({ state: 'visible', timeout: 20_000 });
-    await passwordInput.fill(password);
-    await this.page.locator('#idSIButton9').click();
+    const passwordInput = this.page
+      .getByRole('textbox', { name: /enter the password for/i })
+      .or(this.page.locator('#i0118'));
+    await passwordInput.first().waitFor({ state: 'visible', timeout: 20_000 });
+    await passwordInput.first().fill(password);
+    await this.page.getByRole('button', { name: /(sign in|iniciar sesi[oó]n|next)/i }).first().click();
 
-    const staySignedIn = this.page.locator('#idSIButton9').or(this.page.getByRole('button', { name: /yes|si/i }));
+    const staySignedIn = this.page.getByRole('button', { name: /(yes|si)/i }).or(this.page.locator('#idSIButton9'));
     try {
       await staySignedIn.first().waitFor({ state: 'visible', timeout: 20_000 });
       await staySignedIn.first().click();

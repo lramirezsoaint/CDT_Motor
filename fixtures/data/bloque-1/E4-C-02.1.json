@@ -1,0 +1,7 @@
+{
+  "archivo": "REAL Lineas.xlsx",
+  "expected": {
+    "columnas": ["Código", "Nombre", "Negocio"],
+    "filasMinimas": 1
+  }
+}

@@ -1,0 +1,7 @@
+2026/05/04-20:30:22.488 7d0 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\WebStorage\77\IndexedDB\indexeddb.leveldb/MANIFEST-000001
+2026/05/04-20:30:22.490 7d0 Recovering log #3
+2026/05/04-20:30:22.492 7d0 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\WebStorage\77\IndexedDB\indexeddb.leveldb/000003.log 
+2026/05/04-20:30:33.358 3ef8 Level-0 table #5: started
+2026/05/04-20:30:33.364 3ef8 Level-0 table #5: 387 bytes OK
+2026/05/04-20:30:33.371 3ef8 Delete type=0 #3
+2026/05/04-20:30:33.372 3ef8 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

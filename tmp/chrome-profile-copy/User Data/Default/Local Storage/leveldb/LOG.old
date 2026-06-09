@@ -1,0 +1,9 @@
+2026/05/16-00:18:00.833 4970 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb/MANIFEST-000001
+2026/05/16-00:18:00.843 4970 Recovering log #2737
+2026/05/16-00:18:00.853 4970 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb/002737.log 
+2026/05/16-06:34:20.902 d1c Level-0 table #2741: started
+2026/05/16-06:34:21.097 d1c Level-0 table #2741: 35515 bytes OK
+2026/05/16-06:34:21.197 d1c Delete type=0 #2737
+2026/05/17-02:33:50.527 54a4 Level-0 table #2743: started
+2026/05/17-02:33:50.547 54a4 Level-0 table #2743: 33356 bytes OK
+2026/05/17-02:33:50.553 54a4 Delete type=0 #2740

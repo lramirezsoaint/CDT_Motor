@@ -7,7 +7,6 @@ import { LoginPage } from '@pages/auth/LoginPage';
 async function globalSetup(_: FullConfig): Promise<void> {
   validateRequiredEnv();
   const authDir = path.join(__dirname, '..', '.auth');
-  const authFile = path.join(authDir, 'admin.json');
 
   fs.mkdirSync(authDir, { recursive: true });
 
@@ -16,6 +15,7 @@ async function globalSetup(_: FullConfig): Promise<void> {
     slowMo: env.slowMo,
     channel: process.env.PW_CHANNEL || undefined,
   });
+
   const page = await browser.newPage();
   const loginPage = new LoginPage(page);
 
@@ -32,7 +32,8 @@ async function globalSetup(_: FullConfig): Promise<void> {
     }
   }
 
-  await page.context().storageState({ path: authFile });
+  await page.context().storageState({ path: path.join(authDir, 'admin.json') });
+  await page.context().storageState({ path: path.join(__dirname, '..', 'storageState.json') });
   await browser.close();
 }
 

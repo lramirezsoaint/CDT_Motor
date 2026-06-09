@@ -4,7 +4,7 @@ import { legacySelectors } from '@components/legacy-selectors';
 export class Sidebar {
   constructor(private readonly page: Page) {}
 
-  private async ensureMenuOpen(): Promise<void> {
+  public async ensureMenuOpen(): Promise<void> {
     const toggleSidebar = this.page.getByRole('button', { name: /toggle sidebar/i });
     if (await toggleSidebar.isVisible().catch(() => false)) {
       await toggleSidebar.click();
@@ -110,4 +110,16 @@ export class Sidebar {
     const nameText = (await nameLocator.innerText()).toLowerCase();
     expect(nameText).toContain(nameShouldContain.toLowerCase());
   }
+
+  async openDistribuciones(): Promise<void> {
+    await this.ensureMenuOpen();
+    const distribucionesLink = this.page
+      .getByRole('link', { name: /distribuciones/i })
+      .or(this.page.getByText(/distribuciones/i))
+      .first();
+    await expect(distribucionesLink, 'Debe existir el link de Distribuciones en el sidebar.').toBeVisible({ timeout: 10_000 });
+    await distribucionesLink.click();
+    await this.page.getByText(/Cargando/i).waitFor({ state: 'hidden', timeout: 15_000 }).catch(() => undefined);
+  }
+
 }

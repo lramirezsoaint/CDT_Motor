@@ -1,0 +1,30 @@
+{
+  "columnas": [
+    "Unidad De Cuenta",
+    "Met. Valoración",
+    "Moneda",
+    "Año",
+    "Mes",
+    "Producto UoA",
+    "Bruto Cedido",
+    "UoA Cedido",
+    "UoA Período",
+    "Período",
+    "Descripción",
+    "Estado"
+  ],
+  "busqueda": [
+    {
+      "input": "ani",
+      "expected": ["Año"]
+    },
+    {
+      "input": "periodo",
+      "expected": ["UoA Período", "Período"]
+    },
+    {
+      "input": "estado",
+      "expected": ["Estado"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+2026/05/16-00:18:19.580 a40 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_drive.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/16-00:18:19.583 a40 Recovering log #2786
+2026/05/16-00:18:19.595 a40 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_drive.google.com_0.indexeddb.leveldb/002786.log 
+2026/05/16-11:54:23.933 a40 Level-0 table #2791: started
+2026/05/16-11:54:23.977 a40 Level-0 table #2791: 3485832 bytes OK
+2026/05/16-11:54:23.980 a40 Delete type=0 #2786
+2026/05/16-11:54:23.981 a40 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2026/05/16-11:54:23.981 a40 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x01\x03\x03\x01'\x00f\x005\x008\x00a\x00c\x006\x00e\x00c\x008\x001\x00c\x001\x007\x003\x004\x00f\x00d\x00f\x002\x00c\x008\x00e\x005\x004\x00d\x00a\x007\x00c\x00c\x001\x00f\x009\x00_\x003\x00_\x005\x00:\x000\x000' @ 4361767 : 0
+2026/05/16-11:54:23.981 a40 Compacting 1@1 + 1@2 files
+2026/05/16-11:54:24.036 a40 Generated table #2792@1: 1733 keys, 1893535 bytes
+2026/05/16-11:54:24.037 a40 Compacted 1@1 + 1@2 files => 1893535 bytes
+2026/05/16-11:54:24.037 a40 compacted to: files[ 0 0 9 0 0 0 0 ]
+2026/05/16-11:54:24.038 a40 Delete type=2 #2788
+2026/05/16-11:54:24.038 a40 Delete type=2 #2791
+2026/05/16-11:54:24.040 a40 Manual compaction at level-1 from '\x00\x01\x03\x03\x01'\x00f\x005\x008\x00a\x00c\x006\x00e\x00c\x008\x001\x00c\x001\x007\x003\x004\x00f\x00d\x00f\x002\x00c\x008\x00e\x005\x004\x00d\x00a\x007\x00c\x00c\x001\x00f\x009\x00_\x003\x00_\x005\x00:\x000\x000' @ 4361767 : 0 .. (end); will stop at (end)

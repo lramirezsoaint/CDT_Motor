@@ -38,7 +38,7 @@ docs/
 
 ## Cómo usarlo
 1. Copiar `.env.example` a `.env` o exportar variables en tu shell.
-2. Completar `MOTOR_USERNAME` y `MOTOR_PASSWORD`.
+2. Completar `MOTOR_USERNAME`, `MOTOR_PASSWORD`, `MOTOR_GESTOR_USERNAME` y `MOTOR_GESTOR_PASSWORD`.
 3. Ejecutar:
    - `npm ci`
    - `npx playwright install chromium`

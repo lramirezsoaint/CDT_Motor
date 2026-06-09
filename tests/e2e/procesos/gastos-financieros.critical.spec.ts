@@ -1,6 +1,8 @@
 import { test } from '@fixtures/base.fixture';
 
 test.describe('@procesos @critical @E64-GF-ER-01-01', () => {
+  test.skip(true, '[QA_PENDING] Procesos GF no implementados según reunión 2026-05-21');
+
   test('@critical @procesos @E64-GF-ER-01-01 debe ejecutar el flujo de Gastos Financieros hasta fase 3 en modo resumido sin aplicar parches', async ({
     procesosGastosFinancierosPage,
   }) => {

@@ -1,0 +1,18 @@
+2025/10/08-22:59:56.751 eec Creating DB C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_www.canva.com_0.indexeddb.leveldb since it was missing.
+2025/10/08-22:59:56.756 eec Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_www.canva.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/10/08-22:59:56.861 13fc Level-0 table #5: started
+2025/10/08-22:59:56.863 13fc Level-0 table #5: 7417 bytes OK
+2025/10/08-22:59:56.865 13fc Delete type=0 #3
+2025/10/08-22:59:56.865 eec Manual compaction at level-0 from '\x00\x02\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x03\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/10/08-23:00:08.757 f08 Level-0 table #7: started
+2025/10/08-23:00:08.760 f08 Level-0 table #7: 22561 bytes OK
+2025/10/08-23:00:08.762 f08 Delete type=0 #4
+2025/10/08-23:00:08.762 f08 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2025/10/08-23:00:08.762 f08 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x06\x01\x02\x01$\x00c\x001\x005\x00f\x005\x00e\x00d\x005\x00-\x00d\x001\x00d\x005\x00-\x004\x003\x00f\x006\x00-\x009\x00e\x000\x00d\x00-\x00c\x004\x00a\x00f\x00d\x003\x000\x000\x008\x008\x001\x005' @ 800 : 1
+2025/10/08-23:00:08.762 f08 Compacting 1@1 + 1@2 files
+2025/10/08-23:00:08.763 f08 Generated table #8@1: 97 keys, 3260 bytes
+2025/10/08-23:00:08.763 f08 Compacted 1@1 + 1@2 files => 3260 bytes
+2025/10/08-23:00:08.764 f08 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/10/08-23:00:08.764 f08 Delete type=2 #5
+2025/10/08-23:00:08.765 f08 Delete type=2 #7
+2025/10/08-23:00:08.765 f08 Manual compaction at level-1 from '\x00\x06\x01\x02\x01$\x00c\x001\x005\x00f\x005\x00e\x00d\x005\x00-\x00d\x001\x00d\x005\x00-\x004\x003\x00f\x006\x00-\x009\x00e\x000\x00d\x00-\x00c\x004\x00a\x00f\x00d\x003\x000\x000\x008\x008\x001\x005' @ 800 : 1 .. (end); will stop at (end)

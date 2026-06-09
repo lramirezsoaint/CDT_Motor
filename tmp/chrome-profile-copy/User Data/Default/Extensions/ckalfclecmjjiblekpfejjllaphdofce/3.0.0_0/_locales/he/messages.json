@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "מַצלֵמָה"
+   },
+   "Copy": {
+      "message": "עותק"
+   },
+   "DefaultText": {
+      "message": "עדיין לא זוהה QR. סרוק אחד והוא אמור להופיע כאן."
+   },
+   "Image": {
+      "message": "תמונה"
+   },
+   "Open": {
+      "message": "פתוח"
+   },
+   "PermissionPage_Denied": {
+      "message": "חסמת את האפליקציה מגישה למכשיר הקלטה. זה לא יכול לעבוד בלעדיו. אנא עיין בתמונת המסך שלהלן כדי לבטל את החסימה."
+   },
+   "PermissionPage_Granted": {
+      "message": "הענקת הרשאה לאפליקציה. אתה יכול להשתמש באפליקציה עכשיו!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "אנו זקוקים לאישורך לגישה למכשירי ההקלטה שלך. אנא לחץ על אפשר כאשר הדפדפן מתבקש."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "לחץ על סמל החסימה בסוף סרגל הכתובות, ואז בחר באפשרות תמיד אפשר .... ואז טען מחדש את הדף הזה."
+   },
+   "RateUs": {
+      "message": "אנא דרג אותנו"
+   },
+   "Share": {
+      "message": "שתף את האפליקציה שלנו"
+   },
+   "Tab": {
+      "message": "כרטיסייה נוכחית"
+   }
+}

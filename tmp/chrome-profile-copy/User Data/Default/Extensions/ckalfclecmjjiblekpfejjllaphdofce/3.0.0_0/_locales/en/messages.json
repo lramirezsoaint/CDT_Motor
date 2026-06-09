@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "Camera"
+   },
+   "Copy": {
+      "message": "Copy"
+   },
+   "DefaultText": {
+      "message": "No QR detected yet. Scan one and it should appear here."
+   },
+   "Image": {
+      "message": "Image"
+   },
+   "Open": {
+      "message": "Open"
+   },
+   "PermissionPage_Denied": {
+      "message": "You have blocked the app from accessing recording device. It cannot work without it. Please refer to the below screenshot to unblock it."
+   },
+   "PermissionPage_Granted": {
+      "message": "You have granted permission for the app. You can use the app now!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "We need your permission to access your recording devices. Please click Allow when the browser prompts."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "Click the Block icon at the end of the Address bar, then choose the Always allow... option. Then please reload this page."
+   },
+   "RateUs": {
+      "message": "Please Rate Us"
+   },
+   "Share": {
+      "message": "Share our App"
+   },
+   "Tab": {
+      "message": "Current Tab"
+   }
+}

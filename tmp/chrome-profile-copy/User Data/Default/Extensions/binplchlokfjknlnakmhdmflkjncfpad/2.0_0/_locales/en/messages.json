@@ -1,0 +1,218 @@
+{
+   "appDescription": {
+      "description": "",
+      "message": "Quickly get the Website, Text, Call, Messages on your phones using simple and advanced QR codes features."
+   },
+   "appName": {
+      "description": "",
+      "message": "URL Scanner and QR Codes"
+   },
+   "buttonCreateQR": {
+      "description": "",
+      "message": "Create QR"
+   },
+   "buttonNew": {
+      "description": "",
+      "message": "New"
+   },
+   "labelAnalytics": {
+      "description": "",
+      "message": "Analytics"
+   },
+   "labelCalendar": {
+      "description": "",
+      "message": "Calendar"
+   },
+   "labelCall": {
+      "description": "",
+      "message": "Call"
+   },
+   "labelContact": {
+      "description": "",
+      "message": "Contact"
+   },
+   "labelCopy": {
+      "description": "",
+      "message": "Copy"
+   },
+   "labelDate": {
+      "description": "",
+      "message": "Date"
+   },
+   "labelDelete": {
+      "description": "",
+      "message": "Delete"
+   },
+   "labelDownload": {
+      "description": "",
+      "message": "Download"
+   },
+   "labelEMail": {
+      "description": "",
+      "message": "EMail"
+   },
+   "labelHistory": {
+      "description": "",
+      "message": "History"
+   },
+   "labelHome": {
+      "description": "",
+      "message": "Home"
+   },
+   "labelLink": {
+      "description": "",
+      "message": "Link"
+   },
+   "labelMore": {
+      "description": "",
+      "message": "More"
+   },
+   "labelName": {
+      "description": "",
+      "message": "Name"
+   },
+   "labelPhoneNo": {
+      "description": "",
+      "message": "Phone No"
+   },
+   "labelSMS": {
+      "description": "",
+      "message": "SMS"
+   },
+   "labelShareit": {
+      "description": "",
+      "message": "Share it on"
+   },
+   "labelSmsText": {
+      "description": "",
+      "message": "SMS text"
+   },
+   "labelStats": {
+      "description": "",
+      "message": "Stats"
+   },
+   "labelText": {
+      "description": "",
+      "message": "Text"
+   },
+   "labelThisTab": {
+      "description": "Browser tab",
+      "message": "This tab"
+   },
+   "labelUpi": {
+      "description": "",
+      "message": "UPI Payment"
+   },
+   "labelUrl": {
+      "description": "URL",
+      "message": "URL"
+   },
+   "labelWifi": {
+      "description": "",
+      "message": "Wifi"
+   },
+   "textAddedSoon": {
+      "description": "",
+      "message": "and more will be added soon."
+   },
+   "textAnalytics": {
+      "description": "",
+      "message": "Get more insights from your QR code scans and clicks, based on dates, time, location, social platform, devices and more to measure the customer engagement and interests."
+   },
+   "textComingSoon": {
+      "description": "",
+      "message": "Coming soon!"
+   },
+   "textCopied": {
+      "description": "",
+      "message": "Copied"
+   },
+   "textCopyImage": {
+      "description": "",
+      "message": "Copy the current QR code to the clipboard"
+   },
+   "textCopyUrl": {
+      "description": "",
+      "message": "Copy the current link to the clipboard"
+   },
+   "textCountryCode": {
+      "description": "",
+      "message": "Country code"
+   },
+   "textCreatingActiveTabQr": {
+      "description": "",
+      "message": "This tab"
+   },
+   "textDownloadQRCode": {
+      "description": "",
+      "message": "Download QR Code"
+   },
+   "textLoadFailed": {
+      "description": "",
+      "message": "Failed to load data, please try again."
+   },
+   "textMoreTypes": {
+      "description": "",
+      "message": "More QR types."
+   },
+   "textNameRequired": {
+      "description": "",
+      "message": "Name is required"
+   },
+   "textNoQrsFound": {
+      "description": "",
+      "message": "No QRs found"
+   },
+   "textPhoneNo": {
+      "description": "",
+      "message": "Phone Number"
+   },
+   "textPhoneNoRequired": {
+      "description": "",
+      "message": "Phone number is required in the format eg., $1"
+   },
+   "textQRCreatedFor": {
+      "description": "",
+      "message": "QR created successfully for $1"
+   },
+   "textQRFailed": {
+      "description": "",
+      "message": "Failed to show QR, please try again."
+   },
+   "textQRStatsSoon": {
+      "description": "",
+      "message": "Coming soon! QR Analytics"
+   },
+   "textQrCallFooter": {
+      "description": "",
+      "message": "QR-CALL - Quickly scan and call preset phone number"
+   },
+   "textQrLinkFooter": {
+      "description": "",
+      "message": "QR-LINK - Get QR code for custom links"
+   },
+   "textQrSmsFooter": {
+      "description": "",
+      "message": "QR-SMS - Quickly scan and send preset message to mobile number"
+   },
+   "textQrTextFooter": {
+      "description": "",
+      "message": "QR-TEXT - Get QR code for custom text to easily share"
+   },
+   "textSelectRowForQr": {
+      "description": "",
+      "message": "Select row to view its QR"
+   },
+   "textSmsTextRequired": {
+      "description": "",
+      "message": "SMS text is required"
+   },
+   "textTextRequired": {
+      "description": "",
+      "message": "Text is required"
+   },
+   "textUrlRequired": {
+      "description": "",
+      "message": "Url is required"
+   }
+}

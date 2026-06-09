@@ -1,0 +1,6 @@
+2026/05/16-10:00:21.891 a40 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_mail.google.com_0.indexeddb.leveldb/MANIFEST-001276
+2026/05/16-10:00:21.892 a40 Recovering log #2298
+2026/05/16-10:00:21.893 a40 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_mail.google.com_0.indexeddb.leveldb/002298.log 
+2026/05/16-10:01:29.391 455c Level-0 table #2304: started
+2026/05/16-10:01:29.446 455c Level-0 table #2304: 3175016 bytes OK
+2026/05/16-10:01:29.450 455c Delete type=0 #2298

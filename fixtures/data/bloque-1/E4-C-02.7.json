@@ -1,0 +1,7 @@
+{
+  "archivo": "REAL Configuracion de Parches.xlsx",
+  "expected": {
+    "columnas": ["Codigo", "Nombre", "Periodo"],
+    "filasMinimas": 1
+  }
+}

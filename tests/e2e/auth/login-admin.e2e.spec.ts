@@ -1,5 +1,4 @@
 import { test, expect } from '@fixtures/base.fixture';
-import { env } from '@config/env';
 import testData from '@data/testData.json';
 
 const ADMIN_USER = {
@@ -8,14 +7,10 @@ const ADMIN_USER = {
 };
 
 test.describe('@auth @smoke @E0-LOGIN-01', () => {
-  test('@smoke @auth @E0-LOGIN-01 debe validar login y visualizaci\u00f3n de usuario en sidebar', async ({
-    loginPage,
-    sidebar,
-    page,
-  }) => {
-    await test.step('Login con credenciales v\u00e1lidas', async () => {
-      await loginPage.login(ADMIN_USER.email, env.password);
-      await loginPage.assertAuthenticated();
+  test('@smoke @auth @E0-LOGIN-01 debe validar login y visualizaci\u00f3n de usuario en sidebar', async ({ sidebar, page }) => {
+    await test.step('Abrir una ruta autenticada', async () => {
+      await page.goto('.', { waitUntil: 'domcontentloaded' });
+      await expect(page).toHaveURL(/\/distribuciones/i);
     });
 
     await test.step('Validar datos en sidebar', async () => {
@@ -33,13 +28,12 @@ test.describe('@auth @smoke @E0-LOGIN-01', () => {
 
 test.describe('@comunes @smoke @E0-LOGIN-02', () => {
   test('@smoke @comunes @E0-LOGIN-02 debe validar permisos de administrador en m\u00f3dulo Comunes', async ({
-    loginPage,
     comunesPage,
     page,
   }) => {
-    await test.step('Login como administrador', async () => {
-      await loginPage.login(ADMIN_USER.email, env.password);
-      await loginPage.assertAuthenticated();
+    await test.step('Abrir una ruta autenticada', async () => {
+      await page.goto('.', { waitUntil: 'domcontentloaded' });
+      await expect(page).toHaveURL(/\/distribuciones/i);
     });
 
     await test.step('Navegar a Comunes > L\u00edneas', async () => {

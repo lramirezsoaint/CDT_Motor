@@ -1,0 +1,7 @@
+{
+  "archivo": "REAL Maestro UoA.xlsx",
+  "expected": {
+    "columnas": ["Codigo", "Nombre", "Periodo"],
+    "filasMinimas": 1
+  }
+}

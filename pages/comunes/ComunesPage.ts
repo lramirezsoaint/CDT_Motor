@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { Sidebar } from '@components/Sidebar';
-import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { legacySelectors } from '@components/legacy-selectors';
 
@@ -17,9 +16,6 @@ export class ComunesPage {
 
   async openLineas(): Promise<void> {
     const lineasUrl = `${env.baseUrl.replace(/\/?$/, '')}/comunes/lineas`;
-    const loginPage = new LoginPage(this.page);
-    await loginPage.login(env.username, env.password);
-    await loginPage.assertAuthenticated();
     await this.page.goto(lineasUrl, { waitUntil: 'networkidle' });
     await this.page.waitForLoadState('networkidle');
 
@@ -43,6 +39,12 @@ export class ComunesPage {
       await this.buscarInputFallback.fill(term);
     }
     await this.page.keyboard.press('Enter');
+  }
+
+  async firstRowCode(): Promise<string> {
+    const firstCodeCell = this.page.locator('table tbody tr td').first();
+    await expect(firstCodeCell).toBeVisible({ timeout: 10_000 });
+    return (await firstCodeCell.innerText()).trim();
   }
 
   async expectResultsContain(text: string): Promise<void> {

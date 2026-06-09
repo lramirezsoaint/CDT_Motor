@@ -1,0 +1,17 @@
+import { test as base, expect } from '@playwright/test';
+import { Bloque3GastosFinancierosPage } from '@pages/bloque3/Bloque3GastosFinancierosPage';
+import { ProcesosGastosFinancierosPage } from '@pages/procesos/ProcesosGastosFinancierosPage';
+
+export const test = base.extend<{
+  bloque3GastosFinancierosPage: Bloque3GastosFinancierosPage;
+  procesosGastosFinancierosPage: ProcesosGastosFinancierosPage;
+}>({
+  bloque3GastosFinancierosPage: async ({ page }, use) => {
+    await use(new Bloque3GastosFinancierosPage(page));
+  },
+  procesosGastosFinancierosPage: async ({ page }, use) => {
+    await use(new ProcesosGastosFinancierosPage(page));
+  },
+});
+
+export { expect };

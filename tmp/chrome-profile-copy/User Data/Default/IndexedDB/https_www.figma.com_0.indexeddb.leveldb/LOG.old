@@ -1,0 +1,6 @@
+2026/04/24-11:05:56.841 31fc Creating DB C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_www.figma.com_0.indexeddb.leveldb since it was missing.
+2026/04/24-11:05:56.850 31fc Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_www.figma.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/04/24-11:06:20.645 b48 Level-0 table #5: started
+2026/04/24-11:06:20.648 b48 Level-0 table #5: 2971 bytes OK
+2026/04/24-11:06:20.651 b48 Delete type=0 #3
+2026/04/24-11:06:20.652 b48 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

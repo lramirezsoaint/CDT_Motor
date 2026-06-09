@@ -1,0 +1,81 @@
+{
+  "busquedaGeneral": [
+    {
+      "id": "busqueda-general",
+      "source": "firstRowValue",
+      "input": "TEST",
+      "expected": "filtraResultados"
+    }
+  ],
+  "filtrosDistribucion": [
+    {
+      "id": "filtro-tipo-distribucion",
+      "campo": "tipoDistribucion",
+      "etiqueta": "Tipo de Distribución",
+      "tipoControl": "combobox",
+      "source": "firstSpecificOption",
+      "valor": "Gastos Financieros",
+      "columnaEsperada": "Tipo"
+    },
+    {
+      "id": "filtro-anio",
+      "campo": "anio",
+      "etiqueta": "Año",
+      "tipoControl": "input",
+      "valor": "2026"
+    },
+    {
+      "id": "filtro-periodo",
+      "campo": "periodo",
+      "etiqueta": "Período",
+      "tipoControl": "combobox",
+      "source": "firstSpecificOption",
+      "valor": "Enero",
+      "columnaEsperada": "Período"
+    },
+    {
+      "id": "filtro-codigo",
+      "campo": "codigo",
+      "etiqueta": "Código",
+      "tipoControl": "input",
+      "source": "firstRowFromColumn",
+      "valor": "TEST",
+      "columnaEsperada": "Código"
+    },
+    {
+      "id": "filtro-nombre",
+      "campo": "nombre",
+      "etiqueta": "Nombre",
+      "tipoControl": "input",
+      "source": "firstRowFromColumn",
+      "valor": "TEST",
+      "columnaEsperada": "Nombre"
+    },
+    {
+      "id": "filtro-unidad-cuenta",
+      "campo": "unidadCuenta",
+      "etiqueta": "Unidad de Cuenta",
+      "tipoControl": "input",
+      "source": "firstRowFromColumn",
+      "valor": "TEST",
+      "columnaEsperada": "Unidad de Cuenta"
+    },
+    {
+      "id": "filtro-metodo-valoracion",
+      "campo": "metodoValoracion",
+      "etiqueta": "Método de Valoración",
+      "tipoControl": "input",
+      "source": "firstRowFromColumn",
+      "valor": "TEST",
+      "columnaEsperada": "Método de Valoración"
+    }
+  ],
+  "autocompletado": [
+    {
+      "id": "autocomplete-buscar-min-3-char",
+      "input": "TES",
+      "minCaracteres": 3,
+      "expected": "muestraSugerencias"
+    }
+  ]
+}

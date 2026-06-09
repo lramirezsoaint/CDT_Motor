@@ -1,0 +1,12 @@
+{
+  "vistas": [
+    { "nombre": "lineas", "menu": "Líneas", "ruta": "comunes/lineas" },
+    { "nombre": "grupoProducto", "menu": "Grupo Producto", "ruta": "comunes/grupo-producto" },
+    { "nombre": "canales", "menu": "Canales", "ruta": "comunes/canales" },
+    { "nombre": "subcanales", "menu": "Subcanales", "ruta": "comunes/subcanales" },
+    { "nombre": "maestroUoa", "menu": "Maestro UoA", "ruta": "comunes/maestro-uoa" },
+    { "nombre": "unidadesCuentaBbaVfa", "menu": "Unidades de Cuenta - BBA/VFA", "ruta": "comunes/unidades-cuenta-bba-vfa" },
+    { "nombre": "configuracionParches", "menu": "Configuración de Parches", "ruta": "comunes/configuracion-parches" }
+  ],
+  "filasPorPagina": [5, 10, 20]
+}

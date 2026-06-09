@@ -1,0 +1,18 @@
+2026/05/13-10:20:08.832 734 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\WebStorage\25\IndexedDB\indexeddb.leveldb/MANIFEST-000001
+2026/05/13-10:20:08.835 734 Recovering log #1976
+2026/05/13-10:20:08.836 734 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\WebStorage\25\IndexedDB\indexeddb.leveldb/001976.log 
+2026/05/13-10:20:08.836 734 Delete type=2 #1974
+2026/05/13-10:20:08.874 36f8 Manual compaction at level-0 from ' \x10\x03\x00\x00\x00' @ 72057594037927935 : 1 .. ' \x11\x03\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/13-10:20:08.875 734 Manual compaction at level-1 from ' \x10\x03\x00\x00\x00' @ 72057594037927935 : 1 .. ' \x11\x03\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/05/13-14:20:13.997 5080 Level-0 table #1981: started
+2026/05/13-14:20:14.005 5080 Level-0 table #1981: 30112 bytes OK
+2026/05/13-14:20:14.009 5080 Delete type=0 #1976
+2026/05/13-14:20:14.010 5080 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2026/05/13-14:20:14.011 5080 Manual compaction at level-1 from (begin) .. (end); will stop at ' \x11\x03\x01\x1f\x04\x03\x01\x06\x00Q\x00U\x00E\x00U\x00E\x00D\x03\x00\x00\x00\x00\x00\x00L@\x03\x00\xa0\xdag\x1b\xe2yB\x00\x03\x00\x00\x00\x00\x00\x00\xf0?' @ 246408 : 1
+2026/05/13-14:20:14.011 5080 Compacting 1@1 + 1@2 files
+2026/05/13-14:20:14.016 5080 Generated table #1982@1: 58 keys, 1421 bytes
+2026/05/13-14:20:14.016 5080 Compacted 1@1 + 1@2 files => 1421 bytes
+2026/05/13-14:20:14.018 5080 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/05/13-14:20:14.020 5080 Delete type=2 #1978
+2026/05/13-14:20:14.020 5080 Delete type=2 #1981
+2026/05/13-14:20:14.021 5080 Manual compaction at level-1 from ' \x11\x03\x01\x1f\x04\x03\x01\x06\x00Q\x00U\x00E\x00U\x00E\x00D\x03\x00\x00\x00\x00\x00\x00L@\x03\x00\xa0\xdag\x1b\xe2yB\x00\x03\x00\x00\x00\x00\x00\x00\xf0?' @ 246408 : 1 .. (end); will stop at (end)

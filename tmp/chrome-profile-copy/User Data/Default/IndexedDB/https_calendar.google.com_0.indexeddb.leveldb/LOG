@@ -1,0 +1,15 @@
+2026/05/14-09:47:04.117 5080 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_calendar.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/14-09:47:04.119 5080 Recovering log #219
+2026/05/14-09:47:04.119 5080 Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_calendar.google.com_0.indexeddb.leveldb/000219.log 
+2026/05/14-13:12:12.673 5080 Level-0 table #224: started
+2026/05/14-13:12:12.680 5080 Level-0 table #224: 209 bytes OK
+2026/05/14-13:12:12.686 5080 Delete type=0 #219
+2026/05/14-13:12:12.688 5080 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2026/05/14-13:12:12.689 5080 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x00\x00\x00\x06' @ 277 : 1
+2026/05/14-13:12:12.690 5080 Compacting 1@1 + 1@2 files
+2026/05/14-13:12:12.696 5080 Generated table #225@1: 56 keys, 1080 bytes
+2026/05/14-13:12:12.697 5080 Compacted 1@1 + 1@2 files => 1080 bytes
+2026/05/14-13:12:12.698 5080 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/05/14-13:12:12.700 5080 Delete type=2 #221
+2026/05/14-13:12:12.700 5080 Delete type=2 #224
+2026/05/14-13:12:12.702 5080 Manual compaction at level-1 from '\x00\x00\x00\x00\x06' @ 277 : 1 .. (end); will stop at (end)

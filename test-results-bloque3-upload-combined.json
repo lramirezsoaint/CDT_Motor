@@ -1,0 +1,25 @@
+{
+    "config":  null,
+    "errors":  [
+                   null,
+                   null,
+                   null,
+                   null,
+                   null
+               ],
+    "stats":  {
+                  "unexpected":  0,
+                  "duration":  0,
+                  "flaky":  0,
+                  "expected":  0,
+                  "startTime":  null,
+                  "skipped":  0
+              },
+    "suites":  [
+                   null,
+                   null,
+                   null,
+                   null,
+                   null
+               ]
+}

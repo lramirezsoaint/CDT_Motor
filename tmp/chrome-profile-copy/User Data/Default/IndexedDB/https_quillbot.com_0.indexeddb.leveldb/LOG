@@ -1,0 +1,16 @@
+2026/03/05-15:02:07.997 216c Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/05-15:02:07.999 216c Recovering log #10
+2026/03/05-15:02:08.001 216c Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/000010.log 
+2026/03/05-15:02:08.250 216c Manual compaction at level-0 from '\x00\x08\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x09\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/03/05-15:03:32.002 11f4 Level-0 table #15: started
+2026/03/05-15:03:32.012 11f4 Level-0 table #15: 108153 bytes OK
+2026/03/05-15:03:32.017 11f4 Delete type=0 #10
+2026/03/05-15:03:32.019 11f4 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2026/03/05-15:03:32.020 11f4 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x08\x00\x00\x05' @ 953 : 1
+2026/03/05-15:03:32.020 11f4 Compacting 1@1 + 1@2 files
+2026/03/05-15:03:32.031 11f4 Generated table #16@1: 252 keys, 18909 bytes
+2026/03/05-15:03:32.031 11f4 Compacted 1@1 + 1@2 files => 18909 bytes
+2026/03/05-15:03:32.033 11f4 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/03/05-15:03:32.034 11f4 Delete type=2 #12
+2026/03/05-15:03:32.035 11f4 Delete type=2 #15
+2026/03/05-15:03:32.038 11f4 Manual compaction at level-1 from '\x00\x08\x00\x00\x05' @ 953 : 1 .. (end); will stop at (end)

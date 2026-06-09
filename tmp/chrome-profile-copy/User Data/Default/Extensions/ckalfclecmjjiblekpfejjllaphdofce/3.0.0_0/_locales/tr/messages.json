@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "Kamera"
+   },
+   "Copy": {
+      "message": "kopya"
+   },
+   "DefaultText": {
+      "message": "Henüz QR algılanmadı. Birini tarayın ve burada görünmelidir."
+   },
+   "Image": {
+      "message": "Resim"
+   },
+   "Open": {
+      "message": "Açık"
+   },
+   "PermissionPage_Denied": {
+      "message": "Uygulamanın kayıt cihazına erişmesini engellediniz. Onsuz çalışamaz. Blokeyi kaldırmak için lütfen aşağıdaki ekran görüntüsüne bakın."
+   },
+   "PermissionPage_Granted": {
+      "message": "Uygulama için izin verdiniz. Şimdi uygulamayı kullanabilirsiniz!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "Kayıt cihazlarınıza erişmek için izninize ihtiyacımız var. Tarayıcı istediğinde lütfen İzin Ver&#39;i tıklayın."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "Adres çubuğunun sonundaki Engelle simgesini tıklayın, ardından Her zaman izin ver ... seçeneğini belirtin. Sonra lütfen bu sayfayı yeniden yükleyin."
+   },
+   "RateUs": {
+      "message": "Lütfen Bizi Değerlendirin"
+   },
+   "Share": {
+      "message": "Uygulamamızı paylaşın"
+   },
+   "Tab": {
+      "message": "Geçerli Sekme"
+   }
+}

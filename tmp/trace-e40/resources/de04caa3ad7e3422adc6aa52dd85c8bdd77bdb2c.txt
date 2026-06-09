@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[125949,["/_next/static/chunks/d46ab25d993fbc03.js","/_next/static/chunks/335742d04379e82d.js"],"ViewportBoundary"]
+3:I[125949,["/_next/static/chunks/d46ab25d993fbc03.js","/_next/static/chunks/335742d04379e82d.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[767526,["/_next/static/chunks/d46ab25d993fbc03.js","/_next/static/chunks/335742d04379e82d.js"],"IconMark"]
+0:{"buildId":"ObOIhK6BEvfqnFqAT5Pm2","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Motor DistribuciÃ³n de Gastos"}],["$","link","1",{"rel":"icon","href":"/favicon.ico?favicon.77edbe21.ico","sizes":"16x16","type":"image/x-icon"}],["$","$L5","2",{}]]}]}]}],null]}],"loading":null,"isPartial":false}

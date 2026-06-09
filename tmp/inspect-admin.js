@@ -1,0 +1,20 @@
+require('dotenv').config();
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({ storageState: '.auth/admin.json' });
+  const page = await context.newPage();
+  const url = process.env.MOTOR_BASE_URL || 'https://distribuciongastos.pacificotest.com.pe/distribuciones/';
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+  console.log('URL:', page.url());
+  const buttons = await page.locator('button').allTextContents();
+  console.log('Buttons count:', buttons.length);
+  console.log('Buttons sample:', buttons.filter((t) => t && t.length < 40).slice(0, 40));
+  const aside = await page.locator('aside, nav').first().innerText().catch(() => 'NO ASIDE');
+  console.log('ASIDE TEXT:', aside.substring(0, 1200));
+  const emailTexts = await page.locator('text=@').allTextContents().catch(() => []);
+  console.log('Email texts:', emailTexts);
+  const profileButtons = await page.getByRole('button', { name: /usuario|perfil|account|psilvestre|silvestre/i }).allTextContents().catch(() => []);
+  console.log('Profile buttons:', profileButtons);
+  await browser.close();
+})();

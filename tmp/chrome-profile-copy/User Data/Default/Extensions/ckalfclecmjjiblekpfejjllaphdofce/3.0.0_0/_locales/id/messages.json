@@ -1,0 +1,44 @@
+{
+   "AppDesc": {
+      "message": "Scan QR Code from your website, camera or image files"
+   },
+   "AppName": {
+      "message": "QR Code Scanner for Chrome™"
+   },
+   "Camera": {
+      "message": "Kamera"
+   },
+   "Copy": {
+      "message": "Salinan"
+   },
+   "DefaultText": {
+      "message": "Belum ada QR yang terdeteksi. Pindai satu dan itu akan muncul di sini."
+   },
+   "Image": {
+      "message": "Gambar"
+   },
+   "Open": {
+      "message": "Buka"
+   },
+   "PermissionPage_Denied": {
+      "message": "Anda telah memblokir aplikasi dari mengakses perangkat rekaman. Itu tidak bisa bekerja tanpanya. Silakan lihat screenshot di bawah ini untuk membuka blokir itu."
+   },
+   "PermissionPage_Granted": {
+      "message": "Anda telah memberikan izin untuk aplikasi tersebut. Anda dapat menggunakan aplikasi ini sekarang!"
+   },
+   "PermissionPage_Prompt": {
+      "message": "Kami membutuhkan izin Anda untuk mengakses perangkat rekaman Anda. Silakan klik Izinkan ketika browser meminta."
+   },
+   "PermissionPage_UnblockInstruction": {
+      "message": "Klik ikon Blokir di akhir bilah Alamat, lalu pilih opsi Selalu izinkan .... Kemudian tolong muat ulang halaman ini."
+   },
+   "RateUs": {
+      "message": "Silakan Beri Nilai Kami"
+   },
+   "Share": {
+      "message": "Bagikan Aplikasi kami"
+   },
+   "Tab": {
+      "message": "Tab saat ini"
+   }
+}

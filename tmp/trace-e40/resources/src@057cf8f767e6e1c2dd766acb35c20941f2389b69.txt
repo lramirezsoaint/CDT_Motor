@@ -1,0 +1,69 @@
+import { test, expect } from '../_shared/bloque3.fixture';
+
+test.describe('@bloque3 @distribucion @crear @E40-DIS-01', () => {
+  test('should create a new distribution', async ({
+    bloque3GastosFinancierosPage: distribucionPage,
+    page,
+  }) => {
+    let nombre = '';
+    let tipo = '';
+    let periodo = '';
+    let version = '';
+
+    await test.step('Open Distribuciones home autenticado', async () => {
+      await distribucionPage.openHome();
+      const usedCombinations = new Set<string>();
+      const rows = page.locator('tbody tr');
+      const rowCount = await rows.count();
+      for (let index = 0; index < rowCount; index += 1) {
+        const cells = (await rows.nth(index).locator('td').allInnerTexts()).map((cell) => cell.trim());
+        if (cells.length >= 4) {
+          usedCombinations.add(`${cells[1]}|${cells[2]}|${cells[3]}`);
+        }
+      }
+      const typeCandidates = ['Real Local', 'Real NIIF', 'Presupuesto'];
+      const periodCandidates = ['202501', '202502', '202503', '202504', '202505', '202506', '202507', '202508'];
+      const versionCandidates = Array.from({ length: 15 }, (_, index) => String(index + 1));
+      const combination = typeCandidates
+        .flatMap((typeCandidate) =>
+          periodCandidates.flatMap((periodCandidate) =>
+            versionCandidates.map((versionCandidate) => ({
+              typeCandidate,
+              periodCandidate,
+              versionCandidate,
+              key: `${typeCandidate}|${periodCandidate}|${versionCandidate}`,
+            })),
+          ),
+        )
+        .find((candidate) => !usedCombinations.has(candidate.key));
+
+      expect(combination, '[DATA] No hay combinacion libre visible para crear distribucion.').toBeTruthy();
+      tipo = combination?.typeCandidate ?? '';
+      periodo = combination?.periodCandidate ?? '';
+      version = combination?.versionCandidate ?? '';
+    });
+
+    await test.step('Click Nueva Distribucion button', async () => {
+      await distribucionPage.clickNuevaDistribucion();
+    });
+
+    await test.step('Fill form with unique data', async () => {
+      const timestamp = Date.now();
+      nombre = `TestDist_${timestamp}`;
+      await distribucionPage.fillNombre(nombre);
+      await distribucionPage.selectTipo(tipo);
+      await distribucionPage.selectPeriodo(periodo);
+      await distribucionPage.selectVersion(version);
+      await distribucionPage.selectTasaDeCambio('13.98');
+      await distribucionPage.selectSecciones(['Flujo del mes']);
+    });
+
+    await test.step('Click Crear button', async () => {
+      await distribucionPage.clickCrear();
+    });
+
+    await test.step('Validate created distribution appears in table', async () => {
+      await expect(page.getByRole('row', { name: new RegExp(nombre, 'i') })).toBeVisible({ timeout: 20_000 });
+    });
+  });
+});
