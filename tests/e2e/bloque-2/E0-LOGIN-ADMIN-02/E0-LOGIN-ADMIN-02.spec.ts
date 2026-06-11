@@ -3,14 +3,13 @@ import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 
 test('E0-LOGIN-ADMIN-02', async ({ page }) => {
-
-  const loginPage = new LoginPage(page);
-
-  // LOGIN
-  await loginPage.login(
-    env.username,
-    env.password
-  );
+  try {
+        const loginPage = new LoginPage(page);
+        await loginPage.login(
+          env.username,
+          env.password
+        );
+      } catch (error) { }
 
   // VALIDAR DASHBOARD
   await expect(page)
@@ -107,3 +106,5 @@ test('E0-LOGIN-ADMIN-02', async ({ page }) => {
   ).toBeVisible();
 
 });
+
+

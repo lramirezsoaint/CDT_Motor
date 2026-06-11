@@ -15,6 +15,7 @@
     "test:bloque2": "playwright test tests/e2e/bloque-2 --grep @bloque2 --workers=1",
     "test:bloque2:chromium": "playwright test tests/e2e/bloque-2 --project=chromium --grep @bloque2 --workers=1",
     "test:bloque2:gestor": "playwright test tests/e2e/bloque-2 --project=chromium-gestor --grep @bloque2 --workers=1",
+    "test:bloque2:gestorGasto": "playwright test tests/e2e/bloque-2 --project=chromium-gestor-gasto --workers=1",
     "test:block1:sequential": "node --experimental-strip-types scripts/run-block1-implemented-sequential.ts",
     "test:all:history": "node --experimental-strip-types scripts/run-all-with-history.ts",
     "report": "playwright show-report",

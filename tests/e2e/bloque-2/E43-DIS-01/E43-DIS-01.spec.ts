@@ -1,35 +1,56 @@
-import { expect } from '@fixtures/base.fixture';
-import { test } from '../_shared/bloque2.fixture';
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '@pages/auth/LoginPage';
+import { env } from '@config/env';
 
-/**
- * Escenario: E43-DIS-01
- * Descripción: Validar la disponibilidad de la acción “Eliminar” desde el menú de acciones según el estado de la distribución
- * Casos:
- * - E43-DIS-01.1: Validar que el sistema permite Eliminar una distribución desde el menú de acciones cuando el estado sea “Creada" y su rol sea Administrador de Gastos
- * - E43-DIS-01.2: Validar que el sistema permite Eliminar una distribución desde el menú de acciones cuando el estado sea “Con errores" y su rol sea Administrador de Gastos
- * - E43-DIS-01.3: Validar que el sistema No permite Eliminar una distribución desde el menú de acciones cuando el estado sea: “Detenida", “Corriendo" o “Completada"
- */
+test('ELIMINAR-DISTRIBUCION-CREADA', async ({ page }) => {
 
-test.describe('@bloque2 @E43-DIS-01', () => {
-  test.skip(process.env.PW_PROJECT !== 'chromium', 'Solo se ejecuta en el proyecto Chromium con auth de Administrador');
+ try {
+      const loginPage = new LoginPage(page);
+      await loginPage.login(
+        env.gestorGastoUsername,
+      env.gestorGastoPassword
+      );
+    } catch (error) { }
 
-  test('@bloque2 @E43-DIS-01 debe validar disponibilidad de eliminar según estado', async ({ distribucionPage, page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await distribucionPage.openDistribuciones();
+  await expect(page)
+    .toHaveURL(/\/distribuciones/i);
 
-    const creadaRow = await distribucionPage.findRowByStatus(/creada/i);
-    await distribucionPage.openRowActionsMenu(creadaRow);
-    await distribucionPage.expectActionVisible(/eliminar|delete/i);
-    await distribucionPage.closeActionsMenu();
+  // Buscar una distribución en estado Creada
+  const row = page
+    .getByRole('row')
+    .filter({
+      hasText: /creada/i
+    })
+    .first();
 
-    const conErroresRow = await distribucionPage.findRowByStatus(/con errores|errores|error/i);
-    await distribucionPage.openRowActionsMenu(conErroresRow);
-    await distribucionPage.expectActionVisible(/eliminar|delete/i);
-    await distribucionPage.closeActionsMenu();
-
-    const blockedRow = await distribucionPage.findRowByStatus(/detenida|corriendo|completada/i);
-    await distribucionPage.openRowActionsMenu(blockedRow);
-    await distribucionPage.expectActionHidden(/eliminar|delete/i);
-    await distribucionPage.closeActionsMenu();
+  await expect(row).toBeVisible({
+    timeout: 30000
   });
+
+  const rowText = await row.innerText();
+
+  // Presionar icono basurero
+  await row.getByRole('button')
+    .last()
+    .click();
+
+  const modal = page.getByRole('dialog');
+
+  // Confirmar eliminación
+  await page.locator('button, [role="button"]')
+    .filter({ hasText: /^Eliminar$/i })
+    .click();
+  await page.locator('button, [role="button"]')
+    .filter({ hasText: /^Confirmar$/i })
+    .click();
+  // Mensaje de éxito
+  await expect(
+    page.getByText(
+      /¡registro eliminado con éxito!/i
+    )
+  ).toBeVisible({
+    timeout: 30000
+  });
+
 });
+

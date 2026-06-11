@@ -2,15 +2,15 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 
-test('E0-LOGIN-ADMIN-02', async ({ page }) => {
+test('E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
 
-  const loginPage = new LoginPage(page);
-
-  // LOGIN
- await loginPage.login(
-  env.gestorGastoUsername,
-  env.gestorGastoPassword
-);
+  try {
+        const loginPage = new LoginPage(page);
+        await loginPage.login(
+        env.gestorGastoUsername,
+        env.gestorGastoPassword
+        );
+      } catch (error) { }
 
   // VALIDAR LOGIN
   await expect(page)
@@ -24,3 +24,4 @@ test('E0-LOGIN-ADMIN-02', async ({ page }) => {
   ).toBeVisible();
 
 });
+

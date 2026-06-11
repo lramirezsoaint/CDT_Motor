@@ -1,0 +1,12 @@
+import { UploadCase  } from '../_shared/gt-upload';
+
+UploadCase ({
+  caseId: 'E70-GT-02.3',
+  section: 'Aprovisionamiento',
+  view: 'Driver Subcanal',
+  modalTitle: /Cargar Driver Subcanal/i,
+  fileFolder: 'E70-GT-02.3',
+  fileName: 'Driver Subcanal GT.xlsx',
+  expectedResult: 'validationDownload',
+});
+
