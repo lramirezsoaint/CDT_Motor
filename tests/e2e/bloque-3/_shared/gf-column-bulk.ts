@@ -1,6 +1,7 @@
 import { env } from '@config/env';
 import { test } from './bloque3.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
+import { ensureGfContext } from './gf-context';
 
 type GfColumnBulkAction = 'mostrar-todas' | 'ocultar-todas';
 
@@ -27,6 +28,7 @@ export function defineGfColumnBulkTest(config: GfColumnBulkCase): void {
                 env.password
               );
             } catch (error) { }
+      await ensureGfContext(page);
       await test.step(`Acceder a ${config.section} > ${config.view}`, async () => {
         await bloque3GastosFinancierosPage.openSidebarView(config.section, config.view);
       });

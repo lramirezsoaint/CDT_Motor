@@ -2,7 +2,7 @@ const XLSX = require('xlsx');
 const fs = require('fs');
 const path = require('path');
 
-const sourceFile = process.env.CP_SOURCE || path.resolve(__dirname, '..', '..', '_2025-PACIFICO-DESARORROLLO-Casos de Prueba-FASE 2-sprint 1-v2 (13).xlsx');
+const sourceFile = process.env.CP_SOURCE || path.resolve(__dirname, '..', 'docs', 'catalogos', 'excel', '_2025-PACIFICO-DESARORROLLO-Casos de Prueba-FASE 2-sprint1.xlsx');
 const outputDir = path.resolve(__dirname, '..', 'docs');
 const outputFile = path.join(outputDir, 'bd1-case-matrix.csv');
 
@@ -37,6 +37,5 @@ for (const row of filtered) {
     row.estatus,
   ].join(','));
 }
-fs.writeFileSync(outputFile, csvLines.join('
-'));
+fs.writeFileSync(outputFile, csvLines.join('\n'));
 console.log(`Matriz generada: ${outputFile}`);

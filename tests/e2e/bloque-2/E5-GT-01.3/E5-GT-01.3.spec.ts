@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Centros',
   modalTitle: /cargar centros/i,
-  fileFolder: 'E5-GT-01.3',
+  fileFolder: 'Real/headersError',
   fileName: 'REAL Centros GT.xlsx',
   expectedResult: 'headersError',
 });

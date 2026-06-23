@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Asignaciones',
   view: 'Especiales NIIF',
   modalTitle: /Cargar Especiales NIIF/i,
-  fileFolder: 'E70-GT-03.3',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Especiales NIIF GT.xlsx',
   expectedResult: 'validationDownload',
 });

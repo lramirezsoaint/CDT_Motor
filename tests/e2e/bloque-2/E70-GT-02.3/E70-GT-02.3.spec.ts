@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'Driver Subcanal',
   modalTitle: /Cargar Driver Subcanal/i,
-  fileFolder: 'E70-GT-02.3',
+  fileFolder: 'Real/validationError',
   fileName: 'Driver Subcanal GT.xlsx',
   expectedResult: 'validationDownload',
 });

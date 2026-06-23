@@ -3,6 +3,7 @@ import { expect, Page } from '@playwright/test';
 import { test } from './bloque3.fixture';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
+import { ensureGfContext } from './gf-context';
 
 export interface GfDownloadCase {
   caseId: string;
@@ -26,6 +27,7 @@ export function defineGfDownloadCase(downloadCase: GfDownloadCase): void {
           env.password
         );
       } catch (error) { }
+      await ensureGfContext(page);
 
       await test.step(`Acceder a ${downloadCase.section} > ${downloadCase.view}`, async () => {
         await bloque3GastosFinancierosPage.openSidebarView(downloadCase.section, downloadCase.view);

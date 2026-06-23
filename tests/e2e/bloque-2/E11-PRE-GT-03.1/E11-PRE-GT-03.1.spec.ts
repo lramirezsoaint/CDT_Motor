@@ -1,0 +1,13 @@
+import { DownloadCase } from '../_shared/gt-download';
+
+// TODO(catalogo): no se especifican cabeceras exactas, datos esperados ni conteo concreto para comparar permanencia.
+DownloadCase({
+  caseId: 'E11-PRE-GT-03.1',
+  section: 'Asignaciones',
+  view: 'Método Subcanal',
+  flow: 'presupuesto',
+  role: 'gestor-gasto',
+  distribution: {
+    tipo: /Presupuesto/i,
+  },
+});

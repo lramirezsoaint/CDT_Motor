@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'maestro de negocio.*embebidos',
   modalTitle: /Cargar Maestro de Negocios y Embebidos/i,
-  fileFolder: 'E5-GT-02.5',
+  fileFolder: 'Real/headersError',
   fileName: 'REAL Maestro Embebidos GT.xlsx',
   expectedResult: 'headersError',
 });

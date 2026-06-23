@@ -1,0 +1,14 @@
+import { AddRecordCase } from '../_shared/gt-add-record';
+
+AddRecordCase({
+  caseId: 'E35-GT-02.03.3',
+  section: 'Asignaciones',
+  view: 'Especiales NIIF',
+  role: 'gestor-gasto',
+  modalTitle: /Agregar Especiales NIIF/i,
+  fields: [
+    { label: /Porcentaje/i, value: '22.563' },
+    { label: /Tpo Distribución|Tipo Distribución/i, value: 'NIIF', kind: 'select' },
+  ],  expectedResult: 'duplicateError',
+  expectedMessages: [/Registro duplicado|registro que intentas agregar ya existe/i],
+});

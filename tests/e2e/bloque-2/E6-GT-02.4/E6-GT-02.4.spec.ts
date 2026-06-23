@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
   modalTitle: /Cargar Unidad de Cuenta GT/i,
-  fileFolder: 'E6-GT-02.4',
+  fileFolder: 'Real/emptyFile',
   fileName: 'REAL Unidad de Cuenta GT.xlsx',
   expectedResult: 'emptyFile',
 });

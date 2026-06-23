@@ -2,7 +2,21 @@ const xlsx = require('xlsx');
 const fs = require('fs');
 const path = require('path');
 
-const workbook = xlsx.readFile('2025-PACIFICO-DESARORROLLO-Casos de Prueba-FASE 2- bloque 2.xlsx');
+const rootDir = process.cwd();
+const sourceCandidates = [
+  path.join(rootDir, 'docs', 'catalogos', 'excel', '2025-PACIFICO-DESARORROLLO-Casos de Prueba-FASE 2- bloque 2.xlsx'),
+  path.join(rootDir, '2025-PACIFICO-DESARORROLLO-Casos de Prueba-FASE 2- bloque 2.xlsx'),
+];
+const sourceFile = sourceCandidates.find((candidate) => fs.existsSync(candidate));
+
+if (!sourceFile) {
+  throw new Error(`No se encontro el Excel fuente. Rutas revisadas: ${sourceCandidates.join(', ')}`);
+}
+
+const markdownOutput = path.join(rootDir, 'docs', 'catalogos', 'catalogo_casos_prueba_bloque2.md');
+const jsonOutput = path.join(rootDir, 'data', 'catalogos-json', 'catalogo_casos_prueba_bloque2.json');
+
+const workbook = xlsx.readFile(sourceFile);
 const scenarios = xlsx.utils.sheet_to_json(workbook.Sheets['ESCENARIOS'], { header: 1, raw: false, range: 1 });
 const caseRows = xlsx.utils.sheet_to_json(workbook.Sheets['Casos de prueba'], { header: 1, raw: false, range: 1 });
 const normalize = (s) => (s ? String(s).trim() : '');
@@ -81,6 +95,8 @@ for (const [scenarioKey, items] of grouped) {
   }
 }
 
-fs.writeFileSync(path.join(process.cwd(), 'catalogo_casos_prueba_bloque2.md'), out, 'utf8');
-fs.writeFileSync(path.join(process.cwd(), 'catalogo_casos_prueba_bloque2.json'), JSON.stringify({ scenarios: [...scenarioMap.values()], cases }, null, 2), 'utf8');
-console.log('Generated catalogo_casos_prueba_bloque2.md and JSON with', grouped.size, 'scenarios and', cases.length, 'cases');
+fs.mkdirSync(path.dirname(markdownOutput), { recursive: true });
+fs.mkdirSync(path.dirname(jsonOutput), { recursive: true });
+fs.writeFileSync(markdownOutput, out, 'utf8');
+fs.writeFileSync(jsonOutput, JSON.stringify({ scenarios: [...scenarioMap.values()], cases }, null, 2), 'utf8');
+console.log('Generated docs/catalogos/catalogo_casos_prueba_bloque2.md and data/catalogos-json/catalogo_casos_prueba_bloque2.json with', grouped.size, 'scenarios and', cases.length, 'cases');

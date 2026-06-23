@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Centros',
   modalTitle: /cargar centros/i,
-  fileFolder: 'E4-GT-01.3',
+  fileFolder: 'Real/success',
   fileName: 'REAL Centros GT.xlsx',
   expectedResult: 'success',
 });

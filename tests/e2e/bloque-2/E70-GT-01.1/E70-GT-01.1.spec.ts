@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Ramo',
   modalTitle: /Cargar Ramos/i,
-  fileFolder: 'E70-GT-01.1',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Ramos GT.xlsx',
   expectedResult: 'validationDownload',
 });

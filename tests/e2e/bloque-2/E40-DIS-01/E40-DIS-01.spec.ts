@@ -1,8 +1,10 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
+test.use({ storageState: '.auth/gestorGasto.json' });
+test('@bloque2 @gt @gestor-gasto @E40-DIS-01 CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
   test.setTimeout(360000);
   try {
     const loginPage = new LoginPage(page);
@@ -11,7 +13,7 @@ test('CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
       env.gestorGastoPassword
     );
   } catch (error) { }
-
+  await selectGtDistribution(page);
   // 1. Accede a Distribuciones
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
@@ -86,4 +88,5 @@ test('CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
   });
 
 });
+
 

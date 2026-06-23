@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Centros',
   modalTitle: /cargar centros/i,
-  fileFolder: 'E70-GT-01.3',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Centros GT.xlsx',
   expectedResult: 'validationDownload',
 });

@@ -1,8 +1,10 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
+test.use({ storageState: '.auth/gestorGasto.json' });
+test('@bloque2 @gt @gestor-gasto @E40-DIS-02 CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
 
   try {
       const loginPage = new LoginPage(page);
@@ -11,7 +13,7 @@ test('CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
       env.gestorGastoPassword
       );
     } catch (error) { }
-
+    await selectGtDistribution(page);
   await expect(page).toHaveURL(/\/distribuciones/i);
 
   await page.getByRole('button', {
@@ -66,4 +68,5 @@ test('CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
 
   await expect(crearButton).toBeDisabled();
 });
+
 

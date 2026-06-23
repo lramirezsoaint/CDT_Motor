@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Ramo',
   modalTitle: /Cargar Ramos/i,
-  fileFolder: 'E5-GT-01.1',
+  fileFolder: 'Real/headersError',
   fileName: 'REAL Ramos GT.xlsx',
   expectedResult: 'headersError',
 });

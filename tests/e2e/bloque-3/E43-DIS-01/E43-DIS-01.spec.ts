@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { ensureGfContext } from '../_shared/gf-context';
 
 test('ELIMINAR-DISTRIBUCION-CREADA', async ({ page }) => {
 
@@ -14,6 +15,7 @@ test('ELIMINAR-DISTRIBUCION-CREADA', async ({ page }) => {
 
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
+  await ensureGfContext(page);
 
   // Buscar una distribución en estado Creada
   const row = page

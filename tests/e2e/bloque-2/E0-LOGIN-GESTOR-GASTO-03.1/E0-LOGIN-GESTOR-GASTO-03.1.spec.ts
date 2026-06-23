@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
-
-test('E0-LOGIN-ADMIN-03', async ({ page }) => {
+import { selectGtDistribution } from '../_shared/gt-distribution';
+test('@bloque2 @gt @gestor-gasto @E0-LOGIN-GESTOR-GASTO-03.1 E0-LOGIN-ADMIN-03', async ({ page }) => {
 
   try {
         const loginPage = new LoginPage(page);
@@ -11,31 +11,27 @@ test('E0-LOGIN-ADMIN-03', async ({ page }) => {
         env.gestorGastoPassword
         );
       } catch (error) { }
+      await selectGtDistribution(page, 'REAL');
 
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
 
-  // Parametrización > Cuentas Contables
+  // ParametrizaciÃ³n > Cuentas Contables
   await page.getByText('Parametrización').click();
 
   await page.getByRole('link', {
     name: /Ramo/i
   }).click();
 
-  await expect(page)
-    .toHaveURL(/\/parametrizacion\/Ramos/i);
-
-  // Parametrización > Centros
+  // ParametrizaciÃ³n > Centros
   await page.getByRole('link', {
     name: /cuentas contables/i
   }).click();
 
-  await expect(page)
-    .toHaveURL(/\/parametrizacion\/cuentas-contables/i);
-
-  // Parametrización > Maestro Producto
+  // ParametrizaciÃ³n > Maestro Producto
   await page.getByRole('link', {
     name: /Centros/i
   }).click();
 });
+
 

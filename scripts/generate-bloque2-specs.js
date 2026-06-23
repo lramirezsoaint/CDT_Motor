@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = process.cwd();
-const catalogPath = path.join(rootDir, 'catalogo_casos_prueba_bloque2.json');
+const catalogPath = path.join(rootDir, 'data', 'catalogos-json', 'catalogo_casos_prueba_bloque2.json');
 const outputDir = path.join(rootDir, 'tests', 'e2e', 'bloque-2');
 const sharedDir = path.join(outputDir, '_shared');
+const dryRun = process.argv.includes('--dry-run') || process.env.DRY_RUN === 'true';
 
 const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 const casesByScenario = new Map();
@@ -32,7 +33,7 @@ for (const scenario of catalog.scenarios) {
   const dirName = sanitizedMap.get(scenarioId);
   const scenarioDir = path.join(outputDir, dirName);
 
-  if (!fs.existsSync(scenarioDir)) {
+  if (!dryRun && !fs.existsSync(scenarioDir)) {
     fs.mkdirSync(scenarioDir, { recursive: true });
   }
 
@@ -53,16 +54,20 @@ ${casesComment}
 test.describe('@bloque2 @${scenarioId}', () => {
   test.skip('@bloque2 @${scenarioId} placeholder', async ({ page }) => {
     // TODO: implementar el flujo del escenario ${scenarioId}.
-    // Usa el catálogo en catalogo_casos_prueba_bloque2.md como fuente de verdad.
+    // Usa el catálogo en docs/catalogos/catalogo_casos_prueba_bloque2.md como fuente de verdad.
     await page.goto('/', { waitUntil: 'domcontentloaded' });
   });
 });
 `;
 
   const specPath = path.join(scenarioDir, `${dirName}.spec.ts`);
-  if (!fs.existsSync(specPath)) {
+  const existingSpecs = fs.existsSync(scenarioDir)
+    ? fs.readdirSync(scenarioDir).filter((entry) => entry.endsWith('.spec.ts'))
+    : [];
+
+  if (!dryRun && !fs.existsSync(specPath) && existingSpecs.length === 0) {
     fs.writeFileSync(specPath, content, 'utf8');
   }
 }
 
-console.log(`Created ${scenarioIds.length} scenario skeleton directories under ${outputDir}`);
+console.log(`${dryRun ? 'Checked' : 'Created'} ${scenarioIds.length} scenario skeleton directories under ${outputDir}`);

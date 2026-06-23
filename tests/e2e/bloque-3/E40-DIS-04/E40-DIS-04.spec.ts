@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { ensureGfContext } from '../_shared/gf-context';
 
 test('CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
 
@@ -13,6 +14,7 @@ test('CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
     } catch (error) { }
 
   await expect(page).toHaveURL(/\/distribuciones/i);
+  await ensureGfContext(page);
 
   await page.getByRole('button', {
     name: /nueva distribución/i

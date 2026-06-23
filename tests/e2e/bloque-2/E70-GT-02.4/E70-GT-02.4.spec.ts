@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
   modalTitle: /Cargar Unidad de Cuenta GT/i,
-  fileFolder: 'E70-GT-02.4',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Unidad de Cuenta GT.xlsx',
   expectedResult: 'validationDownload',
 });

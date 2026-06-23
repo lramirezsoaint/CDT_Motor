@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { ensureGfContext } from '../_shared/gf-context';
 
 test('E0-LOGIN-ADMIN-02', async ({ page }) => {
 
@@ -15,6 +16,7 @@ test('E0-LOGIN-ADMIN-02', async ({ page }) => {
   // VALIDAR DASHBOARD
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
+  await ensureGfContext(page);
 
   // ABRIR COMUNES
   await page.getByText('Comunes').click();

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { selectGtDistribution } from '../_shared/gt-distribution';
 
 test('ELIMINAR-DISTRIBUCION-CREADA', async ({ page }) => {
 
@@ -11,7 +12,7 @@ test('ELIMINAR-DISTRIBUCION-CREADA', async ({ page }) => {
       env.gestorGastoPassword
       );
     } catch (error) { }
-
+await selectGtDistribution(page);
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
 

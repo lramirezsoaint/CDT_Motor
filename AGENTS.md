@@ -69,6 +69,6 @@ Rigorously adhere to these custom design-patterns instead of standard Playwright
 - **Spec Location:**
   - Bloque 1 tests: `tests/e2e/bloque-1/...`
   - Bloque 3 tests: `tests/e2e/bloque-3/...`
-- **Catalog Integration:** Keep spec IDs exactly matching the markdown files (`catalogo_casos_prueba_bloque3.md`, etc.). These match original Excel IDs.
-- **Progress Tracking:** Update `seguimiento_casos_prueba.md` to indicate real status, automation readiness, or human validation.
+- **Catalog Integration:** Keep spec IDs exactly matching the markdown files in `docs/catalogos/` (`catalogo_casos_prueba_bloque3.md`, etc.). These match original Excel IDs.
+- **Progress Tracking:** Update `docs/seguimiento/seguimiento_casos_prueba.md` to indicate real status, automation readiness, or human validation.
 - **Generators:** Clean up and analyze runs with `npm run report:executive` to build custom executive PDF/JSON summaries after testing runs.

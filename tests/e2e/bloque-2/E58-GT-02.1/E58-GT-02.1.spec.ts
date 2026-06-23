@@ -1,0 +1,14 @@
+import { UploadCase } from '../_shared/gt-upload';
+
+UploadCase({
+  caseId: 'E58-GT-02.1',
+  section: 'Aprovisionamiento',
+  view: 'Exactus',
+  role: 'gestor-gasto',
+  modalTitle: /Cargar Exactus/i,
+  fileFolder: 'GT/Real',
+  fileName: 'REAL Exactus sin procesar GT.xlsx',
+  expectedResult: 'ancestorError',
+  expectedMessage: /No se puede Recargar esté archivo porque el archivo anterior aún no ha sido cargado/i,
+});
+

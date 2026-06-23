@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Asignaciones',
   view: 'Método Producto',
   modalTitle: /Cargar Método Producto/i,
-  fileFolder: 'E70-GT-03.2',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Metodo Producto GT.xlsx',
   expectedResult: 'validationDownload',
 });

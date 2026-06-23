@@ -1,0 +1,16 @@
+import { UploadCase } from '../_shared/gt-upload';
+
+UploadCase({
+  caseId: 'E35-PRE-GT-04-01.3',
+  section: 'Parametrización',
+  view: 'Centros',
+  flow: 'presupuesto',
+  role: 'gestor-gasto',
+  distribution: { tipo: /Presupuesto/i },
+  modalTitle: /Cargar Centros|Recargar Centros/i,
+  fileFolder: 'GT/Presupuesto',
+  fileName: 'PRESUPUESTO Centros GT.xlsx',
+  action: 'recargar',
+  expectedResult: 'success',
+  expectedWarning: /Si sube un nuevo archivo.*informaci[oó]n previamente cargada ser[aá] reemplazada|Desea continuar con la carga/i,
+});

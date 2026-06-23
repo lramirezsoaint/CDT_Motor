@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'Driver Producto',
   modalTitle: /Cargar Driver Producto/i,
-  fileFolder: 'E70-GT-02.2',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Driver Producto GT.xlsx',
   expectedResult: 'validationDownload',
 });

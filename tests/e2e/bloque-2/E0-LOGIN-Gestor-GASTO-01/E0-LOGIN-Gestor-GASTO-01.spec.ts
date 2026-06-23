@@ -1,8 +1,9 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
+test('@bloque2 @gt @gestor-gasto @E0-LOGIN-GESTOR-GASTO-01 E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
 
   try {
         const loginPage = new LoginPage(page);
@@ -11,6 +12,7 @@ test('E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
         env.gestorGastoPassword
         );
       } catch (error) { }
+      await selectGtDistribution(page, 'REAL');
 
   // VALIDAR LOGIN
   await expect(page)
@@ -24,4 +26,5 @@ test('E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
   ).toBeVisible();
 
 });
+
 

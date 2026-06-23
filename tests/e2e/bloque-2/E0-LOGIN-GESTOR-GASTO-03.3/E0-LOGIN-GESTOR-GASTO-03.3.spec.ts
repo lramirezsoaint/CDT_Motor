@@ -1,8 +1,9 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('E0-LOGIN-ADMIN-03', async ({ page }) => {
+test('@bloque2 @gt @gestor-gasto @E0-LOGIN-GESTOR-GASTO-03.3 E0-LOGIN-ADMIN-03', async ({ page }) => {
 
   try {
         const loginPage = new LoginPage(page);
@@ -11,25 +12,27 @@ test('E0-LOGIN-ADMIN-03', async ({ page }) => {
         env.gestorGastoPassword
         );
       } catch (error) { }
+      await selectGtDistribution(page, 'REAL');
 
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
 
-  // Parametrización > Cuentas Contables
+  // ParametrizaciÃ³n > Cuentas Contables
   await page.getByText('Asignacion').click();
 
   await page.getByRole('link', {
     name: /Método Subcanal/i
   }).click();
 
- // Parametrización > Centros
+ // ParametrizaciÃ³n > Centros
   await page.getByRole('link', {
     name: /Método Producto/i
   }).click();
 
-  // Parametrización > Maestro Producto
+  // ParametrizaciÃ³n > Maestro Producto
   await page.getByRole('link', {
     name: /Especiales NIIF/i
   }).click();
 });
+
 

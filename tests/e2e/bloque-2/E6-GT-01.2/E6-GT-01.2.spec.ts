@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Cuentas Contables',
   modalTitle: /Cargar Cuentas Contables/i,
-  fileFolder: 'E6-GT-01.2',
+  fileFolder: 'Real/emptyFile',
   fileName: 'REAL Cuentas Contables GT.xlsx',
   expectedResult: 'emptyFile',
 });

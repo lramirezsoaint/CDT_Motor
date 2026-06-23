@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Ramo',
   modalTitle: /Cargar Ramos/i,
-  fileFolder: 'E6-GT-01.1',
+  fileFolder: 'Real/emptyFile',
   fileName: 'REAL Ramos GT.xlsx',
   expectedResult: 'emptyFile',
 });

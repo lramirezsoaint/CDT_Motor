@@ -1,0 +1,15 @@
+import { UploadCase } from '../_shared/gt-upload';
+
+UploadCase({
+  caseId: 'E59-PRE-GT-03.2',
+  section: 'Asignaciones',
+  view: 'Especiales NIIF',
+  flow: 'presupuesto',
+  role: 'gestor-gasto',
+  distribution: { tipo: /Presupuesto/i },
+  modalTitle: /Cargar Especiales NIIF|Recargar Especiales NIIF/i,
+  fileFolder: 'GT/Presupuesto',
+  fileName: 'PRESUPUESTO Especiales NIIF GT.xlsx',
+  expectedResult: 'success',
+  expectedWarning: /Desea continuar con la carga|continuar con la carga/i,
+});

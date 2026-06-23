@@ -1,0 +1,11 @@
+﻿import { UploadCase } from '../_shared/gt-upload';
+
+UploadCase({
+  caseId: 'E59-GT-03.3',
+  section: 'Asignaciones',
+  view: 'especiales niif',
+  modalTitle: /Cargar Especiales NIIF|Recargar Especiales NIIF/i,
+  fileFolder: 'E59-GT-03.3',
+  fileName: 'REAL Especiales NIIF GT.xlsx',
+  expectedResult: 'success',
+});

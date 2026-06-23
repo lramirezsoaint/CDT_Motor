@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Cuentas Contables',
   modalTitle: /Cargar Cuentas Contables/i,
-  fileFolder: 'E8-GT-01.2',
+  fileFolder: 'Real/validationError',
   fileName: 'REAL Cuentas Contables GT.xlsx',
   expectedResult: 'validationError',
 });

@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'Driver Subcanal',
   modalTitle: /Cargar Driver Subcanal/i,
-  fileFolder: 'E6-GT-02.3',
+  fileFolder: 'Real/emptyFile',
   fileName: 'Driver Subcanal GT.xlsx',
   expectedResult: 'emptyFile',
 });

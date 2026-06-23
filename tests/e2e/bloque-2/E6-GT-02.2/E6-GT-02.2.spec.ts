@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Aprovisionamiento',
   view: 'Driver Producto',
   modalTitle: /Cargar Driver Producto/i,
-  fileFolder: 'E6-GT-02.2',
+  fileFolder: 'Real/emptyFile',
   fileName: 'REAL Driver Producto GT.xlsx',
   expectedResult: 'emptyFile',
 });

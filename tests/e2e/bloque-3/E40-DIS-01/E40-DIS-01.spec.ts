@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { ensureGfContext } from '../_shared/gf-context';
 
 test('CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
  test.setTimeout(360000);
@@ -15,6 +16,7 @@ test('CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
   // 1. Accede a Distribuciones
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
+  await ensureGfContext(page);
 
   // 2. Nueva Distribución
   await page.getByRole('button', {

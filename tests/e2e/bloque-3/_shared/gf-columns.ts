@@ -1,6 +1,7 @@
 import { env } from '@config/env';
 import { test } from './bloque3.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
+import { ensureGfContext } from './gf-context';
 
 export type GfColumnsCase = {
   caseId: string;
@@ -21,6 +22,7 @@ export function defineGfColumnsSelectionTest(config: GfColumnsCase) {
                 env.password
               );
             } catch (error) { }
+      await ensureGfContext(page);
       let selectedColumn = '';
 
       await test.step(`Acceder a ${config.section} > ${config.view}`, async () => {

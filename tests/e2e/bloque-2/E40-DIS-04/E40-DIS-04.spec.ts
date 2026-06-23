@@ -1,8 +1,10 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
+import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
+test.use({ storageState: '.auth/gestorGasto.json' });
+test('@bloque2 @gt @gestor-gasto @E40-DIS-04 CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
 
   try {
       const loginPage = new LoginPage(page);
@@ -11,7 +13,7 @@ test('CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
       env.gestorGastoPassword
       );
     } catch (error) { }
-
+await selectGtDistribution(page);
   await expect(page).toHaveURL(/\/distribuciones/i);
 
   await page.getByRole('button', {
@@ -47,7 +49,7 @@ test('CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
   }).click();
 
   
-  // Opción A: aplicar sugerencia
+  // OpciÃ³n A: aplicar sugerencia
   await modal.getByRole('button', {
     name: /aplicar/i
   }).click();
@@ -80,4 +82,5 @@ test('CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
   await crearButton.click();
 
 });
+
 

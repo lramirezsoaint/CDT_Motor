@@ -1,55 +1,73 @@
 import { test } from './bloque3.fixture';
 import {
-  attachGfUploadFile,
-  confirmGfUpload,
-  confirmGfUploadWithError,
-  confirmGfUploadOverwrite,
-  GfUploadCase,
+  ensureGfSession,
   GfErrorUploadCase,
   GfOverwriteUploadCase,
-  openGfUploadDialog,
+  GfUploadCase,
+  runGfUploadFlow,
 } from './gf-upload';
-import { crearYSeleccionarDistribucion } from './distribucion-precondicion';
-import { env } from '@config/env';
-import { LoginPage } from '@pages/auth/LoginPage';
+
+function tagsFor(caseId: string) {
+  return `@critical @bloque3 @gf @gestor-gasto-financiero @carga @${caseId}`;
+}
 
 export function defineGfUploadCase(uploadCase: GfUploadCase): void {
-  test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
-    test(`@critical @bloque3 @gf @carga @${uploadCase.caseId} debe cargar archivo ${uploadCase.entityName}`, async ({
-      bloque3GastosFinancierosPage,
-      page,
-    }) => {
-      try {
-        const loginPage = new LoginPage(page);
-        await loginPage.login(
-          env.gestorUsername,
-          env.gestorPassword
-        );
-      } catch (error) { }
+  test.use({ storageState: '.auth/gestor.json' });
 
-      test.skip(true, 'Cubierto por carga-completa.spec.ts - flujo secuencial bajo distribucion unica');
+  test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
+    test(`${tagsFor(uploadCase.caseId)} debe cargar archivo ${uploadCase.entityName}`, async ({ page }) => {
+      test.setTimeout(360_000);
+
+      await test.step('Abrir sesion de Gestor GF', async () => {
+        await ensureGfSession(page);
+      });
+
+      await test.step(`Cargar ${uploadCase.entityName}`, async () => {
+        await runGfUploadFlow(page, uploadCase, {
+          expectedResult: 'success',
+        });
+      });
     });
   });
 }
 
 export function defineGfUploadErrorCase(uploadCase: GfErrorUploadCase): void {
+  test.use({ storageState: '.auth/gestor.json' });
+
   test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
-    test(`@critical @bloque3 @gf @carga @${uploadCase.caseId} debe rechazar carga de ${uploadCase.entityName} sin antecesor`, async ({
-      bloque3GastosFinancierosPage,
-      page,
-    }) => {
-            test.skip(true, 'No alineado con flujo de negocio secuencial - omitido segun reunion 2026-05-21');
+    test(`${tagsFor(uploadCase.caseId)} debe rechazar carga de ${uploadCase.entityName}`, async ({ page }) => {
+      test.setTimeout(360_000);
+
+      await test.step('Abrir sesion de Gestor GF', async () => {
+        await ensureGfSession(page);
+      });
+
+      await test.step(`Validar rechazo de ${uploadCase.entityName}`, async () => {
+        await runGfUploadFlow(page, uploadCase, {
+          expectedResult: uploadCase.expectedResult ?? 'validationError',
+          errorMessage: uploadCase.errorMessage,
+        });
+      });
     });
   });
 }
 
 export function defineGfUploadOverwriteCase(uploadCase: GfOverwriteUploadCase): void {
+  test.use({ storageState: '.auth/gestor.json' });
+
   test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
-    test(`@critical @bloque3 @gf @carga @${uploadCase.caseId} debe sobreescribir ${uploadCase.entityName} sin duplicar`, async ({
-      bloque3GastosFinancierosPage,
-      page,
-    }) => {
-      test.skip(true, 'No alineado con flujo de negocio secuencial - omitido segun reunion 2026-05-21');
+    test(`${tagsFor(uploadCase.caseId)} debe sobreescribir ${uploadCase.entityName} sin duplicar`, async ({ page }) => {
+      test.setTimeout(360_000);
+
+      await test.step('Abrir sesion de Gestor GF', async () => {
+        await ensureGfSession(page);
+      });
+
+      await test.step(`Sobreescribir ${uploadCase.entityName}`, async () => {
+        await runGfUploadFlow(page, uploadCase, {
+          expectedResult: 'success',
+        });
+      });
     });
   });
 }
