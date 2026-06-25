@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Ramos|Ramo|Recargar Ramos|Ramo/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'PRESUPUESTO Ramos GT.xlsx',
   expectedResult: 'success',
   expectedWarning: /Desea continuar con la carga|continuar con la carga/i,

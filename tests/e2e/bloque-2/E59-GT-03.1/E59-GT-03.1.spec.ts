@@ -5,7 +5,7 @@ UploadCase({
   section: 'Asignaciones',
   view: 'Método Subcanal',
   modalTitle: /Cargar Método Subcanal/i,
-  fileFolder: 'E59-GT-03.1',
+  fileFolder: 'Real/success',
   fileName: 'REAL Metodo Subcanal GT.xlsx',
   expectedResult: 'success',
 });

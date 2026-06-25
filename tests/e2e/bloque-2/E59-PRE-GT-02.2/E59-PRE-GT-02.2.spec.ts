@@ -9,7 +9,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Driver Subcanal|Recargar Driver Subcanal/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'Driver Subcanal GT.xlsx',
   expectedResult: 'success',
   expectedWarning: /Desea continuar con la carga|continuar con la carga/i,

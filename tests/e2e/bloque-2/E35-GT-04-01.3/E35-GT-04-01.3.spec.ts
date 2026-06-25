@@ -6,7 +6,7 @@ UploadCase({
   view: 'Centros',
   role: 'gestor-gasto',
   modalTitle: /Cargar Centros|Recargar Centros/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Centros GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

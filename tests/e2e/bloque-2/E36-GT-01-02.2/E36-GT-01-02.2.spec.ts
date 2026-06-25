@@ -3,13 +3,13 @@ import { EditRecordCase } from '../_shared/gt-edit-record';
 // TODO: El catalogo contiene mas de una definicion para el ID E36-GT-01-02.2; se implementa la primera coincidencia: Driver Subcanal.
 EditRecordCase({
   caseId: 'E36-GT-01-02.2',
-  section: 'Parametrización',
-  view: 'Driver Subcanal',
+  section: 'Aprovisionamiento',
+  view: 'Maestro de Negocio.* embebidos',
   role: 'gestor-gasto',
-  modalTitle: /Editar Driver Subcanal/i,
+  modalTitle: /Editar Maestro de Negocio y Embebidos/i,
   fields: [
-    { label: /Código Método|Metodo/i, value: 'GT2SCCCO001', kind: 'select' },
+    { label: /Embebido/i, value: 'No Embebido', kind: 'select' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['GT2SCCCO001'],
+  expectedTableValues: ['No Embebido'],
 });

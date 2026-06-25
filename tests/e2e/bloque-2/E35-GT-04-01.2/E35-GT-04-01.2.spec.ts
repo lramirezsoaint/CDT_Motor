@@ -6,7 +6,7 @@ UploadCase({
   view: 'Cuentas Contables',
   role: 'gestor-gasto',
   modalTitle: /Cargar Cuentas Contables|Recargar Cuentas Contables/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Cuentas Contables GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

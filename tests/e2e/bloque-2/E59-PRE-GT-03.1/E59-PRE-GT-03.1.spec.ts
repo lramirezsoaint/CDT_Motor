@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Método Subcanal|Metodo Subcanal|Recargar Método Subcanal|Metodo Subcanal/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'PRESUPUESTO Metodo Subcanal GT.xlsx',
   expectedResult: 'success',
   expectedWarning: /Desea continuar con la carga|continuar con la carga/i,

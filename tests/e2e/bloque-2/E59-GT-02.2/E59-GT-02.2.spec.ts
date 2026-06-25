@@ -5,7 +5,7 @@ UploadCase({
   section: 'Aprovisionamiento',
   view: 'Driver Producto',
   modalTitle: /Cargar Driver Producto|Recargar Driver Producto/i,
-  fileFolder: 'E59-GT-02.2',
+  fileFolder: 'Real/success',
   fileName: 'REAL Driver Producto GT.xlsx',
   expectedResult: 'success',
 });

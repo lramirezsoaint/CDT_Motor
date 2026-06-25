@@ -7,13 +7,7 @@ AddRecordCase({
   role: 'gestor-gasto',
   modalTitle: /Agregar Método Subcanal/i,
   fields: [
-    { label: /Código línea/i },
-    { label: /Código producto/i },
-    { label: /Nombre producto/i },
-    { label: /Código canal/i },
-    { label: /Concepto/i },
-    { label: /Código Ramo/i },
-    { label: /Código método/i },
+    
   ],  expectedResult: 'validationError',
   expectedMessages: [/Código línea.*requer/i, /Código producto.*requer/i, /Concepto.*requer/i],
 });

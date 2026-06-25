@@ -5,7 +5,7 @@ UploadCase({
   section: 'Asignaciones',
   view: 'especiales niif',
   modalTitle: /Cargar Especiales NIIF|Recargar Especiales NIIF/i,
-  fileFolder: 'E59-GT-03.3',
+  fileFolder: 'Real/success',
   fileName: 'REAL Especiales NIIF GT.xlsx',
   expectedResult: 'success',
 });

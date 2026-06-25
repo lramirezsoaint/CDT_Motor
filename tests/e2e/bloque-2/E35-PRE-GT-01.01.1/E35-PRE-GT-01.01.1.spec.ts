@@ -9,10 +9,9 @@ AddRecordCase({
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Agregar Ramo/i,
   fields: [
-    { label: /Código Ramo/i, value: '12' },
+    { label: /Código Ramo/i, value: '13' },
     { label: /Descripción Ramo/i, value: 'INCENDIO' },
     { label: /Rubro/i, value: 'Lineas ALIADAS INCENDIO' },
-  ],
-  expectedResult: 'success',
-  expectedTableValues: ['12', 'INCENDIO'],
+  ],  expectedResult: 'success',
+  expectedTableValues: ['13', 'INCENDIO'],
 });

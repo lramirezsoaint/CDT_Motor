@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Cuentas Contables|Recargar Cuentas Contables/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'PRESUPUESTO Cuentas Contables GT.xlsx',
   expectedResult: 'success',
   expectedWarning: /Desea continuar con la carga|continuar con la carga/i,

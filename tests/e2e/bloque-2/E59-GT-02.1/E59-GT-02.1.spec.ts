@@ -5,7 +5,7 @@ UploadCase({
   section: 'Aprovisionamiento',
   view: 'Exactus',
   modalTitle: /Cargar Exactus|Recargar Exactus/i,
-  fileFolder: 'E59-GT-02.1',
+  fileFolder: 'Real/success',
   fileName: 'REAL Exactus sin procesar GT.xlsx',
   expectedResult: 'success',
 });

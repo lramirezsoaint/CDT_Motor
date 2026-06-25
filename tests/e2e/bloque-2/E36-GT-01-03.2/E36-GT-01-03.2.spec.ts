@@ -2,17 +2,17 @@ import { EditRecordCase } from '../_shared/gt-edit-record';
 
 EditRecordCase({
   caseId: 'E36-GT-01-03.2',
-  section: 'Parametrización',
-  view: 'Metodo Producto',
+  section: 'Asignaciones',
+  view: 'Método Producto',
   role: 'gestor-gasto',
-  modalTitle: /Editar Metodo Producto/i,
+  modalTitle: /Editar Método Producto/i,
   fields: [
-    { label: /Código Concepto|Concepto/i, value: '10.14.00', kind: 'select' },
-    { label: /Código Ramo|Ramo/i, value: '64', kind: 'select' },
-    { label: /Código Linea|Linea/i, value: 'AMED', kind: 'select' },
+    { label: /Código Concepto|Concepto/i, value: '01.05.00', kind: 'select' },
+    { label: /Código Ramo|Ramo/i, value: '01', kind: 'select' },
+    { label: /Código Línea|Código Linea/i, value: 'AMED', kind: 'select' },
     { label: /Código Canal|Canal/i, value: 'CCO', kind: 'select' },
-    { label: /Código Método|Metodo/i, value: 'GT2SCCCO001', kind: 'select' },
+    { label: /Código Método|Código método/i, value: 'GT164000AMED', kind: 'select' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['10.14.00', 'AMED', 'GT2SCCCO001'],
+  expectedTableValues: ['01.05.00', 'AMED', 'GT164000AMED'],
 });

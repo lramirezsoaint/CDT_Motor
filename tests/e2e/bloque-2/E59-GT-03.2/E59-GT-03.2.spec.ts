@@ -5,7 +5,7 @@ UploadCase({
   section: 'Asignaciones',
   view: 'Método Producto',
   modalTitle: /Cargar Método Producto/i,
-  fileFolder: 'E59-GT-03.2',
+  fileFolder: 'Real/success',
   fileName: 'REAL Metodo producto GT.xlsx',
   expectedResult: 'success',
 });

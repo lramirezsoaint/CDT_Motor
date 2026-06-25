@@ -9,7 +9,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Unidad de Cuenta|Recargar Unidad de Cuenta/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'REAL Unidad de Cuenta GT.xlsx',
   expectedResult: 'success',
   expectedWarning: /Desea continuar con la carga|continuar con la carga/i,

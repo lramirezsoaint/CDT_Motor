@@ -8,8 +8,8 @@ AddRecordCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Agregar Ramo/i,
-  fields: [
-    { label: /Código Ramo/i, value: '12' },
+   fields: [
+    { label: /Código Ramo/i, value: '13' },
     { label: /Descripción Ramo/i, value: 'INCENDIO' },
     { label: /Rubro/i, value: 'Lineas ALIADAS INCENDIO' },
   ],

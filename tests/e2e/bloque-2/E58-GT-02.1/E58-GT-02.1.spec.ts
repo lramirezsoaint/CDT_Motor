@@ -6,7 +6,7 @@ UploadCase({
   view: 'Exactus',
   role: 'gestor-gasto',
   modalTitle: /Cargar Exactus/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real',
   fileName: 'REAL Exactus sin procesar GT.xlsx',
   expectedResult: 'ancestorError',
   expectedMessage: /No se puede Recargar esté archivo porque el archivo anterior aún no ha sido cargado/i,

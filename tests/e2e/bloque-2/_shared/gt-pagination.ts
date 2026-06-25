@@ -29,8 +29,19 @@ export function PaginationCase(config: PaginationCaseConfig) {
 
     const tableRows = page.locator('table tbody tr');
     const paginator = page.locator('[aria-label*="pagination" i], nav, [data-testid*="pagination" i]').filter({ hasText: /1|5|siguiente|anterior/i }).first();
-    await expect(tableRows.first().or(paginator), 'Debe existir tabla o paginador en la vista con data cargada.').toBeVisible({ timeout: 30_000 });
+    await expect.poll(
+      async () => {
+        const hasRows = await tableRows.first().isVisible().catch(() => false);
+        const hasPaginator = await paginator.isVisible().catch(() => false);
 
+        return hasRows || hasPaginator;
+      },
+      {
+        message: 'Debe existir tabla o paginador en la vista con data cargada.',
+        timeout: 30_000,
+        intervals: [1000, 2000, 3000],
+      }
+    ).toBe(true);
     const firstPage = page.getByRole('button', { name: /^1$/ }).or(page.getByText(/^1$/)).first();
     await expect(firstPage, 'Debe mostrarse la pagina 1 al acceder inicialmente.').toBeVisible({ timeout: 30_000 });
 

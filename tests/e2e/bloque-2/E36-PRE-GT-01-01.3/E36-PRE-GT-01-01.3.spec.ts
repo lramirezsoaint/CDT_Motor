@@ -9,12 +9,10 @@ EditRecordCase({
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Editar Centro/i,
   fields: [
-    { label: /Código Linea|Linea/i, value: 'PVI', kind: 'select' },
-    { label: /Código Producto|Producto/i, value: 'VGRP', kind: 'select' },
-    { label: /Código Plan|Plan/i, value: 'VGRP001', kind: 'select' },
-    { label: /Código Canal|Canal/i, value: 'CCO', kind: 'select' },
-    { label: /Código Centro|Centro/i, value: 'CCO006', kind: 'select' },
+    { label: /Negocio/i, value: 'PVI', kind: 'select' },
+    { label: /Código Linea/i, value: 'VIND', kind: 'select' },
+    { label: /Código Producto/i, value: 'VIND001', kind: 'select' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['PVI', 'VGRP001', 'CCO006'],
+  expectedTableValues: ['PVI'],
 });

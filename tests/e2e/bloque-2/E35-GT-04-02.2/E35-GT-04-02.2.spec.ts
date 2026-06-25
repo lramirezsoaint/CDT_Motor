@@ -6,7 +6,7 @@ UploadCase({
   view: 'maestro de negocio.*embebidos',
   role: 'gestor-gasto',
   modalTitle: /Cargar Maestro de Negocio y Embebidos|Recargar Maestro de Negocio y Embebidos/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Maestro Embebidos GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

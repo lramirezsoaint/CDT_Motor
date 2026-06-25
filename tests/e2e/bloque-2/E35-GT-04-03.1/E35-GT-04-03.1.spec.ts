@@ -6,7 +6,7 @@ UploadCase({
   view: 'Método Subcanal',
   role: 'gestor-gasto',
   modalTitle: /Cargar Método Subcanal|Recargar Método Subcanal/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Metodo Subcanal GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

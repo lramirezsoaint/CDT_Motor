@@ -8,6 +8,6 @@ DeleteRecordCase({
   role: 'admin',
   distribution: { tipo: /Presupuesto/i },
   expectedResult: 'success',
-  warningMessage: /eliminar|desea continuar|seguro/i,
-  expectedMessage: /eliminado|registro eliminado|hecho/i,
+ warningMessage: /Está seguro que desea eliminar este registro.*/i,
+  expectedMessage: /Registro eliminado con éxito|registro.*eliminado.*xito/i,
 });

@@ -6,7 +6,7 @@ UploadCase({
   view: 'Ramo',
   role: 'gestor-gasto',
   modalTitle: /Cargar Ramos|Recargar Ramo/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Ramos GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

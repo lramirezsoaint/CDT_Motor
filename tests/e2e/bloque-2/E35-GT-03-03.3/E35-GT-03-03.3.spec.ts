@@ -7,8 +7,7 @@ AddRecordCase({
   role: 'gestor-gasto',
   modalTitle: /Agregar Especiales NIIF/i,
   fields: [
-    { label: /Porcentaje/i, value: '22.563' },
-    { label: /Tpo Distribución|Tipo Distribución/i, value: 'NIIF', kind: 'select' },
+   
   ],  expectedResult: 'validationError',
   expectedMessages: [/Porcentaje.*obligatorio|Porcentaje.*requer/i, /Tpo Distribución.*requer|Tipo Distribución.*requer/i],
 });

@@ -4,7 +4,7 @@ import { LoginPage } from '@pages/auth/LoginPage';
 import { selectGtDistribution, SelectGtDistributionOptions } from './gt-distribution';
 import { GtCaseBase, openGtView, tagsFor } from './gt-ui';
 
-type FieldKind = 'input' | 'select';
+type FieldKind = 'input' | 'select' | 'delete';
 type EditResult = 'success' | 'validationError';
 
 type EditField = {
@@ -120,20 +120,44 @@ function fieldLocator(modal: Locator, field: EditField) {
 async function fillField(page: Page, modal: Locator, field: EditField) {
   const control = fieldLocator(modal, field);
   await expect(control, `Debe existir el campo ${field.label}`).toBeVisible();
-
+  
   if (field.kind === 'select') {
     await control.click();
-    const option = page
-      .getByRole('option', { name: new RegExp(escapeRegExp(field.value ?? ''), 'i') })
-      .or(page.getByText(field.value ?? '', { exact: false }))
-      .first();
-    const hasOption = await option.isVisible({ timeout: 2_000 }).catch(() => false);
-    if (hasOption) {
+    try {
+      const value = field.value ?? '';
+      const option = page
+        .getByRole('option', {
+          name: new RegExp(`^${escapeRegExp(value)}$`, 'i')
+        })
+        .or(
+          page
+            .locator('[data-radix-popper-content-wrapper]')
+            .getByText(new RegExp(`^${escapeRegExp(value)}$`, 'i'))
+        )
+        .or(
+          page
+            .locator('[role="listbox"]')
+            .getByText(new RegExp(`^${escapeRegExp(value)}$`, 'i'))
+        )
+        .first();
+
+      await expect(
+        option,
+        `Debe existir la opción ${value}`
+      ).toBeVisible({
+        timeout: 10_000
+      });
+
       await option.click();
       return;
+    } catch (error) {
+
     }
   }
-
+  if (field.kind === 'delete') {
+     await control.fill("a");
+    return;
+  }
   await control.fill(field.value ?? '');
 }
 

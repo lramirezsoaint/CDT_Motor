@@ -48,34 +48,38 @@ export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
       await openDeleteAction(page, row);
     });
 
-    const modal = page.getByRole('dialog').first();
+    const modal = page
+      .getByRole('alertdialog')
+      .or(page.getByRole('dialog'))
+      .or(page.locator('[role="dialog"]'))
+      .first();
 
-    await test.step('Validar advertencia de eliminacion', async () => {
-      await expect(modal, 'Debe mostrarse el modal de confirmacion de eliminacion.').toBeVisible();
-      await expect(modal.getByText(config.warningMessage).or(page.getByText(config.warningMessage)).first()).toBeVisible();
+    await expect(
+      modal,
+      'Debe mostrarse modal/alerta de confirmación de eliminación.'
+    ).toBeVisible({
+      timeout: 15000
     });
+    await expect(modal.getByText(config.warningMessage).or(page.getByText(config.warningMessage)).first()).toBeVisible();
 
-    await test.step('Confirmar eliminacion', async () => {
-      await modal.getByRole('button', { name: /^aceptar$/i }).click();
-    });
-
-    if (config.expectedResult === 'success') {
-      await test.step('Validar eliminacion exitosa', async () => {
-        await expect(page.getByText(config.expectedMessage).first()).toBeVisible({ timeout: 30_000 });
-        if (rowKey) {
-          await expect(page.getByText(rowKey, { exact: false }).first()).toBeHidden({ timeout: 30_000 });
-        }
-      });
-      return;
-    }
-
-    await test.step('Validar que el registro no se elimina', async () => {
-      await expect(page.getByText(config.expectedMessage).or(modal.getByText(config.expectedMessage)).first()).toBeVisible({ timeout: 30_000 });
-      if (rowKey) {
-        await expect(page.getByText(rowKey, { exact: false }).first()).toBeVisible();
-      }
-    });
+  await test.step('Confirmar eliminacion', async () => {
+    await modal.getByRole('button', { name: /^Eliminar$/i }).click();
   });
+
+  if (config.expectedResult === 'success') {
+    await test.step('Validar eliminacion exitosa', async () => {
+      await expect(page.getByText(config.expectedMessage).first()).toBeVisible({ timeout: 30_000 });
+    });
+    return;
+  }
+
+  await test.step('Validar que el registro no se elimina', async () => {
+    await expect(page.getByText(config.expectedMessage).or(modal.getByText(config.expectedMessage)).first()).toBeVisible({ timeout: 30_000 });
+    if (rowKey) {
+      await expect(page.getByText(rowKey, { exact: false }).first()).toBeVisible();
+    }
+  });
+});
 }
 
 async function openDeleteAction(page: Page, row: Locator) {

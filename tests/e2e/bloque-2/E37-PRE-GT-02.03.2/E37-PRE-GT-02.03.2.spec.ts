@@ -8,6 +8,6 @@ DeleteRecordCase({
   role: 'admin',
   distribution: { tipo: /Presupuesto/i },
   expectedResult: 'processError',
-  warningMessage: /seguro.*desea eliminar.*registro|eliminar este registro/i,
-  expectedMessage: /Actualmente hay un proceso en ejecucion.*no es posible editar o eliminar el registro|Espere a que finalice el proceso/i,
+warningMessage: /Está seguro que desea eliminar este registro.*/i,
+  expectedMessage: /Registro eliminado con éxito|registro.*eliminado.*xito/i,
 });

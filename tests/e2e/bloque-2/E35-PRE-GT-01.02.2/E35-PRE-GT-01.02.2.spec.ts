@@ -16,8 +16,7 @@ AddRecordCase({
     { label: /Canal/i, value: 'ALIANZAS', kind: 'select' },
     { label: /Subcanal/i, value: 'FALABELLA', kind: 'select' },
     { label: /Embebido/i, value: 'Embebido', kind: 'select' },
-    { label: /Tipo Negocio/i },
-  ],
-  expectedResult: 'success',
+    { label: /Tipo Negocio/i, value: 'PËRSONA', kind: 'select' },
+  ],  expectedResult: 'success',
   expectedTableValues: ['GENERALES', 'ASISTENCIA MEDICA'],
 });

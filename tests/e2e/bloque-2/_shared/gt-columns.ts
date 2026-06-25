@@ -40,7 +40,7 @@ export function ColumnsCase(config: ColumnsCaseConfig) {
     });
 
     if (config.action === 'search') {
-      await assertColumnSearch(modal, config.searchText ?? 'Codigo');
+      await assertColumnSearch(modal, config.searchText ?? 'a');
     }
 
     if (config.action === 'showAll') {

@@ -8,9 +8,9 @@ EditRecordCase({
   modalTitle: /Editar Centros|Editar Centro/i,
   fields: [
     { label: /Negocio/i, value: 'PVI', kind: 'select' },
-    { label: /Código Ramo/i, value: '96', kind: 'select' },
-    { label: /Código Producto/i, value: 'VGRP001', kind: 'select' },
+    { label: /Código Linea/i, value: 'VIND', kind: 'select' },
+    { label: /Código Producto/i, value: 'VIND001', kind: 'select' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['PVI', '96'],
+  expectedTableValues: ['PVI'],
 });

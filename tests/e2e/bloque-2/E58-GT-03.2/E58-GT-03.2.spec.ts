@@ -6,7 +6,7 @@ UploadCase({
   view: 'Método Producto',
   role: 'gestor-gasto',
   modalTitle: /Cargar Método Producto/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real',
   fileName: 'REAL Metodo producto GT.xlsx',
   expectedResult: 'ancestorError',
   expectedMessage: /No se puede Recargar esté archivo porque el archivo anterior aún no ha sido cargado/i,

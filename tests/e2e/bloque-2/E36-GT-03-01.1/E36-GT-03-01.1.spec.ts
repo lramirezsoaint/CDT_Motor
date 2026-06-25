@@ -7,8 +7,8 @@ EditRecordCase({
   role: 'gestor-gasto',
   modalTitle: /Editar Ramo/i,
   fields: [
-    { label: /Descripción Ramo|Descripción/i },
-    { label: /Rubro/i },
+    { label: /Descripción Ramo|Descripción/i,kind: 'delete' },
+    { label: /Rubro/i,kind: 'delete' },
   ],
   expectedResult: 'validationError',
   expectedMessages: [/requerido|obligatorio|formato|incorrecto|no valido/i],

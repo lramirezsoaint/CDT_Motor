@@ -9,9 +9,7 @@ AddRecordCase({
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Agregar Método Subcanal/i,
   fields: [
-    { label: /Código Línea/i },
-    { label: /Código Producto/i },
-    { label: /Código Método/i },
+   
   ],
   expectedResult: 'validationError',
   expectedMessages: [/requerido|obligatorio|formato|incorrecto|no válido/i],

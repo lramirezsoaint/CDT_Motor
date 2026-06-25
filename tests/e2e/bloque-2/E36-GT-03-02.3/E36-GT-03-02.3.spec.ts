@@ -2,7 +2,7 @@ import { EditRecordCase } from '../_shared/gt-edit-record';
 
 EditRecordCase({
   caseId: 'E36-GT-03-02.3',
-  section: 'Parametrización',
+  section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
   role: 'gestor-gasto',
   modalTitle: /Editar Unidad de Cuenta GT/i,

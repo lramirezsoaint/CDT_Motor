@@ -6,6 +6,6 @@ DeleteRecordCase({
   view: 'Especiales NIIF',
   role: 'admin',
   expectedResult: 'success',
-  warningMessage: /Está seguro.*desea eliminar.*registro/i,
+warningMessage: /Está seguro que desea eliminar este registro.*/i,
   expectedMessage: /Registro eliminado con éxito|registro.*eliminado.*xito/i,
 });

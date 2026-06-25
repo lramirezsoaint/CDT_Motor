@@ -6,7 +6,7 @@ UploadCase({
   view: 'Especiales NIIF',
   role: 'gestor-gasto',
   modalTitle: /Cargar Especiales NIIF|Recargar Especiales NIIF/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Especiales NIIF GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

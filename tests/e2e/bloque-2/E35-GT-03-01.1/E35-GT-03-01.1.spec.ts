@@ -7,9 +7,9 @@ AddRecordCase({
   role: 'gestor-gasto',
   modalTitle: /Agregar Ramo/i,
   fields: [
-    { label: /Código Ramo/i, value: '12' },
-    { label: /Descripción Ramo/i, value: 'INCENDIO' },
-    { label: /Rubro/i, value: 'Lineas ALIADAS INCENDIO' },
+    { label: /Código Ramo/i, value: '' },
+    { label: /Descripción Ramo/i, value: '' },
+    { label: /Rubro/i, value: '' },
   ],  expectedResult: 'validationError',
   expectedMessages: [/Código Ramo.*requer/i, /Descripción Ramo.*requer/i],
 });

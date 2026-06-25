@@ -5,7 +5,7 @@ UploadCase({
   section: 'Parametrización',
   view: 'Ramo',
   modalTitle: /Cargar Ramos|Recargar Ramo/i,
-  fileFolder: 'E59-GT-01.1',
+  fileFolder: 'Real/success',
   fileName: 'REAL Ramos GT.xlsx',
   expectedResult: 'success',
 });

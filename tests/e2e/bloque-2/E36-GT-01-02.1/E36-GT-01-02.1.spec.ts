@@ -4,12 +4,12 @@ import { EditRecordCase } from '../_shared/gt-edit-record';
 EditRecordCase({
   caseId: 'E36-GT-01-02.1',
   section: 'Aprovisionamiento',
-  view: 'Driver Producto',
+  view: 'Unidad de Cuenta GT',
   role: 'gestor-gasto',
-  modalTitle: /Editar Driver Producto/i,
+  modalTitle: /Editar Unidad de Cuenta GT/i,
   fields: [
-    { label: /Descripción Método/i, value: 'Metodo actualizado' },
+    { label: /Moneda/i, value: 'USD', kind: 'select' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['Método actualizado'],
+  expectedTableValues: ['USD'],
 });

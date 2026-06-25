@@ -6,7 +6,7 @@ UploadCase({
   view: 'Unidad de cuenta GT',
   role: 'gestor-gasto',
   modalTitle: /Cargar Unidad de Cuenta GT|Recargar Unidad de Cuenta GT/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Unidad de Cuenta GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

@@ -7,7 +7,7 @@ UploadCase({
   view: 'Especiales NIIF',
   role: 'gestor-gasto',
   modalTitle: /Cargar Especiales NIIF/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real',
   fileName: 'REAL Especiales NIIF GT.xlsx',
   expectedResult: 'ancestorError',
   expectedMessage: /No se puede Recargar esté archivo porque el archivo anterior aún no ha sido cargado/i,

@@ -6,7 +6,7 @@ UploadCase({
   view: 'Driver Producto',
   role: 'gestor-gasto',
   modalTitle: /Cargar Driver Producto/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real',
   fileName: 'REAL Driver Producto GT.xlsx',
   expectedResult: 'ancestorError',
   expectedMessage: /No se puede Recargar esté archivo porque el archivo anterior aún no ha sido cargado/i,

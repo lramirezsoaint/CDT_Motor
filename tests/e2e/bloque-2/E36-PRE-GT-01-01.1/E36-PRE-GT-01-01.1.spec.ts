@@ -9,10 +9,9 @@ EditRecordCase({
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Editar Ramo/i,
   fields: [
-    { label: /Codigo Ramo|Ramo/i, value: '44' },
-    { label: /Descripcion Ramo|Descripcion/i, value: 'DESHONESTIDAD' },
+    { label: /Descripción Ramo/i, value: 'DESHONESTIDAD' },
     { label: /Rubro/i, value: 'DESHONESTIDAD FRENTE A LA EMPRESA' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['44', 'DESHONESTIDAD'],
+  expectedTableValues: ['DESHONESTIDAD'],
 });

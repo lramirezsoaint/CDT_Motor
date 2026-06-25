@@ -6,7 +6,7 @@ UploadCase({
   view: 'Método Producto',
   role: 'gestor-gasto',
   modalTitle: /Cargar Método Producto|Recargar Método Producto/i,
-  fileFolder: 'GT/Real',
+  fileFolder: 'Real/success',
   fileName: 'REAL Metodo producto GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',
