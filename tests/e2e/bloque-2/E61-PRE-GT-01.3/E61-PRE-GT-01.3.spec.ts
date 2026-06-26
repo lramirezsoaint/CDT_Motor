@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Centros/i,
-  fileFolder: 'E61-GT-01.3',
-  fileName: 'REAL Centros GT.xlsx',
+  fileFolder: 'Presupuesto/maxSize',
+  fileName: 'PRESUPUESTO Centros GT.xlsx',
   expectedResult: 'maxSize',
 });

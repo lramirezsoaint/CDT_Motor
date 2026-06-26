@@ -12,7 +12,7 @@ AddRecordCase({
     { label: /Código canal/i, value: 'AFP', kind: 'select' },
     { label: /Código Concepto/i, value: '01.05.00', kind: 'select' },
     { label: /Código Ramo/i, value: '01', kind: 'select' },
-    { label: /Código método/i, value: '24SC72CORPD', kind: 'select' },
+    { label: /Código método/i, value: 'GT2SCCOR0007', kind: 'select' },
   ],  expectedResult: 'duplicateError',
   expectedMessages: [/Registro duplicado|registro que intentas agregar ya existe/i],
 });

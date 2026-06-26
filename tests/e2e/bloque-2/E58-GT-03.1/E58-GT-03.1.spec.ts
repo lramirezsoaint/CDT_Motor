@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCase58 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCase58({
   caseId: 'E58-GT-03.1',
   section: 'Asignaciones',
   view: 'Método Subcanal',

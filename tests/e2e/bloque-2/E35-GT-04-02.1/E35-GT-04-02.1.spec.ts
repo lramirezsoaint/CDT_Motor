@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCaseE4 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCaseE4({
   caseId: 'E35-GT-04-02.1',
   section: 'Aprovisionamiento',
   view: 'Unidad de cuenta GT',

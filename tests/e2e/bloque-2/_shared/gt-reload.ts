@@ -3,7 +3,7 @@ import path from 'path';
 import { GtCaseBase, openGtView, tagsFor, visibleButton } from './gt-ui';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
-import { selectGtDistribution, SelectGtDistributionOptions } from './gt-distribution';
+import { selectGtDistribution, selectGtDistributionDownload, SelectGtDistributionOptions } from './gt-distribution';
 type ReloadCaseConfig = GtCaseBase & {
   modalTitle: RegExp;
   distribution?: SelectGtDistributionOptions;
@@ -21,9 +21,11 @@ export function ReloadDownloadedCase(config: ReloadCaseConfig) {
         env.gestorGastoPassword
       );
     } catch (error) { }
-    await selectGtDistribution(page, config.distribution);
+    await selectGtDistributionDownload(page, config.distribution);
+     // Esperar un segundo para que la pantalla de distribuciones se estabilice
     await test.step(`Abrir vista ${config.section} > ${config.view}`, async () => {
       await openGtView(page, config);
+      await page.waitForTimeout(2500); // 2 segundos
     });
 
     let downloadedPath = '';

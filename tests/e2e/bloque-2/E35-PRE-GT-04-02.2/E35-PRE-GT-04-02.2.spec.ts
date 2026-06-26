@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCaseE4 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCaseE4({
   caseId: 'E35-PRE-GT-04-02.2',
   section: 'Aprovisionamiento',
   view: 'Maestro de Negocio.*Embebidos',
@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Maestro.*Embebidos|Recargar Maestro.*Embebidos/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'PRESUPUESTO Maestro Negocio y Embebidos GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

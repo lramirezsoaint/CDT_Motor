@@ -1,7 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCase58 } from '../_shared/gt-upload';
 
-// TODO: El catalogo nombra el archivo como 'PRESUPUESTO Unidad de Cuenta GT'; el fixture disponible se llama 'REAL Unidad de Cuenta GT.xlsx'.
-UploadCase({
+UploadCase58({
   caseId: 'E59-PRE-GT-02.3',
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',

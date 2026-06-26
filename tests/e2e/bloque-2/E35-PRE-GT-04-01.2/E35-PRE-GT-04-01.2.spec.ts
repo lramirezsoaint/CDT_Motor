@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCaseE4 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCaseE4({
   caseId: 'E35-PRE-GT-04-01.2',
   section: 'Parametrización',
   view: 'Cuentas Contables',
@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Cuentas Contables|Recargar Cuentas Contables/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'PRESUPUESTO Cuentas Contables GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

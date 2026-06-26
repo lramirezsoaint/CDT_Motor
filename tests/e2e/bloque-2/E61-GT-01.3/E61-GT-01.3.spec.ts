@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Centros',
   modalTitle: /cargar centros/i,
-  fileFolder: 'E61-GT-01.3',
+  fileFolder: 'Real/maxSize',
   fileName: 'REAL Centros GT.xlsx',
   expectedResult: 'maxSize',
 });

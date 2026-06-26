@@ -1,7 +1,7 @@
 import { expect, Locator, Page, test } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
-import { selectGtDistribution, SelectGtDistributionOptions } from './gt-distribution';
+import { selectGtDistributionAdd, SelectGtDistributionOptions } from './gt-distribution';
 import { GtCaseBase, openGtView, tagsFor } from './gt-ui';
 
 type DeleteResult = 'success' | 'processError';
@@ -28,7 +28,7 @@ export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
       }
     });
 
-    await selectGtDistribution(page, config.distribution);
+    await selectGtDistributionAdd(page, config.distribution);
 
     await test.step(`Abrir vista ${config.section} > ${config.view}`, async () => {
       await openGtView(page, config);

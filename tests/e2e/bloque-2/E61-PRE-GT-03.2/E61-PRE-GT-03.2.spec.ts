@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Especiales NIIF/i,
-  fileFolder: 'E61-GT-03.3',
-  fileName: 'REAL Especiales NIIF GT.xlsx',
+  fileFolder: 'Presupuesto/maxSize',
+  fileName: 'PRESUPUESTO Especiales NIIF GT.xlsx',
   expectedResult: 'maxSize',
 });

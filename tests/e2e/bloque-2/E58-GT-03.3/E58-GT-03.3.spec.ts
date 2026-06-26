@@ -1,7 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCase58 } from '../_shared/gt-upload';
 
-// TODO: El catalogo de E58-GT-03.3 es inconsistente: titulo/datos indican Especiales NIIF, pero los pasos y modal indican Metodo Subcanal.
-UploadCase({
+UploadCase58({
   caseId: 'E58-GT-03.3',
   section: 'Asignaciones',
   view: 'Especiales NIIF',

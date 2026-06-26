@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
+import { selectGtDistributionDownload } from './gt-distributionDownload';
 
 export function DistributionDownloadCase(config: { caseId: string }) {
   test(`@bloque2 @gt @${config.caseId} descarga archivo de distribucion`, async ({ page }) => {
@@ -10,6 +11,7 @@ export function DistributionDownloadCase(config: { caseId: string }) {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
         await loginPage.login(env.gestorGastoUsername, env.gestorGastoPassword);
+        await selectGtDistributionDownload(page);
       } catch (error) { }
       await expect(page, 'Debe abrir la pantalla de Distribuciones.').toHaveURL(/\/distribuciones/i, { timeout: 60_000 });
     });

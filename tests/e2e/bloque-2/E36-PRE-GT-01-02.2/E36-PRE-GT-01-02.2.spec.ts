@@ -3,7 +3,7 @@ import { EditRecordCase } from '../_shared/gt-edit-record';
 EditRecordCase({
   caseId: 'E36-PRE-GT-01-02.2',
   section: 'Aprovisionamiento',
-  view: 'Maestro Negocio/Embebidos',
+  view: 'Maestro de Negocio.* embebidos',
   flow: 'presupuesto',
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },

@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Metodo Subcanal|Cargar M.todo Subcanal/i,
-  fileFolder: 'E61-GT-03.1',
-  fileName: 'REAL Metodo Subcanal GT.xlsx',
+  fileFolder: 'Presupuesto/maxSize',
+  fileName: 'PRESUPUESTO Metodo Subcanal GT.xlsx',
   expectedResult: 'maxSize',
 });

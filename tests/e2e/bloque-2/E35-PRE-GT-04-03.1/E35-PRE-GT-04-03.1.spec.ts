@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCaseE4 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCaseE4({
   caseId: 'E35-PRE-GT-04-03.1',
   section: 'Asignaciones',
   view: 'Método Subcanal',
@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar M.todo Subcanal|Recargar M.todo Subcanal/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'PRESUPUESTO Metodo Subcanal GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',

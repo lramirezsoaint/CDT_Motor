@@ -38,10 +38,10 @@ export function CreateDistributionCase(config: CreateDistributionConfig) {
     await loginAs(page, config.role);
     await expect(page).toHaveURL(/\/distribuciones/i);
 
-    await page.getByRole('button', { name: /nueva distribucion|nueva distribuci.n/i }).click();
+    await page.getByRole('button', { name: /nueva distribucion|nueva distribución/i }).click();
     const modal = page.getByRole('dialog').first();
     await expect(modal).toBeVisible();
-    await expect(modal.getByText(/crear distribucion|crear distribuci.n/i)).toBeVisible();
+    await expect(modal.getByText(/crear distribucion|crear distribución/i)).toBeVisible();
 
     const crearButton = modal.getByRole('button', { name: /^crear$/i });
     await expect(crearButton).toBeDisabled();
@@ -50,9 +50,9 @@ export function CreateDistributionCase(config: CreateDistributionConfig) {
     await fillIfVisible(modal, /nombre/i, nombre);
     await selectIfVisible(page, modal, /tipo/i, config.tipo);
     await selectIfVisible(page, modal, /periodo/i, config.periodo);
-    await fillIfVisible(modal, /version|versi.n/i, config.version);
+    await fillIfVisible(modal, /version|versón/i, config.version);
     await fillIfVisible(modal, /tasa de cambio/i, config.tasaCambio);
-    await selectIfVisible(page, modal, /seccion|secci.n/i, config.seccion);
+    await selectIfVisible(page, modal, /seccion|sección/i, config.seccion);
 
     if (config.acumulado) await selectIfVisible(page, modal, /acumulado/i, config.acumulado);
     if (config.meses) await selectIfVisible(page, modal, /meses/i, config.meses);

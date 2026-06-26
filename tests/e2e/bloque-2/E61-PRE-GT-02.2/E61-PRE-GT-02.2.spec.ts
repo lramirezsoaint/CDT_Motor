@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Driver Subcanal/i,
-  fileFolder: 'E61-GT-02.3',
+  fileFolder: 'Presupuesto/maxSize',
   fileName: 'Driver Subcanal GT.xlsx',
   expectedResult: 'maxSize',
 });

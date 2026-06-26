@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCase58 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCase58({
   caseId: 'E59-PRE-GT-03.2',
   section: 'Asignaciones',
   view: 'Especiales NIIF',

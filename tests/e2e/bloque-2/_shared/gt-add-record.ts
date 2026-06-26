@@ -1,7 +1,7 @@
 import { expect, Locator, Page, test } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
-import { SelectGtDistributionOptions, selectGtDistribution } from './gt-distribution';
+import { SelectGtDistributionOptions, selectGtDistributionAdd } from './gt-distribution';
 import { GtCaseBase, openGtView, tagsFor, visibleButton } from './gt-ui';
 
 type AddResult = 'success' | 'duplicateError' | 'validationError';
@@ -35,7 +35,7 @@ export function AddRecordCase(config: AddRecordCaseConfig) {
       }
     });
 
-    await selectGtDistribution(page, config.distribution);
+    await selectGtDistributionAdd(page, config.distribution);
 
     await test.step(`Abrir vista ${config.section} > ${config.view}`, async () => {
       await openGtView(page, config);

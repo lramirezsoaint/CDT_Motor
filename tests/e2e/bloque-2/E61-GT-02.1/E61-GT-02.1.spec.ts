@@ -5,7 +5,7 @@ UploadCase({
   section: 'Aprovisionamiento',
   view: 'Exactus',
   modalTitle: /Cargar Exactus/i,
-  fileFolder: 'E61-GT-02.1',
+  fileFolder: 'Real/maxSize',
   fileName: 'REAL Exactus sin procesar GT.xlsx',
   expectedResult: 'maxSize',
 });

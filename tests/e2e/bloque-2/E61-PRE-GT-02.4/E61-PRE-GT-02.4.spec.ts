@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Maestro de Negocios y Embebidos/i,
-  fileFolder: 'E61-GT-02.5',
-  fileName: 'REAL Maestro Embebidos GT.xlsx',
+  fileFolder: 'Presupuesto/maxSize',
+  fileName: 'PRESUPUESTO Maestro Embebidos GT.xlsx',
   expectedResult: 'maxSize',
 });

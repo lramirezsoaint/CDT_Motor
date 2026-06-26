@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Parametrización',
   view: 'Ramo',
   modalTitle: /Cargar Ramos/i,
-  fileFolder: 'E61-GT-01.1',
+  fileFolder: 'Real/maxSize',
   fileName: 'REAL Ramos GT.xlsx',
   expectedResult: 'maxSize',
 });

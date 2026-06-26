@@ -1,7 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCase58 } from '../_shared/gt-upload';
 
-// TODO: El catalogo nombra el archivo como 'PRESUPUESTO Driver Subcanal GT'; el fixture disponible no incluye ese prefijo.
-UploadCase({
+UploadCase58({
   caseId: 'E59-PRE-GT-02.2',
   section: 'Aprovisionamiento',
   view: 'Driver Subcanal',

@@ -1,6 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCase58 } from '../_shared/gt-upload';
 
-UploadCase({
+UploadCase58({
   caseId: 'E59-PRE-GT-02.1',
   section: 'Aprovisionamiento',
   view: 'Presupuesto',

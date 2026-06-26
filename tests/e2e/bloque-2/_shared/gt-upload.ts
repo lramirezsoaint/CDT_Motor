@@ -8,7 +8,7 @@ import {
 } from './gt-ui';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
-import { selectGtDistribution, SelectGtDistributionOptions } from './gt-distribution';
+import { selectGtDistribution58,selectGtDistribution,selectGtDistributionE4, SelectGtDistributionOptions } from './gt-distribution';
 type UploadResult =
   | 'success'
   | 'headersError'
@@ -45,6 +45,164 @@ export function UploadCase(config: UploadCaseConfig) {
 
     await test.step(`Abrir vista ${config.section} > ${config.view}`, async () => {
       await selectGtDistribution(page, config.distribution);
+      await openGtView(page, config);
+      try {
+        await expect(
+          page.getByRole('heading', {
+            name: new RegExp(config.view, 'i')
+          })
+        ).toBeVisible({
+          timeout: 1_000
+        });
+      } catch (error) {
+      }
+    });
+
+    await test.step('Abrir modal Cargar y validar estado inicial', async () => {
+      await visibleButton(page, /^cargar$/i).click();
+    });
+
+    const modal = page.getByTestId('cargas-parametros-upload-dialog').or(page.getByRole('dialog')).first();
+    const processButton = modal.getByRole('button', { name: /procesar archivo|aceptar/i });
+
+    await test.step('Validar modal inicial y boton deshabilitado', async () => {
+      await expect(modal, 'Debe mostrarse el modal de carga definido por el catalogo.').toBeVisible();
+      await expect(modal.getByText(config.modalTitle), 'Debe mostrarse el titulo esperado del modal.').toBeVisible();
+      if (config.expectedWarning) {
+        await expect(modal.getByText(config.expectedWarning), 'Debe mostrarse la advertencia de sobrescritura del catalogo.').toBeVisible();
+      }
+      await expect(processButton, 'El boton de procesar/aceptar inicia deshabilitado.').toBeDisabled();
+    });
+
+    await test.step('Validar mensaje previo de advertencia si existe', async () => {
+      const continueButton = modal.getByRole('button', {
+        name: /Continuar con la carga/i
+      });
+
+      try {
+        await continueButton.click();
+      } catch (error) {
+      }
+    });
+
+    await test.step('Seleccionar archivo de prueba', async () => {
+      const filePath = path.resolve('fixtures', 'files', 'bloque-2', config.fileFolder, config.fileName);
+      const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        modal.getByText('Haz click para examinar', { exact: true }).click(),
+      ]);
+
+      await fileChooser.setFiles(filePath);
+    });
+
+    if (config.expectedResult === 'emptyFile' || config.expectedResult === 'maxSize') {
+      await assertImmediateUploadError(modal, config.expectedResult);
+      return;
+    }
+
+    await test.step('Procesar archivo seleccionado', async () => {
+      await expect(processButton, 'El boton debe habilitarse tras seleccionar archivo.').toBeEnabled();
+      await processButton.click();
+    });
+
+    await assertProcessedUploadResult(page, modal, config.expectedResult, config.expectedMessage);
+  });
+}
+export function UploadCaseE4(config: UploadCaseConfig) {
+  test(`${tagsFor(config)} carga archivo y valida resultado ${config.expectedResult}`, async ({ page }, testInfo) => {
+    test.setTimeout(360_000);
+    await test.step('Abrir vista del flujo de Gastos Tecnicos', async () => {
+      try {
+        await page.goto('https://distribuciongastos.pacificotest.com.pe/');
+        const loginPage = new LoginPage(page);
+        await loginPage.login(
+          env.gestorGastoUsername,
+          env.gestorGastoPassword
+        );
+      } catch (error) { }
+    });
+
+    await test.step(`Abrir vista ${config.section} > ${config.view}`, async () => {
+      await selectGtDistributionE4(page, config.distribution);
+      await openGtView(page, config);
+      try {
+        await expect(
+          page.getByRole('heading', {
+            name: new RegExp(config.view, 'i')
+          })
+        ).toBeVisible({
+          timeout: 1_000
+        });
+      } catch (error) {
+      }
+    });
+
+    await test.step('Abrir modal Cargar y validar estado inicial', async () => {
+      await visibleButton(page, /^cargar$/i).click();
+    });
+
+    const modal = page.getByTestId('cargas-parametros-upload-dialog').or(page.getByRole('dialog')).first();
+    const processButton = modal.getByRole('button', { name: /procesar archivo|aceptar/i });
+
+    await test.step('Validar modal inicial y boton deshabilitado', async () => {
+      await expect(modal, 'Debe mostrarse el modal de carga definido por el catalogo.').toBeVisible();
+      await expect(modal.getByText(config.modalTitle), 'Debe mostrarse el titulo esperado del modal.').toBeVisible();
+      if (config.expectedWarning) {
+        await expect(modal.getByText(config.expectedWarning), 'Debe mostrarse la advertencia de sobrescritura del catalogo.').toBeVisible();
+      }
+      await expect(processButton, 'El boton de procesar/aceptar inicia deshabilitado.').toBeDisabled();
+    });
+
+    await test.step('Validar mensaje previo de advertencia si existe', async () => {
+      const continueButton = modal.getByRole('button', {
+        name: /Continuar con la carga/i
+      });
+
+      try {
+        await continueButton.click();
+      } catch (error) {
+      }
+    });
+
+    await test.step('Seleccionar archivo de prueba', async () => {
+      const filePath = path.resolve('fixtures', 'files', 'bloque-2', config.fileFolder, config.fileName);
+      const [fileChooser] = await Promise.all([
+        page.waitForEvent('filechooser'),
+        modal.getByText('Haz click para examinar', { exact: true }).click(),
+      ]);
+
+      await fileChooser.setFiles(filePath);
+    });
+
+    if (config.expectedResult === 'emptyFile' || config.expectedResult === 'maxSize') {
+      await assertImmediateUploadError(modal, config.expectedResult);
+      return;
+    }
+
+    await test.step('Procesar archivo seleccionado', async () => {
+      await expect(processButton, 'El boton debe habilitarse tras seleccionar archivo.').toBeEnabled();
+      await processButton.click();
+    });
+
+    await assertProcessedUploadResult(page, modal, config.expectedResult, config.expectedMessage);
+  });
+}
+export function UploadCase58(config: UploadCaseConfig) {
+  test(`${tagsFor(config)} carga archivo y valida resultado ${config.expectedResult}`, async ({ page }, testInfo) => {
+    test.setTimeout(360_000);
+    await test.step('Abrir vista del flujo de Gastos Tecnicos', async () => {
+      try {
+        await page.goto('https://distribuciongastos.pacificotest.com.pe/');
+        const loginPage = new LoginPage(page);
+        await loginPage.login(
+          env.gestorGastoUsername,
+          env.gestorGastoPassword
+        );
+      } catch (error) { }
+    });
+
+    await test.step(`Abrir vista ${config.section} > ${config.view}`, async () => {
+      await selectGtDistribution58(page, config.distribution);
       await openGtView(page, config);
       try {
         await expect(

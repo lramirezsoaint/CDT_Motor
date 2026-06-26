@@ -7,7 +7,7 @@ EditRecordCase({
   role: 'gestor-gasto',
   modalTitle: /Editar Cuenta Contable/i,
   fields: [
-    { label: /Nombre Cuenta Contable|Nombre/i },
+    { label: /Nombre Cuenta Contable|Nombre/i,value: '@+qs' },
   ],
   expectedResult: 'validationError',
   expectedMessages: [/requerido|obligatorio|formato|incorrecto|no valido/i],

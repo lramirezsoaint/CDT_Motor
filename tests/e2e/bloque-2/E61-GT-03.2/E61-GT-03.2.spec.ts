@@ -5,7 +5,7 @@ UploadCase ({
   section: 'Asignaciones',
   view: 'Método Producto',
   modalTitle: /Cargar Método Producto/i,
-  fileFolder: 'E61-GT-03.2',
+  fileFolder: 'Real/maxSize',
   fileName: 'REAL Metodo Producto GT.xlsx',
   expectedResult: 'maxSize',
 });

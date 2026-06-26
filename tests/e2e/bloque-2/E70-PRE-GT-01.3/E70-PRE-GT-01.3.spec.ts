@@ -2,7 +2,7 @@ import { UploadCase } from '../_shared/gt-upload';
 
 UploadCase({
   caseId: 'E70-PRE-GT-01.3',
-  section: 'Parametrizaci',
+  section: 'Parametrización',
   view: 'Centros',
   flow: 'presupuesto',
   role: 'gestor-gasto',

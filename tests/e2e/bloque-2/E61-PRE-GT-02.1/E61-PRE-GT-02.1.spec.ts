@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Exactus/i,
-  fileFolder: 'E61-GT-02.1',
-  fileName: 'REAL Exactus sin procesar GT.xlsx',
+  fileFolder: 'Presupuesto/maxSize',
+  fileName: 'PRESUPUESTO Exactus sin procesar GT.xlsx',
   expectedResult: 'maxSize',
 });

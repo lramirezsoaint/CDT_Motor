@@ -11,7 +11,7 @@ AddRecordCase({
     { label: /Código Ramo/i, value: '01', kind: 'select' },
     { label: /Código línea/i, value: 'AFP', kind: 'select' },
     { label: /Código Canal/i, value: 'AFP', kind: 'select' },
-    { label: /Código Método/i, value: 'GT164000AMED', kind: 'select' },
+    { label: /Código Método/i, value: 'GT164CORAMED', kind: 'select' },
   ],  expectedResult: 'success',
   expectedTableValues: [],
 });

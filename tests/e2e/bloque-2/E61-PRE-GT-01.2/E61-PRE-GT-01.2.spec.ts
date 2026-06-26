@@ -8,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Cuentas Contables/i,
-  fileFolder: 'E61-GT-01.2',
-  fileName: 'REAL Cuentas Contables GT.xlsx',
+  fileFolder: 'Presupuesto/maxSize',
+  fileName: 'PRESUPUESTO Cuentas Contables GT.xlsx',
   expectedResult: 'maxSize',
 });

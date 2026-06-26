@@ -1,6 +1,6 @@
-import { UploadCase  } from '../_shared/gt-upload';
+import { UploadCaseE4  } from '../_shared/gt-upload';
 
-UploadCase ({
+UploadCaseE4({
   caseId: 'E4-GT-01.2',
   section: 'Parametrización',
   view: 'Cuentas Contables',

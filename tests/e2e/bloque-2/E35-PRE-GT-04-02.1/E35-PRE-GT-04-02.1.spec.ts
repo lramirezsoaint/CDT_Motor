@@ -1,7 +1,6 @@
-import { UploadCase } from '../_shared/gt-upload';
+import { UploadCaseE4 } from '../_shared/gt-upload';
 
-// TODO(catalogo): el archivo exacto "PRESUPUESTO Unidad de cuenta GT" no existe en fixtures; se usa el disponible en carpeta GT/Presupuesto.
-UploadCase({
+UploadCaseE4({
   caseId: 'E35-PRE-GT-04-02.1',
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta',
@@ -9,7 +8,7 @@ UploadCase({
   role: 'gestor-gasto',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Unidad de Cuenta GT|Recargar Unidad de Cuenta GT/i,
-  fileFolder: 'GT/Presupuesto',
+  fileFolder: 'Presupuesto/success',
   fileName: 'REAL Unidad de Cuenta GT.xlsx',
   action: 'recargar',
   expectedResult: 'success',
