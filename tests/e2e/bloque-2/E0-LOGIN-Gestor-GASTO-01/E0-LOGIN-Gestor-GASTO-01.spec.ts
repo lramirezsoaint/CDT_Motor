@@ -3,16 +3,16 @@ import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('@bloque2 @gt @gestor-gasto @E0-LOGIN-GESTOR-GASTO-01 E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
+test('@bloque2 @gt @gestorGT @E0-LOGIN-GESTOR-GASTO-01 E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
 
   try {
         const loginPage = new LoginPage(page);
         await loginPage.login(
-        env.gestorGastoUsername,
-        env.gestorGastoPassword
+        env.gestorGTUsername,
+        env.gestorGTPassword
         );
       } catch (error) { }
-      await selectGtDistribution(page, 'REAL');
+      await selectGtDistribution(page);
 
   // VALIDAR LOGIN
   await expect(page)

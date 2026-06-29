@@ -9,7 +9,7 @@ UploadCase({
   fileName: 'PRESUPUESTO Centros GT.xlsx',
   expectedResult: 'success',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   priority: 'critical',
   distribution: { tipo: /Presupuesto/i },
 });

@@ -4,7 +4,7 @@ UploadCase58({
   caseId: 'E58-GT-03.2',
   section: 'Asignaciones',
   view: 'Método Producto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Método Producto/i,
   fileFolder: 'Real',
   fileName: 'REAL Metodo producto GT.xlsx',

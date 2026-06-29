@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Aprovisionamiento',
   view: 'Driver Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Driver Subcanal|Recargar Driver Subcanal/i,
   fileFolder: 'Presupuesto/success',

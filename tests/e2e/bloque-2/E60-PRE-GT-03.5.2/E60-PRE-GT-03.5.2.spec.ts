@@ -5,7 +5,7 @@ ColumnsCase({
   section: 'Asignaciones',
   view: 'Especiales NIIF',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   action: 'open',
 });

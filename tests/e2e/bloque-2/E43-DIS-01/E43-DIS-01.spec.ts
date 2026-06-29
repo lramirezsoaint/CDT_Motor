@@ -8,8 +8,8 @@ test('ELIMINAR-DISTRIBUCION-CREADA', async ({ page }) => {
  try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorGastoUsername,
-      env.gestorGastoPassword
+        env.gestorGTUsername,
+      env.gestorGTPassword
       );
     } catch (error) { }
 await selectGtDistribution(page);

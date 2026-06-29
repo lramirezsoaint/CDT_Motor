@@ -8,11 +8,11 @@ import {
 } from './gf-upload';
 
 function tagsFor(caseId: string) {
-  return `@critical @bloque3 @gf @gestor-gasto-financiero @carga @${caseId}`;
+  return `@critical @bloque3 @gf @gestorGF @carga @${caseId}`;
 }
 
 export function defineGfUploadCase(uploadCase: GfUploadCase): void {
-  test.use({ storageState: '.auth/gestor.json' });
+  test.use({ storageState: '.auth/gestorGF.json' });
 
   test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
     test(`${tagsFor(uploadCase.caseId)} debe cargar archivo ${uploadCase.entityName}`, async ({ page }) => {
@@ -32,7 +32,7 @@ export function defineGfUploadCase(uploadCase: GfUploadCase): void {
 }
 
 export function defineGfUploadErrorCase(uploadCase: GfErrorUploadCase): void {
-  test.use({ storageState: '.auth/gestor.json' });
+  test.use({ storageState: '.auth/gestorGF.json' });
 
   test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
     test(`${tagsFor(uploadCase.caseId)} debe rechazar carga de ${uploadCase.entityName}`, async ({ page }) => {
@@ -53,7 +53,7 @@ export function defineGfUploadErrorCase(uploadCase: GfErrorUploadCase): void {
 }
 
 export function defineGfUploadOverwriteCase(uploadCase: GfOverwriteUploadCase): void {
-  test.use({ storageState: '.auth/gestor.json' });
+  test.use({ storageState: '.auth/gestorGF.json' });
 
   test.describe(`@bloque3 @gf @carga @${uploadCase.caseId}`, () => {
     test(`${tagsFor(uploadCase.caseId)} debe sobreescribir ${uploadCase.entityName} sin duplicar`, async ({ page }) => {

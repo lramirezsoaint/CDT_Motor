@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Aprovisionamiento',
   view: 'Maestro Negocio/Embebidos',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Maestro de Negocio|Embebidos|Recargar Maestro de Negocio|Embebidos/i,
   fileFolder: 'Presupuesto/success',

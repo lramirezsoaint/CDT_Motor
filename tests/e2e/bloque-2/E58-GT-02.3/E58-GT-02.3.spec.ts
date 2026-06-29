@@ -4,7 +4,7 @@ UploadCase58({
   caseId: 'E58-GT-02.3',
   section: 'Aprovisionamiento',
   view: 'Driver Subcanal',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Driver Subcanal/i,
   fileFolder: 'Real',
   fileName: 'REAL Driver Subcanal GT.xlsx',

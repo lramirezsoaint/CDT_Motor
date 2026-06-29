@@ -12,7 +12,7 @@ type ProcessBase = {
   caseId: string;
   mode: ProcessMode;
   flow?: ProcessFlow;
-  role?: 'gestor-gasto';
+  role?: 'gestorGT';
   priority?: 'critical' | 'smoke';
   requiresPolicy?: boolean;
 };
@@ -91,7 +91,7 @@ function tagsFor(config: ProcessBase) {
     '@bloque2',
     '@gt',
     config.flow === 'presupuesto' ? '@presupuesto' : '',
-    '@gestor-gasto',
+    '@gestorGT',
     config.priority ? `@${config.priority}` : '',
     `@${config.caseId}`,
   ]

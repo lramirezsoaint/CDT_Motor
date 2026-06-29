@@ -13,9 +13,9 @@ type GfReloadDownloadedCaseConfig = {
 };
 
 export function GfReloadDownloadedCase(config: GfReloadDownloadedCaseConfig) {
-  test.use({ storageState: '.auth/gestor.json' });
+  test.use({ storageState: '.auth/gestorGF.json' });
 
-  test(`@bloque3 @gf @gestor-gasto-financiero @critical @${config.caseId} recarga archivo descargado`, async ({
+  test(`@bloque3 @gf @gestorGF @critical @${config.caseId} recarga archivo descargado`, async ({
     page,
   }) => {
     test.setTimeout(240_000);
@@ -24,7 +24,7 @@ export function GfReloadDownloadedCase(config: GfReloadDownloadedCaseConfig) {
     await page.goto('/');
     if (!/distribuciones/i.test(page.url())) {
       const loginPage = new LoginPage(page);
-      await loginPage.login(env.gestorUsername, env.gestorPassword);
+      await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
     }
     await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
       timeout: 40_000,

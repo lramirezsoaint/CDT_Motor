@@ -10,8 +10,8 @@ test.describe('@bloque3 @gf @critical @E9-GF-01.3', () => {
     try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorUsername,
-        env.gestorPassword
+        env.gestorGFUsername,
+        env.gestorGFPassword
       );
     } catch (error) { }
     await test.step('Acceder a Parametrizacion > Maestro Reservas Producto', async () => {

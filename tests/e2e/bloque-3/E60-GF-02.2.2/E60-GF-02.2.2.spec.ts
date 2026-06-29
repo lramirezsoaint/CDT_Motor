@@ -10,8 +10,8 @@ test.describe('@bloque3 @gf @columnas @E60-GF-02.2.2', () => {
     try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorUsername,
-        env.gestorPassword
+        env.gestorGFUsername,
+        env.gestorGFPassword
       );
     } catch (error) { }
     await test.step('Acceder a Aprovisionamiento > Driver Producto', async () => {

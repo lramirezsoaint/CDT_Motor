@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Asignaciones',
   view: 'Método Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Método Subcanal|Metodo Subcanal|Recargar Método Subcanal|Metodo Subcanal/i,
   fileFolder: 'Presupuesto/success',

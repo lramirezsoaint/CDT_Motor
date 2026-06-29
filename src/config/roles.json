@@ -1,0 +1,14 @@
+[
+  {
+    "id": "admin",
+    "envPrefix": "MOTOR"
+  },
+  {
+    "id": "gestorGF",
+    "envPrefix": "MOTOR_GESTOR_GF"
+  },
+  {
+    "id": "gestorGT",
+    "envPrefix": "MOTOR_GESTOR_GT"
+  }
+]

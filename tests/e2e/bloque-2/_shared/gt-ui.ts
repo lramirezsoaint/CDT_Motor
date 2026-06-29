@@ -6,7 +6,7 @@ export type GtCaseBase = {
   view: string;
   priority?: 'critical' | 'smoke';
   flow?: 'presupuesto';
-  role?: 'admin' | 'gestor-gasto';
+  role?: 'admin' | 'gestorGT';
 };
 
 export function tagsFor(config: Pick<GtCaseBase, 'caseId' | 'priority' | 'flow' | 'role'>) {

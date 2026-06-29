@@ -7,7 +7,7 @@ import { openGtView, tagsFor } from './gt-ui';
 
 type ExactusCaseConfig = {
   caseId: string;
-  role?: 'gestor-gasto';
+  role?: 'gestorGT';
   priority?: 'critical' | 'smoke';
 };
 
@@ -90,7 +90,7 @@ async function loginAsGestor(page: Page) {
   try {
     await page.goto('https://distribuciongastos.pacificotest.com.pe/');
     const loginPage = new LoginPage(page);
-    await loginPage.login(env.gestorGastoUsername, env.gestorGastoPassword);
+    await loginPage.login(env.gestorGTUsername, env.gestorGTPassword);
   } catch (error) { }
 }
 

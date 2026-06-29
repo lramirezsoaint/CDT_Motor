@@ -1,6 +1,0 @@
-2026/04/08-12:41:13.379 5c24 Creating DB C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_app.zoom.us_0.indexeddb.leveldb since it was missing.
-2026/04/08-12:41:13.396 5c24 Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_app.zoom.us_0.indexeddb.leveldb/MANIFEST-000001
-2026/04/08-12:41:13.421 5dd0 Level-0 table #5: started
-2026/04/08-12:41:13.427 5dd0 Level-0 table #5: 1267 bytes OK
-2026/04/08-12:41:13.432 5dd0 Delete type=0 #3
-2026/04/08-12:41:13.433 5dd0 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)

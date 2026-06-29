@@ -8,7 +8,7 @@ type ProcessMode = 'Completo' | 'Resumido';
 type ProcessActionBase = {
   caseId: string;
   mode: ProcessMode;
-  role?: 'gestor-gasto';
+  role?: 'gestorGT';
   priority?: 'critical' | 'smoke';
 };
 
@@ -79,7 +79,7 @@ function tagsFor(config: ProcessActionBase) {
   return [
     '@bloque2',
     '@gt',
-    '@gestor-gasto',
+    '@gestorGT',
     config.priority ? `@${config.priority}` : '',
     `@${config.caseId}`,
   ]

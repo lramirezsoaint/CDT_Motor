@@ -10,8 +10,8 @@ test.describe('@bloque3 @gf @columnas @E60-GF-02.1.1', () => {
     try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorUsername,
-        env.gestorPassword
+        env.gestorGFUsername,
+        env.gestorGFPassword
       );
     } catch (error) { }
     await test.step('Acceder a Parametrizacion > Cuentas Contables', async () => {

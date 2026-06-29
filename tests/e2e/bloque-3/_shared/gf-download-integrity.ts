@@ -14,9 +14,9 @@ type GfDownloadIntegrityCaseConfig = {
 };
 
 export function GfDownloadIntegrityCase(config: GfDownloadIntegrityCaseConfig) {
-  test.use({ storageState: '.auth/gestor.json' });
+  test.use({ storageState: '.auth/gestorGF.json' });
 
-  test(`@bloque3 @gf @gestor-gasto-financiero @critical @${config.caseId} valida estructura y datos del archivo descargado`, async ({
+  test(`@bloque3 @gf @gestorGF @critical @${config.caseId} valida estructura y datos del archivo descargado`, async ({
     page,
   }) => {
     test.setTimeout(180_000);
@@ -25,7 +25,7 @@ export function GfDownloadIntegrityCase(config: GfDownloadIntegrityCaseConfig) {
     await page.goto('/');
     if (!/distribuciones/i.test(page.url())) {
       const loginPage = new LoginPage(page);
-      await loginPage.login(env.gestorUsername, env.gestorPassword);
+      await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
     }
     await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
       timeout: 40_000,

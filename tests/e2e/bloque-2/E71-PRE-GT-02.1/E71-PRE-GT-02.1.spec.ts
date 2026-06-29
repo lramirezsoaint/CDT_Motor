@@ -5,7 +5,7 @@ ReloadDownloadedCase({
   section: 'Aprovisionamiento',
   view: 'Presupuesto|Exactus',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Presupuesto|Cargar Detalle de Gasto/i,
 });

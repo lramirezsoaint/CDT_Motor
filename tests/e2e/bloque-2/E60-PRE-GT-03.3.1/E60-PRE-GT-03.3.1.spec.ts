@@ -5,7 +5,7 @@ ColumnsCase({
   section: 'Asignaciones',
   view: 'Método Subcanal|Metodo Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   action: 'showAll',
 });

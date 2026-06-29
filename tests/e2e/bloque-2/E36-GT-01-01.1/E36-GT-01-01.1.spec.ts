@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-01.1',
   section: 'Parametrización',
   view: 'Ramo',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar\s+Ramo|Editar Ramo/i,
   fields: [
     { label: /Descripción Ramo/i, value: 'DESHONESTIDAD' },

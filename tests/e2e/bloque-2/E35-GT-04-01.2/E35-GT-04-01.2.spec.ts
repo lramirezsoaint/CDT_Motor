@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-01.2',
   section: 'Parametrización',
   view: 'Cuentas Contables',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Cuentas Contables|Recargar Cuentas Contables/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Cuentas Contables GT.xlsx',

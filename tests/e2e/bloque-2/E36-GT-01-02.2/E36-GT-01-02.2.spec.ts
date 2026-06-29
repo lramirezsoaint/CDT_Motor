@@ -5,7 +5,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-02.2',
   section: 'Aprovisionamiento',
   view: 'Maestro de Negocio.* embebidos',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Maestro de Negocio y Embebidos/i,
   fields: [
     { label: /Embebido/i, value: 'No Embebido', kind: 'select' },

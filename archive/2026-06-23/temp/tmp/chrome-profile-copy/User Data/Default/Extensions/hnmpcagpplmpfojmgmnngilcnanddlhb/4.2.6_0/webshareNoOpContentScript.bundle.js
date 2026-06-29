@@ -1,1 +1,0 @@
-(()=>{"use strict";navigator.share&&(navigator.share=function(){return Promise.resolve()})})();

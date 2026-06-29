@@ -1,6 +1,0 @@
-2026/02/27-18:28:28.802 216c Creating DB C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\WebStorage\140\IndexedDB\indexeddb.leveldb since it was missing.
-2026/02/27-18:28:28.807 216c Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\WebStorage\140\IndexedDB\indexeddb.leveldb/MANIFEST-000001
-2026/02/27-18:28:32.035 4a98 Level-0 table #5: started
-2026/02/27-18:28:32.039 4a98 Level-0 table #5: 387 bytes OK
-2026/02/27-18:28:32.042 4a98 Delete type=0 #3
-2026/02/27-18:28:32.042 11f4 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

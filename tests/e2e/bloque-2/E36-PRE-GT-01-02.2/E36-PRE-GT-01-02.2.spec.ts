@@ -5,7 +5,7 @@ EditRecordCase({
   section: 'Aprovisionamiento',
   view: 'Maestro de Negocio.* embebidos',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Editar Maestro/i,
   fields: [

@@ -5,7 +5,7 @@ EditRecordCase({
   section: 'Asignaciones',
   view: 'Metodo Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Editar Metodo Subcanal/i,
   fields: [

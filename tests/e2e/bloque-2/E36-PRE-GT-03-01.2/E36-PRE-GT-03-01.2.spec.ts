@@ -5,7 +5,7 @@ EditRecordCase({
   section: 'Parametrización',
   view: 'Cuentas Contables',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Editar Cuenta Contable/i,
   fields: [

@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-01.2',
   section: 'Parametrización',
   view: 'Cuentas Contables',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Cuentas Contables|Editar Cuenta Contable/i,
   fields: [
     { label: /Nombre Cuenta Contable/i, value: 'BONOS ASESORES - PROV. ESSALUD' },

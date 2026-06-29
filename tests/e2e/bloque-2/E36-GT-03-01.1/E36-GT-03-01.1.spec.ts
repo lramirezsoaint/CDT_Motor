@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-03-01.1',
   section: 'Parametrización',
   view: 'Ramo',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Ramo/i,
   fields: [
     { label: /Descripción Ramo|Descripción/i,value: '@+qs' },

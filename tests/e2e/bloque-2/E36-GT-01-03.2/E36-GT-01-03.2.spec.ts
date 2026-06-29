@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-03.2',
   section: 'Asignaciones',
   view: 'Método Producto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Método Producto/i,
   fields: [
     { label: /Código Concepto|Concepto/i, value: '01.05.00', kind: 'select' },

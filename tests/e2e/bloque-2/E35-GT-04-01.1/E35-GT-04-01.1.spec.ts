@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-01.1',
   section: 'Parametrización',
   view: 'Ramo',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Ramos|Recargar Ramo/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Ramos GT.xlsx',

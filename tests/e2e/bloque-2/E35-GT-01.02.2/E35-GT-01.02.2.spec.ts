@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-01.02.2',
   section: 'Aprovisionamiento',
   view: 'maestro de negocio.*embebidos',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Maestro de Negocio y Embebidos/i,
   fields: [
     { label: /Negocio/i, value: 'GENERALES', kind: 'select' },

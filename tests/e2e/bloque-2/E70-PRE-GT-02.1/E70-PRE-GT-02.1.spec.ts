@@ -5,7 +5,7 @@ UploadCase({
   section: 'Aprovisionamiento',
   view: 'Presupuesto|Exactus',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Presupuesto|Cargar Exactus/i,
   fileFolder: 'Presupuesto/validationError',

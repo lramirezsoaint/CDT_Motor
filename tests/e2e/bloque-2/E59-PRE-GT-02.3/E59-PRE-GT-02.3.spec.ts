@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Unidad de Cuenta|Recargar Unidad de Cuenta/i,
   fileFolder: 'Presupuesto/success',

@@ -8,8 +8,8 @@ test('SELECCIONAR-DISTRIBUCION-DESDE-TABLA', async ({ page }) => {
   try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorUsername,
-        env.gestorPassword
+        env.gestorGFUsername,
+        env.gestorGFPassword
       );
     } catch (error) { }
 

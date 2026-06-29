@@ -2,7 +2,7 @@ import { CreateDistributionCase } from '../_shared/gt-distribution-actions';
 
 CreateDistributionCase({
   caseId: 'E40-PRE-DIS-01',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   tipo: 'Presupuesto',
   periodo: '202600',
   version: '1.0',

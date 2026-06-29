@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-03.2',
   section: 'Asignaciones',
   view: 'Método Producto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Método Producto|Recargar Método Producto/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Metodo producto GT.xlsx',

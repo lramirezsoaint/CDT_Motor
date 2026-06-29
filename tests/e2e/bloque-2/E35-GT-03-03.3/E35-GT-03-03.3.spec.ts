@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-03-03.3',
   section: 'Asignaciones',
   view: 'Especiales NIIF',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Especiales NIIF/i,
   fields: [
    

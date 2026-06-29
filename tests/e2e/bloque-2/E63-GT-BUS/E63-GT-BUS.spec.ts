@@ -2,7 +2,7 @@ import { SearchCase } from '../_shared/gt-search';
 
 SearchCase({
   caseId: 'E63-GT-BUS',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   views: [
     { section: 'Parametrización', view: 'Ramo' },
     { section: 'Parametrización', view: 'Cuentas Contables' },

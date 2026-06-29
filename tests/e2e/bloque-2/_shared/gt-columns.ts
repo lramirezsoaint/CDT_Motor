@@ -20,8 +20,8 @@ export function ColumnsCase(config: ColumnsCaseConfig) {
       await page.goto('https://distribuciongastos.pacificotest.com.pe/');
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorGastoUsername,
-        env.gestorGastoPassword
+        env.gestorGTUsername,
+        env.gestorGTPassword
       );
     } catch (error) { }
     await selectGtDistribution(page, config.distribution);

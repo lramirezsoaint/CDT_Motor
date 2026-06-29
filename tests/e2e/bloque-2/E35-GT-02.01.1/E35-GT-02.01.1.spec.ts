@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-02.01.1',
   section: 'Parametrización',
   view: 'Ramo',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Ramo/i,
  fields: [
     { label: /Código Ramo/i, value: '13' },

@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-03-03.3',
   section: 'Parametrización',
   view: 'Especiales NIIF',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Especiales NIIF/i,
   fields: [
     { label: /Porcentaje/i, value: 'DOS' },

@@ -21,8 +21,8 @@ export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
       try {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
-        const username = config.role === 'admin' ? env.username : env.gestorGastoUsername;
-        const password = config.role === 'admin' ? env.password : env.gestorGastoPassword;
+        const username = config.role === 'admin' ? env.username : env.gestorGTUsername;
+        const password = config.role === 'admin' ? env.password : env.gestorGTPassword;
         await loginPage.login(username, password);
       } catch (error) {
       }

@@ -5,7 +5,7 @@ DownloadCase({
   section: 'Parametrización',
   view: 'Centros',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: {
     tipo: /Presupuesto/i,
   },

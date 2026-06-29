@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-01.02.1',
   section: 'Aprovisionamiento',
   view: 'Unidad de cuenta GT',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Unidad de Cuenta GT|Agregar Unidad de cuenta GT/i,
   fields: [
     { label: /Prioridad/i, value: '1', kind: 'select' },

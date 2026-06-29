@@ -1,1 +1,0 @@
-(()=>{"use strict";window.addEventListener("windscribe-fingerprint-detected",(e=>{const t=e,{url:i}=t.detail;chrome.runtime.sendMessage({what:"contentScriptLog",message:`Fingerprint.js activity detected at: ${i}`})}))})();

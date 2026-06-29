@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-02.03.2',
   section: 'Asignaciones',
   view: 'Método Producto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Método Producto/i,
   fields: [
     { label: /Código Concepto/i, value: '01.05.00', kind: 'select' },

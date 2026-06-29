@@ -5,7 +5,7 @@ UploadCase({
   section: 'Parametrización',
   view: 'Ramo',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Ramos/i,
   fileFolder: 'Presupuesto/maxSize',

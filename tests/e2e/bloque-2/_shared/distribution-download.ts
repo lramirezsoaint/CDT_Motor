@@ -10,7 +10,7 @@ export function DistributionDownloadCase(config: { caseId: string }) {
       try {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
-        await loginPage.login(env.gestorGastoUsername, env.gestorGastoPassword);
+        await loginPage.login(env.gestorGTUsername, env.gestorGTPassword);
         await selectGtDistributionDownload(page);
       } catch (error) { }
       await expect(page, 'Debe abrir la pantalla de Distribuciones.').toHaveURL(/\/distribuciones/i, { timeout: 60_000 });

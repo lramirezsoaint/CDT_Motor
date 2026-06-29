@@ -4,7 +4,7 @@ UploadCase58({
   caseId: 'E58-GT-03.3',
   section: 'Asignaciones',
   view: 'Especiales NIIF',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Especiales NIIF/i,
   fileFolder: 'Real',
   fileName: 'REAL Especiales NIIF GT.xlsx',

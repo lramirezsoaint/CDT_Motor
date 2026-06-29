@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-01.3',
   section: 'Parametrización',
   view: 'Centros',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Centros|Recargar Centros/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Centros GT.xlsx',

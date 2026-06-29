@@ -5,7 +5,7 @@ DownloadCase({
   section: 'Aprovisionamiento',
   view: 'Presupuesto',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: {
     tipo: /Presupuesto/i,
   },

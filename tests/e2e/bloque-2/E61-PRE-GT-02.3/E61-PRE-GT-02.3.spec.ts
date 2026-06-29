@@ -5,7 +5,7 @@ UploadCase({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta|Unidad de cuenta GT',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Unidad de Cuenta GT/i,
   fileFolder: 'Presupuesto/maxSize',

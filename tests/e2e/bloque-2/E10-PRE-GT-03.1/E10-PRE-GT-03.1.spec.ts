@@ -5,7 +5,7 @@ DownloadCase({
   section: 'Asignaciones',
   view: 'Método Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: {
     tipo: /Presupuesto/i,
   },

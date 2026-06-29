@@ -5,7 +5,7 @@ AddRecordCase({
   section: 'Parametrización',
   view: 'Ramo',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Agregar Ramo/i,
   fields: [

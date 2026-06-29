@@ -5,7 +5,7 @@ EditRecordCase({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Editar Unidad de Cuenta GT/i,
    fields: [

@@ -17,8 +17,8 @@ export function ReloadDownloadedCase(config: ReloadCaseConfig) {
       await page.goto('https://distribuciongastos.pacificotest.com.pe/');
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorGastoUsername,
-        env.gestorGastoPassword
+        env.gestorGTUsername,
+        env.gestorGTPassword
       );
     } catch (error) { }
     await selectGtDistributionDownload(page, config.distribution);

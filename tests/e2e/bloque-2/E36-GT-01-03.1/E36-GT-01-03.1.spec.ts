@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-03.1',
   section: 'Asignaciones',
   view: 'Método Subcanal',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Método Subcanal/i,
   fields: [
     { label: /Código Línea|Linea/i, value: 'AMED', kind: 'select' },

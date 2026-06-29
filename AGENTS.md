@@ -37,10 +37,10 @@ Do not guess or assume standard Playwright commands. The workspace relies on cus
 
 The framework enforces strict separation between roles. Playing tests under the wrong role leads to false passes or hard-to-debug failures.
 
-- **Storage State:** Session auth states are resolved dynamically from `.auth/admin.json`, `.auth/gestor.json`, or the legacy fallback `storageState.json` via `playwright.config.ts`.
+- **Storage State:** Session auth states are resolved dynamically from `.auth/admin.json`, `.auth/gestorGF.json`, or the legacy fallback `storageState.json` via `playwright.config.ts`.
 - **Role Scoping:**
   - **Administrador:** Runs on the `chromium` project.
-  - **Gestor (Gastos Financieros / GF):** Runs on the `chromium-gestor` project.
+  - **Gestor (Gastos Financieros / GF):** Runs on the `chromium-gestorGF` project.
   - *Never* execute Gestor GF tests using an Admin's `storageState.json`. This causes failures due to menu mismatch permissions.
 - **Regenerating Sessions:** Use `scripts/create-auth.js` or `scripts/create-bloque3-auth.js` to refresh storage states when they expire or when `No hay distribuciones disponibles` states block the UI.
 

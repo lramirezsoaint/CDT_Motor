@@ -6,8 +6,8 @@ import fs from 'fs';
 const authDir = path.join(__dirname, '.auth');
 const fallbackAuth = path.join(__dirname, 'storageState.json');
 const adminAuthFile = path.join(authDir, 'admin.json');
-const gestorAuthFile = path.join(authDir, 'gestor.json');
-const gestorGastoAuthFile = path.join(authDir, 'gestorGasto.json');
+const gestorGFAuthFile = path.join(authDir, 'gestorGF.json');
+const gestorGTAuthFile = path.join(authDir, 'gestorGT.json');
 
 function resolveAuthFile(preferred: string): string | undefined {
   if (process.env.PW_NO_STORAGE === 'true') return undefined;
@@ -56,12 +56,12 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(adminAuthFile) },
     },
     {
-      name: 'chromium-gestor',
-      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(gestorAuthFile) },
+      name: 'chromium-gestorGF',
+      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(gestorGFAuthFile) },
     },
     {
-      name: 'chromium-gestor-gasto',
-      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(gestorGastoAuthFile) },
+      name: 'chromium-gestorGT',
+      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(gestorGTAuthFile) },
     },
   ],
 

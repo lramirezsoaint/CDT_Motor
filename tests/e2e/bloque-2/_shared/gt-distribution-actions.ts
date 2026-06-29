@@ -2,7 +2,7 @@ import { expect, Locator, Page, test } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 
-type Role = 'admin' | 'gestor-gasto';
+type Role = 'admin' | 'gestorGT';
 type DistributionDeleteResult = 'success' | 'unavailable';
 
 type DistributionBase = {
@@ -130,8 +130,8 @@ export function OpenDistributionCase(config: DistributionBase) {
 
 async function loginAs(page: Page, role: Role) {
   const loginPage = new LoginPage(page);
-  const username = role === 'admin' ? env.username : env.gestorGastoUsername;
-  const password = role === 'admin' ? env.password : env.gestorGastoPassword;
+  const username = role === 'admin' ? env.username : env.gestorGTUsername;
+  const password = role === 'admin' ? env.password : env.gestorGTPassword;
   try {
     await loginPage.login(username, password);
   } catch (error) {
@@ -139,7 +139,7 @@ async function loginAs(page: Page, role: Role) {
 }
 
 function tagsFor(config: DistributionBase) {
-  return ['@bloque2', '@gt', config.role === 'admin' ? '@admin' : '@gestor-gasto', config.priority ? `@${config.priority}` : '', `@${config.caseId}`]
+  return ['@bloque2', '@gt', config.role === 'admin' ? '@admin' : '@gestorGT', config.priority ? `@${config.priority}` : '', `@${config.caseId}`]
     .filter(Boolean)
     .join(' ');
 }

@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-01.3',
   section: 'Parametrización',
   view: 'Centros',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Centros|Editar Centro/i,
   fields: [
     { label: /Negocio/i, value: 'PVI', kind: 'select' },

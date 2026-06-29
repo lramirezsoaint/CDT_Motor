@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-02.01.3',
   section: 'Parametrización',
   view: 'Centros',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Centros|Agregar Centro/i,
   fields: [
     { label: /Negocio/i, value: 'PPS', kind: 'select' },

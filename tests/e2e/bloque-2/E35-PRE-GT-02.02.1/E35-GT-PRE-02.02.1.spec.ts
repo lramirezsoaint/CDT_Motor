@@ -5,7 +5,7 @@ AddRecordCase({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Agregar Unidad de Cuenta GT|Agregar Unidad de cuenta GT/i,
    fields: [

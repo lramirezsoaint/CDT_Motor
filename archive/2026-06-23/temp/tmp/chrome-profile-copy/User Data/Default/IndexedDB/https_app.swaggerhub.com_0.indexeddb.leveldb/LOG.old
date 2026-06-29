@@ -1,8 +1,0 @@
-2026/01/15-07:03:44.019 446c Reusing MANIFEST C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_app.swaggerhub.com_0.indexeddb.leveldb/MANIFEST-000001
-2026/01/15-07:03:44.020 446c Recovering log #35
-2026/01/15-07:03:44.020 446c Reusing old log C:\Users\Aldis Experto\AppData\Local\Google\Chrome\User Data\Default\IndexedDB\https_app.swaggerhub.com_0.indexeddb.leveldb/000035.log 
-2026/01/15-07:03:45.247 446c Level-0 table #41: started
-2026/01/15-07:03:45.250 446c Level-0 table #41: 690 bytes OK
-2026/01/15-07:03:45.251 446c Delete type=0 #35
-2026/01/15-07:03:45.252 acc Manual compaction at level-0 from '\x00\x10\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x11\x00\x00\x00' @ 0 : 0; will stop at (end)
-2026/01/15-07:04:34.649 446c Manual compaction at level-0 from '\x00\x11\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x12\x00\x00\x00' @ 0 : 0; will stop at (end)

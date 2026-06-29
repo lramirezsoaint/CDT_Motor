@@ -10,8 +10,8 @@ test.describe('@bloque3 @gf @critical @E63-GF-BUS', () => {
    try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorUsername,
-        env.gestorPassword
+        env.gestorGFUsername,
+        env.gestorGFPassword
       );
     } catch (error) { }
     let searchValue = '';

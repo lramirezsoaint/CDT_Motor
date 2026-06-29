@@ -6,7 +6,7 @@ DownloadCase({
   section: 'Aprovisionamiento',
   view: 'Maestro de Negocio.*Embebidos',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: {
     tipo: /Presupuesto/i,
   },

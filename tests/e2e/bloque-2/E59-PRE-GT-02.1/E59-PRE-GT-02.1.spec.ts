@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Aprovisionamiento',
   view: 'Presupuesto',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Exactus|Presupuesto|Recargar Exactus|Presupuesto/i,
   fileFolder: 'Presupuesto/success',

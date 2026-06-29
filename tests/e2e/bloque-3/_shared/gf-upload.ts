@@ -41,7 +41,7 @@ type GfUploadFlowOptions = {
 };
 
 function tagsFor(caseId: string) {
-  return `@bloque3 @gf @gestor-gasto-financiero @critical @${caseId}`;
+  return `@bloque3 @gf @gestorGF @critical @${caseId}`;
 }
 
 export async function ensureGfSession(page: Page) {
@@ -49,7 +49,7 @@ export async function ensureGfSession(page: Page) {
 
   if (!/distribuciones/i.test(page.url())) {
     const loginPage = new LoginPage(page);
-    await loginPage.login(env.gestorUsername, env.gestorPassword);
+    await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
   }
 
   await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
@@ -277,7 +277,7 @@ async function assertValidationError(dialog: Locator, expectedResult: GfUploadRe
 }
 
 export function UploadCase(config: UploadCaseConfig) {
-  test.use({ storageState: '.auth/gestor.json' });
+  test.use({ storageState: '.auth/gestorGF.json' });
 
   test(`${tagsFor(config.caseId)} carga archivo y valida resultado ${config.expectedResult}`, async ({ page }) => {
     test.setTimeout(360_000);

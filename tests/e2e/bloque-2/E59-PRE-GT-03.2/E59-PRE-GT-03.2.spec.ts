@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Asignaciones',
   view: 'Especiales NIIF',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Especiales NIIF|Recargar Especiales NIIF/i,
   fileFolder: 'Presupuesto/success',

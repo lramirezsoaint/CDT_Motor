@@ -4,7 +4,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-03.3',
   section: 'Asignaciones',
   view: 'Especiales NIIF',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Especiales NIIF/i,
   fields: [
     { label: /Porcentaje/i, value: '100' },

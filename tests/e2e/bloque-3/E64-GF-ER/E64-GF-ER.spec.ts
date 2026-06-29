@@ -12,8 +12,8 @@ test.describe('@bloque3 @gf @procesos @E64-GF-ER', () => {
     try {
       const loginPage = new LoginPage(page);
       await loginPage.login(
-        env.gestorUsername,
-        env.gestorPassword
+        env.gestorGFUsername,
+        env.gestorGFPassword
       );
     } catch (error) { }
     await test.step('Abrir Procesos de Gastos Financieros', async () => {

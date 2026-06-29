@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-02.03.3',
   section: 'Asignaciones',
   view: 'Especiales NIIF',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Especiales NIIF/i,
    fields: [
     { label: /Código Línea|Código Linea/i, value: 'AMED', kind: 'select' },

@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-02.2',
   section: 'Aprovisionamiento',
   view: 'maestro de negocio.*embebidos',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Maestro de Negocio y Embebidos|Recargar Maestro de Negocio y Embebidos/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Maestro Embebidos GT.xlsx',

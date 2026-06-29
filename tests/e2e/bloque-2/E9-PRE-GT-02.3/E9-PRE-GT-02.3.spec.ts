@@ -5,7 +5,7 @@ UploadAndTableCase({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta|Unidad de cuenta',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Unidad de Cuenta/i,
   fileFolder: 'Presupuesto/success',

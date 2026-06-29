@@ -12,7 +12,7 @@ export async function ensureGfContext(page: Page): Promise<void> {
 
   if (!/\/distribuciones/i.test(page.url())) {
     const loginPage = new LoginPage(page);
-    await loginPage.login(env.gestorUsername, env.gestorPassword);
+    await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
   }
 if (!/\/distribuciones/i.test(page.url())) {
     await page.goto('/distribuciones/', { waitUntil: 'commit' });

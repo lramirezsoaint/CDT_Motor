@@ -6,7 +6,7 @@ UploadCase({
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT|Unidad de cuenta',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Unidad de Cuenta GT/i,
   fileFolder: 'Presupuesto/validationError',

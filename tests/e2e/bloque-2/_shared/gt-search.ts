@@ -30,8 +30,8 @@ export function SearchCase(config: SearchCaseConfig) {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
         await loginPage.login(
-          env.gestorGastoUsername,
-          env.gestorGastoPassword
+          env.gestorGTUsername,
+          env.gestorGTPassword
         );
       } catch (error) { }
     });

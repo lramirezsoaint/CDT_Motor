@@ -7,7 +7,7 @@ UploadCase({
   section: 'Parametrización',
   view: 'Centros',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Centros/i,
   fileFolder: 'Presupuesto/validationError',

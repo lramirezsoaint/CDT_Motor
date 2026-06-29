@@ -5,7 +5,7 @@ UploadCase58({
   section: 'Parametrización',
   view: 'Ramo',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Ramos|Ramo|Recargar Ramos|Ramo/i,
   fileFolder: 'Presupuesto/success',

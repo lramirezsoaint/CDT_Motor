@@ -37,8 +37,8 @@ export function UploadCase(config: UploadCaseConfig) {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
         await loginPage.login(
-          env.gestorGastoUsername,
-          env.gestorGastoPassword
+          env.gestorGTUsername,
+          env.gestorGTPassword
         );
       } catch (error) { }
     });
@@ -116,8 +116,8 @@ export function UploadCaseE4(config: UploadCaseConfig) {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
         await loginPage.login(
-          env.gestorGastoUsername,
-          env.gestorGastoPassword
+          env.gestorGTUsername,
+          env.gestorGTPassword
         );
       } catch (error) { }
     });
@@ -195,8 +195,8 @@ export function UploadCase58(config: UploadCaseConfig) {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
         await loginPage.login(
-          env.gestorGastoUsername,
-          env.gestorGastoPassword
+          env.gestorGTUsername,
+          env.gestorGTPassword
         );
       } catch (error) { }
     });

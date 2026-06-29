@@ -5,7 +5,7 @@ UploadCase({
   section: 'Asignaciones',
   view: 'M.todo Subcanal|Metodo Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Metodo Subcanal|Cargar M.todo Subcanal/i,
   fileFolder: 'Presupuesto/maxSize',

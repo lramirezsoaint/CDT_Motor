@@ -3,14 +3,14 @@ import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test.use({ storageState: '.auth/gestorGasto.json' });
-test('@bloque2 @gt @gestor-gasto @E40-DIS-01 CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
+test.use({ storageState: '.auth/gestorGT.json' });
+test('@bloque2 @gt @gestorGT @E40-DIS-01 CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
   test.setTimeout(360000);
   try {
     const loginPage = new LoginPage(page);
     await loginPage.login(
-      env.gestorGastoUsername,
-      env.gestorGastoPassword
+      env.gestorGTUsername,
+      env.gestorGTPassword
     );
   } catch (error) { }
   await selectGtDistribution(page);

@@ -12,7 +12,7 @@ test('@bloque2 @gt @admin @E0-LOGIN-ADMIN-01.01 E0-LOGIN-ADMIN-01', async ({ pag
     );
     
   } catch (error) { }
-  await selectGtDistribution(page, 'REAL');
+  await selectGtDistribution(page);
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
 

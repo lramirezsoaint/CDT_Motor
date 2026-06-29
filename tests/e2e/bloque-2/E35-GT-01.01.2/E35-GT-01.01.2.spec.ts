@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-01.01.2',
   section: 'Parametrización',
   view: 'Cuentas Contables',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Cuentas Contables|Agregar Cuenta Contable/i,
   fields: [
     { label: /Cuenta Contable/i, value: '44.1.7.40.09.11' },

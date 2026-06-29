@@ -3,7 +3,7 @@ import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
 
-test('@bloque2 @gt @gestor-gasto @E0-LOGIN-GESTOR-GASTO-02 E0-LOGIN-ADMIN-02', async ({ page }) => {
+test('@bloque2 @gt @gestorGT @E0-LOGIN-GESTOR-GASTO-02 E0-LOGIN-ADMIN-02', async ({ page }) => {
 
   try {
         const loginPage = new LoginPage(page);
@@ -12,7 +12,7 @@ test('@bloque2 @gt @gestor-gasto @E0-LOGIN-GESTOR-GASTO-02 E0-LOGIN-ADMIN-02', a
         env.password
         );
       } catch (error) { }
-      await selectGtDistribution(page, 'REAL');
+      await selectGtDistribution(page);
 
   // VALIDAR DASHBOARD
   await expect(page)

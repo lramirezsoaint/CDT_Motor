@@ -5,5 +5,5 @@ PaginationCase({
   caseId: 'E56-GT-PAG',
   section: 'Parametrización',
   view: 'Ramo',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
 });

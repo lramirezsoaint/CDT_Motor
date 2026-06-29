@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-02.1',
   section: 'Aprovisionamiento',
   view: 'Unidad de cuenta GT',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Unidad de Cuenta GT|Recargar Unidad de Cuenta GT/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Unidad de Cuenta GT.xlsx',

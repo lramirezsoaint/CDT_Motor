@@ -30,7 +30,7 @@ export function EditRecordCase(config: EditRecordCaseConfig) {
       try {
         await page.goto('https://distribuciongastos.pacificotest.com.pe/');
         const loginPage = new LoginPage(page);
-        await loginPage.login(env.gestorGastoUsername, env.gestorGastoPassword);
+        await loginPage.login(env.gestorGTUsername, env.gestorGTPassword);
       } catch (error) {
       }
     });

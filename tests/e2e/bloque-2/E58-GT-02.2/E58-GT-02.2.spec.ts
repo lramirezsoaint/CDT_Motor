@@ -4,7 +4,7 @@ UploadCase58({
   caseId: 'E58-GT-02.2',
   section: 'Aprovisionamiento',
   view: 'Driver Producto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Driver Producto/i,
   fileFolder: 'Real',
   fileName: 'REAL Driver Producto GT.xlsx',

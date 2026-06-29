@@ -5,7 +5,7 @@ ColumnsCase({
   section: 'Aprovisionamiento',
   view: 'Driver Subcanal',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   action: 'showAll',
 });

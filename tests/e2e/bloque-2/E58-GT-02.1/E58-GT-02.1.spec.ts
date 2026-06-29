@@ -4,7 +4,7 @@ UploadCase58({
   caseId: 'E58-GT-02.1',
   section: 'Aprovisionamiento',
   view: 'Exactus',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Exactus/i,
   fileFolder: 'Real',
   fileName: 'REAL Exactus sin procesar GT.xlsx',

@@ -5,7 +5,7 @@ EditRecordCase({
   caseId: 'E36-GT-01-02.1',
   section: 'Aprovisionamiento',
   view: 'Unidad de Cuenta GT',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Editar Unidad de Cuenta GT/i,
   fields: [
     { label: /Moneda/i, value: 'USD', kind: 'select' },

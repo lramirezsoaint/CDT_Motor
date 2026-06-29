@@ -4,7 +4,7 @@ UploadCaseE4({
   caseId: 'E35-GT-04-03.1',
   section: 'Asignaciones',
   view: 'Método Subcanal',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Cargar Método Subcanal|Recargar Método Subcanal/i,
   fileFolder: 'Real/success',
   fileName: 'REAL Metodo Subcanal GT.xlsx',

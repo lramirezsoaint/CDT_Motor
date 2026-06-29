@@ -4,7 +4,7 @@ AddRecordCase({
   caseId: 'E35-GT-01.03.1',
   section: 'Asignaciones',
   view: 'Método Subcanal',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   modalTitle: /Agregar Método Subcanal/i,
   fields: [
     { label: /Código línea/i, value: 'AFP', kind: 'select' },

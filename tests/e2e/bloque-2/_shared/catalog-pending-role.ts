@@ -3,7 +3,7 @@ import { test } from '@playwright/test';
 type PendingCatalogRoleCaseConfig = {
   caseId: string;
   reason: string;
-  role: 'admin' | 'gestor-gasto';
+  role: 'admin' | 'gestorGT';
   priority?: 'critical' | 'smoke';
 };
 

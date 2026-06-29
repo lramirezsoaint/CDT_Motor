@@ -11,7 +11,7 @@ test('@bloque2 @gt @admin @E0-LOGIN-ADMIN-02 E0-LOGIN-ADMIN-02', async ({ page }
           env.password
         );
       } catch (error) { }
-      await selectGtDistribution(page, 'REAL');
+      await selectGtDistribution(page);
 
   // VALIDAR DASHBOARD
   await expect(page)

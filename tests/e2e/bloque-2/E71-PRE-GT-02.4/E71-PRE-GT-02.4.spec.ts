@@ -5,7 +5,7 @@ ReloadDownloadedCase({
   section: 'Aprovisionamiento',
   view: 'maestro de negocio.*embebidos',
   flow: 'presupuesto',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   distribution: { tipo: /Presupuesto/i },
   modalTitle: /Cargar Maestro de Negocio y Embebidos|Cargar Maestro de Negocios y Embebidos/i,
 });

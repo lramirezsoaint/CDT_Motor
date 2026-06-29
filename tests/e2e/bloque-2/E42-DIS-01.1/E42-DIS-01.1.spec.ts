@@ -2,6 +2,6 @@ import { DistributionCopyUnavailableCase } from '../_shared/gt-distribution-acti
 
 DistributionCopyUnavailableCase({
   caseId: 'E42-DIS-01.1',
-  role: 'gestor-gasto',
+  role: 'gestorGT',
   states: [/creada/i, /detenido|detenida/i, /con errores/i, /corriendo/i],
 });

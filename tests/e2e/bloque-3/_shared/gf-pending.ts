@@ -3,7 +3,7 @@ import { test } from '@playwright/test';
 type GfPendingCaseConfig = {
   caseId: string;
   reason: string;
-  role?: 'admin' | 'gestor-gasto-financiero';
+  role?: 'admin' | 'gestorGF';
   priority?: 'critical' | 'smoke';
 };
 
@@ -11,7 +11,7 @@ function tagsFor(config: GfPendingCaseConfig) {
   return [
     '@bloque3',
     '@gf',
-    config.role ? `@${config.role}` : '@gestor-gasto-financiero',
+    config.role ? `@${config.role}` : '@gestorGF',
     config.priority ? `@${config.priority}` : '',
     `@${config.caseId}`,
   ]
