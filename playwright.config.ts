@@ -2,6 +2,8 @@ import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
 import { resolveRoleAuthFile, roles } from './src/config/roles';
 
+const isListCommand = process.argv.includes('--list');
+
 export default defineConfig({
   testDir: './tests/e2e',
   timeout: 90_000,
@@ -40,7 +42,7 @@ export default defineConfig({
     name: role.projectName,
     testMatch: role.testMatch,
     testIgnore: role.testIgnore,
-    use: { ...devices['Desktop Chrome'], storageState: resolveRoleAuthFile(role, __dirname) },
+    use: { ...devices['Desktop Chrome'], storageState: resolveRoleAuthFile(role, __dirname, { validate: !isListCommand }) },
   })),
 
   outputDir: 'test-results',

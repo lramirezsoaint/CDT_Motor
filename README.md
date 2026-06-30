@@ -29,7 +29,7 @@
 
   ## Autenticación y roles
 
-  El framework soporta 3 proyectos con autenticación separada:
+  El framework soporta 3 proyectos con autenticación separada. Los roles se definen en `src/config/roles.json` y se validan/cargan desde `src/config/roles.ts`.
 
 | Proyecto                  | Rol                          | Storage State              |
 | ------------------------- | ---------------------------- | -------------------------- |
@@ -39,15 +39,19 @@
 
 ### Alcance de proyectos
 
-Playwright filtra los specs por proyecto desde `playwright.config.ts`. Esto evita que VS Code ejecute un caso GF con credenciales de Administrador.
+Playwright genera los proyectos dinámicamente desde `roles.json`/`roles.ts` en `playwright.config.ts`. Esto evita que VS Code ejecute un caso GF con credenciales de Administrador.
 
-| Proyecto            | Ejecuta principalmente                          |
-| ------------------- | ----------------------------------------------- |
-| `chromium`          | `auth/`, `bloque-1/` y casos `E0-LOGIN-ADMIN-*` |
-| `chromium-gestorGF` | `bloque-3/` y procesos de Gastos Financieros    |
-| `chromium-gestorGT` | `bloque-2/`                                     |
+| Proyecto            | Ejecuta principalmente |
+| ------------------- | ---------------------- |
+| `chromium`          | `auth/` y `bloque-1/`  |
+| `chromium-gestorGF` | `bloque-3/` y `procesos/` |
+| `chromium-gestorGT` | `bloque-2/`            |
 
-Si un storage state existe pero esta vacío, no se usa como sesión valida. Para regenerarlo en PowerShell:
+Cada rol define `id`, `envPrefix`, `projectName`, `testMatch` y `testIgnore`. La separación real de bloques vive en `src/config/roles.json`.
+
+Si falta `.auth/<rol>.json`, Playwright falla al ejecutar pruebas con un mensaje claro indicando el rol y la ruta esperada. El comando `npx playwright test --list` no requiere archivos de autenticación.
+
+Si un storage state existe pero está vacío o expirado, no se debe usar como sesión válida. Para regenerarlo en PowerShell:
 
 ```powershell
 $env:AUTH_ROLE='gestorGF'; node scripts/auth/create-auth.js
@@ -59,19 +63,24 @@ $env:AUTH_ROLE='admin'; node scripts/auth/create-auth.js
 
 Para agregar un nuevo rol al framework:
 
-1. Agregar entrada en `src/config/roles.json`:
+1. Agregar entrada completa en `src/config/roles.json`:
    ```json
-   { "id": "nuevoRol", "envPrefix": "MOTOR_NUEVOROL" }
+   {
+     "id": "nuevoRol",
+     "envPrefix": "MOTOR_NUEVOROL",
+     "projectName": "chromium-nuevoRol",
+     "testMatch": ["**/bloque-n/**/*.spec.ts"],
+     "testIgnore": ["**/bloque-1/**/*.spec.ts"]
+   }
    ```
-2. Agregar configuración completa en `src/config/roles.ts` (array `ROLES`)
-3. Agregar credenciales en `.env`:
+2. Agregar credenciales en `.env`:
    ```
    MOTOR_NUEVOROL_USERNAME=
    MOTOR_NUEVOROL_PASSWORD=
    ```
-4. Ejecutar `AUTH_ROLE=nuevoRol node scripts/auth/create-auth.js`
+3. Ejecutar `AUTH_ROLE=nuevoRol node scripts/auth/create-auth.js`
 
-Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan automáticamente.
+`playwright.config.ts` y `scripts/auth/create-auth.js` leen la configuración de roles de forma dinámica. `src/config/roles.ts` valida que cada rol tenga los campos requeridos y que no haya ids o proyectos duplicados.
 
 ---
 
@@ -83,15 +92,18 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
   | ------------------------------------ | ------------------------------------------------ |
   | `npm test`                         | Suite completa con historial y reporte ejecutivo |
   | `npm run test:raw`                 | Playwright directo sin hooks de historial        |
-  | `npm run test:smoke`               | Tests etiquetados con`@smoke`                  |
-  | `npm run test:critical`            | Tests etiquetados con`@critical`               |
+  | `npm run test:smoke`               | Tests etiquetados con `@smoke`                  |
+  | `npm run test:critical`            | Tests etiquetados con `@critical`               |
   | `npm run test:headed`              | Ejecuta con navegador visible                    |
   | `npm run test:ui`                  | Abre la UI de Playwright                         |
   | `npm run test:list`                | Lista todos los tests disponibles                |
-  | `npm run test:block1:sequential`   | Bloque 1 secuencial (workers=1)                  |
-  | `npm run test:bloque2`             | Solo Bloque 2 (Gastos Técnicos)                 |
-  | `npm run test:bloque3:gestorGF` | Bloque 3 con rol Gestor GF                         |
-  | `npm run test:bloque2:gestorGT` | Bloque 2 con rol Gestor GT                         |
+  | `npm run test:bloque1`             | Bloque 1 con rol Administrador                   |
+  | `npm run test:block1:sequential`   | Bloque 1 secuencial                              |
+  | `npm run test:all:history`         | Suite completa con historial                     |
+  | `npm run test:bloque2`             | Solo Bloque 2 (Gastos Técnicos)                  |
+  | `npm run test:bloque2:gestorGT`    | Bloque 2 con rol Gestor GT                       |
+  | `npm run test:bloque3`             | Solo Bloque 3 (Gastos Financieros)               |
+  | `npm run test:bloque3:gestorGF`    | Bloque 3 con rol Gestor GF                       |
 
   ### Ejecutar un spec especifico
 
@@ -103,7 +115,7 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
   | Comando                      | Descripción                                |
   | ---------------------------- | ------------------------------------------- |
   | `npm run report`           | Abre reporte HTML de Playwright             |
-  | `npm run report:executive` | Genera reporte ejecutivo HTML con dashboard |
+  | `npm run report:executive` | Genera reporte ejecutivo                    |
   | `npm run cases:bd1`        | Exporta matriz CSV de casos Bloque 1        |
 
   ## Estructura del proyecto
@@ -115,19 +127,21 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
   |-- README.md
   |-- AGENTS.md
   |-- docs/
-  |   |-- catalogs/                  # Catalogos MD/JSON de CP
+  |   |-- catalogs/                  # Catalogos MD de CP
   |   `-- tracking/                  # Seguimiento de implementacion
   |-- fixtures/
   |   |-- data/                      # Datos globales y por bloque
-  |   `-- file/                      # Archivos usados en carga
+  |   `-- files/                     # Archivos usados en carga
   |-- pages/                         # Page Objects
   |   |-- auth/
   |   |-- comunes/
   |   |-- distribucion/
   |   |-- bloque3/
-  |   `-- procesos/
+  |   |-- procesos/
+  |   `-- shared/
   |-- src/
   |   |-- config/                    # env.ts, roles.ts, roles.json
+  |   |-- data/
   |   |-- utils/
   |   `-- components/
   |-- tests/
@@ -135,14 +149,15 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
   |   `-- e2e/
   |       |-- _globalshared/           # comportamiento tecnico comun
   |       |-- auth/
+  |       |-- procesos/
   |       |-- bloque-1/
   |       |   |-- _shared/               # helpers historicos BD1
   |       |   `-- ...
   |       |-- bloque-2/
-  |       |   |-- _bloqueshared/         # negocio GT
+  |       |   |-- _shared/               # negocio GT
   |       |   `-- ...
   |       `-- bloque-3/
-  |           |-- _bloqueshared/         # negocio GF
+  |           |-- _shared/               # negocio GF
   |           `-- ...
   |-- scripts/
   |   |-- auth/create-auth.js
@@ -226,13 +241,13 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
 
   ```bash
   # Reporte HTML con dashboard de estado
-  npx ts-node scripts/reports/generate-executive-report.ts
+  node --experimental-strip-types scripts/reports/generate-executive-report.ts
 
   # Variante PDF del reporte ejecutivo
-  npx ts-node scripts/reports/generate-executive-pdf-report.ts
+  node --experimental-strip-types scripts/reports/generate-executive-pdf-report.ts
 
   # Reporte de decisión para QA sign-off
-  npx ts-node scripts/reports/generate-decision-report-from-playwright.ts
+  node --experimental-strip-types scripts/reports/generate-decision-report-from-playwright.ts
 
   # Merge de múltiples archivos JSON de resultados (PowerShell)
   ./scripts/reports/combine-results.ps1
@@ -291,7 +306,7 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
   - No reimplementar login fuera de `LoginPage.ts`
   - No hardcodear credenciales en specs — usar `src/config/env.ts`
   - No mezclar lógica de descarga, assertions y navegación en el mismo archivo si puede reutilizarse en `src/utils/`
-  - Antes de crear helpers nuevos, verificar si ya existen en `tests/e2e/_globalshared/` o en `tests/e2e/<bloque>/_bloqueshared/`
+  - Antes de crear helpers nuevos, verificar si ya existen en `tests/e2e/_globalshared/` o en `tests/e2e/<bloque>/_shared/`
 
   **Importaciones:**
 
@@ -306,9 +321,9 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
   | Alias             | Ruta real            | Uso típico                            |
   | ----------------- | -------------------- | -------------------------------------- |
   | `@pages/*`      | `pages/*`          | Importar Page Objects                  |
-  | `@config/*`     | `src/config/*`     | Acceder a`env.ts`                    |
-  | `@fixtures/*`   | `tests/fixtures/*` | Importar`base.fixture`               |
-  | `@components/*` | `pages/shared/*`   | Importar`Sidebar`, selectores legacy |
+  | `@config/*`     | `src/config/*`     | Acceder a `env.ts`                    |
+  | `@fixtures/*`   | `tests/fixtures/*` | Importar `base.fixture`               |
+  | `@components/*` | `pages/shared/*`   | Importar `Sidebar`, selectores legacy |
   | `@data/*`       | `fixtures/data/*`  | Importar datos de prueba JSON          |
 
   > **Nota sobre `@components`:** El alias apunta a `pages/shared/` por razones históricas. Los componentes compartidos viven ahí junto a los selectores legacy.
@@ -332,7 +347,18 @@ Los archivos `playwright.config.ts`, `env.ts` y `create-auth.js` se actualizan a
 
   | Documento                      | Ubicación                                                | Contenido                            |
   | ------------------------------ | --------------------------------------------------------- | ------------------------------------ |
-  | Catálogos de casos de prueba  | `docs/catalogs/`                                        | MD/JSON por bloque (1, 2, 3)         |
+  | Catálogos de casos de prueba  | `docs/catalogs/`                                        | MD por bloque (1, 2, 3)              |
   | Seguimiento de implementación | `docs/tracking/seguimiento_casos_prueba.md`             | Estado real de cada spec             |
   | Guía para AI agents           | `AGENTS.md`                                             | Comandos, convenciones, auth, flujos |
   | Skill de implementación       | `.codex/skills/playwright-test-implementation/SKILL.md` | Workflow y patrones para AI agents   |
+
+## Compatibilidad con IA
+
+El framework fue diseñado para que asistentes como Codex puedan generar nuevos casos de prueba siguiendo los patrones existentes.
+
+Las reglas de implementación se encuentran en:
+
+- AGENTS.md
+- SKILL.md
+
+Antes de implementar nuevos casos, el agente debe reutilizar helpers existentes y respetar la arquitectura del framework.

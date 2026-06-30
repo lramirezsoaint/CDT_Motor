@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import rolesConfig from './roles.json';
+import rolesJson from './roles.json';
 
 export type RoleConfig = {
   id: string;
@@ -8,6 +8,14 @@ export type RoleConfig = {
   projectName: string;
   testMatch: string[];
   testIgnore: string[];
+  displayName?: string;
+  diagnosticPatterns?: { source: string }[];
+};
+
+export type DiagnosticRoleConfig = RoleConfig & {
+  project: string;
+  displayName: string;
+  diagnosticPatterns: { source: string }[];
 };
 
 function assertString(value: unknown, field: string, roleId: string): asserts value is string {
@@ -57,16 +65,48 @@ function normalizeRoles(config: unknown): RoleConfig[] {
       projectName: rawRole.projectName,
       testMatch: rawRole.testMatch,
       testIgnore: rawRole.testIgnore,
+      displayName: rawRole.displayName,
+      diagnosticPatterns: rawRole.diagnosticPatterns,
     };
   });
 }
 
-export const roles = normalizeRoles(rolesConfig);
+function buildDiagnosticPatterns(role: RoleConfig): { source: string }[] {
+  const testMatchPatterns = role.testMatch.map((pattern) => {
+    const folderMatch = pattern.match(/\*\*\/([^/]+)\/\*\*/);
+    return folderMatch ? `${escapeRegExp(folderMatch[1])}[\\\\/]` : escapeRegExp(pattern);
+  });
 
-export function resolveRoleAuthFile(role: RoleConfig, rootDir: string): string {
+  return (
+    role.diagnosticPatterns ?? [
+      { source: escapeRegExp(role.id) },
+      { source: escapeRegExp(role.projectName) },
+      ...testMatchPatterns.map((source) => ({ source })),
+    ]
+  );
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+export const roles = normalizeRoles(rolesJson);
+
+export const ROLES: DiagnosticRoleConfig[] = roles.map((role) => ({
+  ...role,
+  project: role.projectName,
+  displayName: role.displayName ?? role.id,
+  diagnosticPatterns: buildDiagnosticPatterns(role),
+}));
+
+export function getRoleByProject(projectName: string): DiagnosticRoleConfig | undefined {
+  return ROLES.find((role) => role.project === projectName);
+}
+
+export function resolveRoleAuthFile(role: RoleConfig, rootDir: string, options: { validate?: boolean } = {}): string {
   const authFile = path.join(rootDir, '.auth', `${role.id}.json`);
 
-  if (!fs.existsSync(authFile)) {
+  if (options.validate !== false && !fs.existsSync(authFile)) {
     throw new Error(
       `Missing authentication state for role "${role.id}": expected ${authFile}. ` +
         `Run scripts/auth/create-auth.js or create .auth/${role.id}.json before executing Playwright.`,

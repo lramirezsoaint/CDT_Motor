@@ -37,12 +37,12 @@ Do not guess or assume standard Playwright commands. The workspace relies on cus
 
 The framework enforces strict separation between roles. Playing tests under the wrong role leads to false passes or hard-to-debug failures.
 
-- **Storage State:** Session auth states are resolved dynamically from `.auth/admin.json`, `.auth/gestorGF.json`, or the legacy fallback `storageState.json` via `playwright.config.ts`.
+- **Storage State:** Session auth states are resolved dynamically from `.auth/admin.json`, `.auth/gestorGF.json`, or `.auth/gestorGT.json` via `src/config/roles.json`, `src/config/roles.ts`, and `playwright.config.ts`.
 - **Role Scoping:**
   - **Administrador:** Runs on the `chromium` project.
   - **Gestor (Gastos Financieros / GF):** Runs on the `chromium-gestorGF` project.
-  - *Never* execute Gestor GF tests using an Admin's `storageState.json`. This causes failures due to menu mismatch permissions.
-- **Regenerating Sessions:** Use `scripts/create-auth.js` or `scripts/create-bloque3-auth.js` to refresh storage states when they expire or when `No hay distribuciones disponibles` states block the UI.
+  - *Never* execute Gestor GF tests using an Admin session file. This causes failures due to menu mismatch permissions.
+- **Regenerating Sessions:** Use `scripts/auth/create-auth.js` with `AUTH_ROLE=admin`, `AUTH_ROLE=gestorGF`, or `AUTH_ROLE=gestorGT` to refresh storage states when they expire or when `No hay distribuciones disponibles` states block the UI.
 
 ---
 
@@ -69,6 +69,6 @@ Rigorously adhere to these custom design-patterns instead of standard Playwright
 - **Spec Location:**
   - Bloque 1 tests: `tests/e2e/bloque-1/...`
   - Bloque 3 tests: `tests/e2e/bloque-3/...`
-- **Catalog Integration:** Keep spec IDs exactly matching the markdown files in `docs/catalogos/` (`catalogo_casos_prueba_bloque3.md`, etc.). These match original Excel IDs.
-- **Progress Tracking:** Update `docs/seguimiento/seguimiento_casos_prueba.md` to indicate real status, automation readiness, or human validation.
+- **Catalog Integration:** Keep spec IDs exactly matching the markdown files in `docs/catalogs/` (`catalogo_casos_prueba_bloque3.md`, etc.). These match original Excel IDs.
+- **Progress Tracking:** Update `docs/tracking/seguimiento_casos_prueba.md` to indicate real status, automation readiness, or human validation.
 - **Generators:** Clean up and analyze runs with `npm run report:executive` to build custom executive PDF/JSON summaries after testing runs.

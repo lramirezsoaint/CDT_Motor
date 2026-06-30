@@ -39,7 +39,7 @@ export function buildDiagnosticError(context: DiagnosticContext, originalError: 
 
   const error = new Error(
     [
-      'DIAGNOSTICO',
+      'DIAGNÓSTICO',
       `Caso: ${context.caseId}`,
       `Fase: ${context.phase}`,
       `Causa probable: ${context.cause}`,
