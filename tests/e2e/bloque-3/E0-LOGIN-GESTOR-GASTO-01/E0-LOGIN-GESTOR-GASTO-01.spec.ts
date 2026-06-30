@@ -3,16 +3,13 @@ import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { ensureGfContext } from '../_shared/gf-context';
 
-test('E0-LOGIN-ADMIN-02', async ({ page }) => {
+test('E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
 
-  try {
-        const loginPage = new LoginPage(page);
-        await loginPage.login(
-          env.username,
-          env.password
-        );
-      } catch (error) { }
-
+  const loginPage = new LoginPage(page);
+  await loginPage.login(
+    env.gestorGFUsername,
+    env.gestorGFPassword
+  );
   // VALIDAR LOGIN
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
