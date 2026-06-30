@@ -1,14 +1,23 @@
 [
   {
     "id": "admin",
-    "envPrefix": "MOTOR"
+    "envPrefix": "MOTOR",
+    "projectName": "chromium",
+    "testMatch": ["**/bloque-1/**/*.spec.ts"],
+    "testIgnore": ["**/bloque-2/**/*.spec.ts", "**/bloque-3/**/*.spec.ts"]
   },
   {
     "id": "gestorGF",
-    "envPrefix": "MOTOR_GESTOR_GF"
+    "envPrefix": "MOTOR_GESTOR_GF",
+    "projectName": "chromium-gestorGF",
+    "testMatch": ["**/bloque-3/**/*.spec.ts"],
+    "testIgnore": ["**/bloque-1/**/*.spec.ts", "**/bloque-2/**/*.spec.ts"]
   },
   {
     "id": "gestorGT",
-    "envPrefix": "MOTOR_GESTOR_GT"
+    "envPrefix": "MOTOR_GESTOR_GT",
+    "projectName": "chromium-gestorGT",
+    "testMatch": ["**/bloque-2/**/*.spec.ts"],
+    "testIgnore": ["**/bloque-1/**/*.spec.ts", "**/bloque-3/**/*.spec.ts"]
   }
 ]

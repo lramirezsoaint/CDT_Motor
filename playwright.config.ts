@@ -1,20 +1,6 @@
 import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
-import path from 'path';
-import fs from 'fs';
-
-const authDir = path.join(__dirname, '.auth');
-const fallbackAuth = path.join(__dirname, 'storageState.json');
-const adminAuthFile = path.join(authDir, 'admin.json');
-const gestorGFAuthFile = path.join(authDir, 'gestorGF.json');
-const gestorGTAuthFile = path.join(authDir, 'gestorGT.json');
-
-function resolveAuthFile(preferred: string): string | undefined {
-  if (process.env.PW_NO_STORAGE === 'true') return undefined;
-  if (fs.existsSync(preferred)) return preferred;
-  if (preferred !== fallbackAuth && fs.existsSync(fallbackAuth)) return fallbackAuth;
-  return undefined;
-}
+import { resolveRoleAuthFile, roles } from './src/config/roles';
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -50,20 +36,12 @@ export default defineConfig({
     },
   },
 
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(adminAuthFile) },
-    },
-    {
-      name: 'chromium-gestorGF',
-      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(gestorGFAuthFile) },
-    },
-    {
-      name: 'chromium-gestorGT',
-      use: { ...devices['Desktop Chrome'], storageState: resolveAuthFile(gestorGTAuthFile) },
-    },
-  ],
+  projects: roles.map((role) => ({
+    name: role.projectName,
+    testMatch: role.testMatch,
+    testIgnore: role.testIgnore,
+    use: { ...devices['Desktop Chrome'], storageState: resolveRoleAuthFile(role, __dirname) },
+  })),
 
   outputDir: 'test-results',
 });
