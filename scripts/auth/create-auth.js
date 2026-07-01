@@ -31,6 +31,40 @@ console.log(`[${roleId.toUpperCase()}] URL: ${process.env.MOTOR_BASE_URL}`);
 console.log(`[${roleId.toUpperCase()}] Username: ${username}`);
 console.log(`[${roleId.toUpperCase()}] Archivo destino: ${authFile}`);
 
+function isAppUrl(url) {
+  return url.hostname.includes('pacificotest.com.pe')
+    && !url.hostname.includes('login.microsoftonline.com')
+    && !url.pathname.includes('/login')
+    && !url.href.includes('redirect_uri=');
+}
+
+async function waitForAppSession(page, timeout = 180_000) {
+  await page.waitForURL(isAppUrl, { timeout }).catch((error) => {
+    throw new Error(
+      `[${roleId}] Login no completado. No se alcanzó una URL válida de la app. URL final: ${page.url()}. ${error.message}`,
+    );
+  });
+}
+
+async function saveValidatedStorageState(page) {
+  const finalUrl = page.url();
+
+  if (!isAppUrl(new URL(finalUrl))) {
+    throw new Error(`Login no completado para ${roleId}. URL final inválida: ${finalUrl}`);
+  }
+
+  const state = await page.context().storageState();
+
+  if ((state.cookies?.length ?? 0) === 0 && (state.origins?.length ?? 0) === 0) {
+    throw new Error(`Storage state vacío para ${roleId}. Login no completado. URL final: ${finalUrl}`);
+  }
+
+  await page.context().storageState({ path: authFile });
+  console.log(
+    `[${roleId.toUpperCase()}] Sesión validada. Cookies: ${state.cookies.length}. Origins: ${state.origins.length}. URL final: ${finalUrl}`,
+  );
+}
+
 async function fillMicrosoftLogin(page) {
   const emailInput = page
     .locator('#i0116, input[type="email"], input[name="loginfmt"]')
@@ -48,7 +82,7 @@ async function fillMicrosoftLogin(page) {
   const hasPasswordInput = await passwordInput.isVisible({ timeout: 30_000 }).catch(() => false);
   if (!hasPasswordInput && (await approveSignIn.isVisible({ timeout: 5_000 }).catch(() => false))) {
     console.log(`[${roleId.toUpperCase()}] MFA detectado. Aprueba el inicio de sesión para continuar...`);
-    await page.waitForURL(/pacificotest\.com\.pe|\/distribuciones/i, { timeout: 180_000 });
+    await waitForAppSession(page);
     return;
   }
 
@@ -97,21 +131,21 @@ async function startAppLogin(page) {
 
     const currentUrl = new URL(page.url());
 
-    const isAlreadyAuthenticated = !currentUrl.hostname.includes('login.microsoftonline.com')
-      && !currentUrl.pathname.includes('/login')
-      && currentUrl.pathname.startsWith('/distribuciones');
+    const isAlreadyAuthenticated = isAppUrl(currentUrl);
 
     if (isAlreadyAuthenticated) {
-      console.log(`[${roleId.toUpperCase()}] Ya autenticado. Guardando sesión...`);
-      await page.context().storageState({ path: authFile });
+      console.log(`[${roleId.toUpperCase()}] Ya autenticado. Validando sesión antes de guardar...`);
+      await saveValidatedStorageState(page);
       await browser.close();
-      console.log(`[${roleId.toUpperCase()}] ✓ Sesión guardada en ${authFile}`);
+      console.log(`[${roleId.toUpperCase()}] Sesión guardada en ${authFile}`);
       process.exit(0);
     }
 
     const authPage = await startAppLogin(page);
 
-    await authPage.waitForURL(/login\.microsoftonline\.com|\/distribuciones/i, { timeout: 60_000 }).catch(() => undefined);
+    await authPage.waitForURL((url) => {
+      return url.hostname.includes('login.microsoftonline.com') || isAppUrl(url);
+    }, { timeout: 60_000 }).catch(() => undefined);
 
     if (/login\.microsoftonline\.com/i.test(authPage.url())) {
       await fillMicrosoftLogin(authPage);
@@ -127,21 +161,18 @@ async function startAppLogin(page) {
     }
 
     console.log(`[${roleId.toUpperCase()}] Esperando redirección a la app...`);
-    await page.waitForURL(/distribuciones|distribuciongastos/i, { timeout: 120_000 })
-      .catch(async (err) => {
-        console.error(`[${roleId.toUpperCase()}] Timeout de navegación. URL actual: ${page.url()}`);
-        throw err;
-      });
+    await waitForAppSession(page);
 
-    console.log(`[${roleId.toUpperCase()}] Autenticado exitosamente. Guardando sesión...`);
-    await page.context().storageState({ path: authFile });
+    console.log(`[${roleId.toUpperCase()}] Autenticado exitosamente. Validando sesión antes de guardar...`);
+    await saveValidatedStorageState(page);
     await browser.close();
 
-    console.log(`[${roleId.toUpperCase()}] ✓ Sesión guardada en ${authFile}`);
-    console.log(`[${roleId.toUpperCase()}] ✓ ¡Listo!`);
+    console.log(`[${roleId.toUpperCase()}] Sesión guardada en ${authFile}`);
+    console.log(`[${roleId.toUpperCase()}] Listo.`);
     process.exit(0);
   } catch (error) {
-    console.error(`[${roleId.toUpperCase()}] ✗ Auth falló:`, error.message);
+    console.error(`[${roleId.toUpperCase()}] Auth falló:`, error.message);
     process.exit(1);
   }
 })();
+

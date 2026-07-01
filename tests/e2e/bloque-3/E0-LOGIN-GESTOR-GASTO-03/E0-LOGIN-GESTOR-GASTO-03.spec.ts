@@ -1,39 +1,26 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../_shared/bloque3.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
-import { ensureGfContext } from '../_shared/gf-context';
 
-test('E0-LOGIN-GESTOR-GASTO-03', async ({ page }) => {
-
+test('@critical @bloque3 @auth @gf @login @E0-LOGIN-GESTOR-GASTO-03 E0-LOGIN-GESTOR-GASTO-03', async ({
+  bloque3GastosFinancierosPage,
+  page,
+}) => {
   const loginPage = new LoginPage(page);
-  await loginPage.login(
-    env.gestorGFUsername,
-    env.gestorGFPassword
-  );
-  await expect(page)
-    .toHaveURL(/\/distribuciones/i);
-  await ensureGfContext(page);
+  await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
 
-  // Parametrización > Cuentas Contables
-  await page.getByText('Parametrización').click();
+  await expect(page, 'Debe quedar autenticado en la pantalla de Distribuciones').toHaveURL(/\/distribuciones/i, {
+    timeout: 40_000,
+  });
 
-  await page.getByRole('link', {
-    name: /cuentas contables/i
-  }).click();
+  await bloque3GastosFinancierosPage.openSidebarView('Parametrizaci\u00f3n', 'Cuentas Contables');
+  await expect(page, 'Debe abrir la vista Cuentas Contables').toHaveURL(/\/parametrizacion\/cuentas-contables/i);
 
-  await expect(page)
-    .toHaveURL(/\/parametrizacion\/cuentas-contables/i);
+  await bloque3GastosFinancierosPage.openSidebarView('Parametrizaci\u00f3n', 'Centros');
+  await expect(page, 'Debe abrir la vista Centros').toHaveURL(/\/parametrizacion\/centros/i);
 
-  // Parametrización > Centros
-  await page.getByRole('link', {
-    name: /Centros/i
-  }).click();
-
-  await expect(page)
-    .toHaveURL(/\/parametrizacion\/centros/i);
-
-  // Parametrización > Maestro Producto
-  await page.getByRole('link', {
-    name: /Maestro producto/i
-  }).click();
+  await expect(
+    page.getByRole('link', { name: /Maestro Producto/i }),
+    'El rol GF debe ver Maestro Producto',
+  ).toHaveCount(1);
 });

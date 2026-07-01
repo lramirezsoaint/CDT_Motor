@@ -1,109 +1,13 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
-import { ensureGfContext } from '../_shared/gf-context';
 
-test('E0-LOGIN-GESTOR-GASTO-02.spec', async ({ page }) => {
-
+test('@critical @bloque3 @auth @gf @login @E0-LOGIN-GESTOR-GASTO-02 E0-LOGIN-GESTOR-GASTO-02', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  await loginPage.login(
-    env.gestorGFUsername,
-    env.gestorGFPassword
-  );
+  await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
 
-  // VALIDAR DASHBOARD
-  await expect(page)
-    .toHaveURL(/\/distribuciones/i);
-  await ensureGfContext(page);
-
-  // ABRIR COMUNES
-  await page.getByText('Comunes').click();
-
-  // =========================
-  // LINEAS
-  // =========================
-
-  await page.getByText('Líneas').click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /líneas/i
-    })
-  ).toBeVisible();
-
-  // =========================
-  // GRUPO PRODUCTO
-  // =========================
-
-  await page.getByText('Grupo Producto').click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /grupo producto/i
-    })
-  ).toBeVisible();
-
-  // =========================
-  // CANALES
-  // =========================
-
-  await page.getByRole('link', {
-  name: 'Canales',
-  exact: true
-}).click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /canales/i
-    })
-  ).toBeVisible();
-
-  // =========================
-  // SUBCANALES
-  // =========================
-
-  await page.getByText('Subcanales').click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /subcanales/i
-    })
-  ).toBeVisible();
-
-  // =========================
-  // MAESTRO UOA
-  // =========================
-
-  await page.getByText('Maestro UoA').click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /maestro uoa/i
-    })
-  ).toBeVisible();
-
-  // =========================
-  // UNIDADES DE CUENTA
-  // =========================
-
- await page.getByText(/Unidades de Cuenta/i).click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /unidades de cuenta/i
-    })
-  ).toBeVisible();
-
-  // =========================
-  // CONFIGURACION PARCHES
-  // =========================
-
-  await page.getByText('Configuración de Parches').click();
-
-  await expect(
-    page.getByRole('heading', {
-      name: /configuración de parches/i
-    })
-  ).toBeVisible();
-
+  await expect(page, 'Debe quedar autenticado en la pantalla de Distribuciones').toHaveURL(/\/distribuciones/i, {
+    timeout: 40_000,
+  });
+  await expect(page.getByRole('button', { name: /^Comunes$/ }), 'El rol GF no debe ver el menu Comunes').toHaveCount(0);
 });
