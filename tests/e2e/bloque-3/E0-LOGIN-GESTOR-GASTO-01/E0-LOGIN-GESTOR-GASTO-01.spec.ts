@@ -13,7 +13,6 @@ test('E0-LOGIN-GESTOR-GASTO-01', async ({ page }) => {
   // VALIDAR LOGIN
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
-  await ensureGfContext(page);
 
   // VALIDAR DASHBOARD
   await expect(
