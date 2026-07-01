@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test } from '@fixtures/base.fixture';
 import {  tagsFor } from './gt-ui';
 
 type PendingCatalogCaseConfig = {

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { Bloque3GastosFinancierosPage } from '@pages/bloque3/Bloque3GastosFinancierosPage';

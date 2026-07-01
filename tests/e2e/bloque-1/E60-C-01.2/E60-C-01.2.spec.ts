@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import scenarioData from '@data/bloque-1/E60-C-01.2.json';
 import { goToComunesView } from '../_shared/comunes-upload';
 import {

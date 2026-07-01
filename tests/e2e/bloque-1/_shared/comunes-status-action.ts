@@ -1,4 +1,5 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
+import type { Locator, Page } from '@playwright/test';
 import { captureVisibleMessages, selectExactComboboxOption } from './comunes-add-positive';
 import { currentFieldValue, findField, normalizeEditText, openEditDialog } from './comunes-edit';
 import { goToComunesView } from './comunes-upload';

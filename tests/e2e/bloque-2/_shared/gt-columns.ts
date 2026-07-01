@@ -1,4 +1,5 @@
-import { expect, Locator, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
+import type { Locator } from '@playwright/test';
 import { GtCaseBase, openGtView,  tagsFor,  visibleButton } from './gt-ui';
 import { env } from '@config/env';
 import { selectGtDistribution, SelectGtDistributionOptions } from './gt-distribution';

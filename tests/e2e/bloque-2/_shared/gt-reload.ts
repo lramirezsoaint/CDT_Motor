@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import path from 'path';
 import { GtCaseBase, openGtView, tagsFor, visibleButton } from './gt-ui';
 import { env } from '@config/env';

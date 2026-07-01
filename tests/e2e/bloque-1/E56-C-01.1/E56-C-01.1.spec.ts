@@ -1,4 +1,5 @@
-import { expect, Page, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
+import type { Page } from '@playwright/test';
 import { env } from '@config/env';
 import scenarioData from '@data/bloque-1/E56-C-01.1.json';
 

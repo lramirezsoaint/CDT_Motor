@@ -1,4 +1,5 @@
-import { expect, Page, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
+import type { Page } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { selectGtDistribution, SelectGtDistributionOptions } from './gt-distribution';

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import { goToComunesView } from '../_shared/comunes-upload';
 import {
   collectColumnOptionStates,

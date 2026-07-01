@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { ensureGfContext } from '../_shared/gf-context';

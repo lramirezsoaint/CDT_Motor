@@ -1,4 +1,5 @@
-import { expect, Page } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
+import type { Page } from '@playwright/test';
 import { Bloque3GastosFinancierosPage } from '@pages/bloque3/Bloque3GastosFinancierosPage';
 
 export interface DistribucionCreada {

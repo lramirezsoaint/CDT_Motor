@@ -1,5 +1,5 @@
 import path from 'path';
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import scenarioData from '@data/bloque-1/E4-C-02.2.json';
 import {
   acceptButtonFrom,

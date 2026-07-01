@@ -1,6 +1,6 @@
 import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { expect } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
 import fs from 'fs';
 import { LoginPage } from '@pages/auth/LoginPage';
 

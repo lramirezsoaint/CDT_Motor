@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import { GtCaseBase, openGtView,  tagsFor,  visibleButton } from './gt-ui';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';

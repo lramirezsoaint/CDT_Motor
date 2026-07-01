@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
 import type { Locator, Page } from '@playwright/test';
 import { currentFieldValue } from './comunes-edit';
 

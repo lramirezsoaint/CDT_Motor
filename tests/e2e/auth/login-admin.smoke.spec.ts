@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@fixtures/base.fixture';
 
 test.describe('@auth @smoke @E0-LOGIN-ADMIN-01', () => {
   test('@smoke @auth @E0-LOGIN-ADMIN-01 debe permitir autenticarse con rol administrador', async ({ page }) => {

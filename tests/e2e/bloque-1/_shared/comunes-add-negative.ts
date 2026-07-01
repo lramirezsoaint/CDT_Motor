@@ -1,4 +1,5 @@
-import { expect, Page } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
+import type { Page } from '@playwright/test';
 import type { Locator } from '@playwright/test';
 import { goToComunesView } from './comunes-upload';
 import { currentFieldValue, findField, fillTextField } from './comunes-edit';

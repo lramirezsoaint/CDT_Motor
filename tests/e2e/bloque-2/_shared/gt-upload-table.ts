@@ -1,4 +1,5 @@
-import { expect, Locator, Page, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
+import type { Locator, Page } from '@playwright/test';
 import path from 'path';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';

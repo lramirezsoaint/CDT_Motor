@@ -1,4 +1,5 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
+import type { Locator, Page } from '@playwright/test';
 
 export const defaultMaestroUoaColumns = [
   'Unidad de Cuenta',

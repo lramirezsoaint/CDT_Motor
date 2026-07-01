@@ -1,5 +1,6 @@
 import path from 'path';
-import { expect, Page, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
+import type { Page } from '@playwright/test';
 import {
   acceptButtonFrom,
   goToComunesView,

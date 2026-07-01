@@ -1,5 +1,5 @@
 import path from 'path';
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@fixtures/base.fixture';
 import XLSX from 'xlsx';
 import scenarioData from '@data/bloque-1/E59-C-01.1.json';
 import {

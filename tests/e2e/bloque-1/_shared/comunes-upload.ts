@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { expect, Locator, Page } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
+import type { Locator, Page } from '@playwright/test';
 import { env } from '@config/env';
 
 export interface UploadFileOptions {

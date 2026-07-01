@@ -20,55 +20,58 @@ type DiagnosticInput = {
   page?: Page;
   testInfo: TestInfo;
   originalError: unknown;
+  currentUrl?: string;
 };
 
-const PROJECT_BY_ROLE: Array<{ pattern: RegExp; project: string; role: string }> = ROLES.map(role => ({
-  pattern: new RegExp(role.diagnosticPatterns.map(p => p.source).join('|'), 'i'),
+const PROJECT_BY_ROLE: Array<{ pattern: RegExp; project: string; role: string }> = ROLES.map((role) => ({
+  pattern: new RegExp(role.diagnosticPatterns.map((pattern) => pattern.source).join('|'), 'i'),
   project: role.project,
   role: role.displayName,
 }));
 
 export function buildDiagnosticError(context: DiagnosticContext, originalError: unknown): Error {
-  const optionalLines = [
-    context.fileName ? `Archivo: ${context.fileName}` : undefined,
-    context.section ? `Seccion: ${context.section}` : undefined,
-    context.view ? `Vista: ${context.view}` : undefined,
-    context.role ? `Rol esperado: ${context.role}` : undefined,
-    context.currentUrl ? `URL final: ${context.currentUrl}` : undefined,
-  ].filter(Boolean);
+  const original = formatOriginalError(originalError);
+  const originalStack = getOriginalStack(originalError);
+  const diagnostic = [
+    'DIAGNÓSTICO',
+    `Caso: ${context.caseId}`,
+    `Fase: ${context.phase}`,
+    `Causa probable: ${context.cause}`,
+    `Mensaje: ${context.message}`,
+    `Rol esperado: ${context.role ?? 'No inferido'}`,
+    `Proyecto esperado: ${context.expectedProject}`,
+    `Proyecto usado: ${context.actualProject}`,
+    `URL final: ${context.currentUrl ?? 'No disponible'}`,
+    `Archivo: ${context.fileName ?? 'No inferido'}`,
+    `Vista: ${context.view ?? context.section ?? 'No inferido'}`,
+  ].join('\n');
 
-  const error = new Error(
-    [
-      'DIAGNÓSTICO',
-      `Caso: ${context.caseId}`,
-      `Fase: ${context.phase}`,
-      `Causa probable: ${context.cause}`,
-      `Mensaje: ${context.message}`,
-      ...optionalLines,
-      `Proyecto esperado: ${context.expectedProject}`,
-      `Proyecto usado: ${context.actualProject}`,
-    ].join('\n'),
-  );
-  error.stack = '';
+  const message = [diagnostic, original ? `\nERROR ORIGINAL\n${original}` : undefined].filter(Boolean).join('\n');
+  const error = new Error(message);
+  error.stack = [message, originalStack ? `\nSTACK ORIGINAL\n${originalStack}` : undefined].filter(Boolean).join('\n');
   return error;
 }
 
 export function buildDiagnosticErrorFromTestInfo(input: DiagnosticInput): Error {
   const testIdentity = getTestIdentity(input.testInfo);
-  const currentUrl = input.page?.url();
+  const currentUrl = input.currentUrl ?? getCurrentUrl(input.page);
   const cause = classifyFailure(input.originalError, [testIdentity, currentUrl].filter(Boolean).join('\n'));
   const expectedProject = inferExpectedProject(testIdentity, input.testInfo.project.name);
+  const functionalTarget = inferFunctionalTarget(testIdentity);
 
   return buildDiagnosticError(
     {
       caseId: inferCaseId(input.testInfo),
-      phase: FAILURE_PHASE[cause],
+      phase: normalizePhase(FAILURE_PHASE[cause]),
       cause,
       message: buildCauseMessage(cause),
       expectedProject: expectedProject.project,
       actualProject: input.testInfo.project.name,
       role: expectedProject.role,
       currentUrl,
+      fileName: input.testInfo.file,
+      section: functionalTarget.section,
+      view: functionalTarget.view,
     },
     input.originalError,
   );
@@ -82,7 +85,7 @@ export function classifyFailure(originalError: unknown, testIdentity = ''): Fail
     detail.includes('microsoft') ||
     detail.includes('i0116') ||
     detail.includes('i0118') ||
-    detail.includes('tohaveurl') && detail.includes('distribuciones')
+    (detail.includes('tohaveurl') && detail.includes('distribuciones'))
   ) {
     return 'AUTH_FAILURE';
   }
@@ -130,9 +133,10 @@ export function classifyFailure(originalError: unknown, testIdentity = ''): Fail
   }
 
   if (
-    detail.includes('getbyrole') && (detail.includes('link') || detail.includes('menu')) ||
-    detail.includes('getbytext') && (detail.includes('comunes') || detail.includes('aprovisionamiento') || detail.includes('parametriz')) ||
-    detail.includes('locator.click') && detail.includes('waiting for')
+    (detail.includes('getbyrole') && (detail.includes('link') || detail.includes('menu'))) ||
+    (detail.includes('getbytext') &&
+      (detail.includes('comunes') || detail.includes('aprovisionamiento') || detail.includes('parametriz'))) ||
+    (detail.includes('locator.click') && detail.includes('waiting for'))
   ) {
     return 'NAV_FAILURE';
   }
@@ -159,6 +163,10 @@ function buildCauseMessage(cause: FailureCause): string {
   }
 }
 
+function normalizePhase(phase: string): string {
+  return phase.replace(/^\[[^\]]+\]\s*/, '');
+}
+
 function inferCaseId(testInfo: TestInfo): string {
   const identity = getTestIdentity(testInfo);
   const tagMatch = identity.match(/@([A-Z]\d+(?:-[A-Z0-9]+)*(?:\.\d+)*)/i);
@@ -180,8 +188,37 @@ function inferExpectedProject(testIdentity: string, actualProject: string): { pr
   return { project: 'No inferido', role: 'No inferido' };
 }
 
+function inferFunctionalTarget(testIdentity: string): { section?: string; view?: string } {
+  const normalizedIdentity = testIdentity.replace(/\s+/g, ' ');
+  const sectionViewMatch = normalizedIdentity.match(
+    /(Comunes|Parametrizaci[oó]n|Aprovisionamiento|Asignaciones|Procesos|Reportes)\s*>\s*([^@\n\r]+)/i,
+  );
+
+  if (sectionViewMatch) {
+    return {
+      section: sectionViewMatch[1].trim(),
+      view: sectionViewMatch[2].replace(/\s{2,}.*/, '').trim(),
+    };
+  }
+
+  const namedViewMatch = normalizedIdentity.match(/(?:archivo|vista|modulo|m[oó]dulo)\s+([A-ZÁÉÍÓÚÑ][^@|.]+)/i);
+  if (namedViewMatch) {
+    return { view: namedViewMatch[1].trim() };
+  }
+
+  return {};
+}
+
 function getTestIdentity(testInfo: TestInfo): string {
   return `${testInfo.file}\n${testInfo.title}\n${testInfo.titlePath.join(' ')}`;
+}
+
+function getCurrentUrl(page?: Page): string | undefined {
+  try {
+    return page?.url();
+  } catch {
+    return undefined;
+  }
 }
 
 function formatOriginalError(originalError: unknown): string {
@@ -191,10 +228,10 @@ function formatOriginalError(originalError: unknown): string {
     const stack = obj.stack ? String(obj.stack) : '';
     const value = obj.value ? String(obj.value) : '';
 
-    const FRAMEWORK_PATTERN = /(?:diagnostic-error|base\.fixture|node_modules|\/_globalshared\/)/i;
+    const FRAMEWORK_PATTERN = /(?:diagnostic-error|base\.fixture|node_modules|[\\/]_globalshared[\\/])/i;
     const cleanedStack = stack
       .split('\n')
-      .filter(line => !FRAMEWORK_PATTERN.test(line))
+      .filter((line) => !FRAMEWORK_PATTERN.test(line))
       .join('\n');
 
     const parts = [message];
@@ -208,4 +245,13 @@ function formatOriginalError(originalError: unknown): string {
     return parts.filter(Boolean).join('\n\n');
   }
   return String(originalError);
+}
+
+function getOriginalStack(originalError: unknown): string | undefined {
+  if (!originalError || typeof originalError !== 'object') {
+    return undefined;
+  }
+
+  const stack = (originalError as Record<string, unknown>).stack;
+  return typeof stack === 'string' && stack.trim() !== '' ? stack : undefined;
 }

@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import XLSX from 'xlsx';
-import { expect, Locator, Page } from '@playwright/test';
+import { expect } from '@fixtures/base.fixture';
+import type { Locator, Page } from '@playwright/test';
 import {
   acceptButtonFrom,
   openUploadDialog,
