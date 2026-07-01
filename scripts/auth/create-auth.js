@@ -164,8 +164,6 @@ async function acceptStaySignedInPrompt(page) {
 
     await page.waitForTimeout(1_000);
   }
-  console.log(`[${roleId.toUpperCase()}] Botones en prompt mantener sesion: ${JSON.stringify(buttons)}`);
-
   const yesButton = page
     .locator(
       [
@@ -212,7 +210,7 @@ async function startAppLogin(page) {
   try {
     fs.mkdirSync(authDir, { recursive: true });
 
-    const browser = await chromium.launch({ headless: false, slowMo: 500 });
+    const browser = await chromium.launch({ headless: false, slowMo: Number(process.env.PW_SLOWMO) || 0 });
     const context = await browser.newContext();
     const page = await context.newPage();
 
