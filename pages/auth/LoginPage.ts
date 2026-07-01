@@ -33,6 +33,10 @@ export class LoginPage {
     }
 
     await this.page.waitForURL(/login\.microsoftonline\.com|\.pacificotest\.com\.pe\/login/, { timeout: 60_000 });
+    if (this.isDistribucionesUrl()) {
+      await this.waitForDistribucionesReady();
+      return;
+    }
 
     try {
       const emailInput = this.page
@@ -42,7 +46,16 @@ export class LoginPage {
       await emailInput.first().fill(username);
       await this.page.getByRole('button', { name: /next/i }).first().click();
     } catch (error) {
+      if (this.isDistribucionesUrl()) {
+        await this.waitForDistribucionesReady();
+        return;
+      }
       console.error('Error occurred while filling email:', error);
+    }
+
+    if (this.isDistribucionesUrl()) {
+      await this.waitForDistribucionesReady();
+      return;
     }
 
     const passwordInput = this.page
@@ -81,5 +94,9 @@ export class LoginPage {
       distribucionesScreen,
       'Debe estar visible la pantalla principal de Distribuciones despues del login.',
     ).toBeVisible({ timeout: 60_000 });
+  }
+
+  private isDistribucionesUrl(): boolean {
+    return /\/distribuciones/i.test(this.page.url());
   }
 }

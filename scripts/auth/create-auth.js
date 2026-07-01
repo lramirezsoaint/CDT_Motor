@@ -38,6 +38,30 @@ function isAppUrl(url) {
     && !url.href.includes('redirect_uri=');
 }
 
+async function isAuthenticatedInApp(page) {
+  if (!isAppUrl(new URL(page.url()))) {
+    return false;
+  }
+
+  const loginButton = page
+    .getByTestId('login-btn-iniciar-sesion')
+    .or(page.locator('#login-btn-iniciar-sesion'))
+    .or(page.getByRole('button', { name: /iniciar sesi[oÃ³]n/i }))
+    .or(page.getByText(/iniciar sesi[oÃ³]n/i))
+    .first();
+
+  const appShell = page
+    .getByRole('heading', { name: /distribuciones/i })
+    .or(page.locator('aside, nav'))
+    .or(page.locator('main, [data-testid*="distribution" i], [data-testid*="distribucion" i]'))
+    .first();
+
+  const hasLoginButton = await loginButton.isVisible({ timeout: 5_000 }).catch(() => false);
+  const hasAppShell = await appShell.isVisible({ timeout: 15_000 }).catch(() => false);
+
+  return !hasLoginButton && hasAppShell;
+}
+
 async function waitForAppSession(page, timeout = 180_000) {
   await page.waitForURL(isAppUrl, { timeout }).catch((error) => {
     throw new Error(
@@ -73,7 +97,7 @@ async function fillMicrosoftLogin(page) {
 
   await emailInput.waitFor({ state: 'visible', timeout: 60_000 });
   console.log(`[${roleId.toUpperCase()}] Llenando email...`);
-  await emailInput.fill(username);
+  await fillAndVerifyInput(emailInput, username, 'email');
   await page.locator('#idSIButton9').click();
 
   const passwordInput = page.locator('#i0118, input[type="password"]').first();
@@ -88,12 +112,78 @@ async function fillMicrosoftLogin(page) {
 
   await passwordInput.waitFor({ state: 'visible', timeout: 60_000 });
   console.log(`[${roleId.toUpperCase()}] Llenando password...`);
-  await passwordInput.fill(password);
+  await fillAndVerifyInput(passwordInput, password, 'password');
   await page.locator('#idSIButton9').click();
+  await passwordInput.waitFor({ state: 'hidden', timeout: 30_000 }).catch(() => undefined);
 
-  const staySignedIn = page.locator('#idSIButton9').or(page.getByRole('button', { name: /yes|sí|si/i }));
-  if (await staySignedIn.first().isVisible({ timeout: 15_000 }).catch(() => false)) {
-    await staySignedIn.first().click();
+  await acceptStaySignedInPrompt(page);
+}
+
+async function fillAndVerifyInput(input, value, label) {
+  await input.click();
+  await input.fill('');
+  await input.pressSequentially(value, { delay: 35 });
+
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    const currentValue = await input.inputValue().catch(() => '');
+    if (currentValue === value) {
+      return;
+    }
+
+    await input.fill('');
+    await input.pressSequentially(value, { delay: 35 });
+  }
+
+  const finalValue = await input.inputValue().catch(() => '');
+  throw new Error(
+    `[${roleId.toUpperCase()}] No se pudo escribir ${label}. Longitud esperada: ${value.length}. Longitud escrita: ${finalValue.length}.`,
+  );
+}
+
+async function acceptStaySignedInPrompt(page) {
+  let buttons = [];
+  for (let attempt = 0; attempt < 30; attempt += 1) {
+    if (isAppUrl(new URL(page.url()))) {
+      return;
+    }
+
+    buttons = await page.locator('input[type="submit"], input[type="button"], button, [role="button"]').evaluateAll((elements) =>
+      elements.map((element) => ({
+        id: element.id,
+        role: element.getAttribute('role'),
+        type: element.getAttribute('type'),
+        value: element.getAttribute('value'),
+        text: element.textContent?.trim(),
+        visible: Boolean(element.offsetWidth || element.offsetHeight || element.getClientRects().length),
+      })),
+    );
+
+    if (buttons.some((button) => button.visible)) {
+      break;
+    }
+
+    await page.waitForTimeout(1_000);
+  }
+  console.log(`[${roleId.toUpperCase()}] Botones en prompt mantener sesion: ${JSON.stringify(buttons)}`);
+
+  const yesButton = page
+    .locator(
+      [
+        '#idSIButton9',
+        'input[type="submit"][value="Sí"]',
+        'input[type="submit"][value="Si"]',
+        'input[type="submit"][value="Yes"]',
+        'button:has-text("Sí")',
+        'button:has-text("Si")',
+        'button:has-text("Yes")',
+        '[role="button"]:has-text("Si")',
+        '[role="button"]:has-text("Yes")',
+      ].join(', '),
+    )
+    .first();
+
+  if (await yesButton.isVisible({ timeout: 15_000 }).catch(() => false)) {
+    await yesButton.click({ timeout: 30_000 });
   }
 }
 
@@ -129,9 +219,7 @@ async function startAppLogin(page) {
     console.log(`[${roleId.toUpperCase()}] Navegando a ${process.env.MOTOR_BASE_URL}`);
     await page.goto(process.env.MOTOR_BASE_URL, { waitUntil: 'domcontentloaded', timeout: 60_000 });
 
-    const currentUrl = new URL(page.url());
-
-    const isAlreadyAuthenticated = isAppUrl(currentUrl);
+    const isAlreadyAuthenticated = await isAuthenticatedInApp(page);
 
     if (isAlreadyAuthenticated) {
       console.log(`[${roleId.toUpperCase()}] Ya autenticado. Validando sesión antes de guardar...`);
