@@ -103,14 +103,35 @@ export function getRoleByProject(projectName: string): DiagnosticRoleConfig | un
   return ROLES.find((role) => role.project === projectName);
 }
 
-export function resolveRoleAuthFile(role: RoleConfig, rootDir: string, options: { validate?: boolean } = {}): string {
+export function resolveRoleAuthFile(role: RoleConfig, rootDir: string, options: { validate?: boolean } = {}): string | undefined {
   const authFile = path.join(rootDir, '.auth', `${role.id}.json`);
 
-  if (options.validate !== false && !fs.existsSync(authFile)) {
+  if (process.env.PW_NO_STORAGE === 'true') {
+    return undefined;
+  }
+
+  if (options.validate === false) {
+    return authFile;
+  }
+
+  if (!fs.existsSync(authFile)) {
     throw new Error(
       `Missing authentication state for role "${role.id}": expected ${authFile}. ` +
         `Run scripts/auth/create-auth.js or create .auth/${role.id}.json before executing Playwright.`,
     );
+  }
+
+  let raw: { cookies?: unknown[]; origins?: unknown[] };
+
+  try {
+    raw = JSON.parse(fs.readFileSync(authFile, 'utf8'));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Auth state inválido para rol "${role.id}" en ${authFile}. Regenera .auth/${role.id}.json. ${message}`);
+  }
+
+  if ((raw.cookies?.length ?? 0) === 0 && (raw.origins?.length ?? 0) === 0) {
+    throw new Error(`Auth state vacío para rol "${role.id}". Regenera .auth/${role.id}.json`);
   }
 
   return authFile;

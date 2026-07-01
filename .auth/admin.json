@@ -1,0 +1,155 @@
+{
+  "cookies": [
+    {
+      "name": "msal.cache.encryption",
+      "value": "%7B%22id%22%3A%22019e8556-cb88-75c4-8342-5953debbb7d4%22%2C%22key%22%3A%22I7QSga5lEVbLw7x37k1FD-IjgH5XXqrQp5_M0LeJu9s%22%7D",
+      "domain": "distribuciongastos.pacificotest.com.pe",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "msal.interaction.status",
+      "value": "%7B%22clientId%22%3A%22e88bdcac-fa26-40bc-857f-8cc07c6e95eb%22%2C%22type%22%3A%22signin%22%7D",
+      "domain": "distribuciongastos.pacificotest.com.pe",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "msal.e88bdcac-fa26-40bc-857f-8cc07c6e95eb.request.origin",
+      "value": "https%3A%2F%2Fdistribuciongastos.pacificotest.com.pe%2Flogin%2F%3Fredirect%3D%252Fdistribuciones%252F",
+      "domain": "distribuciongastos.pacificotest.com.pe",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "msal.e88bdcac-fa26-40bc-857f-8cc07c6e95eb.request.params",
+      "value": "eyJjb3JyZWxhdGlvbklkIjoiMDE5ZTg1NTYtZDRkYy03YmExLTg0ZmItZjNiNjNlMTZkNjEzIiwic2NvcGVzIjpbImFwaTovL01vdG9yRGlzdHJpYnVjaW9uR2FzdG9zL0FQSS5SZWFkV3JpdGUuQWxsIl0sImF1dGhvcml0eSI6Imh0dHBzOi8vbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbS9lNjE0MWMxNC0zMzBhLTRhYzQtYTFhOS00MDJjYWE2NmUyMTkiLCJhdXRoZW50aWNhdGlvblNjaGVtZSI6IkJlYXJlciIsInJlZGlyZWN0VXJpIjoiaHR0cHM6Ly9kaXN0cmlidWNpb25nYXN0b3MucGFjaWZpY290ZXN0LmNvbS5wZS8iLCJzdGF0ZSI6ImV5SnBaQ0k2SWpBeE9XVTROVFUyTFdRMFpHUXROekZoTVMxaFkySTJMV1V5Tnprd01EVmxOalU1WWlJc0ltMWxkR0VpT25zaWFXNTBaWEpoWTNScGIyNVVlWEJsSWpvaWNtVmthWEpsWTNRaWZYMD0iLCJub25jZSI6IjAxOWU4NTU2LWQ0ZGQtN2FiMC04NWM0LWQ5ZGMzNDUzMmUxYiIsInJlc3BvbnNlTW9kZSI6ImZyYWdtZW50IiwiaHR0cE1ldGhvZCI6IkdFVCIsInBsYXRmb3JtQnJva2VyIjpmYWxzZSwiY29kZUNoYWxsZW5nZSI6InZtN2h3TS16enE4a2xmTFFnLVEyWWJMdmx1STRQRHZHdUoyMHVCMEVuTGcifQ%3D%3D",
+      "domain": "distribuciongastos.pacificotest.com.pe",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "msal.e88bdcac-fa26-40bc-857f-8cc07c6e95eb.code.verifier",
+      "value": "WUEyZDIzYVpZblZ6TzhwLVhvd1p6ZEdzY2FtSmJxMjFTUjRRbDVjLWJfRQ%3D%3D",
+      "domain": "distribuciongastos.pacificotest.com.pe",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "esctx-pvpbTiLcq8",
+      "value": "AQABCQEAAAAdDD7nC9b5Q7JPd_okEQRFRXZvU3RzQXJ0aWZhY3RzDQAAAAAAVLXCg1eAp_shMeFMKhEETw3dpUVXQ-DbI-RcMGtudZeLI8irrumcooHYowLq8qyR3dSjcvZZ0xEYkHAVlIR_9lelLsNHpudvUlo3-n_EpgPCFiUpNL-VmRumdnqdF2JnnKjRQt7Ld613M_0xSpG7IyAA",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "x-ms-gateway-slice",
+      "value": "estsfd",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "stsservicecookie",
+      "value": "estsfd",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "AADSSO",
+      "value": "NA|NoExtension",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "SSOCOOKIEPULLED",
+      "value": "1",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": 1780353582,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "buid",
+      "value": "1.AW4AFBwU5gozxEqhqUAsqmbiGazci-gm-rxAhX-MwHxulesAAABuAA.AQABGgEAAAAdDD7nC9b5Q7JPd_okEQRFRXZvU3RzQXJ0aWZhY3RzAwAAAAAAdR7lg9T893m1RUVtcab0VWNfAFMQtB9uCYUICc7Ov1aRHPKlIDKmDVE2gswa8ciByjBjmLO0tGWoVqA1WUd9BfDCX7kKZ1wtxB8VsQIuvIQgAA",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": 1782945522.386179,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "esctx",
+      "value": "PAQABBwEAAAAdDD7nC9b5Q7JPd_okEQRFRXZvU3RzQXJ0aWZhY3RzDQAAAAAAWS7gp-OUJSgKVgkKBzWaNZFw-MqOXM_MZsKulMfSZDHkzZIJhrJqtx0NgrbYDI-wczYIBL_TMJwAU0LE3Yv17Rxw_r0zzlJ9WFIbxWP_uJQ9ZCvVeW9zLbgz84wmR5befLl_N82SZLkTIFjLAOfs5retK6RFT5LWOnULmnzJRTggAA",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "esctx-c3Rsu5THqAg",
+      "value": "AQABCQEAAAAdDD7nC9b5Q7JPd_okEQRFRXZvU3RzQXJ0aWZhY3RzDQAAAAAAKwdin_Z3B4gwQPThqykzRqIn-zYpX6EaDtizI1msNNVp6TQuEg6Vk2hZucJH8zfZH7-Pymk9ZMnIIM4xXDg40oz_Be-RUgGI1pvyVNicEAXXgFtL04sxmEdwIXLykUqs7BbF2s74AygA-cLZpWRbIiAA",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "fpc",
+      "value": "AvWlsVE8ljxGiN-S3TGc2kultRB5AQAAAPEAsOEOAAAA",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": 1782945522.386343,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://distribuciongastos.pacificotest.com.pe",
+      "localStorage": [
+        {
+          "name": "msal.version",
+          "value": "4.28.1"
+        }
+      ]
+    }
+  ]
+}
