@@ -5,14 +5,12 @@ import { env } from '@config/env';
 test('@critical @bloque3 @auth @gf @login @E0-LOGIN-GESTOR-GASTO-03 E0-LOGIN-GESTOR-GASTO-03', async ({
   page,
 }) => {
-  try {
     const loginPage = new LoginPage(page);
     await loginPage.login(
-      env.gestorGTUsername,
-      env.gestorGTPassword
+      env.gestorGFUsername,
+      env.gestorGFPassword
     );
-  } catch (error) { }
-
+  
   await expect(page)
     .toHaveURL(/\/distribuciones/i);
 
