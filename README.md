@@ -228,6 +228,18 @@ Para agregar un nuevo rol al framework:
   });
   ```
 
+  Para specs generados por helpers, el tag oficial lo construye `buildTags` desde la configuracion del caso. El spec puede no contener el titulo inline completo, pero debe declarar el `caseId` y, para nuevos casos, el `flowTag`:
+
+  ```typescript
+  UploadCase({
+    caseId: 'E4-GF-01.1',
+    flowTag: '@upload_valido',
+    // ...
+  });
+  ```
+
+  La fuente comun para construir tags es `tests/e2e/_globalshared/tags/tags.ts`. Evitar concatenar tags manualmente en nuevos helpers.
+
   ### Tags de identificacion obligatorios
 
   Todo spec debe tener siempre estos dos tags:
@@ -255,6 +267,20 @@ Para agregar un nuevo rol al framework:
 | 10 | `@procesos` | 1, 2 | Ejecucion de procesos |
 | 11 | `@download_catalogo` | 1, 2 | Descarga de catalogos o parametrizacion |
 | 12 | `@download_reporte` | 1, 2, 10 | Descarga de reportes de resultados despues de ejecutar procesos |
+
+  ### Auditoria de tags
+
+  La auditoria oficial valida la salida real de Playwright, no solo el contenido textual de cada `.spec.ts`. Esto permite soportar specs generados por helpers sin perder trazabilidad.
+
+  ```bash
+  npm run audit:tags
+  ```
+
+  Criterios:
+
+  - cada test listado debe tener `@bloque1`, `@bloque2` o `@bloque3`;
+  - cada test listado debe tener un ID `@E...`;
+  - cada test listado debe tener exactamente un tag de flujo funcional.
 
 ---
   ## Generadores

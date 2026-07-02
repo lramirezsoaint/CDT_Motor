@@ -2,9 +2,10 @@ import { expect, test } from '@fixtures/base.fixture';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { selectGtDistributionDownload } from './gt-distributionDownload';
+import { buildTags } from '../../_globalshared/tags/tags';
 
 export function DistributionDownloadCase(config: { caseId: string }) {
- test(`@bloque2 @${config.caseId} @download_reporte descarga archivo de distribucion`, async ({ page }) => {
+ test(`${buildTags({ bloque: '@bloque2', caseId: config.caseId, flowTag: '@download_reporte' })} descarga archivo de distribucion`, async ({ page }) => {
  test.setTimeout(120_000);
  await test.step('Abrir pantalla Distribucion', async () => {
  try {

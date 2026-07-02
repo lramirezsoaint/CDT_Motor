@@ -1,18 +1,19 @@
 import { test } from '@fixtures/base.fixture';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 type GfPendingCaseConfig = {
  caseId: string;
  reason: string;
  role?: 'admin' | 'gestorGF';
  priority?: 'critical' | 'smoke';
- flowTag?: '@login' | '@distribucion' | '@upload_valido' | '@upload_invalido' | '@registrar' | '@editar' | '@eliminar' | '@busqueda' | '@columnas' | '@paginacion' | '@procesos' | '@download_catalogo' | '@download_reporte';
+ flowTag?: FlowTag;
 };
 
 function tagsFor(config: GfPendingCaseConfig) {
- return ['@bloque3', `@${config.caseId}`, config.flowTag ?? inferFlowTag(config.caseId)].join(' ');
+ return buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? inferFlowTag(config.caseId) });
 }
 
-function inferFlowTag(caseId: string) {
+function inferFlowTag(caseId: string): FlowTag {
  if (/^E0-/i.test(caseId)) return '@login';
  if (/^E(?:40|41|42|44)-/i.test(caseId)) return '@distribucion';
  if (/^E(?:4|9|59)-/i.test(caseId)) return '@upload_valido';

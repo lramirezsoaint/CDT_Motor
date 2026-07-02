@@ -3,6 +3,7 @@ import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { Bloque3GastosFinancierosPage } from '@pages/bloque3/Bloque3GastosFinancierosPage';
 import { ensureGfContext } from './gf-context';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 import fs from 'fs';
 import * as XLSX from 'xlsx';
 
@@ -11,12 +12,13 @@ type GfDownloadIntegrityCaseConfig = {
  section: string;
  view: string;
  entityName: string;
+ flowTag?: FlowTag;
 };
 
 export function GfDownloadIntegrityCase(config: GfDownloadIntegrityCaseConfig) {
  test.use({ storageState: '.auth/gestorGF.json' });
 
- test(`@bloque3 @${config.caseId} @download_catalogo valida estructura y datos del archivo descargado`, async ({
+ test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@download_catalogo' })} valida estructura y datos del archivo descargado`, async ({
  page,
  }) => {
  test.setTimeout(180_000);

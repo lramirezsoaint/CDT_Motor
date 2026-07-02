@@ -2,6 +2,7 @@ import { expect, test } from '@fixtures/base.fixture';
 import type { Locator, Page } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 type Role = 'admin' | 'gestorGT';
 type DistributionDeleteResult = 'success' | 'unavailable';
@@ -139,8 +140,8 @@ async function loginAs(page: Page, role: Role) {
  }
 }
 
-function tagsFor(config: DistributionBase, flowTag: '@distribucion' | '@eliminar') {
- return ['@bloque2', `@${config.caseId}`, flowTag].join(' ');
+function tagsFor(config: DistributionBase, flowTag: FlowTag) {
+ return buildTags({ bloque: '@bloque2', caseId: config.caseId, flowTag });
 }
 
 function distributionRowByState(page: Page, state: RegExp) {

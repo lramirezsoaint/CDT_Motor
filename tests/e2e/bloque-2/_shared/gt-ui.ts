@@ -1,5 +1,6 @@
-﻿import { expect } from '@fixtures/base.fixture';
+import { expect } from '@fixtures/base.fixture';
 import type { Page } from '@playwright/test';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 export type GtCaseBase = {
  caseId: string;
@@ -8,14 +9,14 @@ export type GtCaseBase = {
  priority?: 'critical' | 'smoke';
  flow?: 'presupuesto';
  role?: 'admin' | 'gestorGT';
- flowTag?: '@login' | '@distribucion' | '@upload_valido' | '@upload_invalido' | '@registrar' | '@editar' | '@eliminar' | '@busqueda' | '@columnas' | '@paginacion' | '@procesos' | '@download_catalogo' | '@download_reporte';
+ flowTag?: FlowTag;
 };
 
 export function tagsFor(config: Pick<GtCaseBase, 'caseId' | 'flowTag'> & { expectedResult?: string }) {
- return ['@bloque2', `@${config.caseId}`, config.flowTag ?? inferFlowTag(config)].join(' ');
+ return buildTags({ bloque: '@bloque2', caseId: config.caseId, flowTag: config.flowTag ?? inferGtFlowTag(config) });
 }
 
-function inferFlowTag(config: Pick<GtCaseBase, 'caseId'> & { expectedResult?: string }) {
+export function inferGtFlowTag(config: Pick<GtCaseBase, 'caseId'> & { expectedResult?: string }): FlowTag {
  const caseId = config.caseId;
  if (/^E0-/i.test(caseId)) return '@login';
  if (/^E(?:40|41|42|44)-/i.test(caseId)) return '@distribucion';

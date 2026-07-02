@@ -3,6 +3,7 @@ import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { Bloque3GastosFinancierosPage } from '@pages/bloque3/Bloque3GastosFinancierosPage';
 import { ensureGfContext } from './gf-context';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 type GfReloadDownloadedCaseConfig = {
  caseId: string;
@@ -10,12 +11,13 @@ type GfReloadDownloadedCaseConfig = {
  view: string;
  entityName: string;
  modalTitle: RegExp;
+ flowTag?: FlowTag;
 };
 
 export function GfReloadDownloadedCase(config: GfReloadDownloadedCaseConfig) {
  test.use({ storageState: '.auth/gestorGF.json' });
 
- test(`@bloque3 @${config.caseId} recarga archivo descargado`, async ({
+ test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@upload_valido' })} recarga archivo descargado`, async ({
  page,
  }) => {
  test.setTimeout(240_000);

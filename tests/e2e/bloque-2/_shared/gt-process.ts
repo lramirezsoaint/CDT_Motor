@@ -4,6 +4,7 @@ import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { selectGtDistribution } from './gt-distribution';
 import { config } from 'process';
+import { buildTags } from '../../_globalshared/tags/tags';
 
 type ProcessAction = 'run' | 'close';
 type ProcessMode = 'Completo' | 'Resumido';
@@ -88,5 +89,5 @@ function annotateMissingOperationalData() {
 }
 
 function tagsFor(config: ProcessBase) {
- return ['@bloque2', `@${config.caseId}`, '@procesos'].join(' ');
+ return buildTags({ bloque: '@bloque2', caseId: config.caseId, flowTag: '@procesos' });
 }

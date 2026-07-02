@@ -3,6 +3,7 @@ import type { Locator, Page } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { ensureGfContext } from './gf-context';
+import { buildTags, flowTagForUploadResult, FlowTag } from '../../_globalshared/tags/tags';
 import fs from 'fs';
 import path from 'path';
 
@@ -22,6 +23,7 @@ export type GfUploadCase = {
  fileName: string;
  modalTitle: RegExp;
  fileFolder?: string;
+ flowTag?: FlowTag;
 };
 
 export type GfErrorUploadCase = GfUploadCase & {
@@ -41,9 +43,12 @@ type GfUploadFlowOptions = {
  errorMessage?: RegExp;
 };
 
-function tagsFor(caseId: string, expectedResult: GfUploadResult) {
- const flowTag = expectedResult === 'success' ? '@upload_valido' : '@upload_invalido';
- return `@bloque3 @${caseId} ${flowTag}`;
+function tagsFor(config: Pick<GfUploadCase, 'caseId' | 'flowTag'> & { expectedResult: GfUploadResult }) {
+ return buildTags({
+ bloque: '@bloque3',
+ caseId: config.caseId,
+ flowTag: config.flowTag ?? flowTagForUploadResult(config.expectedResult),
+ });
 }
 
 export async function ensureGfSession(page: Page) {
@@ -281,7 +286,7 @@ async function assertValidationError(dialog: Locator, expectedResult: GfUploadRe
 export function UploadCase(config: UploadCaseConfig) {
  test.use({ storageState: '.auth/gestorGF.json' });
 
- test(`${tagsFor(config.caseId, config.expectedResult)} carga archivo y valida resultado ${config.expectedResult}`, async ({ page }) => {
+ test(`${tagsFor(config)} carga archivo y valida resultado ${config.expectedResult}`, async ({ page }) => {
  test.setTimeout(360_000);
 
  await test.step('Abrir sesion de Gestor GF', async () => {

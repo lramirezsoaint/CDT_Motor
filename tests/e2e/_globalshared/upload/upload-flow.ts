@@ -2,6 +2,7 @@
 import { expect, Locator, Page, test } from '@fixtures/base.fixture';
 import { ensureLoggedIn, LoginCredentials } from '../auth/login';
 import { openSidebarView } from '../navigation/sidebar';
+import { BloqueTag, buildTags, flowTagForUploadResult, FlowTag } from '../tags/tags';
 
 export type UploadExpectedResult =
  | 'success'
@@ -13,7 +14,7 @@ export type UploadExpectedResult =
 
 export interface SharedUploadCaseConfig {
  caseId: string;
- bloqueTag: string;
+ bloqueTag: 'bloque1' | 'bloque2' | 'bloque3';
  moduleTag: string;
  credentials: LoginCredentials;
  fixtureBlockFolder: string;
@@ -23,6 +24,7 @@ export interface SharedUploadCaseConfig {
  fileFolder?: string;
  fileName: string;
  expectedResult: UploadExpectedResult;
+ flowTag?: FlowTag;
  validateReplaceFileButton?: boolean;
 }
 
@@ -123,10 +125,12 @@ export function resolveUploadFixturePath(config: Pick<SharedUploadCaseConfig, 'f
 }
 
 export function defineSharedUploadCase(config: SharedUploadCaseConfig): void {
- const flowTag = config.expectedResult === 'success' ? '@upload_valido' : '@upload_invalido';
+ const bloque = `@${config.bloqueTag}` as BloqueTag;
+ const flowTag = config.flowTag ?? flowTagForUploadResult(config.expectedResult);
+ const tags = buildTags({ bloque, caseId: config.caseId, flowTag });
 
- test.describe(`@${config.bloqueTag} @${config.caseId} ${flowTag}`, () => {
- test(`@${config.bloqueTag} @${config.caseId} ${flowTag} debe cargar archivo en ${config.view}`, async ({
+ test.describe(tags, () => {
+ test(`${tags} debe cargar archivo en ${config.view}`, async ({
  page,
  }) => {
  test.setTimeout(360_000);

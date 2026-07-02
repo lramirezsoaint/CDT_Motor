@@ -5,17 +5,19 @@ import { test } from './bloque3.fixture';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { ensureGfContext } from './gf-context';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 export interface GfDownloadCase {
  caseId: string;
  section: string;
  view: string;
  entityName: string;
+ flowTag?: FlowTag;
 }
 
 export function defineGfDownloadCase(downloadCase: GfDownloadCase): void {
  test.describe(`@bloque3 @${downloadCase.caseId}`, () => {
- test(`@bloque3 @${downloadCase.caseId} @download_catalogo debe validar descarga de ${downloadCase.entityName}`, async ({
+ test(`${buildTags({ bloque: '@bloque3', caseId: downloadCase.caseId, flowTag: downloadCase.flowTag ?? '@download_catalogo' })} debe validar descarga de ${downloadCase.entityName}`, async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {

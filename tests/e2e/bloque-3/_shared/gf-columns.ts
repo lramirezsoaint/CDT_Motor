@@ -2,16 +2,18 @@ import { env } from '@config/env';
 import { test } from './bloque3.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { ensureGfContext } from './gf-context';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 export type GfColumnsCase = {
  caseId: string;
  section: string;
  view: string;
+ flowTag?: FlowTag;
 };
 
 export function defineGfColumnsSelectionTest(config: GfColumnsCase) {
  test.describe(`@bloque3 @${config.caseId}`, () => {
- test(`@bloque3 @${config.caseId} @columnas debe seleccionar columnas en ${config.view}`, async ({
+ test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@columnas' })} debe seleccionar columnas en ${config.view}`, async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {

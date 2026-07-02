@@ -6,16 +6,17 @@ import {
  GfUploadCase,
  runGfUploadFlow,
 } from './gf-upload';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
-function tagsFor(caseId: string, flowTag: '@upload_valido' | '@upload_invalido') {
- return `@bloque3 @${caseId} ${flowTag}`;
+function tagsFor(caseId: string, flowTag: FlowTag) {
+ return buildTags({ bloque: '@bloque3', caseId, flowTag });
 }
 
 export function defineGfUploadCase(uploadCase: GfUploadCase): void {
  test.use({ storageState: '.auth/gestorGF.json' });
 
  test.describe(`@bloque3 @${uploadCase.caseId}`, () => {
- test(`${tagsFor(uploadCase.caseId, '@upload_valido')} debe cargar archivo ${uploadCase.entityName}`, async ({ page }) => {
+ test(`${tagsFor(uploadCase.caseId, uploadCase.flowTag ?? '@upload_valido')} debe cargar archivo ${uploadCase.entityName}`, async ({ page }) => {
  test.setTimeout(360_000);
 
  await test.step('Abrir sesion de Gestor GF', async () => {
@@ -35,7 +36,7 @@ export function defineGfUploadErrorCase(uploadCase: GfErrorUploadCase): void {
  test.use({ storageState: '.auth/gestorGF.json' });
 
  test.describe(`@bloque3 @${uploadCase.caseId}`, () => {
- test(`${tagsFor(uploadCase.caseId, '@upload_invalido')} debe rechazar carga de ${uploadCase.entityName}`, async ({ page }) => {
+ test(`${tagsFor(uploadCase.caseId, uploadCase.flowTag ?? '@upload_invalido')} debe rechazar carga de ${uploadCase.entityName}`, async ({ page }) => {
  test.setTimeout(360_000);
 
  await test.step('Abrir sesion de Gestor GF', async () => {
@@ -56,7 +57,7 @@ export function defineGfUploadOverwriteCase(uploadCase: GfOverwriteUploadCase): 
  test.use({ storageState: '.auth/gestorGF.json' });
 
  test.describe(`@bloque3 @${uploadCase.caseId}`, () => {
- test(`${tagsFor(uploadCase.caseId, '@upload_valido')} debe sobreescribir ${uploadCase.entityName} sin duplicar`, async ({ page }) => {
+ test(`${tagsFor(uploadCase.caseId, uploadCase.flowTag ?? '@upload_valido')} debe sobreescribir ${uploadCase.entityName} sin duplicar`, async ({ page }) => {
  test.setTimeout(360_000);
 
  await test.step('Abrir sesion de Gestor GF', async () => {

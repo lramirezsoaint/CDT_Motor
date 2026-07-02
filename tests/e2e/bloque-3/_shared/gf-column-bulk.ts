@@ -2,6 +2,7 @@ import { env } from '@config/env';
 import { test } from './bloque3.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { ensureGfContext } from './gf-context';
+import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
 
 type GfColumnBulkAction = 'mostrar-todas' | 'ocultar-todas';
 
@@ -11,13 +12,14 @@ export interface GfColumnBulkCase {
  view: string;
  tab?: string;
  action: GfColumnBulkAction;
+ flowTag?: FlowTag;
 }
 
 export function defineGfColumnBulkTest(config: GfColumnBulkCase): void {
  const actionText = config.action === 'mostrar-todas' ? 'mostrar todas las columnas' : 'ocultar columnas opcionales';
 
  test.describe(`@bloque3 @${config.caseId}`, () => {
- test(`@bloque3 @${config.caseId} @columnas debe validar ${actionText} en ${config.view}`, async ({
+ test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@columnas' })} debe validar ${actionText} en ${config.view}`, async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {

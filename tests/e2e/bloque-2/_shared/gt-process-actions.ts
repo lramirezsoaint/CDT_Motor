@@ -3,6 +3,7 @@ import type { Page, TestInfo } from '@playwright/test';
 import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { selectGtDistribution } from './gt-distribution';
+import { buildTags } from '../../_globalshared/tags/tags';
 
 type ProcessMode = 'Completo' | 'Resumido';
 
@@ -77,5 +78,5 @@ function annotateProcessData(testInfo: TestInfo, description: string) {
 }
 
 function tagsFor(config: ProcessActionBase) {
- return ['@bloque2', `@${config.caseId}`, '@procesos'].join(' ');
+ return buildTags({ bloque: '@bloque2', caseId: config.caseId, flowTag: '@procesos' });
 }
