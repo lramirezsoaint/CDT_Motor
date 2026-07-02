@@ -192,6 +192,13 @@ export class DistribucionPage {
 
   async requireFirstDistributionRow(context: string): Promise<Locator> {
     await this.openDistribuciones();
+    await expect
+      .poll(async () => this.tableRows.count().catch(() => 0), {
+        timeout: 20_000,
+        message: `[DATA] Deben cargar distribuciones visibles para validar ${context}.`,
+      })
+      .toBeGreaterThan(0);
+
     const rowCount = await this.tableRows.count().catch(() => 0);
     expect(rowCount, `[DATA] No hay distribuciones visibles para validar ${context}.`).toBeGreaterThan(0);
 

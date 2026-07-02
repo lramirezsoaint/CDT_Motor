@@ -6,6 +6,32 @@ const repoRoot = path.resolve(__dirname, '..', '..');
 const dependenciesPath = path.join(repoRoot, 'src', 'config', 'test-dependencies.json');
 
 const VALID_PROJECTS = ['chromium', 'chromium-gestorGT', 'chromium-gestorGF'];
+const ALWAYS_GREP_INVERT = ['pendiente de automatizacion'];
+const PROJECT_GREP_INVERT = {
+  'chromium-gestorGF': ['@E0-LOGIN-ADMIN'],
+};
+
+function pad(value) {
+  return String(value).padStart(2, '0');
+}
+
+function buildTimestamp() {
+  const now = new Date();
+  return [
+    now.getFullYear(),
+    pad(now.getMonth() + 1),
+    pad(now.getDate()),
+    `${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`,
+  ].join('-');
+}
+
+function safeName(value) {
+  return value.replace(/^@/, '').replace(/[^a-zA-Z0-9.-]+/g, '-');
+}
+
+function grepValueForCli(value) {
+  return process.platform === 'win32' && /\s/.test(value) ? `"${value}"` : value;
+}
 
 function loadDependencies() {
   if (!fs.existsSync(dependenciesPath)) {
@@ -57,34 +83,57 @@ function resolveExecutionPlan(targetTag) {
   return { target, plan };
 }
 
-function executeGroup(tags, order, project) {
+function executeGroup(tags, order, project, htmlReportRoot) {
   console.log(`\n${'='.repeat(60)}`);
   console.log(`Grupo [orden ${order}]: ${tags.join(', ')}`);
   console.log(`${'='.repeat(60)}`);
+
+  const htmlReports = [];
 
   for (const tag of tags) {
     console.log(`\n> Ejecutando tests con tag: ${tag}`);
 
     const npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-    const grepValue = process.platform === 'win32' ? tag : `"${tag}"`;
+    const htmlReportDir = path.join(htmlReportRoot, `${String(order).padStart(2, '0')}-${safeName(tag)}`);
+    const grepValue = grepValueForCli(tag);
     const args = [
       'playwright', 'test',
       '--grep', grepValue,
       '--workers=1',
-      '--reporter=list'
+      '--reporter=list,html'
     ];
 
     if (project) {
       args.push('--project', project);
     }
 
+    const grepInvertTags = [
+      ...ALWAYS_GREP_INVERT,
+      ...(project ? PROJECT_GREP_INVERT[project] ?? [] : []),
+    ];
+    if (grepInvertTags.length > 0) {
+      args.push('--grep-invert', grepValueForCli(grepInvertTags.join('|')));
+    }
+
     console.log(`> Comando: ${npxCommand} ${args.join(' ')}`);
+    console.log(`> Reporte HTML: ${path.relative(repoRoot, path.join(htmlReportDir, 'index.html'))}`);
 
     const result = spawnSync(npxCommand, args, {
       cwd: repoRoot,
       stdio: 'inherit',
-      env: process.env,
+      env: {
+        ...process.env,
+        PLAYWRIGHT_HTML_OPEN: 'never',
+        PLAYWRIGHT_HTML_OUTPUT_DIR: htmlReportDir,
+      },
       shell: process.platform === 'win32'
+    });
+
+    htmlReports.push({
+      order,
+      tag,
+      path: path.relative(repoRoot, path.join(htmlReportDir, 'index.html')).replace(/\\/g, '/'),
+      exitCode: result.status,
     });
 
     if (result.error) {
@@ -93,23 +142,28 @@ function executeGroup(tags, order, project) {
 
     if (result.status !== 0) {
       console.error(`> Process exited with code: ${result.status}`);
-      return { success: false, failedTag: tag, failedOrder: order };
+      return { success: false, failedTag: tag, failedOrder: order, htmlReports };
     }
 
     console.log(`\n✓ Tag: ${tag} completado exitosamente`);
   }
 
-  return { success: true };
+  return { success: true, htmlReports };
 }
 
-function generateReport(targetTag, plan, exitCode, project) {
+function generateReport(targetTag, plan, exitCode, project, htmlReportRoot, htmlReports) {
   console.log('\nGenerando reporte ejecutivo...');
 
-  const npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-  spawnSync(npxCommand, [
-    'tsx',
-    'scripts/reports/generate-executive-report.ts'
-  ], { cwd: repoRoot, stdio: 'inherit', shell: process.platform === 'win32' });
+  const executiveReportScript = path.join(repoRoot, 'scripts', 'reports', 'generate-executive-report.ts');
+  if (fs.existsSync(executiveReportScript)) {
+    const npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+    spawnSync(npxCommand, [
+      'tsx',
+      'scripts/reports/generate-executive-report.ts'
+    ], { cwd: repoRoot, stdio: 'inherit', shell: process.platform === 'win32' });
+  } else {
+    console.log('Generador ejecutivo no encontrado; se omite reporte ejecutivo.');
+  }
 
   const summaryPath = path.join(repoRoot, 'reports', 'dependency-run-summary.json');
   const summary = {
@@ -117,6 +171,8 @@ function generateReport(targetTag, plan, exitCode, project) {
     targetTag,
     project: project || 'all',
     plan: plan.map(g => ({ order: g.order, tags: g.tags })),
+    htmlReportRoot: path.relative(repoRoot, htmlReportRoot).replace(/\\/g, '/'),
+    htmlReports,
     exitCode,
     status: exitCode === 0 ? 'SUCCESS' : 'FAILED'
   };
@@ -124,6 +180,7 @@ function generateReport(targetTag, plan, exitCode, project) {
   fs.mkdirSync(path.dirname(summaryPath), { recursive: true });
   fs.writeFileSync(summaryPath, JSON.stringify(summary, null, 2));
   console.log(`Resumen guardado en: ${path.relative(repoRoot, summaryPath)}`);
+  console.log(`Reportes HTML guardados en: ${path.relative(repoRoot, htmlReportRoot)}`);
 }
 
 function main() {
@@ -144,6 +201,8 @@ function main() {
 
   const targetTag = tagArg.split('=')[1];
   const project = projectArg ? projectArg.split('=')[1] : null;
+  const htmlReportRoot = path.join(repoRoot, 'reports', 'dependency-html', buildTimestamp());
+  const htmlReports = [];
 
   if (project && !VALID_PROJECTS.includes(project)) {
     console.error(`Error: Proyecto "${project}" no valido`);
@@ -169,14 +228,15 @@ function main() {
   });
 
   for (const group of plan) {
-    const result = executeGroup(group.tags, group.order, project);
+    const result = executeGroup(group.tags, group.order, project, htmlReportRoot);
+    htmlReports.push(...result.htmlReports);
 
     if (!result.success) {
       console.log(`\n${'='.repeat(60)}`);
       console.log(`EJECUCION DETENIDA - Fallo en orden ${result.failedOrder}, tag: ${result.failedTag}`);
       console.log(`${'='.repeat(60)}`);
 
-      generateReport(targetTag, plan, 1, project);
+      generateReport(targetTag, plan, 1, project, htmlReportRoot, htmlReports);
       process.exit(1);
     }
   }
@@ -185,7 +245,7 @@ function main() {
   console.log(`TODOS LOS GRUPOS COMPLETADOS EXITOSAMENTE`);
   console.log(`${'='.repeat(60)}`);
 
-  generateReport(targetTag, plan, 0, project);
+  generateReport(targetTag, plan, 0, project, htmlReportRoot, htmlReports);
   process.exit(0);
 }
 
