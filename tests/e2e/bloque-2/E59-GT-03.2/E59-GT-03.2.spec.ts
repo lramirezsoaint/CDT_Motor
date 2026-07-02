@@ -1,11 +1,11 @@
 ﻿import { UploadCase58 } from '../_shared/gt-upload';
 
 UploadCase58({
-  caseId: 'E59-GT-03.2',
-  section: 'Asignaciones',
-  view: 'Método Producto',
-  modalTitle: /Cargar Método Producto/i,
-  fileFolder: 'Real/success',
-  fileName: 'REAL Metodo producto GT.xlsx',
-  expectedResult: 'success',
+ caseId: 'E59-GT-03.2',
+ section: 'Asignaciones',
+ view: 'Método Producto',
+ modalTitle: /Cargar Método Producto/i,
+ fileFolder: 'Real/success',
+ fileName: 'REAL Metodo producto GT.xlsx',
+ expectedResult: 'success',
 });

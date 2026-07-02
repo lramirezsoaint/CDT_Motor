@@ -2,69 +2,68 @@ import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { ensureGfContext } from '../_shared/gf-context';
+test('@bloque3 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
 
-test('CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
+ try {
+ const loginPage = new LoginPage(page);
+ await loginPage.login(
+ env.gestorGFUsername,
+ env.gestorGFPassword
+ );
+ } catch (error) { }
 
-  try {
-      const loginPage = new LoginPage(page);
-      await loginPage.login(
-        env.gestorGFUsername,
-        env.gestorGFPassword
-      );
-    } catch (error) { }
+ await expect(page).toHaveURL(/\/distribuciones/i);
+ await ensureGfContext(page);
 
-  await expect(page).toHaveURL(/\/distribuciones/i);
-  await ensureGfContext(page);
+ await page.getByRole('button', {
+ name: /nueva distribución/i
+ }).click();
 
-  await page.getByRole('button', {
-    name: /nueva distribución/i
-  }).click();
+ const modal = page.getByRole('dialog');
 
-  const modal = page.getByRole('dialog');
+ await expect(modal).toBeVisible();
 
-  await expect(modal).toBeVisible();
+ await expect(
+ modal.getByText(/crear distribución/i)
+ ).toBeVisible();
 
-  await expect(
-    modal.getByText(/crear distribución/i)
-  ).toBeVisible();
+ const crearButton = modal.getByRole('button', {
+ name: /^crear$/i
+ });
 
-  const crearButton = modal.getByRole('button', {
-    name: /^crear$/i
-  });
+ await expect(crearButton).toBeDisabled();
 
-  await expect(crearButton).toBeDisabled();
+ const periodo = '202501';
+ const tipo = 'Real Local';
+ const seccion = 'Flujo del mes';
 
-  const periodo = '202501';
-  const tipo = 'Real Local';
-  const seccion = 'Flujo del mes';
+ await modal.getByLabel(/nombre/i)
+ .fill(`${periodo}_${tipo}_${seccion}`);
 
-  await modal.getByLabel(/nombre/i)
-    .fill(`${periodo}_${tipo}_${seccion}`);
+ await modal.getByLabel(/tipo/i).click();
 
-  await modal.getByLabel(/tipo/i).click();
+ await page.getByRole('option', {
+ name: tipo
+ }).click();
 
-  await page.getByRole('option', {
-    name: tipo
-  }).click();
+ await modal.getByLabel(/periodo/i).click();
 
-  await modal.getByLabel(/periodo/i).click();
+ await page
+ .getByTestId(`periodo-option-${periodo}`)
+ .click();
 
-  await page
-    .getByTestId(`periodo-option-${periodo}`)
-    .click();
+ await modal.getByLabel(/versión/i)
+ .fill('1.0');
 
-  await modal.getByLabel(/versión/i)
-    .fill('1.0');
+ await modal.getByLabel(/tasa de cambio/i)
+ .fill('13');
 
-  await modal.getByLabel(/tasa de cambio/i)
-    .fill('13');
+ await page.getByTestId('seccion').click();
 
-  await page.getByTestId('seccion').click();
+ await page
+ .locator('[data-radix-popper-content-wrapper]')
+ .getByText(seccion, { exact: true })
+ .click();
 
-  await page
-    .locator('[data-radix-popper-content-wrapper]')
-    .getByText(seccion, { exact: true })
-    .click();
-
-  await expect(crearButton).toBeDisabled();
+ await expect(crearButton).toBeDisabled();
 });

@@ -1,8 +1,8 @@
 ﻿import { ColumnsCase } from '../_shared/gt-columns';
 
 ColumnsCase({
-  caseId: 'E60-GT-03.2.3',
-  section: 'Aprovisionamiento',
-  view: 'Driver Producto',
-  action: 'showAll',
+ caseId: 'E60-GT-03.2.3',
+ section: 'Aprovisionamiento',
+ view: 'Driver Producto',
+ action: 'showAll',
 });

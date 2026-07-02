@@ -7,8 +7,11 @@
   "scripts": {
     "test": "node --experimental-strip-types scripts/runners/run-all-with-history.ts",
     "test:raw": "playwright test",
-    "test:smoke": "playwright test --grep @smoke",
-    "test:critical": "playwright test --grep @critical",
+    "test:login": "playwright test --grep @login",
+    "test:distribucion": "playwright test --grep @distribucion",
+    "test:upload:valido": "playwright test --grep @upload_valido",
+    "test:upload:invalido": "playwright test --grep @upload_invalido",
+    "test:procesos": "playwright test --grep @procesos",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:list": "playwright test --list",

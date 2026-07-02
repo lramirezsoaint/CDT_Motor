@@ -1,15 +1,15 @@
 import { UploadCase58 } from '../_shared/gt-upload';
 
 UploadCase58({
-  caseId: 'E59-PRE-GT-02.4',
-  section: 'Aprovisionamiento',
-  view: 'Maestro Negocio/Embebidos',
-  flow: 'presupuesto',
-  role: 'gestorGT',
-  distribution: { tipo: /Presupuesto/i },
-  modalTitle: /Cargar Maestro de Negocio|Embebidos|Recargar Maestro de Negocio|Embebidos/i,
-  fileFolder: 'Presupuesto/success',
-  fileName: 'PRESUPUESTO Maestro Negocio y Embebidos GT.xlsx',
-  expectedResult: 'success',
-  expectedWarning: /Desea continuar con la carga|continuar con la carga/i,
+ caseId: 'E59-PRE-GT-02.4',
+ section: 'Aprovisionamiento',
+ view: 'Maestro Negocio/Embebidos',
+ flow: 'presupuesto',
+ role: 'gestorGT',
+ distribution: { tipo: /Presupuesto/i },
+ modalTitle: /Cargar Maestro de Negocio|Embebidos|Recargar Maestro de Negocio|Embebidos/i,
+ fileFolder: 'Presupuesto/success',
+ fileName: 'PRESUPUESTO Maestro Negocio y Embebidos GT.xlsx',
+ expectedResult: 'success',
+ expectedWarning: /Desea continuar con la carga|continuar con la carga/i,
 });

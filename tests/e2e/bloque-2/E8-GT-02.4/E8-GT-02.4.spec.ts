@@ -1,12 +1,12 @@
-import { UploadCase  } from '../_shared/gt-upload';
+import { UploadCase } from '../_shared/gt-upload';
 
 UploadCase ({
-  caseId: 'E8-GT-02.4',
-  section: 'Aprovisionamiento',
-  view: 'Unidad de Cuenta GT',
-  modalTitle: /Cargar Unidad de Cuenta GT/i,
-  fileFolder: 'Real/validationError',
-  fileName: 'REAL Unidad de Cuenta GT.xlsx',
-  expectedResult: 'validationError',
+ caseId: 'E8-GT-02.4',
+ section: 'Aprovisionamiento',
+ view: 'Unidad de Cuenta GT',
+ modalTitle: /Cargar Unidad de Cuenta GT/i,
+ fileFolder: 'Real/validationError',
+ fileName: 'REAL Unidad de Cuenta GT.xlsx',
+ expectedResult: 'validationError',
 });
 

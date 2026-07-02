@@ -2,110 +2,109 @@ import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { ensureGfContext } from '../_shared/gf-context';
+test('@bloque3 @E0-LOGIN-ADMIN-02 @login E0-LOGIN-ADMIN-02', async ({ page }) => {
 
-test('E0-LOGIN-ADMIN-02', async ({ page }) => {
+ try {
+ const loginPage = new LoginPage(page);
+ await loginPage.login(
+ env.username,
+ env.password
+ );
+ } catch (error) { }
 
-  try {
-        const loginPage = new LoginPage(page);
-        await loginPage.login(
-          env.username,
-          env.password
-        );
-      } catch (error) { }
+ // VALIDAR DASHBOARD
+ await expect(page)
+ .toHaveURL(/\/distribuciones/i);
+ await ensureGfContext(page);
 
-  // VALIDAR DASHBOARD
-  await expect(page)
-    .toHaveURL(/\/distribuciones/i);
-  await ensureGfContext(page);
+ // ABRIR COMUNES
+ await page.getByText('Comunes').click();
 
-  // ABRIR COMUNES
-  await page.getByText('Comunes').click();
+ // =========================
+ // LINEAS
+ // =========================
 
-  // =========================
-  // LINEAS
-  // =========================
+ await page.getByText('Líneas').click();
 
-  await page.getByText('Líneas').click();
+ await expect(
+ page.getByRole('heading', {
+ name: /líneas/i
+ })
+ ).toBeVisible();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /líneas/i
-    })
-  ).toBeVisible();
+ // =========================
+ // GRUPO PRODUCTO
+ // =========================
 
-  // =========================
-  // GRUPO PRODUCTO
-  // =========================
+ await page.getByText('Grupo Producto').click();
 
-  await page.getByText('Grupo Producto').click();
+ await expect(
+ page.getByRole('heading', {
+ name: /grupo producto/i
+ })
+ ).toBeVisible();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /grupo producto/i
-    })
-  ).toBeVisible();
+ // =========================
+ // CANALES
+ // =========================
 
-  // =========================
-  // CANALES
-  // =========================
-
-  await page.getByRole('link', {
-  name: 'Canales',
-  exact: true
+ await page.getByRole('link', {
+ name: 'Canales',
+ exact: true
 }).click();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /canales/i
-    })
-  ).toBeVisible();
+ await expect(
+ page.getByRole('heading', {
+ name: /canales/i
+ })
+ ).toBeVisible();
 
-  // =========================
-  // SUBCANALES
-  // =========================
+ // =========================
+ // SUBCANALES
+ // =========================
 
-  await page.getByText('Subcanales').click();
+ await page.getByText('Subcanales').click();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /subcanales/i
-    })
-  ).toBeVisible();
+ await expect(
+ page.getByRole('heading', {
+ name: /subcanales/i
+ })
+ ).toBeVisible();
 
-  // =========================
-  // MAESTRO UOA
-  // =========================
+ // =========================
+ // MAESTRO UOA
+ // =========================
 
-  await page.getByText('Maestro UoA').click();
+ await page.getByText('Maestro UoA').click();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /maestro uoa/i
-    })
-  ).toBeVisible();
+ await expect(
+ page.getByRole('heading', {
+ name: /maestro uoa/i
+ })
+ ).toBeVisible();
 
-  // =========================
-  // UNIDADES DE CUENTA
-  // =========================
+ // =========================
+ // UNIDADES DE CUENTA
+ // =========================
 
  await page.getByText(/Unidades de Cuenta/i).click();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /unidades de cuenta/i
-    })
-  ).toBeVisible();
+ await expect(
+ page.getByRole('heading', {
+ name: /unidades de cuenta/i
+ })
+ ).toBeVisible();
 
-  // =========================
-  // CONFIGURACION PARCHES
-  // =========================
+ // =========================
+ // CONFIGURACION PARCHES
+ // =========================
 
-  await page.getByText('Configuración de Parches').click();
+ await page.getByText('Configuración de Parches').click();
 
-  await expect(
-    page.getByRole('heading', {
-      name: /configuración de parches/i
-    })
-  ).toBeVisible();
+ await expect(
+ page.getByRole('heading', {
+ name: /configuración de parches/i
+ })
+ ).toBeVisible();
 
 });

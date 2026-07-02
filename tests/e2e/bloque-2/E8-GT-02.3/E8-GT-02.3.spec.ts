@@ -1,12 +1,12 @@
-import { UploadCase  } from '../_shared/gt-upload';
+import { UploadCase } from '../_shared/gt-upload';
 
 UploadCase ({
-  caseId: 'E8-GT-02.3',
-  section: 'Aprovisionamiento',
-  view: 'Driver Subcanal',
-  modalTitle: /Cargar Driver Subcanal/i,
-  fileFolder: 'Real/validationError',
-  fileName: 'Driver Subcanal GT.xlsx',
-  expectedResult: 'validationError',
+ caseId: 'E8-GT-02.3',
+ section: 'Aprovisionamiento',
+ view: 'Driver Subcanal',
+ modalTitle: /Cargar Driver Subcanal/i,
+ fileFolder: 'Real/validationError',
+ fileName: 'Driver Subcanal GT.xlsx',
+ expectedResult: 'validationError',
 });
 

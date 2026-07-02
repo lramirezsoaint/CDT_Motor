@@ -1,13 +1,13 @@
 import { DeleteRecordCase } from '../_shared/gt-delete-record';
 
 DeleteRecordCase({
-  caseId: 'E37-PRE-GT-02.02.3',
-  section: 'Aprovisionamiento',
-  view: 'Maestro Negocio/Embebidos',
-  flow: 'presupuesto',
-  role: 'admin',
-  distribution: { tipo: /Presupuesto/i },
-  expectedResult: 'processError',
+ caseId: 'E37-PRE-GT-02.02.3',
+ section: 'Aprovisionamiento',
+ view: 'Maestro Negocio/Embebidos',
+ flow: 'presupuesto',
+ role: 'admin',
+ distribution: { tipo: /Presupuesto/i },
+ expectedResult: 'processError',
 warningMessage: /Está seguro que desea eliminar este registro.*/i,
-  expectedMessage: /Registro eliminado con éxito|registro.*eliminado.*xito/i,
+ expectedMessage: /Registro eliminado con éxito|registro.*eliminado.*xito/i,
 });

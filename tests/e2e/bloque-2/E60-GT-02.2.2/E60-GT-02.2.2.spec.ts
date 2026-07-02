@@ -1,8 +1,8 @@
 ﻿import { ColumnsCase } from '../_shared/gt-columns';
 
 ColumnsCase({
-  caseId: 'E60-GT-02.2.2',
-  section: 'Aprovisionamiento',
-  view: 'Exactus procesado|Exactus',
-  action: 'search',
+ caseId: 'E60-GT-02.2.2',
+ section: 'Aprovisionamiento',
+ view: 'Exactus procesado|Exactus',
+ action: 'search',
 });

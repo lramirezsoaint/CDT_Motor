@@ -19,8 +19,8 @@ Do not guess or assume standard Playwright commands. The workspace relies on cus
   ```
 - **Run focused groups via tags:**
   ```bash
-  npm run test:smoke      # Basic sanity checks
-  npm run test:critical   # Core functional flows
+npm run test:login      # Authentication flows
+npm run test:procesos   # Process flows
   ```
 - **Run specific Bloque 1 tests sequentially:**
   ```bash

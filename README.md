@@ -92,8 +92,11 @@ Para agregar un nuevo rol al framework:
   | ------------------------------------ | ------------------------------------------------ |
   | `npm test`                         | Suite completa con historial y reporte ejecutivo |
   | `npm run test:raw`                 | Playwright directo sin hooks de historial        |
-  | `npm run test:smoke`               | Tests etiquetados con `@smoke`                  |
-  | `npm run test:critical`            | Tests etiquetados con `@critical`               |
+  | `npm run test:login`               | Tests etiquetados con `@login`                  |
+  | `npm run test:distribucion`        | Tests etiquetados con `@distribucion`           |
+  | `npm run test:upload:valido`       | Tests etiquetados con `@upload_valido`          |
+  | `npm run test:upload:invalido`     | Tests etiquetados con `@upload_invalido`        |
+  | `npm run test:procesos`            | Tests etiquetados con `@procesos`               |
   | `npm run test:headed`              | Ejecuta con navegador visible                    |
   | `npm run test:ui`                  | Abre la UI de Playwright                         |
   | `npm run test:list`                | Lista todos los tests disponibles                |
@@ -184,38 +187,51 @@ Para agregar un nuevo rol al framework:
 
   ## Convenciones de tags
 
-  ### Obligatorios — todo spec debe tener al menos uno de cada categoría
+  La convencion oficial usa tags para identificar el caso y el flujo funcional principal.  
 
-  | Categoría | Tags                                                 | Descripción                    |
-  | ---------- | ---------------------------------------------------- | ------------------------------- |
-  | Bloque     | `@bloque1` / `@bloque2` / `@bloque3`           | Bloque funcional del test       |
-  | Módulo    | `@comunes` / `@distribucion` / `@gf` / `@gt` | Módulo de la app que se testea |
-  | Prioridad  | `@smoke` / `@critical` / `@regression`         | Cuándo debe correr             |
+  Formato recomendado:
 
-  **Ejemplo de spec con tags correctos:**
+  ```text
+  @bloqueX @ID-del-caso @flujo_funcional
+  ```
+
+  Ejemplo:
 
   ```typescript
-  test('E4-GF-01.1 - Carga archivo con formato inválido',
-    { tag: ['@bloque3', '@gf', '@critical', '@upload'] },
-    async ({ page }) => {
-      // ...
-    }
-  )
+  test('@bloque3 @E4-GF-01.1 @upload_valido debe cargar archivo valido de Cuentas Contables', async ({ page }) => {
+    // ...
+  });
   ```
-  ### Opcionales — se agregan según la feature que cubre el test
 
-  | Tag             | Uso                       |
-  | --------------- | ------------------------- |
-  | `@upload`     | Carga de archivos         |
-  | `@download`   | Descarga de archivos      |
-  | `@columnas`   | Selector de columnas      |
-  | `@procesos`   | Ejecución de procesos GF |
-  | `@login`      | Tests de autenticación   |
-  | `@busqueda`   | Tests de búsqueda        |
-  | `@paginacion` | Tests de paginación      |
+  ### Tags de identificacion obligatorios
+
+  Todo spec debe tener siempre estos dos tags:
+
+  | Tag | Uso |
+  | --- | --- |
+  | `@bloque1` / `@bloque2` / `@bloque3` | Bloque al que pertenece el test |
+  | `@<ID-del-test>` | Identificador unico del caso, igual al ID del catalogo/tracking. Ejemplo: `@E4-GF-01.1` |
+
+  ### Tags de flujo funcional obligatorios
+
+  Cada test debe tener exactamente un tag de flujo principal, elegido segun la feature que cubre el caso.
+
+  | Orden | Tag | Depende de | Uso |
+  | ----- | --- | ---------- | --- |
+  | 1 | `@login` | - | Autenticacion, con el acceso correspondiente al modulo/rol que se testea |
+  | 2 | `@distribucion` | 1 | Creacion o seleccion de distribucion |
+  | 3 | `@upload_valido` / `@upload_invalido` | 1, 2 | Carga de archivos |
+  | 4 | `@registrar` | 1, 2 | Registro manual de datos |
+  | 5 | `@editar` | 1, 2, 3 | Edicion de registros |
+  | 6 | `@eliminar` | 1, 2, 3 | Eliminacion o inactivacion |
+  | 7 | `@busqueda` | 1, 2 | Busqueda |
+  | 8 | `@columnas` | 1, 2 | Selector de columnas |
+  | 9 | `@paginacion` | 1, 2 | Paginacion |
+  | 10 | `@procesos` | 1, 2 | Ejecucion de procesos |
+  | 11 | `@download_catalogo` | 1, 2 | Descarga de catalogos o parametrizacion |
+  | 12 | `@download_reporte` | 1, 2, 10 | Descarga de reportes de resultados despues de ejecutar procesos |
 
 ---
-
   ## Generadores
 
   Los scripts en `scripts/generators/` convierten las planillas Excel de QA en catálogos y scaffolding de specs.
@@ -337,7 +353,7 @@ Para agregar un nuevo rol al framework:
 
   - Node.js 20
   - Instalación de Chromium
-  - `npm run test:smoke`
+  - `npm run test:login`
 
   Ver `.github/workflows/playwright.yml`.
 

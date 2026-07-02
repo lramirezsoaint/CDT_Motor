@@ -1,8 +1,8 @@
 ﻿import { ColumnsCase } from '../_shared/gt-columns';
 
 ColumnsCase({
-  caseId: 'E60-GT-01.3.1',
-  section: 'Asignaciones',
-  view: 'Método Subcanal',
-  action: 'open',
+ caseId: 'E60-GT-01.3.1',
+ section: 'Asignaciones',
+ view: 'Método Subcanal',
+ action: 'open',
 });

@@ -1,13 +1,13 @@
 import { UploadAndTableCase } from '../_shared/gt-upload-table';
 
 UploadAndTableCase({
-  caseId: 'E9-PRE-GT-01.2',
-  section: 'Parametrización',
-  view: 'Cuentas Contables',
-  flow: 'presupuesto',
-  role: 'gestorGT',
-  distribution: { tipo: /Presupuesto/i },
-  modalTitle: /Cargar Cuentas Contables/i,
-  fileFolder: 'Presupuesto/success',
-  fileName: 'PRESUPUESTO Cuentas Contables GT.xlsx',
+ caseId: 'E9-PRE-GT-01.2',
+ section: 'Parametrización',
+ view: 'Cuentas Contables',
+ flow: 'presupuesto',
+ role: 'gestorGT',
+ distribution: { tipo: /Presupuesto/i },
+ modalTitle: /Cargar Cuentas Contables/i,
+ fileFolder: 'Presupuesto/success',
+ fileName: 'PRESUPUESTO Cuentas Contables GT.xlsx',
 });

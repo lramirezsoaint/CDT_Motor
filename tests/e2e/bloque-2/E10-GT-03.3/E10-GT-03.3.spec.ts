@@ -1,7 +1,7 @@
 ﻿import { DownloadCase } from '../_shared/gt-download';
 
 DownloadCase({
-  caseId: 'E10-GT-03.3',
-  section: 'Asignaciones',
-  view: 'especiales niif',
+ caseId: 'E10-GT-03.3',
+ section: 'Asignaciones',
+ view: 'especiales niif',
 });

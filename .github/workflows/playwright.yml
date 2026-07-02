@@ -17,7 +17,7 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:smoke
+      - run: npm run test:login
         env:
           MOTOR_BASE_URL: ${{ secrets.MOTOR_BASE_URL }}
           MOTOR_USERNAME: ${{ secrets.MOTOR_USERNAME }}

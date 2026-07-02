@@ -6,23 +6,23 @@ import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 
 export const test = base.extend<{
-  bloque3GastosFinancierosPage: Bloque3GastosFinancierosPage;
-  procesosGastosFinancierosPage: ProcesosGastosFinancierosPage;
-  sidebar: Sidebar;
-  loginPage: LoginPage;
+ bloque3GastosFinancierosPage: Bloque3GastosFinancierosPage;
+ procesosGastosFinancierosPage: ProcesosGastosFinancierosPage;
+ sidebar: Sidebar;
+ loginPage: LoginPage;
 }>({
-  bloque3GastosFinancierosPage: async ({ page }, use) => {
-    await use(new Bloque3GastosFinancierosPage(page));
-  },
-  procesosGastosFinancierosPage: async ({ page }, use) => {
-    await use(new ProcesosGastosFinancierosPage(page));
-  },
-  sidebar: async ({ page }, use) => {
-    await use(new Sidebar(page));
-  },
-  loginPage: async ({ page }, use) => {
-    await use(new LoginPage(page));
-  },
+ bloque3GastosFinancierosPage: async ({ page }, use) => {
+ await use(new Bloque3GastosFinancierosPage(page));
+ },
+ procesosGastosFinancierosPage: async ({ page }, use) => {
+ await use(new ProcesosGastosFinancierosPage(page));
+ },
+ sidebar: async ({ page }, use) => {
+ await use(new Sidebar(page));
+ },
+ loginPage: async ({ page }, use) => {
+ await use(new LoginPage(page));
+ },
 });
 
 export { expect };

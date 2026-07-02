@@ -1,11 +1,11 @@
-import { UploadCase  } from '../_shared/gt-upload';
+import { UploadCase } from '../_shared/gt-upload';
 
 UploadCase ({
-  caseId: 'E61-GT-02.4',
-  section: 'Aprovisionamiento',
-  view: 'Unidad de Cuenta GT',
-  modalTitle: /Cargar Unidad de Cuenta GT/i,
-  fileFolder: 'Real/maxSize',
-  fileName: 'REAL Unidad de Cuenta GT.xlsx',
-  expectedResult: 'maxSize',
+ caseId: 'E61-GT-02.4',
+ section: 'Aprovisionamiento',
+ view: 'Unidad de Cuenta GT',
+ modalTitle: /Cargar Unidad de Cuenta GT/i,
+ fileFolder: 'Real/maxSize',
+ fileName: 'REAL Unidad de Cuenta GT.xlsx',
+ expectedResult: 'maxSize',
 });

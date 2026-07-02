@@ -4,22 +4,22 @@ import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
 
 test.use({ storageState: '.auth/gestorGT.json' });
-test('@bloque2 @gt @gestorGT @E42-DIS-01 VISUALIZAR-PROGRESO-DISTRIBUCION', async ({ page }) => {
+test('@bloque2 @E42-DIS-01 @distribucion VISUALIZAR-PROGRESO-DISTRIBUCION', async ({ page }) => {
 
-  try {
-      const loginPage = new LoginPage(page);
-      await loginPage.login(
-        env.gestorGTUsername,
-      env.gestorGTPassword
-      );
-    } catch (error) { }
-    await selectGtDistribution(page);
-  // 1. Accede a Distribuciones
-  await expect(page)
-    .toHaveURL(/\/distribuciones/i);
+ try {
+ const loginPage = new LoginPage(page);
+ await loginPage.login(
+ env.gestorGTUsername,
+ env.gestorGTPassword
+ );
+ } catch (error) { }
+ await selectGtDistribution(page);
+ // 1. Accede a Distribuciones
+ await expect(page)
+ .toHaveURL(/\/distribuciones/i);
 
-  // 2. Presiona icono copy del primer registro
-  
+ // 2. Presiona icono copy del primer registro
+ 
 
 
 });

@@ -1,12 +1,12 @@
-import { UploadCaseE4  } from '../_shared/gt-upload';
+import { UploadCaseE4 } from '../_shared/gt-upload';
 
 UploadCaseE4({
-  caseId: 'E4-GT-03.3',
-  section: 'Asignaciones',
-  view: 'Especiales NIIF',
-  modalTitle: /Cargar Especiales NIIF/i,
-  fileFolder: 'Real/success',
-  fileName: 'REAL Especiales NIIF GT.xlsx',
-  expectedResult: 'success',
+ caseId: 'E4-GT-03.3',
+ section: 'Asignaciones',
+ view: 'Especiales NIIF',
+ modalTitle: /Cargar Especiales NIIF/i,
+ fileFolder: 'Real/success',
+ fileName: 'REAL Especiales NIIF GT.xlsx',
+ expectedResult: 'success',
 });
 
