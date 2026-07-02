@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "dependencies": [
+    { "order": 1,  "tag": "@login",              "dependsOn": [], "projects": ["chromium", "chromium-gestorGT", "chromium-gestorGF"] },
+    { "order": 2,  "tag": "@distribucion",        "dependsOn": [1], "projects": ["chromium", "chromium-gestorGT", "chromium-gestorGF"] },
+    { "order": 3,  "tag": "@upload_valido",       "dependsOn": [1, 2], "projects": ["chromium", "chromium-gestorGF"] },
+    { "order": 3,  "tag": "@upload_invalido",     "dependsOn": [1, 2], "projects": ["chromium"] },
+    { "order": 4,  "tag": "@registrar",           "dependsOn": [1, 2], "projects": ["chromium"] },
+    { "order": 5,  "tag": "@editar",              "dependsOn": [1, 2, 3], "projects": ["chromium"] },
+    { "order": 6,  "tag": "@eliminar",            "dependsOn": [1, 2, 3], "projects": ["chromium", "chromium-gestorGT", "chromium-gestorGF"] },
+    { "order": 7,  "tag": "@busqueda",            "dependsOn": [1, 2], "projects": ["chromium", "chromium-gestorGF"] },
+    { "order": 8,  "tag": "@columnas",            "dependsOn": [1, 2], "projects": ["chromium", "chromium-gestorGF"] },
+    { "order": 9,  "tag": "@paginacion",          "dependsOn": [1, 2], "projects": ["chromium", "chromium-gestorGF"] },
+    { "order": 10, "tag": "@procesos",            "dependsOn": [1, 2], "projects": ["chromium-gestorGF"] },
+    { "order": 11, "tag": "@download_catalogo",   "dependsOn": [1, 2], "projects": ["chromium", "chromium-gestorGF"] },
+    { "order": 12, "tag": "@download_reporte",    "dependsOn": [1, 2, 10], "projects": ["chromium-gestorGF"] }
+  ]
+}

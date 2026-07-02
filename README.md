@@ -88,25 +88,46 @@ Para agregar un nuevo rol al framework:
 
   ### Ejecución de tests
 
-  | Comando                              | Descripción                                     |
-  | ------------------------------------ | ------------------------------------------------ |
-  | `npm test`                         | Suite completa con historial y reporte ejecutivo |
-  | `npm run test:raw`                 | Playwright directo sin hooks de historial        |
-  | `npm run test:login`               | Tests etiquetados con `@login`                  |
-  | `npm run test:distribucion`        | Tests etiquetados con `@distribucion`           |
-  | `npm run test:upload:valido`       | Tests etiquetados con `@upload_valido`          |
-  | `npm run test:upload:invalido`     | Tests etiquetados con `@upload_invalido`        |
-  | `npm run test:procesos`            | Tests etiquetados con `@procesos`               |
-  | `npm run test:headed`              | Ejecuta con navegador visible                    |
-  | `npm run test:ui`                  | Abre la UI de Playwright                         |
-  | `npm run test:list`                | Lista todos los tests disponibles                |
-  | `npm run test:bloque1`             | Bloque 1 con rol Administrador                   |
-  | `npm run test:block1:sequential`   | Bloque 1 secuencial                              |
-  | `npm run test:all:history`         | Suite completa con historial                     |
-  | `npm run test:bloque2`             | Solo Bloque 2 (Gastos Técnicos)                  |
-  | `npm run test:bloque2:gestorGT`    | Bloque 2 con rol Gestor GT                       |
-  | `npm run test:bloque3`             | Solo Bloque 3 (Gastos Financieros)               |
-  | `npm run test:bloque3:gestorGF`    | Bloque 3 con rol Gestor GF                       |
+| Comando                              | Descripción                                     |
+| ------------------------------------ | ------------------------------------------------ |
+| `npm test`                         | Suite completa con historial y reporte ejecutivo |
+| `npm run test:raw`                 | Playwright directo sin hooks de historial        |
+| `npm run test:login`               | Tests etiquetados con `@login`                  |
+| `npm run test:distribucion`        | Tests etiquetados con `@distribucion`           |
+| `npm run test:upload:valido`       | Tests etiquetados con `@upload_valido`          |
+| `npm run test:upload:invalido`     | Tests etiquetados con `@upload_invalido`        |
+| `npm run test:procesos`            | Tests etiquetados con `@procesos`               |
+| `npm run test:headed`              | Ejecuta con navegador visible                    |
+| `npm run test:ui`                  | Abre la UI de Playwright                         |
+| `npm run test:list`                | Lista todos los tests disponibles                |
+| `npm run test:bloque1`             | Bloque 1 con rol Administrador                   |
+| `npm run test:block1:sequential`   | Bloque 1 secuencial                              |
+| `npm run test:all:history`         | Suite completa con historial                     |
+| `npm run test:bloque2`             | Solo Bloque 2 (Gastos Técnicos)                  |
+| `npm run test:bloque2:gestorGT`    | Bloque 2 con rol Gestor GT                       |
+| `npm run test:bloque3`             | Solo Bloque 3 (Gastos Financieros)               |
+| `npm run test:bloque3:gestorGF`    | Bloque 3 con rol Gestor GF                       |
+| `npm run test:by-dependency -- --tag=@tag` | Ejecuta tests respetando dependencias funcionales |
+
+  ### Ejecutar por dependencia funcional
+
+  Ejecuta tests en orden basado en las dependencias funcionales definidas en `src/config/test-dependencies.json`.
+
+  ```bash
+  # Ejecutar @editar en proyecto admin
+  npm run test:by-dependency -- --tag=@editar --project=chromium
+
+  # Ejecutar @upload_valido en proyecto gestorGF
+  npm run test:by-dependency -- --tag=@upload_valido --project=chromium-gestorGF
+
+  # Ejecutar @eliminar en todos los proyectos
+  npm run test:by-dependency -- --tag=@eliminar
+
+  # Ejecutar @procesos en proyecto gestorGF
+  npm run test:by-dependency -- --tag=@procesos --project=chromium-gestorGF
+  ```
+
+  **Proyectos válidos:** `chromium`, `chromium-gestorGT`, `chromium-gestorGF`
 
   ### Ejecutar un spec especifico
 
@@ -143,7 +164,7 @@ Para agregar un nuevo rol al framework:
   |   |-- procesos/
   |   `-- shared/
   |-- src/
-  |   |-- config/                    # env.ts, roles.ts, roles.json
+  |   |-- config/                    # env.ts, roles.ts, roles.json, test-dependencies.json
   |   |-- data/
   |   |-- utils/
   |   `-- components/
@@ -165,6 +186,10 @@ Para agregar un nuevo rol al framework:
   |-- scripts/
   |   |-- auth/create-auth.js
   |   |-- runners/
+  |   |   |-- run-all-with-history.ts
+  |   |   |-- run-block1-implemented-sequential.ts
+  |   |   |-- run-by-dependency.ts
+  |   |   `-- run-failed-with-history.ts
   |   |-- reports/
   |   `-- generators/
   ```
@@ -216,20 +241,20 @@ Para agregar un nuevo rol al framework:
 
   Cada test debe tener exactamente un tag de flujo principal, elegido segun la feature que cubre el caso.
 
-  | Orden | Tag | Depende de | Uso |
-  | ----- | --- | ---------- | --- |
-  | 1 | `@login` | - | Autenticacion, con el acceso correspondiente al modulo/rol que se testea |
-  | 2 | `@distribucion` | 1 | Creacion o seleccion de distribucion |
-  | 3 | `@upload_valido` / `@upload_invalido` | 1, 2 | Carga de archivos |
-  | 4 | `@registrar` | 1, 2 | Registro manual de datos |
-  | 5 | `@editar` | 1, 2, 3 | Edicion de registros |
-  | 6 | `@eliminar` | 1, 2, 3 | Eliminacion o inactivacion |
-  | 7 | `@busqueda` | 1, 2 | Busqueda |
-  | 8 | `@columnas` | 1, 2 | Selector de columnas |
-  | 9 | `@paginacion` | 1, 2 | Paginacion |
-  | 10 | `@procesos` | 1, 2 | Ejecucion de procesos |
-  | 11 | `@download_catalogo` | 1, 2 | Descarga de catalogos o parametrizacion |
-  | 12 | `@download_reporte` | 1, 2, 10 | Descarga de reportes de resultados despues de ejecutar procesos |
+| Orden funcional | Tag | Dependencia funcional | Uso |
+| ----- | --- | ---------- | --- |
+| 1 | `@login` | - | Autenticacion, con el acceso correspondiente al modulo/rol que se testea |
+| 2 | `@distribucion` | 1 | Creacion o seleccion de distribucion |
+| 3 | `@upload_valido` / `@upload_invalido` | 1, 2 | Carga de archivos |
+| 4 | `@registrar` | 1, 2 | Registro manual de datos |
+| 5 | `@editar` | 1, 2, 3 | Edicion de registros |
+| 6 | `@eliminar` | 1, 2, 3 | Eliminacion o inactivacion |
+| 7 | `@busqueda` | 1, 2 | Busqueda |
+| 8 | `@columnas` | 1, 2 | Selector de columnas |
+| 9 | `@paginacion` | 1, 2 | Paginacion |
+| 10 | `@procesos` | 1, 2 | Ejecucion de procesos |
+| 11 | `@download_catalogo` | 1, 2 | Descarga de catalogos o parametrizacion |
+| 12 | `@download_reporte` | 1, 2, 10 | Descarga de reportes de resultados despues de ejecutar procesos |
 
 ---
   ## Generadores

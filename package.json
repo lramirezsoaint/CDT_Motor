@@ -22,6 +22,7 @@
     "test:bloque3:gestorGF": "playwright test tests/e2e/bloque-3 --project=chromium-gestorGF --workers=1",
     "test:block1:sequential": "node --experimental-strip-types scripts/runners/run-block1-implemented-sequential.ts",
     "test:all:history": "node --experimental-strip-types scripts/runners/run-all-with-history.ts",
+    "test:by-dependency": "npx tsx scripts/runners/run-by-dependency.ts",
     "report": "playwright show-report",
     "report:executive": "node --experimental-strip-types scripts/reports/generate-executive-report.ts",
     "cases:bd1": "node scripts/generators/export-bd1-case-matrix.cjs"
