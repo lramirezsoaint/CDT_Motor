@@ -18,8 +18,8 @@ function inferFlowTag(caseId: string) {
  if (/^E(?:4|9|59)-/i.test(caseId)) return '@upload_valido';
  if (/^E(?:5|6|8|61|62)-/i.test(caseId)) return '@upload_invalido';
  if (/^E35-/i.test(caseId)) return '@registrar';
- if (/^E36-/i.test(caseId)) return '@bloque3 @editar';
- if (/^E(?:37|43)-/i.test(caseId)) return '@bloque3 @eliminar';
+ if (/^E36-/i.test(caseId)) return '@editar';
+ if (/^E(?:37|43)-/i.test(caseId)) return '@eliminar';
  if (/^E63-/i.test(caseId)) return '@busqueda';
  if (/^E60-/i.test(caseId)) return '@columnas';
  if (/^E56-/i.test(caseId)) return '@paginacion';
