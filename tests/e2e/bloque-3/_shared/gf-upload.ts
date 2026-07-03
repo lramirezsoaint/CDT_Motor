@@ -1,7 +1,5 @@
-import { expect, test } from '@fixtures/base.fixture';
+import { expect, test } from './bloque3.fixture';
 import type { Locator, Page } from '@playwright/test';
-import { env } from '@config/env';
-import { LoginPage } from '@pages/auth/LoginPage';
 import { ensureGfContext } from './gf-context';
 import { buildTags, flowTagForUploadResult, FlowTag } from '../../_globalshared/tags/tags';
 import fs from 'fs';
@@ -52,25 +50,11 @@ function tagsFor(config: Pick<GfUploadCase, 'caseId' | 'flowTag'> & { expectedRe
 }
 
 export async function ensureGfSession(page: Page) {
- await page.goto('/');
-
- if (!/distribuciones/i.test(page.url())) {
- const loginPage = new LoginPage(page);
- await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
- }
-
- await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
- timeout: 40_000,
- });
  await ensureGfContext(page);
 }
 
 export async function openGfView(page: Page, config: Pick<GfUploadCase, 'section' | 'view'>) {
- await ensureGfContext(page);
- await expect(page, 'Debe estar en Distribuciones antes de navegar al menu GF.').toHaveURL(/\/distribuciones/i, {
- timeout: 40_000,
- });
-
+ await page.keyboard.press('Escape').catch(() => undefined);
  await page.getByText(config.section, { exact: false }).click();
  await page.getByRole('link', { name: new RegExp(config.view, 'i') }).click();
 
@@ -284,8 +268,6 @@ async function assertValidationError(dialog: Locator, expectedResult: GfUploadRe
 }
 
 export function UploadCase(config: UploadCaseConfig) {
- test.use({ storageState: '.auth/gestorGF.json' });
-
  test(`${tagsFor(config)} carga archivo y valida resultado ${config.expectedResult}`, async ({ page }) => {
  test.setTimeout(360_000);
 

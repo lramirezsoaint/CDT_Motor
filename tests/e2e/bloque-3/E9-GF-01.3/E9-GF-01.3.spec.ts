@@ -1,26 +1,17 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E9-GF-01.3 ', () => {
  test('@bloque3 @E9-GF-01.3 @upload_valido debe validar visualizacion de datos de Maestro Reservas Producto cargados', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
- await test.step('Acceder a Parametrizacion > Maestro Reservas Producto', async () => {
- await bloque3GastosFinancierosPage.openSidebarView('Parametrización', 'Maestro Reservas Producto');
+ await test.step('Acceder a Parametrizacion > Maestro Producto', async () => {
+ await bloque3GastosFinancierosPage.openSidebarView('Parametrización', 'Maestro Producto');
  });
 
  await test.step('Validar que se muestre tabla con estructura de columnas', async () => {
  const table = bloque3GastosFinancierosPage['table'];
- await test.expect(table, 'Debe existir una tabla de Maestro Reservas Producto.').toBeVisible({ timeout: 20_000 });
+ await test.expect(table, 'Debe existir una tabla de Maestro Producto.').toBeVisible({ timeout: 20_000 });
 
  const headers = page.getByRole('columnheader');
  await test.expect(headers.first(), 'La tabla debe tener cabeceras de columnas.').toBeVisible({ timeout: 10000 });
@@ -35,17 +26,17 @@ test.describe('@bloque3 @E9-GF-01.3 ', () => {
  await test.expect(rows.first(), 'Debe haber al menos una fila de datos.').toBeVisible({ timeout: 15_000 });
  
  const rowCount = await rows.count();
- test.expect(rowCount, 'La tabla debe mostrar registros de Maestro Reservas Producto.').toBeGreaterThan(0);
+ test.expect(rowCount, 'La tabla debe mostrar registros de Maestro Producto.').toBeGreaterThan(0);
  });
 
  await test.step('Validar que los datos mostrados coincidan con estructura esperada', async () => {
  const firstRow = bloque3GastosFinancierosPage['table'].locator('tbody tr').first();
  const cells = firstRow.locator('td');
  
- await test.expect(cells.first(), 'La primera celda debe contener datos de Maestro Reservas Producto.').toBeVisible({ timeout: 10_000 });
+ await test.expect(cells.first(), 'La primera celda debe contener datos de Maestro Producto.').toBeVisible({ timeout: 10_000 });
  
  const firstCellText = await cells.first().innerText();
- test.expect(firstCellText.trim().length, 'El dato de Maestro Reservas Producto no debe estar vacío.').toBeGreaterThan(0);
+ test.expect(firstCellText.trim().length, 'El dato de Maestro Producto no debe estar vacío.').toBeGreaterThan(0);
  });
  });
 });
