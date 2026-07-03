@@ -39,7 +39,7 @@ test('@bloque2 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ pag
  const seccion = 'Flujo del mes';
 
  await modal.getByLabel(/nombre/i)
- .fill(`${periodo}_${tipo}_${seccion}`);
+  .fill(`${periodo}_${tipo}_${seccion}_${Date.now()}`);
 
  await modal.getByLabel(/tipo/i).click();
 
@@ -54,10 +54,10 @@ test('@bloque2 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ pag
  .click();
 
  await modal.getByLabel(/versión/i)
- .fill('1.0');
+  .fill('1');
 
  await modal.getByLabel(/tasa de cambio/i)
- .fill('13');
+  .fill('13.98');
 
  await page.getByTestId('seccion').click();
 

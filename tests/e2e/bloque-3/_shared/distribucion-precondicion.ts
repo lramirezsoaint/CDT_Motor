@@ -65,7 +65,7 @@ export async function crearYSeleccionarDistribucion(
  await distribucionPage.selectTipo(tipo);
  await distribucionPage.selectPeriodo(periodo);
  await distribucionPage.selectVersion(version);
- await distribucionPage.selectTasaDeCambio('1.00');
+ await distribucionPage.selectTasaDeCambio('13.98');
  await distribucionPage.selectSecciones([seccion]);
  await distribucionPage.clickCrear();
 

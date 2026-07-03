@@ -26,10 +26,20 @@ export class LoginPage {
     try {
       await entryButton.first().waitFor({ state: 'visible', timeout: 30_000 });
       await entryButton.first().click();
-    } catch {
-      // Si ya estamos autenticados, validamos la pantalla real de la app.
-      await this.waitForDistribucionesReady();
-      return;
+    } catch (error) {
+      if (this.isDistribucionesUrl()) {
+        // Si ya estamos autenticados, validamos la pantalla real de la app.
+        await this.waitForDistribucionesReady();
+        return;
+      }
+
+      if (this.isAppLoginUrl()) {
+        throw new Error(
+          `Login no pudo continuar: estamos en ${this.page.url()} pero no aparecio el boton Iniciar sesion.`,
+        );
+      }
+
+      throw error;
     }
 
     await this.page.waitForURL(/login\.microsoftonline\.com|\.pacificotest\.com\.pe\/login/, { timeout: 60_000 });
@@ -98,5 +108,9 @@ export class LoginPage {
 
   private isDistribucionesUrl(): boolean {
     return /\/distribuciones/i.test(this.page.url());
+  }
+
+  private isAppLoginUrl(): boolean {
+    return /\/login/i.test(this.page.url());
   }
 }

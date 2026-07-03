@@ -1,69 +1,57 @@
 import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
-import { ensureGfContext } from '../_shared/gf-context';
-test('@bloque3 @E40-DIS-03 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
 
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
+test('@bloque3 @E40-DIS-03 @distribucion CREAR-DISTRIBUCION-ERROR-FORMATO', async ({ page }) => {
+  try {
+    const loginPage = new LoginPage(page);
+    await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
+  } catch (error) { }
 
- await expect(page).toHaveURL(/\/distribuciones/i);
- await ensureGfContext(page);
+  await expect(page).toHaveURL(/\/distribuciones/i);
 
- await page.getByRole('button', {
- name: /nueva distribución/i
- }).click();
+  // 1. Nueva Distribución
+  await page.getByRole('button', { name: /nueva distribución/i }).click();
 
- const modal = page.getByRole('dialog');
+  const modal = page.getByRole('dialog');
+  await expect(modal).toBeVisible();
 
- await expect(modal).toBeVisible();
+  // 2. Seleccionar Tipo: Presupuesto
+  await modal.getByLabel(/tipo/i).click();
+  await page.getByRole('option', { name: 'Presupuesto' }).click();
 
- await expect(
- modal.getByText(/crear distribución/i)
- ).toBeVisible();
+  // 3. Llenar campos con datos INVÁLIDOS
+  await modal.getByLabel(/nombre/i).fill('*');
 
- const crearButton = modal.getByRole('button', {
- name: /^crear$/i
- });
+  await modal.getByLabel(/periodo/i).click();
+  await page.getByTestId('periodo-option-202612').click();
 
- await expect(crearButton).toBeDisabled();
+  await modal.getByLabel(/versión/i).fill('99');
 
- const periodo = '202501';
- const tipo = 'Real Local';
- const seccion = 'Flujo del mes';
+  await modal.getByLabel(/tasa de cambio/i).fill('1234');
 
- await modal.getByLabel(/nombre/i)
- .fill(`${periodo}_${tipo}_${seccion}`);
+  await page.getByTestId('seccion').click();
+  await page.locator('[data-radix-popper-content-wrapper]')
+    .getByText('Ajustes del mes', { exact: true }).click();
 
- await modal.getByLabel(/tipo/i).click();
+  // 4. Verificar mensajes de error
+  await expect(
+    modal.getByText(/El nombre debe tener entre 1 y 100 caracteres/i)
+  ).toBeVisible();
 
- await page.getByRole('option', {
- name: tipo
- }).click();
+  await expect(
+    modal.getByText(/Para Presupuesto, el período debe terminar en '00'/i)
+  ).toBeVisible();
 
- await modal.getByLabel(/periodo/i).click();
+  await expect(
+    modal.getByText(/El valor ingresado no es válido.*número entre 1 y 15/i)
+  ).toBeVisible();
 
- await page
- .getByTestId(`periodo-option-${periodo}`)
- .click();
+  await expect(
+    modal.getByText(/Formato no admitido.*hasta 4 cifras/i)
+  ).toBeVisible();
 
- await modal.getByLabel(/versión/i)
- .fill('1.0');
-
- await modal.getByLabel(/tasa de cambio/i)
- .fill('13');
-
- await page.getByTestId('seccion').click();
-
- await page
- .locator('[data-radix-popper-content-wrapper]')
- .getByText(seccion, { exact: true })
- .click();
-
- await expect(crearButton).toBeDisabled();
+  // 5. Botón Crear deshabilitado
+  const crearButton = modal.getByRole('button', { name: /^crear$/i });
+  await expect(crearButton).toBeDisabled();
 });

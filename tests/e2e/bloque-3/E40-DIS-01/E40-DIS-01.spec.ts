@@ -1,7 +1,7 @@
 import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
-import { ensureGfContext } from '../_shared/gf-context';
+import { waitForGfLoading } from '../_shared/gf-context';
 test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
  test.setTimeout(360000);
  try {
@@ -15,8 +15,8 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  // 1. Accede a Distribuciones
  await expect(page)
  .toHaveURL(/\/distribuciones/i);
- await ensureGfContext(page);
 
+ 
  // 2. Nueva Distribución
  await page.getByRole('button', {
  name: /nueva distribución/i
@@ -41,6 +41,7 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  const periodo = '202501';
  const tipo = 'Real Local';
  const seccion = 'Flujo del mes';
+ const version =  String((Date.now() % 15) + 1);
  const nombre = `${periodo}_${tipo}_${seccion}_${Date.now()}`;
 
  await modal.getByLabel(/nombre/i)
@@ -59,7 +60,7 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  .click();
 
  await modal.getByLabel(/versión/i)
- .fill('1');
+ .fill(version);
 
  await modal.getByLabel(/tasa de cambio/i)
  .fill('13.98');

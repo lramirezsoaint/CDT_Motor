@@ -5,7 +5,7 @@ CreateDistributionCase({
  role: 'gestorGT',
  tipo: 'Presupuesto',
  periodo: '202600',
- version: '1.0',
+ version: '1',
  tasaCambio: '13.98',
  seccion: 'Flujo de mes',
  acumulado: 'No',
