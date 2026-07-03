@@ -1,0 +1,7 @@
+{
+  "archivo": "real_canales.xlsx",
+  "expected": {
+    "columnas": ["Codigo", "Nombre", "Estado"],
+    "filasMinimas": 1
+  }
+}

@@ -623,7 +623,7 @@ El archivo Líneas ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! E
 **Resultado esperado:**
 El archivo Líneas ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.2
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Grupo Producto definido en el proceso Comunes
 
@@ -649,7 +649,7 @@ El archivo Líneas ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! E
 **Resultado esperado:**
 El archivo Producto ha sido cargado satisfactoriamente.Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.2.1
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Fucionalidad boton subir nuevo archivo Grupo Producto definido en el proceso Comunes
 
@@ -677,7 +677,7 @@ El archivo Producto ha sido cargado satisfactoriamente.Con el mensaje ¡Listo! E
 **Resultado esperado:**
 El archivo Grupo Producto ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.3
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Canales definido en el proceso Comunes
 
@@ -703,7 +703,7 @@ El archivo Grupo Producto ha sido cargado satisfactoriamente. Con el mensaje ¡L
 **Resultado esperado:**
 El archivo Canales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.3.1
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Fucionalidad boton subir nuevo archivo Canales definido en el proceso Comunes
 
@@ -731,7 +731,7 @@ El archivo Canales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! E
 **Resultado esperado:**
 El archivo Canales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.4
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Subcanales definido en el proceso Comunes
 
@@ -757,7 +757,7 @@ El archivo Canales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! E
 **Resultado esperado:**
 El archivo Subcanales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.4.1
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Fucionalidad boton subir nuevo archivo archivo Subcanales definido en el proceso Comunes
 
@@ -784,7 +784,7 @@ El archivo Subcanales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo
 **Resultado esperado:**
 El archivo Subcanales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.5
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Maestro UoA definido en el proceso Comunes
 
@@ -812,7 +812,7 @@ El archivo Subcanales ha sido cargado satisfactoriamente. Con el mensaje ¡Listo
 **Resultado esperado:**
 El archivo Maestro UoA ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.5.1
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Fucionalidad boton subir nuevo archivo Maestro UoA definido en el proceso Comunes
 
@@ -841,7 +841,7 @@ El archivo Maestro UoA ha sido cargado satisfactoriamente. Con el mensaje ¡List
 **Resultado esperado:**
 El archivo Maestro UoA ha sido cargado satisfactoriamente. Con el mensaje ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.6
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Traer archivo Unidades de Cuenta - BBA/VFA definido en el proceso Comunes
 
@@ -869,7 +869,7 @@ El archivo Unidades de Cuenta - BBA/VFA ha sido traído satisfactoriamente.
 1- muestra un mensaje de exito
 ¡Listo! La carga de información se realizó correctamente.
 ### Caso de prueba: E4-C-01.7
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Configuración de Parches definido en el proceso Comunes
 
@@ -897,7 +897,7 @@ El archivo confguracion de parches ha sido cargado satisfactoriamente.
 1- muestra un mensaje de exito
 ¡Listo! El archivo se cargó correctamente.
 ### Caso de prueba: E4-C-01.7.1
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga de otro archivo Configuración de Parches definido en el proceso Comunes
 
@@ -1290,7 +1290,7 @@ El sistema no carga el archivo.
 El sistema no carga el archivo.
 1- muestra un mensaje de error. El archivo seleccionado no contiene información. Verifique el contenido antes de intentar cargarlo nuevamente.
 ### Caso de prueba: E6-C-01.4
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Subcanales con la estructura definida y sin datos en el proceso de Comunes
 
@@ -1315,7 +1315,7 @@ El sistema no carga el archivo.
 El sistema no carga el archivo.
 1- muestra un mensaje de error. El archivo seleccionado no contiene información. Verifique el contenido antes de intentar cargarlo nuevamente.
 ### Caso de prueba: E6-C-01.5
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Maestro UoA con la estructura definida y sin datos en el proceso de Comunes
 
@@ -1365,7 +1365,7 @@ El sistema no carga el archivo.
 El sistema no carga la data.
 1- muestra un mensaje de error. No existe la carga de información de este periodo. Favor de validar con el responsable.
 ### Caso de prueba: E6-C-01.7
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Carga del archivo Configuración de Parches con la estructura definida y sin datos en el proceso de Comunes
 
@@ -1740,7 +1740,7 @@ El sistema no carga el archivo.
 1- Se muestra una tabla cuyas columnas es la estructura de datos del documento.
 2- Los datos mostrados deben coincidir con los datos previos a la carga.
 ### Caso de prueba: E9-C-01.2
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Validar que se muestren en el FronEnd los datos de archivo Grupo Producto del proceso de Comunes
 
@@ -1764,7 +1764,7 @@ El sistema no carga el archivo.
 1- Se muestra una tabla cuyas columnas es la estructura de datos del documento.
 2- Los datos mostrados deben coincidir con los datos previos a la carga.
 ### Caso de prueba: E9-C-01.3
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Validar que se muestren en el FronEnd los datos de archivo Canales del proceso de Comunes
 
@@ -1812,7 +1812,7 @@ El sistema no carga el archivo.
 1- Se muestra una tabla cuyas columnas es la estructura de datos del documento.
 2- Los datos mostrados deben coincidir con los datos previos a la carga.
 ### Caso de prueba: E9-C-01.5
-- Implementado: No
+- Implementado: Si
 
 **Titulo:** Validar que se muestren en el FronEnd los datos de archivo Maestro UoA del proceso de Comunes
 
