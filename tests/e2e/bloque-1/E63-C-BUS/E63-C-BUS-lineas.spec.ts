@@ -1,8 +1,8 @@
 import { test } from '@fixtures/base.fixture';
 import testData from '@data/testData.json';
 
-test.describe('@bloque1 @E35-C-01.1 ', () => {
- test('@bloque1 @E35-C-01.1 @busqueda debe buscar registros en Distribuciones', async ({ comunesPage }) => {
+test.describe('@bloque1 @E63-C-BUS ', () => {
+ test('@bloque1 @E63-C-BUS @busqueda debe buscar registros en Comunes > Lineas', async ({ comunesPage }) => {
  await test.step('Abrir m\u00f3dulo L\u00edneas', async () => {
  await comunesPage.openLineas();
  });

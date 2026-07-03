@@ -18,10 +18,18 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 ### `implementation_status`
 
 - `not_started`
-- `already_in_code`
 - `implemented`
-- `blocked`
 - `skipped`
+
+## Reporte de status del proyecto
+
+Cuando se solicite el status del proyecto, reportar por bloque:
+
+- total de casos unicos en catalogo
+- not_started
+- implemented
+- skipped
+- specs reales en codigo
 
 ### `automation_readiness`
 
@@ -179,7 +187,7 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E62-ERROR-03 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E62-ERROR-04 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E63-C-BUS |  | No | skipped | not_automatable_yet | pending | assigned | test.skip() en codigo | Spec existe con skip condicional |
-| E0-LOGIN-ADMIN-01.01 |  | Si | not_started | conditionally_automatable | pending | assigned |  | Catalogo dice Si pero no se encontro spec |
+| E0-LOGIN-ADMIN-01.01 |  | Si | implemented | automatable_now | pending | assigned |  | Spec normalizado en Bloque 2 |
 | E0-LOGIN-ADMIN-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E0-LOGIN-GESTOR-GASTO-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E0-LOGIN-GESTOR-GASTO-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
@@ -374,8 +382,6 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E36-GT-01-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E36-GT-01-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E36-GT-01-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E36-GT-01-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E36-GT-01-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E36-GT-01-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E36-GT-01-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E36-GT-01-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
@@ -576,8 +582,8 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E35-PRE-GT-02.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E35-PRE-GT-02.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E35-PRE-GT-02.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E35-GT-PRE-02.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
-| E35-GT-PRE-02.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GT-PRE-02.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  | Spec normalizado en Bloque 2 |
+| E35-GT-PRE-02.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  | Spec normalizado en Bloque 2 |
 | E35-PRE-GT-02.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E35-PRE-GT-02.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E35-PRE-GT-03-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
@@ -661,7 +667,7 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E60-PRE-GT-02.5.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E60-PRE-GT-03.5.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E60-PRE-GT-03.5.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E0-LOGIN-ADMIN-01.01 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-ADMIN-01.01 |  | No | implemented | conditionally_automatable | pending | assigned |  | Spec normalizado en Bloque 3 |
 | E0-LOGIN-ADMIN-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E0-LOGIN-GESTOR-GASTO-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E0-LOGIN-GESTOR-GASTO-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
@@ -675,8 +681,8 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E41-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E42-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E42-DIS-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E43-DIS-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E43-DIS-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01.1 |  | No | not_started | conditionally_automatable | pending | assigned |  | Requiere spec fisico trazable con el mismo case_id |
+| E43-DIS-01.2 |  | No | not_started | conditionally_automatable | pending | assigned |  | Requiere spec fisico trazable con el mismo case_id |
 | E43-DIS-02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E44-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E58-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
@@ -699,14 +705,14 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E59-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E59-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E59-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E4-GF-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-01 |  | Si | not_started | automatable_now | pending | assigned |  | Requiere spec fisico trazable con el mismo case_id |
 | E4-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
 | E4-GF-01.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E4-GF-01.2.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E4-GF-01.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E4-GF-01.3.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E4-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E4-GF-02.2.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  | Spec normalizado en Bloque 3 |
 | E4-GF-02.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E4-GF-02.3.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E4-GF-02.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
@@ -954,7 +960,7 @@ Este archivo sirve para dar seguimiento a la implementacion real en Playwright s
 | E60-GF-04.3.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E63-GF-BUS |  | Si | implemented | automatable_now | pending | assigned |  |  |
 | E67-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
-| E68-GT-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E68-GT-01 |  | No | not_started | conditionally_automatable | pending | assigned |  | Requiere spec fisico trazable con el mismo case_id |
 | E-35-GF-03-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
 | E-36-GF-03-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
 
