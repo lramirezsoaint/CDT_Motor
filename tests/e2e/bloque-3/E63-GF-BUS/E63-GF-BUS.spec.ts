@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E63-GF-BUS ', () => {
  test('@bloque3 @E63-GF-BUS @busqueda debe filtrar resultados con el buscador general de Gastos Financieros', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  let searchValue = '';
 
  await test.step('Acceder a Distribuciones en el modulo Gastos Financieros', async () => {

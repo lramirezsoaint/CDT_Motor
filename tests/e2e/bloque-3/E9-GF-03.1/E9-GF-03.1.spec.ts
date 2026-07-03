@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E9-GF-03.1 ', () => {
  test('@bloque3 @E9-GF-03.1 @upload_valido debe validar visualizacion de datos de Especiales NIIF cargados', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Asignaciones > Especiales NIIF', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Asignaciones', 'Especiales NIIF');
  });

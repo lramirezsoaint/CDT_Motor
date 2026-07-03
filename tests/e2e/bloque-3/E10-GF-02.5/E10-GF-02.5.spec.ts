@@ -1,21 +1,12 @@
-import { LoginPage } from '@pages/auth/LoginPage';
 import { test } from '../_shared/bloque3.fixture';
 import { expect } from '@fixtures/base.fixture';
 import fs from 'fs';
-import { env } from '@config/env';
 
 test.describe('@bloque3 @E10-GF-02.5 ', () => {
  test('@bloque3 @E10-GF-02.5 @download_catalogo debe validar descarga de archivo Maestro de Negocio Embebidos', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Aprovisionamiento > Maestro de Negocio Embebidos', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Aprovisionamiento', 'Maestro de Negocio Embebidos');
  });

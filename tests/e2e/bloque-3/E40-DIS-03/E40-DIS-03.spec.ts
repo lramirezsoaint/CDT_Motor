@@ -1,13 +1,7 @@
-import { test, expect } from '@fixtures/base.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
-import { env } from '@config/env';
+import { test } from '../_shared/bloque3.fixture';
+import { expect } from '@fixtures/base.fixture';
 
 test('@bloque3 @E40-DIS-03 @distribucion CREAR-DISTRIBUCION-ERROR-FORMATO', async ({ page }) => {
-  try {
-    const loginPage = new LoginPage(page);
-    await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
-  } catch (error) { }
-
   await expect(page).toHaveURL(/\/distribuciones/i);
 
   // 1. Nueva Distribución

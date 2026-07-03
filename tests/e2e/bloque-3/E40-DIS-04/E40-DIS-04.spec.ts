@@ -1,19 +1,8 @@
-import { test, expect } from '@fixtures/base.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
-import { env } from '@config/env';
-import { ensureGfContext } from '../_shared/gf-context';
+import { test } from '../_shared/bloque3.fixture';
+import { expect } from '@fixtures/base.fixture';
 test('@bloque3 @E40-DIS-04 @distribucion CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
 
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
-
  await expect(page).toHaveURL(/\/distribuciones/i);
- await ensureGfContext(page);
 
  await page.getByRole('button', {
  name: /nueva distribución/i

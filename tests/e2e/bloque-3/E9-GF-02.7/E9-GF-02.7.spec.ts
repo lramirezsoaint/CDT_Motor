@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E9-GF-02.7 ', () => {
  test('@bloque3 @E9-GF-02.7 @upload_valido debe validar visualizacion de datos de AP Vida cargados', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Aprovisionamiento > AP Vida', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Aprovisionamiento', 'AP Vida');
  });

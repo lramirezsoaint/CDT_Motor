@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E60-GF-01.2.5 ', () => {
  test('@bloque3 @E60-GF-01.2.5 @columnas debe seleccionar columnas en Maestro de Negocio Embebidos', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  let selectedColumn = '';
 
  await test.step('Acceder a Aprovisionamiento > Maestro de Negocio Embebidos', async () => {

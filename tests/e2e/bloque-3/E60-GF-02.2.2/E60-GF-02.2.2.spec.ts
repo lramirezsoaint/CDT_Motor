@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E60-GF-02.2.2 ', () => {
  test('@bloque3 @E60-GF-02.2.2 @columnas debe validar buscador de columnas en Driver Producto', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Aprovisionamiento > Driver Producto', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Aprovisionamiento', 'Driver Producto');
  });

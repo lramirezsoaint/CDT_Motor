@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E9-GF-03.2 ', () => {
  test('@bloque3 @E9-GF-03.2 @upload_valido debe validar visualizacion de datos de Driver UoA - VIDA cargados', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Asignaciones > Driver UoA - VIDA', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Asignaciones', 'Driver UoA - VIDA');
  });

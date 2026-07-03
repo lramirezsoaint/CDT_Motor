@@ -1,16 +1,7 @@
-import { test, expect } from '@fixtures/base.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
-import { env } from '@config/env';
-import { waitForGfLoading } from '../_shared/gf-context';
+import { test } from '../_shared/bloque3.fixture';
+import { expect } from '@fixtures/base.fixture';
 test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ page }) => {
  test.setTimeout(360000);
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
 
  // 1. Accede a Distribuciones
  await expect(page)

@@ -1,21 +1,12 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
 import { expect } from '@fixtures/base.fixture';
 import fs from 'fs';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E10-GF-02.3 ', () => {
  test('@bloque3 @E10-GF-02.3 @download_catalogo debe validar descarga de archivo Driver Subcanal', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Aprovisionamiento > Driver Subcanal', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Aprovisionamiento', 'Driver Subcanal');
  });

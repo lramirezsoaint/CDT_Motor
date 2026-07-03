@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E56-GF-PAG ', () => {
  test('@bloque3 @E56-GF-PAG @paginacion debe validar paginador en Distribuciones de Gastos Financieros', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a la vista inicial de Gastos Financieros', async () => {
  await bloque3GastosFinancierosPage.openHome();
  await bloque3GastosFinancierosPage.requireSearchableDistributionValue();

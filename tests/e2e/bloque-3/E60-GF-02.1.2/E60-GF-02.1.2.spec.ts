@@ -1,19 +1,10 @@
-import { env } from '@config/env';
 import { test } from '../_shared/bloque3.fixture';
-import { LoginPage } from '@pages/auth/LoginPage';
 
 test.describe('@bloque3 @E60-GF-02.1.2 ', () => {
  test('@bloque3 @E60-GF-02.1.2 @columnas debe validar buscador de columnas en Centros', async ({
  bloque3GastosFinancierosPage,
  page,
  }) => {
- try {
- const loginPage = new LoginPage(page);
- await loginPage.login(
- env.gestorGFUsername,
- env.gestorGFPassword
- );
- } catch (error) { }
  await test.step('Acceder a Parametrizacion > Centros', async () => {
  await bloque3GastosFinancierosPage.openSidebarView('Parametrización', 'Centros');
  });
