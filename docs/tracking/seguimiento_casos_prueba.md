@@ -1,17 +1,17 @@
-# Seguimiento De Casos De Prueba
+﻿# Seguimiento De Casos De Prueba
 
-Este archivo sirve para dar seguimiento a la implementación real en Playwright sin modificar la trazabilidad del catálogo original extraído desde Excel.
+Este archivo sirve para dar seguimiento a la implementacion real en Playwright sin modificar la trazabilidad del catalogo original extraido desde Excel.
 
 ## Convenciones
 
-- `case_id`: conservar exactamente el ID del catálogo
-- `catalog_implemented_flag`: valor tal como aparece en el catalogo correspondiente de `docs/catalogos/`
-- `implementation_status`: estado real en el código
-- `automation_readiness`: si el caso es automatizable con la información actual
+- `case_id`: conservar exactamente el ID del catalogo
+- `catalog_implemented_flag`: valor tal como aparece en el catalogo correspondiente de `docs/catalogs/`
+- `implementation_status`: estado real en el codigo
+- `automation_readiness`: si el caso es automatizable con la informacion actual
 - `human_validation_status`: resultado del checkpoint humano
 - `blocking_reason`: motivo del bloqueo si aplica
-- `visible_scenario_association`: si el caso está asociado o no a un escenario visible del catálogo generado
-- `notes`: observaciones útiles
+- `visible_scenario_association`: si el caso esta asociado o no a un escenario visible del catalogo generado
+- `notes`: observaciones utiles
 
 ## Estados permitidos
 
@@ -37,107 +37,924 @@ Este archivo sirve para dar seguimiento a la implementación real en Playwright 
 
 ## Seguimiento
 
-| case_id                    | scenario_id              | catalog_implemented_flag | implementation_status | automation_readiness      | human_validation_status | visible_scenario_association | blocking_reason                                                                                                                                                        | notes                                                                                                                                                                                                                 |
-| -------------------------- | ------------------------ | ------------------------ | --------------------- | ------------------------- | ----------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| E0-LOGIN-ADMIN-01.01       | E0-LOGIN-ADMIN-01        | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Ajustado a contexto real Bloque 3; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                                           |
-| E0-LOGIN-ADMIN-02          | E0-LOGIN-ADMIN-02        | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Ajustado para validar permisos reales GF y no contaminar con Comunes; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                        |
-| E0-LOGIN-GESTOR-GASTO-01   | E0-LOGIN-GESTOR-GASTO-01 | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado con storage Bloque 3 correcto; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                                      |
-| E0-LOGIN-GESTOR-GASTO-02   | E0-LOGIN-GESTOR-GASTO-02 | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado con storage Bloque 3 correcto; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                                      |
-| E0-LOGIN-GESTOR-GASTO-03.1 | E0-LOGIN-GESTOR-GASTO-03 | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Placeholder reemplazado por validacion real: rol Gestor GF no debe ver accion eliminar en Parametrizacion. Ejecucion focalizada PASSED en chromium-gestorGF.                                                         |
-| E0-LOGIN-GESTOR-GASTO-03.2 | E0-LOGIN-GESTOR-GASTO-03 | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Placeholder reemplazado por validacion real: rol Gestor GF no debe ver accion eliminar en Aprovisionamiento. Ejecucion focalizada PASSED en chromium-gestorGF.                                                       |
-| E0-LOGIN-GESTOR-GASTO-03.3 | E0-LOGIN-GESTOR-GASTO-03 | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Placeholder reemplazado por validacion real: rol Gestor GF no debe ver accion eliminar en Asignaciones. Ejecucion focalizada PASSED en chromium-gestorGF.                                                            |
-| E56-GF-PAG                 | E56-GF-PAG               | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado paginador en Distribuciones GF; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                                     |
-| E60-GF-01.1.1              | E60-GF-01.1.1            | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado selector de columnas en Cuentas Contables; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                          |
-| E60-GF-01.1.2              | E60-GF-01.1.2            | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado selector de columnas en Centros; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                                    |
-| E60-GF-01.2.1              | E60-GF-01.2.1            | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado selector de columnas en Exactus; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                                    |
-| E60-GF-01.2.2              | E60-GF-01.2.2            | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado selector de columnas en Exactus procesado; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                          |
-| E60-GF-01.2.3              | E60-GF-01.2.3            | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado selector de columnas en Driver Producto; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                            |
-| E60-GF-01.2.4              | E60-GF-01.2.4            | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado selector de columnas en Driver Subcanal; ejecucion individual PASSED 2/2.                                                                                                                                    |
-| E63-GF-BUS                 | E63-GF-BUS               | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validado buscador general en Distribuciones GF; suite `tests/e2e/bloque-3` PASSED 15/15.                                                                                                                              |
-| E0-LOGIN-ADMIN-01          | E0-login-01              | No                       | already_in_code       | automatable_now           | approved                | assigned                     |                                                                                                                                                                        | Existe cobertura exacta en `tests/e2e/auth/login-admin.smoke.spec.ts` y el smoke fue ejecutado con resultado satisfactorio.                                                                                           |
-| E0-LOGIN-ADMIN-02          | E0-login-01              | No                       | not_started           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Existe cobertura funcional parecida en `E0-LOGIN-02`, pero no hay match exacto por ID con este caso del catálogo.                                                                                                     |
-| E0-login-02                | E0-login-01              | No                       | not_started           | not_automatable_yet       | pending                 | assigned                     | Faltan título, descripción, datos y resultado esperado.                                                                                                                | No debe implementarse hasta completar el caso fuente.                                                                                                                                                                 |
-| E0-login-03                | E0-login-01              | No                       | not_started           | not_automatable_yet       | pending                 | assigned                     | Faltan título, descripción, datos y resultado esperado.                                                                                                                | No debe implementarse hasta completar el caso fuente.                                                                                                                                                                 |
-| E0-login-04                | E0-login-01              | No                       | not_started           | not_automatable_yet       | pending                 | assigned                     | Faltan título, descripción, datos y resultado esperado.                                                                                                                | No debe implementarse hasta completar el caso fuente.                                                                                                                                                                 |
-| E0-login-05                | E0-login-01              | No                       | not_started           | not_automatable_yet       | pending                 | assigned                     | Faltan título, descripción, datos y resultado esperado.                                                                                                                | No debe implementarse hasta completar el caso fuente.                                                                                                                                                                 |
-| E0-login-06                | E0-login-01              | No                       | not_started           | not_automatable_yet       | pending                 | assigned                     | Faltan título, descripción, datos y resultado esperado.                                                                                                                | No debe implementarse hasta completar el caso fuente.                                                                                                                                                                 |
-| E11-C-01.1                 | E11-C-01                 | No                       | already_in_code       | automatable_now           | approved                | assigned                     |                                                                                                                                                                        | Existe cobertura exacta en `tests/e2e/comunes/exportar-lineas.critical.spec.ts`. La ejecución más reciente quedó con evidencia en `playwright-report/` y `test-results/.last-run.json` con estado `passed`.           |
-| E35-C-01.1                 | E35-C-01                 | No                       | already_in_code       | automatable_now           | approved                | assigned                     |                                                                                                                                                                        | Existe cobertura exacta en `tests/e2e/comunes/busqueda-lineas.critical.spec.ts`. La ejecución más reciente quedó con evidencia en `playwright-report/` y `test-results/.last-run.json` con estado `passed`.           |
-| E40-DIS-01                 | E40-DIS-01               | No                       | already_in_code       | automatable_now           | approved                | assigned                     |                                                                                                                                                                        | Existe cobertura exacta en `tests/e2e/distribucion/crear-distribucion.critical.spec.ts`. La ejecución más reciente quedó con evidencia en `playwright-report/` y `test-results/.last-run.json` con estado `passed`.   |
-| E42-DIS-01                 |                          | To Do                    | not_started           | automatable_now           | pending                 | unassigned                   |                                                                                                                                                                        | Quedó sin escenario visible asociado en el catálogo generado porque su fila de escenario está oculta, pero el caso puede seguir tratándose como implementable si sus campos son suficientes.                          |
-| E64-GF-ER-01-01            | E64-GF                   | No                       | skipped               | not_automatable_yet       | pending                 | assigned                     | Procesos GF no implementados según reunion 2026-05-21. Test marcado como skip en codigo.                                                                               | Skip agregado con `test.skip()` en `tests/e2e/procesos/gastos-financieros.critical.spec.ts`. Se omite hasta nuevo aviso del negocio.                                                                                  |
-| E64-GF-EC                  | E64-GF                   | No                       | skipped               | not_automatable_yet       | pending                 | assigned                     | Procesos GF no implementados según reunion 2026-05-21.                                                                                                                 | Skip agregado en `tests/e2e/bloque-3/E64-GF-EC/E64-GF-EC.spec.ts`.                                                                                                                                                   |
-| E64-GF-ER                  | E64-GF                   | No                       | skipped               | not_automatable_yet       | pending                 | assigned                     | Procesos GF no implementados según reunion 2026-05-21.                                                                                                                 | Skip agregado en `tests/e2e/bloque-3/E64-GF-ER/E64-GF-ER.spec.ts`.                                                                                                                                                   |
-| E65-GF-EC                  | E65-GF                   | No                       | skipped               | not_automatable_yet       | pending                 | assigned                     | Procesos GF no implementados según reunion 2026-05-21.                                                                                                                 | Skip agregado en `tests/e2e/bloque-3/E65-GF-EC/E65-GF-EC.spec.ts`.                                                                                                                                                   |
-| E65-GF-ER                  | E65-GF                   | No                       | skipped               | not_automatable_yet       | pending                 | assigned                     | Procesos GF no implementados según reunion 2026-05-21.                                                                                                                 | Skip agregado en `tests/e2e/bloque-3/E65-GF-ER/E65-GF-ER.spec.ts`.                                                                                                                                                   |
-| E40-DIS-02 subida          | E40-DIS-02               | No                       | blocked               | not_automatable_yet       | pending                 | assigned                     | No hay datos/selector estable para completar una distribucion duplicada: el modal actual no expone opciones cargadas en los selects de creacion durante la inspeccion. | Se requiere una distribucion duplicable o datos de QA controlados antes de automatizar sin debilitar la regla de negocio.                                                                                             |
-| E40-DIS-03                 | E40-DIS-03               | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Se creo cobertura en `tests/e2e/bloque-1/E40-DIS-03/E40-DIS-03.spec.ts` para obligatoriedad y formato en Crear distribucion.                                                                                          |
-| E41-DIS-01                 | E41-DIS-01               | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Requiere al menos una distribucion visible en la tabla para abrir la accion Ver.                                                                                       | Se creo cobertura en `tests/e2e/bloque-1/E41-DIS-01/E41-DIS-01.spec.ts`; falla con `[DATA]` si el ambiente no tiene distribuciones visibles.                                                                          |
-| E43-DIS-01                 | E43-DIS-01               | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Caso destructivo: requiere definir `E2E_DISTRIBUCION_DELETE_TARGET` con una distribucion QA eliminable.                                                                | Se creo cobertura protegida en `tests/e2e/bloque-1/E43-DIS-01/E43-DIS-01.spec.ts`; por defecto se omite para evitar borrar datos no autorizados.                                                                      |
-| E42-DIS-01.1               | E42-DIS-01               | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Requiere distribuciones visibles en estados Creada, Detenida, Con errores y Corriendo.                                                                                | Placeholder Bloque 3 reemplazado por validacion real. Ejecucion focalizada falla por dato faltante: no existe distribucion visible en estado Detenida.                                                               |
-| E43-DIS-01.1               | E43-DIS                  | No                       | blocked               | not_automatable_yet       | pending                 | assigned                     | Caso destructivo con rol Administrador de Gastos; Bloque 3 ejecuta con chromium-gestorGF y no existe dataset aislado para eliminar sin contaminar ambiente.           | No se automatiza en GF para evitar falsos verdes o borrado de datos compartidos. Requiere proyecto Admin compatible con Bloque 3 o fixture de distribucion temporal.                                                  |
-| E43-DIS-01.2               | E43-DIS                  | No                       | blocked               | not_automatable_yet       | pending                 | assigned                     | Caso destructivo con rol Administrador de Gastos; Bloque 3 ejecuta con chromium-gestorGF y no existe dataset aislado para eliminar distribuciones con errores.        | No se automatiza en GF para evitar falsos verdes o borrado de datos compartidos. Requiere proyecto Admin compatible con Bloque 3 o fixture de distribucion temporal.                                                  |
-| E43-DIS-02.1               | E43-DIS                  | No                       | blocked               | not_automatable_yet       | pending                 | assigned                     | Catalogo exige rol Administrador de Gastos y estados especificos Detenida, Corriendo o Completada; no debe validarse bajo sesion GF porque cambiaria el objetivo.     | Mantener pendiente hasta definir ejecucion Admin para Bloque 3 o trasladar el caso al scope correcto del proyecto chromium.                                                                                            |
-| E44-DIS                    | E44-DIS                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Requiere al menos una distribucion visible en la tabla para seleccionar desde el listado.                                                                              | Placeholder Bloque 3 reemplazado por validacion real de seleccion desde listado con rol Gestor GF. Ejecucion focalizada PASSED en chromium-gestorGF.                                                                  |
-| E67-DIS                    | E67-DIS                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Requiere que la pantalla Distribuciones exponga boton Descargar habilitado y retorne archivo Excel o CSV con estructura de columnas.                                  | Placeholder Bloque 3 reemplazado por validacion real de descarga y estructura basica del archivo de Distribucion. Ejecucion focalizada PASSED en chromium-gestorGF.                                                   |
-| E5-C-02.1                  | E5-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de nombre no permitido.                                                                 | Se creo cobertura en `tests/e2e/bloque-1/E5-C-02.1/E5-C-02.1.spec.ts` para rechazar archivo de Lineas con nombre no permitido.                                                                                        |
-| E5-C-02.2                  | E5-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de nombre no permitido.                                                                 | Se creo cobertura en `tests/e2e/bloque-1/E5-C-02.2/E5-C-02.2.spec.ts` para rechazar archivo de Grupo Producto con nombre no permitido.                                                                                |
-| E5-C-02.3                  | E5-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de nombre no permitido.                                                                 | Se creo cobertura en `tests/e2e/bloque-1/E5-C-02.3/E5-C-02.3.spec.ts` para rechazar archivo de Canales con nombre no permitido.                                                                                       |
-| E5-C-02.4                  | E5-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de nombre no permitido.                                                                 | Se creo cobertura en `tests/e2e/bloque-1/E5-C-02.4/E5-C-02.4.spec.ts` para rechazar archivo de Subcanales con nombre no permitido.                                                                                    |
-| E5-C-02.5                  | E5-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de nombre no permitido.                                                                 | Se creo cobertura en `tests/e2e/bloque-1/E5-C-02.5/E5-C-02.5.spec.ts` para rechazar archivo de Maestro UoA con nombre no permitido.                                                                                   |
-| E5-C-02.6                  | E5-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de nombre no permitido.                                                                 | Se creo cobertura en `tests/e2e/bloque-1/E5-C-02.6/E5-C-02.6.spec.ts` para rechazar archivo de Configuracion de Parches con nombre no permitido.                                                                      |
-| E6-C-01.1                  | E6-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de archivo sin informacion.                                                             | Se creo cobertura en `tests/e2e/bloque-1/E6-C-01.1/E6-C-01.1.spec.ts` para rechazar archivo de Lineas con estructura valida y sin datos.                                                                              |
-| E6-C-01.2                  | E6-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de archivo sin informacion.                                                             | Se creo cobertura en `tests/e2e/bloque-1/E6-C-01.2/E6-C-01.2.spec.ts` para rechazar archivo de Grupo Producto con estructura valida y sin datos.                                                                      |
-| E6-C-01.3                  | E6-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Depende de que el modal de carga exponga input de archivo y muestre el mensaje de archivo sin informacion.                                                             | Se creo cobertura en `tests/e2e/bloque-1/E6-C-01.3/E6-C-01.3.spec.ts` para rechazar archivo de Canales con estructura valida y sin datos.                                                                             |
-| E4-C-02.1                  | E4-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | unassigned                   | Depende de que el modal de carga exponga input de archivo y la tabla refleje los datos tras carga exitosa.                                                             | Caso nuevo no presente en catalogo original: valida carga de archivo REAL Lineas.xlsx cuando la aplicacion no tiene datos previos en la tabla. Se creo cobertura en `tests/e2e/bloque-1/E4-C-02.1/E4-C-02.1.spec.ts`. |
-| E9-GF-01.1                 | E9-GF-01                 | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validacion de visualizacion de datos cargados en Cuentas Contables GF. Se creo cobertura en `tests/e2e/bloque-3/E9-GF-01.1/E9-GF-01.1.spec.ts`.                                                                       |
-| E10-GF-01.1                | E10-GF-01                | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validacion de descarga de archivo Cuentas Contables GF. Mejorado con validacion de extension, tamano de archivo y timeout a 60s.                                                                                      |
-| E4-GF-01                   | E4-GF-01                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Cuentas Contables GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                 |
-| E4-GF-01.2                 | E4-GF-01                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Centros GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                           |
-| E4-GF-01.3                 | E4-GF-01                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Maestro Reservas Producto GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                         |
-| E4-GF-02.3                 | E4-GF-02                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL AMED GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                              |
-| E4-GF-02.4                 | E4-GF-02                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL AP Vida GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                           |
-| E4-GF-02.5                 | E4-GF-02                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Driver Producto GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                   |
-| E4-GF-02.6                 | E4-GF-02                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Driver Subcanal GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                   |
-| E4-GF-02.7                 | E4-GF-02                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Driver CC VIDA GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                    |
-| E4-GF-02.8                 | E4-GF-02                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Maestro Negocio y Embebidos GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                       |
-| E4-GF-03.1                 | E4-GF-03                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Especiales NIIF GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                   |
-| E4-GF-03.2                 | E4-GF-03                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Driver UOA VIDA GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                                                   |
-| E4-GF-03.3                 | E4-GF-03                 | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | El backend puede permanecer en estado `Procesando archivo`; la automatizacion valida seleccion de Excel real, habilitacion e inicio de procesamiento.                  | Carga de `Bloque3/REAL Distribucion UOA Generales Multiramo GF.xlsx`; lote E4-GF ejecutado 12/12 PASSED. Actualizado con precondicion de distribucion.                                                               |
-| E58-GF-01.1                | E58-GF-01                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente. Requiere aislamiento por test o sesion limpia por caso.                  | Test implementado en `tests/e2e/bloque-3/E58-GF-01.1/`. Ejecucion 2026-05-22: 0/20 PASSED (todos los E58+E59 fallan en precondicion al ejecutarse secuencialmente por acumulacion de estado en la BD compartida).          |
-| E58-GF-02.1                | E58-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E58-GF-02.1/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E58-GF-02.2                | E58-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E58-GF-02.2/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E58-GF-02.3                | E58-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E58-GF-02.3/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E58-GF-02.4                | E58-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente. Ademas, archivo fixture `REAL Unidad de Cuenta GF.xlsx` no existe en Bloque3/. | Test implementado en `tests/e2e/bloque-3/E58-GF-02.4/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1 + fixture faltante.                                                                         |
-| E58-GF-02.5                | E58-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E58-GF-02.5/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E58-GF-03.1                | E58-GF-03                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente. Ademas, archivo fixture `REAL Metodo Subcanal GF.xlsx` no existe en Bloque3/. | Test implementado en `tests/e2e/bloque-3/E58-GF-03.1/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1 + fixture faltante.                                                                         |
-| E58-GF-03.2                | E58-GF-03                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente. Ademas, archivo fixture `REAL Metodo Producto GF.xlsx` no existe en Bloque3/. | Test implementado en `tests/e2e/bloque-3/E58-GF-03.2/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1 + fixture faltante.                                                                         |
-| E58-GF-03.3                | E58-GF-03                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E58-GF-03.3/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-01.1                | E59-GF-01                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-01.1/`. Ejecucion 2026-05-22: 0/20 PASSED. Todos los E58+E59 fallan en precondicion al ejecutarse secuencialmente.                                                     |
-| E59-GF-01.2                | E59-GF-01                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-01.2/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-01.3                | E59-GF-01                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-01.3/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-02.1                | E59-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-02.1/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-02.2                | E59-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-02.2/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-02.3                | E59-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-02.3/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-02.4                | E59-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-02.4/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-02.5                | E59-GF-02                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-02.5/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-03.1                | E59-GF-03                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-03.1/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-03.2                | E59-GF-03                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-03.2/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E59-GF-03.3                | E59-GF-03                | No                       | implemented           | blocked                  | pending                 | assigned                     | Falla en precondicion de distribucion por contaminacion de estado al ejecutar secuencialmente.                                                                          | Test implementado en `tests/e2e/bloque-3/E59-GF-03.3/`. Ejecucion 2026-05-22: 0/20 PASSED. Misma causa raiz que E58-GF-01.1.                                                                                            |
-| E4-C-01.2                  | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Carga valida de Grupo Producto en Comunes. Test implementado en `tests/e2e/bloque-1/E4-C-01.2/`. Patron A (carga primera vez).                                                                                           |
-| E4-C-01.2.1                | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Boton "Subir nuevo archivo" Grupo Producto. Test implementado en `tests/e2e/bloque-1/E4-C-01.2.1/`. Patron B (re-upload).                                                                                                |
-| E4-C-01.3                  | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Carga valida de Canales en Comunes. Test implementado en `tests/e2e/bloque-1/E4-C-01.3/`. Patron A.                                                                                                                    |
-| E4-C-01.3.1                | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Boton "Subir nuevo archivo" Canales. Test implementado en `tests/e2e/bloque-1/E4-C-01.3.1/`. Patron B.                                                                                                                 |
-| E4-C-01.4                  | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Carga valida de Subcanales en Comunes. Test implementado en `tests/e2e/bloque-1/E4-C-01.4/`. Patron A.                                                                                                                 |
-| E4-C-01.4.1                | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Boton "Subir nuevo archivo" Subcanales. Test implementado en `tests/e2e/bloque-1/E4-C-01.4.1/`. Patron B.                                                                                                               |
-| E4-C-01.5                  | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Carga valida de Maestro UoA en Comunes. Test implementado en `tests/e2e/bloque-1/E4-C-01.5/`. Patron A.                                                                                                                |
-| E4-C-01.5.1                | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Boton "Subir nuevo archivo" Maestro UoA. Test implementado en `tests/e2e/bloque-1/E4-C-01.5.1/`. Patron B.                                                                                                              |
-| E4-C-01.6                  | E4-C-01                  | No                       | implemented           | conditionally_automatable | pending                 | assigned                     | Requiere datos en BD para el periodo y archivos Lineas/Grupo Producto/Canales/Subcanales cargados previamente.                                                         | Traer BBA/VFA via "Traer PCF". Test implementado en `tests/e2e/bloque-1/E4-C-01.6/`. Patron custom (no upload, accion de traer).                                                                                         |
-| E4-C-01.7                  | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Carga valida de Configuracion de Parches en Comunes. Test implementado en `tests/e2e/bloque-1/E4-C-01.7/`. Patron A.                                                                                                     |
-| E4-C-01.7.1                | E4-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Boton "Subir nuevo archivo" Configuracion de Parches. Test implementado en `tests/e2e/bloque-1/E4-C-01.7.1/`. Patron B.                                                                                                  |
-| E6-C-01.4                  | E6-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Rechazar Subcanales con estructura valida y sin datos. Test implementado en `tests/e2e/bloque-1/E6-C-01.4/`. Patron D (upload con nombre virtual).                                                                       |
-| E6-C-01.5                  | E6-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Rechazar Maestro UoA con estructura valida y sin datos. Test implementado en `tests/e2e/bloque-1/E6-C-01.5/`. Patron D.                                                                                                  |
-| E6-C-01.7                  | E6-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Rechazar Configuracion de Parches con estructura valida y sin datos. Test implementado en `tests/e2e/bloque-1/E6-C-01.7/`. Patron D.                                                                                    |
-| E9-C-01.2                  | E9-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validar visualizacion de datos de Grupo Producto en frontend. Test implementado en `tests/e2e/bloque-1/E9-C-01.2/`. Patron E (upload + validacion de tabla).                                                             |
-| E9-C-01.3                  | E9-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validar visualizacion de datos de Canales en frontend. Test implementado en `tests/e2e/bloque-1/E9-C-01.3/`. Patron E.                                                                                                   |
-| E9-C-01.5                  | E9-C-01                  | No                       | implemented           | automatable_now           | pending                 | assigned                     |                                                                                                                                                                        | Validar visualizacion de datos de Maestro UoA en frontend. Test implementado en `tests/e2e/bloque-1/E9-C-01.5/`. Patron E.                                                                                               |
+| case_id | scenario_id | catalog_implemented_flag | implementation_status | automation_readiness | human_validation_status | visible_scenario_association | blocking_reason | notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| E0-LOGIN-ADMIN-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E0-LOGIN-ADMIN-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-02 subida |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E41-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01 |  | No | skipped | not_automatable_yet | pending | assigned | test.skip() en codigo | Spec existe con skip condicional |
+| E44-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-C-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E58-C-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E58-C-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E58-C-01.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E58-C-01.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E59-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-C-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E59-C-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E59-C-01.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E59-C-01.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E59-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-C-01.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-C-01.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.2.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.3.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.4.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.5.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.6 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.7 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-C-01.7.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E5-C-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-C-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-C-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-C-01.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-C-01.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-C-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-C-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-C-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-C-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-C-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-C-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-C-01.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E6-C-01.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E6-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E6-C-01.7 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E8-C-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E8-C-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E8-C-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E8-C-01.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E8-C-01.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E8-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-C-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-C-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-C-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-C-01.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-C-01.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E9-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-C-01.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-C-01.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-C-01.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E9-C-01.7 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E10-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-C-01.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-C-01.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-C-01.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-C-01.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-01.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-03.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-03.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-04.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-04.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-04.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-04.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-C-04.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-01.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-03.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-C-03.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-01.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-C-01.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-C-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-C-02.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E56-C-01.1 |  | No | skipped | not_automatable_yet | pending | assigned | test.skip() en codigo | Spec existe con skip condicional |
+| E60-C-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-01.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-C-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E62-ERROR-02 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E62-ERROR-03 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E62-ERROR-04 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E63-C-BUS |  | No | skipped | not_automatable_yet | pending | assigned | test.skip() en codigo | Spec existe con skip condicional |
+| E0-LOGIN-ADMIN-01.01 |  | Si | not_started | conditionally_automatable | pending | assigned |  | Catalogo dice Si pero no se encontro spec |
+| E0-LOGIN-ADMIN-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-03.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E40-DIS-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E40-DIS-03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-04 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E41-DIS-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E42-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E42-DIS-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E44-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E67-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-01.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-01.2.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-01.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.4.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-02.5.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-03.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-03.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GT-03.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GT-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-01.03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-02.03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-03-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-04-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-01-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-03-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-03-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-03-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-GT-03-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-01.03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-GT-02.03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E56-GT-PAG |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.2.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.2.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-01.3.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.2.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.2.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-02.3.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.2.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.2.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-03.3.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.2.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.2.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-GT-04.3.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E63-GT-BUS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E68-GT-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-01.01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-01.02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-01.03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-01.04 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-01.05 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-02.01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-02.02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-02.03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-EC-02.04 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-01.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-01.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-GG-ER-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E51-GT-EC |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E51-GT-ER |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-GT-EC-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-GT-EC-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-GT-ER-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-GT-ER-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-ER-01-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-ER-01-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-ER-02-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-ER-02-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-EC-01-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-EC-01-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-EC-02-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E64-GT-EC-02-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E65-GT-ER |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E65-GT-EC |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E66-GT-ER |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E69-GT-EC-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E69-GT-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-PRE-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-01.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-01.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-01.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.1,1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-02.4.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-03.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-PRE-GT-03.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PREGT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E10-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-PRE-GT-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-01.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-02.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-02.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-02.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GT-PRE-02.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GT-PRE-02.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-PRE-GT-02.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-02.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-03-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-PRE-GT-04-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-01-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-03-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-03-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-03-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E36-PRE-GT-03-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-01.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E37-PRE-GT-02.03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-EC-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-EC-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-EC-03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-EC-04 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-ER-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-ER-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-ER-03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E47-PRE-GT-ER-04 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E51-PRE-GT-EC |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E51-PRE-GT-ER |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-PRE-GT-EC-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-PRE-GT-EC-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-PRE-GT-ER-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E52-PRE-GT-ER-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E56-PRE-GT-PAG |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-02.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.1.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.1.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-02.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.2.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.2.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-02.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.3.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.3.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.4.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.4.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-02.4.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.4.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.4.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.5.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-01.5.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-02.5.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.5.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E60-PRE-GT-03.5.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E0-LOGIN-ADMIN-01.01 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-ADMIN-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-02 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E0-LOGIN-GESTOR-GASTO-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E40-DIS-02 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-03 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E40-DIS-04 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E41-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E42-DIS-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E42-DIS-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E43-DIS-02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E44-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E58-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E59-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GF-01 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GF-01.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-01.2.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-01.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-01.3.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E4-GF-02.2.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-02.3.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-02.4.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-02.5.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.6 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-02.6.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.7 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-02.7.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-02.8 |  | Si | not_started | conditionally_automatable | pending | assigned |  | Catalogo dice Si pero no se encontro spec |
+| E4-GF-02.8.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-03.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-03.1.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-03.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-03.2.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E4-GF-03.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E4-GF-03.3.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E5-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-02.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E5-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-02.7 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E6-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E6-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-02.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E8-GF-03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E61-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-02.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E61-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-02.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E70-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E9-GF-01.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-01.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-01.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.6 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-02.7 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-03.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-03.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E9-GF-03.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-01.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-01.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-01.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.6 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-02.7 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-03.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-03.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E10-GF-03.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E11-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-02.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E11-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-01.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-01.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-01.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.4 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.5 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.6 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-02.7 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-03.1 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-03.2 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E71-GF-03.3 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E35-GF-01.01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-01.03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-02.03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03.01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03-02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03-03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03-03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-03-03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E35-GF-04-03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-01-03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E36-GF-03-03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.02.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.02.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.02.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-01.03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.01.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.02.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.02.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.02.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.02.4 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.02.5 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.02.6 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.03.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.03.2 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E37-GF-02.03.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E56-GF-PAG |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.1.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.1.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.2.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.2.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.2.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.2.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.2.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-01.3.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.1.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.1.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.2.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.2.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.2.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.2.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.2.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-02.3.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.1.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.1.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.2.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.2.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.2.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.2.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.2.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-03.3.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.1.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.1.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.2.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.2.2 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.2.3 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.2.4 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.2.5 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E60-GF-04.3.1 |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E63-GF-BUS |  | Si | implemented | automatable_now | pending | assigned |  |  |
+| E67-DIS |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E68-GT-01 |  | No | implemented | conditionally_automatable | pending | assigned |  |  |
+| E-35-GF-03-01.3 |  | No | not_started | automatable_now | pending | assigned |  |  |
+| E-36-GF-03-01.1 |  | No | not_started | automatable_now | pending | assigned |  |  |
+
