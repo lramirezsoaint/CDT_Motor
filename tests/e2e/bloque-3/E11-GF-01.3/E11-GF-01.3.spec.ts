@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Parametrización',
  view: 'Maestro Producto',
  entityName: 'Maestro Reservas Producto',
+ buttonId: 'btn-maestro-producto-download',
 });

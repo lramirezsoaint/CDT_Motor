@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Parametrización',
  view: 'Cuentas Contables',
  entityName: 'Cuentas Contables',
+ buttonId: 'btn-cuentas-contables-download',
 });

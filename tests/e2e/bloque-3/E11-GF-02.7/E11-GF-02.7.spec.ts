@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'AP Vida',
  entityName: 'AP Vida',
+ buttonId: 'btn-ap-vida-download',
 });

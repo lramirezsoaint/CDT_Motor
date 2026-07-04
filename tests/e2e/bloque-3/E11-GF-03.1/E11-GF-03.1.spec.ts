@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Asignaciones',
  view: 'Especiales NIIF',
  entityName: 'Especiales NIIF',
+ buttonId: 'btn-especiales-niif-download',
 });

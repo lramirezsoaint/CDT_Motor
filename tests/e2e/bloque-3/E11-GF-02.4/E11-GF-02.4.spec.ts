@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'Drivers CC Vida',
  entityName: 'Drivers CC Vida',
+ buttonId: 'btn-drivers-cc-vida-download',
 });

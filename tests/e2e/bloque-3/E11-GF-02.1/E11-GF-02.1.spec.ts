@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'Exactus',
  entityName: 'Exactus',
+ buttonId: 'btn-exactus-download',
 });

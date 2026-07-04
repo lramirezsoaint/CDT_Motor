@@ -83,9 +83,22 @@ export async function openGfUploadDialog(page: Page, config: Pick<GfUploadCase, 
  await expect(dialog.getByText(config.modalTitle), 'Debe mostrarse el titulo esperado del modal.').toBeVisible();
  await expect(processButton(dialog), 'El boton procesar debe iniciar deshabilitado.').toBeDisabled();
 
- const continueButton = dialog.getByRole('button', { name: /continuar con la carga/i }).first();
+ const continueButton = dialog
+ .getByRole('button', { name: /continuar con la carga/i })
+ .or(dialog.locator('button').filter({ hasText: /continuar con la carga/i }))
+ .first();
+
  if (await continueButton.isVisible({ timeout: 3_000 }).catch(() => false)) {
+ await expect(continueButton, 'Continuar con la carga debe estar habilitado.').toBeEnabled();
  await continueButton.click();
+
+ await expect(
+ dialog
+ .getByText(/haz click para examinar|coloque aqu[ií] el archivo/i)
+ .or(dialog.locator('input[type="file"]'))
+ .first(),
+ 'Debe mostrarse la zona para seleccionar archivo despues de continuar.',
+ ).toBeVisible({ timeout: 10_000 });
  }
 
  return dialog;
@@ -241,8 +254,14 @@ async function assertValidationError(dialog: Locator, expectedResult: GfUploadRe
  timeout: 300_000,
  });
  } else {
+ const validationMessage = dialog
+ .getByText(/faltan algunos datos obligatorios/i)
+ .or(dialog.getByText(/formato incorrecto/i))
+ .or(dialog.getByText(/no existen en el cat[aá]logo/i))
+ .first();
+
  await expect(
- dialog.getByText(/faltan algunos datos obligatorios|formato incorrecto|no existen en el cat[aá]logo|error/i),
+ validationMessage,
  'Debe mostrarse mensaje de validacion de datos.',
  ).toBeVisible({ timeout: 300_000 });
  }

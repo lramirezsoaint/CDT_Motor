@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'AMED',
  entityName: 'AMED',
+ buttonId: 'btn-amed-download',
 });

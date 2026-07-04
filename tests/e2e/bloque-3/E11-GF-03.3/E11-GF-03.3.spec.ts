@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Asignaciones',
  view: 'Distribución UoA Generales Multiramo',
  entityName: 'Distribución UoA Generales Multiramo',
+ buttonId: 'btn-distribucion-uoa-generales-multiramo-download',
 });

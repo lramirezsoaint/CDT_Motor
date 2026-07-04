@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Parametrización',
  view: 'Centros',
  entityName: 'Centros',
+ buttonId: 'btn-centros-download',
 });

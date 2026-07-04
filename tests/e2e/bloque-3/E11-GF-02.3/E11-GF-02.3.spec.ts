@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'Driver Subcanal',
  entityName: 'Driver Subcanal',
+ buttonId: 'btn-driver-subcanal-download',
 });

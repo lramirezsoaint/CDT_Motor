@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'Maestro de Negocio Embebidos',
  entityName: 'Maestro de Negocio Embebidos',
+ buttonId: 'btn-maestro-de-negocio-embebidos-download',
 });

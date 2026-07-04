@@ -5,4 +5,5 @@ GfDownloadIntegrityCase({
  section: 'Aprovisionamiento',
  view: 'Driver Producto',
  entityName: 'Driver Producto',
+ buttonId: 'btn-driver-producto-download',
 });

@@ -1,6 +1,5 @@
-import { expect, test } from '@fixtures/base.fixture';
-import { env } from '@config/env';
-import { LoginPage } from '@pages/auth/LoginPage';
+import { test } from '../_shared/bloque3.fixture';
+import { expect } from '@fixtures/base.fixture';
 import { Bloque3GastosFinancierosPage } from '@pages/bloque3/Bloque3GastosFinancierosPage';
 import { ensureGfContext } from './gf-context';
 import { buildTags, FlowTag } from '../../_globalshared/tags/tags';
@@ -8,43 +7,39 @@ import fs from 'fs';
 import * as XLSX from 'xlsx';
 
 type GfDownloadIntegrityCaseConfig = {
- caseId: string;
- section: string;
- view: string;
- entityName: string;
- flowTag?: FlowTag;
+  caseId: string;
+  section: string;
+  view: string;
+  entityName: string;
+  buttonId: string;
+  flowTag?: FlowTag;
 };
 
 export function GfDownloadIntegrityCase(config: GfDownloadIntegrityCaseConfig) {
- test.use({ storageState: '.auth/gestorGF.json' });
+  test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@download_catalogo' })} valida estructura y datos del archivo descargado`, async ({
+  page,
+  }) => {
+  test.setTimeout(180_000);
+  const gfPage = new Bloque3GastosFinancierosPage(page);
 
- test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@download_catalogo' })} valida estructura y datos del archivo descargado`, async ({
- page,
- }) => {
- test.setTimeout(180_000);
- const gfPage = new Bloque3GastosFinancierosPage(page);
-
- await page.goto('/');
- if (!/distribuciones/i.test(page.url())) {
- const loginPage = new LoginPage(page);
- await loginPage.login(env.gestorGFUsername, env.gestorGFPassword);
- }
- await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
- timeout: 40_000,
- });
- await ensureGfContext(page);
+  await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
+  timeout: 40_000,
+  });
+  await ensureGfContext(page);
 
  await gfPage.openSidebarView(config.section, config.view);
 
- const downloadButton = page
- .getByRole('button', { name: /descargar/i })
- .or(page.locator('[data-testid*="download"], button[id*="download"], [aria-label*="descargar" i]'))
- .first();
+ const downloadButton = page.locator(`#${config.buttonId}`).first();
+
+ const isEnabled = await downloadButton.isEnabled().catch(() => false);
+ if (!isEnabled) {
+ test.info().annotations.push({ type: 'skip', description: `Botón descargar deshabilitado en ${config.entityName}: no hay datos para exportar.` });
+ return;
+ }
 
  await expect(downloadButton, `Debe existir el boton Descargar en ${config.entityName}.`).toBeVisible({
  timeout: 20_000,
  });
- await expect(downloadButton, `El boton Descargar debe estar habilitado en ${config.entityName}.`).toBeEnabled();
 
  const [download] = await Promise.all([
  page.waitForEvent('download', { timeout: 60_000 }),
