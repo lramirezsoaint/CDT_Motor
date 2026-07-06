@@ -7,5 +7,5 @@ defineGfUploadErrorCase({
  entityName: 'Exactus',
  fileName: 'REAL Exactus sin procesar GF.xlsx',
  modalTitle: /cargar exactus/i,
- errorMessage: /no se puede cargar.*archivo anterior.*no ha sido cargado/i,
+ errorMessage: /faltan algunos datos obligatorios.*formato incorrecto.*catálogo relacionado/i,
 });

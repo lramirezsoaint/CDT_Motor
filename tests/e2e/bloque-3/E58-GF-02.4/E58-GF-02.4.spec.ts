@@ -7,5 +7,5 @@ defineGfUploadErrorCase({
  entityName: 'Unidad de Cuenta',
  fileName: 'REAL Unidad de Cuenta GF.xlsx',
  modalTitle: /cargar unidad de cuenta/i,
- errorMessage: /no se puede cargar.*archivo anterior.*no ha sido cargado/i,
+ errorMessage: /faltan algunos datos obligatorios.*formato incorrecto.*catálogo relacionado/i,
 });

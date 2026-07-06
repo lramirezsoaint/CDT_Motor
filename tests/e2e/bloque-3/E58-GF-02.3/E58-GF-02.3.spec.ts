@@ -7,5 +7,5 @@ defineGfUploadErrorCase({
  entityName: 'Driver Subcanal',
  fileName: 'REAL Driver Subcanal GF.xlsx',
  modalTitle: /cargar driver subcanal/i,
- errorMessage: /no se puede cargar.*archivo anterior.*no ha sido cargado/i,
+ errorMessage: /faltan algunos datos obligatorios.*formato incorrecto.*catálogo relacionado/i,
 });

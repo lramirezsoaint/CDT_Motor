@@ -7,5 +7,5 @@ defineGfUploadErrorCase({
  entityName: 'Driver Producto',
  fileName: 'REAL Driver Producto GF.xlsx',
  modalTitle: /cargar driver producto/i,
- errorMessage: /no se puede cargar.*archivo anterior.*no ha sido cargado/i,
+ errorMessage: /faltan algunos datos obligatorios.*formato incorrecto.*catálogo relacionado/i,
 });

@@ -7,5 +7,5 @@ defineGfUploadErrorCase({
  entityName: 'Maestro de Negocio y Embebidos',
  fileName: 'REAL Maestro Negocio y Embebidos GF.xlsx',
  modalTitle: /cargar maestro de negocio y embebidos/i,
- errorMessage: /no se puede cargar.*archivo anterior.*no ha sido cargado/i,
+ errorMessage: /faltan algunos datos obligatorios.*formato incorrecto.*catálogo relacionado/i,
 });

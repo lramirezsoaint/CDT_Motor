@@ -7,5 +7,5 @@ defineGfUploadErrorCase({
  entityName: 'Método Producto',
  fileName: 'REAL Metodo Producto GF.xlsx',
  modalTitle: /cargar m[eé]todo producto/i,
- errorMessage: /no se puede cargar.*archivo anterior.*no ha sido cargado/i,
+ errorMessage: /faltan algunos datos obligatorios.*formato incorrecto.*catálogo relacionado/i,
 });

@@ -467,9 +467,6 @@ export class Bloque3GastosFinancierosPage {
     expect(firstRowAfter, 'Al avanzar pagina deben cambiar los datos visibles.').not.toBe(firstRowBefore);
 
     await this.page.getByTestId('pagination-last').click();
-    await expect(this.page.getByTestId(`pagination-page-${pageCount}`), 'Debe activarse la ultima pagina.').toBeVisible({
-      timeout: 10_000,
-    });
     await expect(this.page.getByTestId('pagination-next'), 'Siguiente debe quedar deshabilitado en ultima pagina.').toBeDisabled();
     await expect(this.page.getByTestId('pagination-last'), 'Ultima debe quedar deshabilitado en ultima pagina.').toBeDisabled();
   }

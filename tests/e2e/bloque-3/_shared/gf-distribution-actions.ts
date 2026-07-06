@@ -2,6 +2,7 @@ import { expect, Locator, Page } from '@playwright/test';
 
 export async function findDistributionRowByStatus(page: Page, status: RegExp, context: string): Promise<Locator> {
   const rows = page.locator('table tbody tr');
+  await expect(rows.first(), 'La tabla debe tener filas cargadas.').toBeVisible({ timeout: 20_000 });
   const rowCount = await rows.count().catch(() => 0);
 
   for (let index = 0; index < rowCount; index += 1) {
