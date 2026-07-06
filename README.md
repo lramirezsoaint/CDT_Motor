@@ -44,7 +44,7 @@ Playwright genera los proyectos dinámicamente desde `roles.json`/`roles.ts` en 
 
 | Proyecto            | Ejecuta principalmente |
 | ------------------- | ---------------------- |
-| `chromium`          | `auth/` y `bloque-1/`  |
+| `chromium`          | `bloque-1/` |
 | `chromium-gestorGF` | `bloque-3/` y `procesos/` |
 | `chromium-gestorGT` | `bloque-2/`            |
 | `chromium-gestorAM` | `bloque-5/`            |
@@ -58,6 +58,7 @@ Si un storage state existe pero está vacío o expirado, no se debe usar como se
 ```powershell
 $env:AUTH_ROLE='gestorGF'; node scripts/auth/create-auth.js
 $env:AUTH_ROLE='gestorGT'; node scripts/auth/create-auth.js
+$env:AUTH_ROLE='gestorAM'; node scripts/auth/create-auth.js
 $env:AUTH_ROLE='admin'; node scripts/auth/create-auth.js
 ```
 
@@ -184,6 +185,9 @@ Para agregar un nuevo rol al framework:
   |       |   `-- ...
   |       `-- bloque-3/
   |           |-- _shared/               # negocio GF
+  |           `-- ...
+  |       `-- bloque-5/
+  |           |-- _shared/               # negocio AM
   |           `-- ...
   |-- scripts/
   |   |-- auth/create-auth.js

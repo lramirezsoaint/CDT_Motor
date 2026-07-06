@@ -1,4 +1,4 @@
-export type BloqueTag = '@bloque1' | '@bloque2' | '@bloque3';
+export type BloqueTag = '@bloque1' | '@bloque2' | '@bloque3' | '@bloque5';
 
 export type FlowTag =
  | '@login'
@@ -37,7 +37,7 @@ export const FLOW_TAGS: readonly FlowTag[] = [
  '@download_reporte',
 ];
 
-const BLOQUE_TAGS: readonly BloqueTag[] = ['@bloque1', '@bloque2', '@bloque3'];
+const BLOQUE_TAGS: readonly BloqueTag[] = ['@bloque1', '@bloque2', '@bloque3', '@bloque5'];
 
 export function buildTags(config: BuildTagsConfig) {
  const { bloque, caseId, flowTag } = config;
