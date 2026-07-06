@@ -4,20 +4,27 @@
     "envPrefix": "MOTOR",
     "projectName": "chromium",
     "testMatch": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts"],
-    "testIgnore": ["**/bloque-2/**/*.spec.ts", "**/bloque-3/**/*.spec.ts", "**/procesos/**/*.spec.ts"]
+    "testIgnore": ["**/bloque-2/**/*.spec.ts", "**/bloque-3/**/*.spec.ts", "**/bloque-5/**/*.spec.ts", "**/procesos/**/*.spec.ts"]
   },
   {
     "id": "gestorGF",
     "envPrefix": "MOTOR_GESTOR_GF",
     "projectName": "chromium-gestorGF",
     "testMatch": ["**/bloque-3/**/*.spec.ts", "**/procesos/**/*.spec.ts"],
-    "testIgnore": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts", "**/bloque-2/**/*.spec.ts"]
+    "testIgnore": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts", "**/bloque-2/**/*.spec.ts", "**/bloque-5/**/*.spec.ts"]
   },
   {
     "id": "gestorGT",
     "envPrefix": "MOTOR_GESTOR_GT",
     "projectName": "chromium-gestorGT",
     "testMatch": ["**/bloque-2/**/*.spec.ts"],
-    "testIgnore": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts", "**/bloque-3/**/*.spec.ts", "**/procesos/**/*.spec.ts"]
+    "testIgnore": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts", "**/bloque-3/**/*.spec.ts", "**/bloque-5/**/*.spec.ts", "**/procesos/**/*.spec.ts"]
+  },
+  {
+    "id": "gestorAM",
+    "envPrefix": "MOTOR_GESTOR_AM",
+    "projectName": "chromium-gestorAM",
+    "testMatch": ["**/bloque-5/**/*.spec.ts"],
+    "testIgnore": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts", "**/bloque-2/**/*.spec.ts", "**/bloque-3/**/*.spec.ts", "**/procesos/**/*.spec.ts"]
   }
 ]

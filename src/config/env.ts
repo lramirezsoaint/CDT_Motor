@@ -6,6 +6,8 @@ export const env = {
   gestorGFPassword: process.env.MOTOR_GESTOR_GF_PASSWORD ?? '',
   gestorGTUsername:(process.env.MOTOR_GESTOR_GT_USERNAME ?? '').trim(),
   gestorGTPassword:process.env.MOTOR_GESTOR_GT_PASSWORD ?? '',
+  gestorAMUsername: (process.env.MOTOR_GESTOR_AM_USERNAME ?? '').trim(),
+  gestorAMPassword: process.env.MOTOR_GESTOR_AM_PASSWORD ?? '',
   headless: process.env.HEADLESS !== 'false',
   workers: Number(process.env.PW_WORKERS ?? 1),
   slowMo: Number(process.env.PW_SLOWMO ?? 0),

@@ -20,6 +20,8 @@
     "test:bloque2:gestorGT": "playwright test tests/e2e/bloque-2 --project=chromium-gestorGT --workers=1",
     "test:bloque3": "playwright test tests/e2e/bloque-3 --project=chromium-gestorGF --workers=1",
     "test:bloque3:gestorGF": "playwright test tests/e2e/bloque-3 --project=chromium-gestorGF --workers=1",
+    "test:bloque5": "playwright test tests/e2e/bloque-5 --project=chromium-gestorAM --workers=1",
+    "test:bloque5:gestorAM": "playwright test tests/e2e/bloque-5 --project=chromium-gestorAM --workers=1",
     "test:block1:sequential": "node --experimental-strip-types scripts/runners/run-block1-implemented-sequential.ts",
     "test:all:history": "node --experimental-strip-types scripts/runners/run-all-with-history.ts",
     "test:by-dependency": "npx tsx scripts/runners/run-by-dependency.ts",

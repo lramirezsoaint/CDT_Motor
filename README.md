@@ -1,6 +1,6 @@
 - # CDT_Motor — Framework Playwright para Motor de Distribución
 
-  Framework de automatización E2E para testing de **Motor de Distribución** (Pacífico). Organizado por bloques funcionales con soporte multi-rol (Administrador, Gestor de Gastos Técnicos, Gestor de Gastos Financieros).
+  Framework de automatización E2E para testing de **Motor de Distribución** (Pacífico). Organizado por bloques funcionales con soporte multi-rol (Administrador, Gestor de Gastos Técnicos, Gestor de Gastos Financieros, Gestor de Asientos Manuales).
 
   ---
 
@@ -29,13 +29,14 @@
 
   ## Autenticación y roles
 
-  El framework soporta 3 proyectos con autenticación separada. Los roles se definen en `src/config/roles.json` y se validan/cargan desde `src/config/roles.ts`.
+  El framework soporta 4 proyectos con autenticación separada. Los roles se definen en `src/config/roles.json` y se validan/cargan desde `src/config/roles.ts`.
 
 | Proyecto                  | Rol                          | Storage State              |
 | ------------------------- | ---------------------------- | -------------------------- |
 | `chromium`              | Administrador                | `.auth/admin.json`       |
 | `chromium-gestorGF`     | Gestor de Gastos Financieros | `.auth/gestorGF.json`    |
 | `chromium-gestorGT`     | Gestor de Gastos Técnicos   | `.auth/gestorGT.json`    |
+| `chromium-gestorAM`     | Gestor de Asientos Manuales | `.auth/gestorAM.json`    |
 
 ### Alcance de proyectos
 
@@ -46,6 +47,7 @@ Playwright genera los proyectos dinámicamente desde `roles.json`/`roles.ts` en 
 | `chromium`          | `auth/` y `bloque-1/`  |
 | `chromium-gestorGF` | `bloque-3/` y `procesos/` |
 | `chromium-gestorGT` | `bloque-2/`            |
+| `chromium-gestorAM` | `bloque-5/`            |
 
 Cada rol define `id`, `envPrefix`, `projectName`, `testMatch` y `testIgnore`. La separación real de bloques vive en `src/config/roles.json`.
 
