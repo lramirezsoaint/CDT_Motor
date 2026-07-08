@@ -10,10 +10,10 @@ export const test = base.extend<{
 }>({
   amContext: [
     async ({ page }, use) => {
-      await ensureAmContext(page);
+      await ensureAmContext(page, 'read');
       await use();
     },
-    { auto: true },
+    { auto: false },
   ],
   bloque5AsientosManualesPage: async ({ page }, use) => {
     await use(new Bloque5AsientosManualesPage(page));

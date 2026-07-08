@@ -21,7 +21,7 @@ export function defineAmDownloadCase(downloadCase: AmDownloadCase): void {
     }) => {
       test.setTimeout(180_000);
 
-      await ensureAmContext(page);
+      await ensureAmContext(page, 'read');
 
       await test.step(`Acceder a ${downloadCase.section} > ${downloadCase.view}`, async () => {
         await bloque5AsientosManualesPage.openSidebarView(downloadCase.section, downloadCase.view);

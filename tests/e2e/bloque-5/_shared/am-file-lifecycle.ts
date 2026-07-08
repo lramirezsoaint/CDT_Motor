@@ -25,7 +25,10 @@ export function FileLifecycleCase(
 
     await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {
       await expect(page).toHaveURL(/\/distribuciones/i);
-      await ensureAmSession(page);
+      await ensureAmSession(
+        page,
+        config.flow === 'download' || config.flow === 'downloadIntegrity' ? 'read' : 'mutation',
+      );
     });
     await test.step(`${title(config)} en ${config.section} > ${config.view}`, async () => {
       await openAmView(page, config);

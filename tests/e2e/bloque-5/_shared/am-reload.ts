@@ -24,7 +24,7 @@ export function AmReloadDownloadedCase(config: AmReloadDownloadedCaseConfig) {
     await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
       timeout: 40_000,
     });
-    await ensureAmContext(page);
+    await ensureAmContext(page, 'mutation');
 
     await amPage.openSidebarView(config.section, config.view);
 

@@ -21,7 +21,7 @@ export function CrudCase(test: typeof baseTest, expect: typeof baseExpect, confi
 
     await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {
       await expect(page).toHaveURL(/\/distribuciones/i);
-      await ensureAmSession(page);
+      await ensureAmSession(page, 'mutation');
       await openAmView(page, config);
     });
     await test.step(title(config), async () => {

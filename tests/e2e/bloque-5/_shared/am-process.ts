@@ -39,7 +39,7 @@ export function defineAmProcessExecutionCase(config: AmProcessCase): void {
       await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
         timeout: 40_000,
       });
-      await ensureAmContext(page);
+      await ensureAmContext(page, 'read');
 
       await test.step('Navegar a Procesos', async () => {
         await amPage.openSidebarView('Procesos', 'Procesos');

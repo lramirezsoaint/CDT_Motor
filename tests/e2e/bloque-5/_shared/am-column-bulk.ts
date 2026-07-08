@@ -23,7 +23,7 @@ export function defineAmColumnBulkTest(config: AmColumnBulkCase): void {
       page,
     }) => {
       test.setTimeout(180_000);
-      await ensureAmContext(page);
+      await ensureAmContext(page, 'read');
 
       await test.step(`Acceder a ${config.section} > ${config.view}`, async () => {
         await bloque5AsientosManualesPage.openSidebarView(config.section, config.view);

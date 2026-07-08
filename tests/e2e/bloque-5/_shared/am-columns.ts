@@ -17,7 +17,7 @@ export function defineAmColumnsSelectionTest(config: AmColumnsCase) {
       page,
     }) => {
       test.setTimeout(180_000);
-      await ensureAmContext(page);
+      await ensureAmContext(page, 'read');
       let selectedColumn = '';
 
       await test.step(`Acceder a ${config.section} > ${config.view}`, async () => {

@@ -1,6 +1,6 @@
 import { expect, test } from './bloque5.fixture';
 import type { Locator, Page } from '@playwright/test';
-import { ensureAmContext } from './am-context';
+import { ensureAmContext, type AmDistributionFlow } from './am-context';
 import { buildTags, flowTagForUploadResult, FlowTag } from '../../_globalshared/tags/tags';
 import fs from 'fs';
 import path from 'path';
@@ -49,8 +49,8 @@ function tagsFor(config: Pick<AmUploadCase, 'caseId' | 'flowTag'> & { expectedRe
   });
 }
 
-export async function ensureAmSession(page: Page) {
-  await ensureAmContext(page);
+export async function ensureAmSession(page: Page, flow: AmDistributionFlow = 'upload') {
+  await ensureAmContext(page, flow);
 }
 
 export async function openAmView(page: Page, config: Pick<AmUploadCase, 'section' | 'view'>) {

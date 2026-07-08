@@ -4,16 +4,37 @@ import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 
 export const AM_MODULE_NAME = 'Asientos Manuales';
-export const AM_DISTRIBUTION_NAME = '2026Julio_Pruebas';
-export const AM_DISTRIBUTION_PERIOD = '202607';
-const AM_DISTRIBUTION_PERIOD_OPTIONS = [
-  AM_DISTRIBUTION_PERIOD,
-  '2026Julio',
-  '2026 Julio',
-  'Julio 2026',
-];
+export type AmDistributionFlow = 'upload' | 'read' | 'mutation';
 
-export async function ensureAmContext(page: Page): Promise<void> {
+type AmDistributionConfig = {
+  period: string;
+  periodOptions: string[];
+  distributionName: string;
+};
+
+export const AM_DISTRIBUTIONS: Record<AmDistributionFlow, AmDistributionConfig> = {
+  upload: {
+    period: '2026Julio',
+    periodOptions: ['2026Julio', '202607', '2026 Julio', 'Julio 2026'],
+    distributionName: '2026Julio_Pruebas',
+  },
+  read: {
+    period: '2025Junio',
+    periodOptions: ['2025Junio', '202506', '2025 Junio', 'Junio 2025'],
+    distributionName: '202506_JoselinCarga_P2',
+  },
+  mutation: {
+    period: '2026Julio',
+    periodOptions: ['2026Julio', '202607', '2026 Julio', 'Julio 2026'],
+    distributionName: '2026Julio_Pruebas',
+  },
+};
+
+export const AM_DISTRIBUTION_NAME = AM_DISTRIBUTIONS.mutation.distributionName;
+export const AM_DISTRIBUTION_PERIOD = AM_DISTRIBUTIONS.mutation.period;
+
+export async function ensureAmContext(page: Page, flow: AmDistributionFlow = 'read'): Promise<void> {
+  const distribution = AM_DISTRIBUTIONS[flow];
   const loginPage = new LoginPage(page);
   try {
     await page.goto('/');
@@ -49,7 +70,7 @@ export async function ensureAmContext(page: Page): Promise<void> {
 
   await ensureAmModule(page);
   await acceptInformationModal(page);
-  await ensureAmDistribution(page);
+  await ensureAmDistribution(page, distribution);
   await acceptInformationModal(page);
   await waitForAmLoading(page);
 }
@@ -80,38 +101,38 @@ async function ensureAmModule(page: Page): Promise<void> {
   await waitForAmLoading(page);
 }
 
-async function ensureAmDistribution(page: Page): Promise<void> {
-  if (await isTargetDistributionSelected(page)) {
+async function ensureAmDistribution(page: Page, distribution: AmDistributionConfig): Promise<void> {
+  if (await isTargetDistributionSelected(page, distribution)) {
     return;
   }
 
-  const visibleTarget = targetDistributionLocator(page);
+  const visibleTarget = targetDistributionLocator(page, distribution);
   if (await visibleTarget.isVisible({ timeout: 3_000 }).catch(() => false)) {
     await clickTargetDistribution(visibleTarget);
     await acceptInformationModal(page);
     return;
   }
 
-  await selectAmPeriod(page);
+  await selectAmPeriod(page, distribution);
 
-  const targetDistribution = targetDistributionLocator(page);
+  const targetDistribution = targetDistributionLocator(page, distribution);
   await expect(
     targetDistribution,
-    `Debe aparecer la distribucion ${AM_DISTRIBUTION_NAME} para poder seleccionarla.`,
+    `Debe aparecer la distribucion ${distribution.distributionName} para poder seleccionarla.`,
   ).toBeVisible({ timeout: 30_000 });
 
   await clickTargetDistribution(targetDistribution);
   await acceptInformationModal(page);
 
   await expect
-    .poll(async () => isTargetDistributionSelected(page), {
+    .poll(async () => isTargetDistributionSelected(page, distribution), {
       timeout: 20_000,
-      message: `La distribucion seleccionada debe ser ${AM_DISTRIBUTION_NAME}.`,
+      message: `La distribucion seleccionada debe ser ${distribution.distributionName}.`,
     })
     .toBe(true);
 }
 
-async function selectAmPeriod(page: Page): Promise<void> {
+async function selectAmPeriod(page: Page, distribution: AmDistributionConfig): Promise<void> {
   const periodSelector = page
     .getByTestId('filter-periodo-select')
     .or(page.getByRole('combobox', { name: /periodo/i }))
@@ -120,13 +141,13 @@ async function selectAmPeriod(page: Page): Promise<void> {
 
   await expect(periodSelector, 'Debe existir el selector de periodo.').toBeVisible({ timeout: 20_000 });
   const currentPeriod = normalizeText(await periodSelector.innerText().catch(() => ''));
-  if (currentPeriod.includes(AM_DISTRIBUTION_PERIOD)) {
+  if (distribution.periodOptions.some((period) => currentPeriod.includes(period))) {
     return;
   }
 
   await periodSelector.click();
 
-  for (const period of AM_DISTRIBUTION_PERIOD_OPTIONS) {
+  for (const period of distribution.periodOptions) {
     const periodOption = page
       .getByRole('option', { name: new RegExp(`^${escapeRegex(period)}$`) })
       .or(page.getByRole('menuitem', { name: new RegExp(`^${escapeRegex(period)}$`) }))
@@ -142,13 +163,13 @@ async function selectAmPeriod(page: Page): Promise<void> {
 
   await expect(
     page.locator('[data-radix-popper-content-wrapper], [role="listbox"], [role="menu"]').first(),
-    `Debe existir alguno de los periodos ${AM_DISTRIBUTION_PERIOD_OPTIONS.join(', ')}.`,
-  ).toContainText(new RegExp(AM_DISTRIBUTION_PERIOD_OPTIONS.map(escapeRegex).join('|')), { timeout: 1_000 });
+    `Debe existir alguno de los periodos ${distribution.periodOptions.join(', ')}.`,
+  ).toContainText(new RegExp(distribution.periodOptions.map(escapeRegex).join('|')), { timeout: 1_000 });
   await waitForAmLoading(page);
 }
 
-function targetDistributionLocator(page: Page) {
-  return page.getByText(AM_DISTRIBUTION_NAME, { exact: true }).first();
+function targetDistributionLocator(page: Page, distribution: AmDistributionConfig) {
+  return page.getByText(distribution.distributionName, { exact: true }).first();
 }
 
 async function clickTargetDistribution(targetDistribution: ReturnType<typeof targetDistributionLocator>) {
@@ -157,10 +178,10 @@ async function clickTargetDistribution(targetDistribution: ReturnType<typeof tar
   });
 }
 
-async function isTargetDistributionSelected(page: Page): Promise<boolean> {
+async function isTargetDistributionSelected(page: Page, distribution: AmDistributionConfig): Promise<boolean> {
   const selectedDistribution = page
     .locator('table tbody tr[data-state="selected"], [role="row"][aria-selected="true"]')
-    .filter({ hasText: AM_DISTRIBUTION_NAME })
+    .filter({ hasText: distribution.distributionName })
     .first();
 
   if (await selectedDistribution.isVisible({ timeout: 1_000 }).catch(() => false)) {
@@ -173,10 +194,10 @@ async function isTargetDistributionSelected(page: Page): Promise<boolean> {
         '[data-testid*="selected"][data-testid*="distribution" i]',
         '[data-testid*="distribution"][data-testid*="selected" i]',
         '[aria-label*="distribuci" i][aria-label*="seleccion" i]',
-        `[title*="${AM_DISTRIBUTION_NAME}" i]`,
+        `[title*="${distribution.distributionName}" i]`,
       ].join(', '),
     )
-    .filter({ hasText: AM_DISTRIBUTION_NAME })
+    .filter({ hasText: distribution.distributionName })
     .first();
 
   return selectedIndicator.isVisible({ timeout: 1_000 }).catch(() => false);

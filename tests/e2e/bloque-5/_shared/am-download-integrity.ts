@@ -25,7 +25,7 @@ export function AmDownloadIntegrityCase(config: AmDownloadIntegrityCaseConfig) {
     await expect(page, 'Debe quedar autenticado en Distribuciones.').toHaveURL(/\/distribuciones/i, {
       timeout: 40_000,
     });
-    await ensureAmContext(page);
+    await ensureAmContext(page, 'read');
 
     await amPage.openSidebarView(config.section, config.view);
 

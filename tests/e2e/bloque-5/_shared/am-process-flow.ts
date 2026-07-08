@@ -13,7 +13,7 @@ export function ProcessCase(test: typeof baseTest, expect: typeof baseExpect, co
 
     await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {
       await expect(page).toHaveURL(/\/distribuciones/i);
-      await ensureAmSession(page);
+      await ensureAmSession(page, 'read');
     });
     await test.step(title(config), async () => {
       if (config.flow === 'deleteVersion') {
