@@ -14,8 +14,27 @@ const AM_DISTRIBUTION_PERIOD_OPTIONS = [
 ];
 
 export async function ensureAmContext(page: Page): Promise<void> {
-  if (!/\/distribuciones/i.test(page.url())) {
-    const loginPage = new LoginPage(page);
+  const loginPage = new LoginPage(page);
+  try {
+    await page.goto('/');
+  } catch (error) {
+    if (!/\/(?:login|distribuciones)/i.test(page.url())) {
+      throw error;
+    }
+  }
+
+  const sessionSurface = page
+    .getByRole('button', { name: /iniciar sesi[oó]n/i })
+    .or(page.getByRole('heading', { name: /distribuciones/i }))
+    .or(page.locator('aside, nav'))
+    .first();
+  await expect(
+    sessionSurface,
+    'Debe mostrarse la aplicacion autenticada o la pantalla de login.',
+  ).toBeVisible({ timeout: 40_000 });
+
+  const sessionExpired = /\/login/i.test(page.url()) || await loginPage.isLoginPage();
+  if (sessionExpired) {
     await loginPage.login(env.gestorAMUsername, env.gestorAMPassword);
   }
 
