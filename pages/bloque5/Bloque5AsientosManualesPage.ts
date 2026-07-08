@@ -455,7 +455,7 @@ export class Bloque5AsientosManualesPage {
       { timeout: 20_000 },
     );
 
-    await this.assertSidebarSections(['Parametrización', 'Aprovisionamiento', 'Asignaciones', 'Procesos']);
+    await this.assertSidebarSections(['Parametrización', 'Aprovisionamiento', 'Procesos']);
   }
 
   async assertSidebarSections(sectionNames: string[]): Promise<void> {

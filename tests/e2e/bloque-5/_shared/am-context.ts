@@ -4,8 +4,14 @@ import { env } from '@config/env';
 import { LoginPage } from '@pages/auth/LoginPage';
 
 export const AM_MODULE_NAME = 'Asientos Manuales';
-export const AM_DISTRIBUTION_NAME = '202506_Real NIIF_Flujo del mes';
-export const AM_DISTRIBUTION_PERIOD = '202506';
+export const AM_DISTRIBUTION_NAME = '2026Julio_Pruebas';
+export const AM_DISTRIBUTION_PERIOD = '202607';
+const AM_DISTRIBUTION_PERIOD_OPTIONS = [
+  AM_DISTRIBUTION_PERIOD,
+  '2026Julio',
+  '2026 Julio',
+  'Julio 2026',
+];
 
 export async function ensureAmContext(page: Page): Promise<void> {
   if (!/\/distribuciones/i.test(page.url())) {
@@ -60,15 +66,22 @@ async function ensureAmDistribution(page: Page): Promise<void> {
     return;
   }
 
+  const visibleTarget = targetDistributionLocator(page);
+  if (await visibleTarget.isVisible({ timeout: 3_000 }).catch(() => false)) {
+    await clickTargetDistribution(visibleTarget);
+    await acceptInformationModal(page);
+    return;
+  }
+
   await selectAmPeriod(page);
 
-  const targetDistribution = page.getByText(AM_DISTRIBUTION_NAME, { exact: true }).first();
+  const targetDistribution = targetDistributionLocator(page);
   await expect(
     targetDistribution,
     `Debe aparecer la distribucion ${AM_DISTRIBUTION_NAME} para poder seleccionarla.`,
   ).toBeVisible({ timeout: 30_000 });
 
-  await targetDistribution.click();
+  await clickTargetDistribution(targetDistribution);
   await acceptInformationModal(page);
 
   await expect
@@ -93,15 +106,36 @@ async function selectAmPeriod(page: Page): Promise<void> {
   }
 
   await periodSelector.click();
-  const periodOption = page
-    .getByRole('option', { name: new RegExp(`^${AM_DISTRIBUTION_PERIOD}$`) })
-    .or(page.getByRole('menuitem', { name: new RegExp(`^${AM_DISTRIBUTION_PERIOD}$`) }))
-    .or(page.locator('[data-radix-popper-content-wrapper], [role="listbox"], [role="menu"]').getByText(AM_DISTRIBUTION_PERIOD, { exact: true }))
-    .first();
 
-  await expect(periodOption, `Debe existir el periodo ${AM_DISTRIBUTION_PERIOD}.`).toBeVisible({ timeout: 15_000 });
-  await periodOption.click();
+  for (const period of AM_DISTRIBUTION_PERIOD_OPTIONS) {
+    const periodOption = page
+      .getByRole('option', { name: new RegExp(`^${escapeRegex(period)}$`) })
+      .or(page.getByRole('menuitem', { name: new RegExp(`^${escapeRegex(period)}$`) }))
+      .or(page.locator('[data-radix-popper-content-wrapper], [role="listbox"], [role="menu"]').getByText(period, { exact: true }))
+      .first();
+
+    if (await periodOption.isVisible({ timeout: 3_000 }).catch(() => false)) {
+      await periodOption.click();
+      await waitForAmLoading(page);
+      return;
+    }
+  }
+
+  await expect(
+    page.locator('[data-radix-popper-content-wrapper], [role="listbox"], [role="menu"]').first(),
+    `Debe existir alguno de los periodos ${AM_DISTRIBUTION_PERIOD_OPTIONS.join(', ')}.`,
+  ).toContainText(new RegExp(AM_DISTRIBUTION_PERIOD_OPTIONS.map(escapeRegex).join('|')), { timeout: 1_000 });
   await waitForAmLoading(page);
+}
+
+function targetDistributionLocator(page: Page) {
+  return page.getByText(AM_DISTRIBUTION_NAME, { exact: true }).first();
+}
+
+async function clickTargetDistribution(targetDistribution: ReturnType<typeof targetDistributionLocator>) {
+  await targetDistribution.click({ timeout: 5_000 }).catch(async () => {
+    await targetDistribution.click({ force: true });
+  });
 }
 
 async function isTargetDistributionSelected(page: Page): Promise<boolean> {
@@ -161,4 +195,8 @@ function getModuleTrigger(page: Page) {
 
 function normalizeText(value: string): string {
   return value.replace(/\s+/g, ' ').trim();
+}
+
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

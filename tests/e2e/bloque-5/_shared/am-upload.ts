@@ -65,7 +65,34 @@ export async function openAmView(page: Page, config: Pick<AmUploadCase, 'section
 }
 
 export function resolveAmUploadFile(config: Pick<AmUploadCase, 'caseId' | 'fileName' | 'fileFolder'>) {
-  return path.resolve('fixtures', 'files', 'bloque-5', config.fileFolder ?? config.caseId, config.fileName);
+  return resolveAmUploadFixture(config.fileName, config.fileFolder ?? config.caseId);
+}
+
+export function resolveAmUploadFixture(fileName: string, fileFolder?: string) {
+  const fixtureRoot = path.resolve('fixtures', 'files', 'bloque-5');
+  const directPath = fileFolder
+    ? path.resolve(fixtureRoot, fileFolder, fileName)
+    : path.resolve(fixtureRoot, fileName);
+
+  if (fs.existsSync(directPath)) {
+    return directPath;
+  }
+
+  return resolveAmUploadFileByName(fileName);
+}
+
+export function resolveAmUploadFileByResult(
+  entityName: string,
+  expectedResult: Exclude<AmUploadResult, 'validationDownload'>,
+) {
+  return resolveAmUploadFixture(fileNameForEntity(entityName), path.join('Real', expectedResult));
+}
+
+export function amUploadFixtureExistsByResult(
+  entityName: string,
+  expectedResult: Exclude<AmUploadResult, 'validationDownload'>,
+) {
+  return fs.existsSync(resolveAmUploadFileByResult(entityName, expectedResult));
 }
 
 export async function openAmUploadDialog(page: Page, config: Pick<AmUploadCase, 'modalTitle'>): Promise<Locator> {
@@ -130,7 +157,7 @@ export async function runAmUploadFlow(page: Page, uploadCase: AmUploadCase, opti
   const dialog = await openAmUploadDialog(page, uploadCase);
   await attachAmUploadFile(dialog, {
     ...uploadCase,
-    fileFolder: options.fileFolder ?? uploadCase.fileFolder ?? uploadCase.caseId,
+    fileFolder: options.fileFolder ?? uploadCase.fileFolder ?? path.join('Real', options.expectedResult),
   });
   await confirmAmUploadByResult(dialog, uploadCase.entityName, options.expectedResult, options.errorMessage);
 }
@@ -195,6 +222,32 @@ function resolveAmUploadFileByName(fileName: string) {
   collectMatchingFiles(path.resolve('fixtures', 'files', 'bloque-5'), fileName, matches);
   expect(matches.length, `Debe existir el fixture ${fileName} en fixtures/files/bloque-5.`).toBeGreaterThan(0);
   return matches[0];
+}
+
+function fileNameForEntity(entityName: string) {
+  const normalized = normalizeEntityName(entityName);
+  const fileNames: Record<string, string> = {
+    centros: 'REAL Centros AM.xlsx',
+    'cuentas contables': 'REAL Cuentas Contables AM.xlsx',
+    'exactus procesado': 'REAL Exactus procesado AM.xlsx',
+    exactus: 'REAL Exactus sin procesar AM.xlsx',
+    'exactus sin procesar': 'REAL Exactus sin procesar AM.xlsx',
+    partidas: 'REAL Partidas AM.xlsx',
+    'unidad de cuenta am': 'REAL Unidad de Cuenta AM.xlsx',
+  };
+
+  const fileName = fileNames[normalized];
+  expect(fileName, `Debe existir mapeo de fixture para la entidad ${entityName}.`).toBeTruthy();
+  return fileName;
+}
+
+function normalizeEntityName(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function collectMatchingFiles(dir: string, fileName: string, matches: string[]) {
