@@ -35,7 +35,6 @@ export const AM_DISTRIBUTION_PERIOD = AM_DISTRIBUTIONS.mutation.period;
 
 export async function ensureAmContext(page: Page, flow: AmDistributionFlow = 'read'): Promise<void> {
   const distribution = AM_DISTRIBUTIONS[flow];
-  const loginPage = new LoginPage(page);
   try {
     await page.goto('/');
   } catch (error) {
@@ -44,19 +43,21 @@ export async function ensureAmContext(page: Page, flow: AmDistributionFlow = 're
     }
   }
 
-  const sessionSurface = page
-    .getByRole('button', { name: /iniciar sesi[oó]n/i })
-    .or(page.getByRole('heading', { name: /distribuciones/i }))
-    .or(page.locator('aside, nav'))
-    .first();
-  await expect(
-    sessionSurface,
-    'Debe mostrarse la aplicacion autenticada o la pantalla de login.',
-  ).toBeVisible({ timeout: 40_000 });
+  const loginPage = new LoginPage(page);
 
-  const sessionExpired = /\/login/i.test(page.url()) || await loginPage.isLoginPage();
-  if (sessionExpired) {
+  const shouldLogin =
+    isLoginUrl(page.url()) ||
+    (await loginPage.isLoginPage()) ||
+    (await isLoginFormVisible(page)) ||
+    !(await isAppShellVisible(page));
+  if (shouldLogin) {
+    await loginPage.loginFromCurrentPage(env.gestorAMUsername, env.gestorAMPassword);
+    await expectAuthenticatedApp(page);
+  }
+
+  if (!/\/distribuciones/i.test(page.url())) {
     await loginPage.login(env.gestorAMUsername, env.gestorAMPassword);
+    await expectAuthenticatedApp(page);
   }
 
   if (!/\/distribuciones/i.test(page.url())) {
@@ -235,6 +236,44 @@ function getModuleTrigger(page: Page) {
 
 function normalizeText(value: string): string {
   return value.replace(/\s+/g, ' ').trim();
+}
+
+async function isLoginFormVisible(page: Page): Promise<boolean> {
+  const loginForm = page
+    .locator('#i0116, #i0118, input[type="email"], input[type="password"]')
+    .or(page.getByRole('textbox', { name: /email|correo|password|contrase/i }))
+    .or(page.getByRole('button', { name: /iniciar sesi[oó]n|sign in|next/i }))
+    .first();
+
+  return loginForm.isVisible({ timeout: 2_000 }).catch(() => false);
+}
+
+async function isAppShellVisible(page: Page): Promise<boolean> {
+  return getAppShell(page).isVisible({ timeout: 10_000 }).catch(() => false);
+}
+
+async function expectAuthenticatedApp(page: Page): Promise<void> {
+  await expect(page, 'Debe llegar a una URL valida de la app despues del login AM.').toHaveURL((url) => isAppUrl(url), {
+    timeout: 60_000,
+  });
+  await expect(getAppShell(page), 'Debe estar visible el shell principal de la app despues del login AM.').toBeVisible({
+    timeout: 60_000,
+  });
+}
+
+function getAppShell(page: Page) {
+  return page
+    .getByTestId('sidebar-user-trigger')
+    .or(page.getByRole('heading', { name: /Distribuciones/i }))
+    .first();
+}
+
+function isLoginUrl(value: string): boolean {
+  return /login\.microsoftonline\.com|microsoftonline|\/login|signin|redirect=/i.test(value);
+}
+
+function isAppUrl(url: URL): boolean {
+  return /pacificotest\.com\.pe$/i.test(url.hostname) && /\/distribuciones/i.test(url.pathname) && !/\/login/i.test(url.pathname);
 }
 
 function escapeRegex(value: string): string {

@@ -4,6 +4,7 @@ import { ensureAmContext, type AmDistributionFlow } from './am-context';
 import { buildTags, flowTagForUploadResult, FlowTag } from '../../_globalshared/tags/tags';
 import fs from 'fs';
 import path from 'path';
+import { Bloque5AsientosManualesPage } from '@pages/bloque5/Bloque5AsientosManualesPage';
 
 export type AmUploadResult =
   | 'success'
@@ -55,13 +56,22 @@ export async function ensureAmSession(page: Page, flow: AmDistributionFlow = 'up
 
 export async function openAmView(page: Page, config: Pick<AmUploadCase, 'section' | 'view'>) {
   await page.keyboard.press('Escape').catch(() => undefined);
-  await page.getByText(config.section, { exact: false }).click();
-  await page.getByRole('link', { name: new RegExp(config.view, 'i') }).click();
+  const amPage = new Bloque5AsientosManualesPage(page);
+  const sectionName = normalizeAmSectionName(config.section);
 
+  await amPage.openSidebarView(sectionName, config.view);
   await expect(
     page.getByRole('heading', { name: new RegExp(config.view, 'i') }).or(page.getByText(new RegExp(config.view, 'i'))).first(),
-    `Debe abrir la vista ${config.section} > ${config.view}.`,
+    `Debe abrir la vista ${sectionName} > ${config.view}.`,
   ).toBeVisible({ timeout: 30_000 });
+}
+
+function normalizeAmSectionName(sectionName: string) {
+  if (/^parametrizaci/i.test(sectionName)) {
+    return 'Parametrizaci\u00f3n';
+  }
+
+  return sectionName;
 }
 
 export function resolveAmUploadFile(config: Pick<AmUploadCase, 'caseId' | 'fileName' | 'fileFolder'>) {

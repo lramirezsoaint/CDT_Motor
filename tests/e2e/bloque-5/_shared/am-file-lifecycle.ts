@@ -11,6 +11,7 @@ import {
   openAmView,
   resolveAmUploadFileByResult,
 } from './am-upload';
+import { ensureAmContext } from './am-context';
 
 export function FileLifecycleCase(
   test: typeof baseTest,
@@ -24,7 +25,8 @@ export function FileLifecycleCase(
     test.skip(requiresFixture(config) && !fixture, fixtureReason(config));
 
     await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {
-      await expect(page).toHaveURL(/\/distribuciones/i);
+          await ensureAmContext(page, 'upload');
+          await expect(page).toHaveURL(/\/distribuciones/i);
       await ensureAmSession(
         page,
         config.flow === 'download' || config.flow === 'downloadIntegrity' ? 'read' : 'mutation',

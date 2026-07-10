@@ -1,4 +1,12 @@
-import { test, expect } from '@fixtures/base.fixture';
-import { CrudCase } from '../_shared/am-crud';
-import { AM_CRUD_CASES } from '../_shared/am-crud-cases';
-CrudCase(test, expect, AM_CRUD_CASES['E37-AM-02.01.3']);
+﻿import { DeleteRecordCase } from '../_shared/am-delete-record';
+
+DeleteRecordCase({
+  caseId: 'E37-AM-02.01.3',
+  section: 'Parametrizaci\u00f3n',
+  view: 'Centros',
+  role: 'gestorAM',
+  expectedResult: 'processError',
+  warningMessage: /seguro.*eliminar este registro|desea eliminar este registro/i,
+  expectedMessage: /Actualmente hay un proceso en ejecuci\u00f3n|no es posible editar o eliminar/i,
+  skipReason: 'TODO [PRECONDICION]: requiere proceso en ejecucion y registro objetivo estable; el catalogo no define preparacion aislada.',});
+

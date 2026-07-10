@@ -14,7 +14,7 @@ export type RejectedAmUploadCase = {
 export const REJECTED_AM_UPLOAD_CASES: Record<string, RejectedAmUploadCase> = {
   'E5-AM-01.1': {
     caseId: 'E5-AM-01.1',
-    section: 'Parametrizaci',
+    section: 'Parametrización',
     view: 'Cuentas Contables',
     entityName: 'Cuentas Contables',
     modalTitle: /Cargar Cuentas Contables/i,
@@ -23,7 +23,7 @@ export const REJECTED_AM_UPLOAD_CASES: Record<string, RejectedAmUploadCase> = {
   },
   'E5-AM-01.2': {
     caseId: 'E5-AM-01.2',
-    section: 'Parametrizaci',
+    section: 'Parametrización',
     view: 'Partidas',
     entityName: 'Partidas',
     modalTitle: /Cargar Partidas/i,
@@ -32,7 +32,7 @@ export const REJECTED_AM_UPLOAD_CASES: Record<string, RejectedAmUploadCase> = {
   },
   'E5-AM-01.3': {
     caseId: 'E5-AM-01.3',
-    section: 'Parametrizaci',
+    section: 'Parametrización',
     view: 'Centros',
     entityName: 'Centros',
     modalTitle: /Cargar Centros/i,
@@ -61,7 +61,7 @@ export const REJECTED_AM_UPLOAD_CASES: Record<string, RejectedAmUploadCase> = {
   },
   'E6-AM-01.1': {
     caseId: 'E6-AM-01.1',
-    section: 'Parametrizaci',
+    section: 'Parametrización',
     view: 'Cuentas Contables',
     entityName: 'Cuentas Contables',
     modalTitle: /Cargar Cuentas Contables/i,
@@ -70,7 +70,7 @@ export const REJECTED_AM_UPLOAD_CASES: Record<string, RejectedAmUploadCase> = {
   },
   'E6-AM-01.2': {
     caseId: 'E6-AM-01.2',
-    section: 'Parametrizaci',
+    section: 'Parametrización',
     view: 'Partidas',
     entityName: 'Partidas',
     modalTitle: /Cargar Partidas/i,
@@ -79,7 +79,7 @@ export const REJECTED_AM_UPLOAD_CASES: Record<string, RejectedAmUploadCase> = {
   },
   'E6-AM-01.3': {
     caseId: 'E6-AM-01.3',
-    section: 'Parametrizaci',
+    section: 'Parametrización',
     view: 'Centros',
     entityName: 'Centros',
     modalTitle: /Cargar Centros/i,

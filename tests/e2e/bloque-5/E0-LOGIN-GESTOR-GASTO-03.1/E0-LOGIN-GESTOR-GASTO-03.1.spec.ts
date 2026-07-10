@@ -1,4 +1,4 @@
-import { test } from '@fixtures/base.fixture';
+import { expect, test } from '@fixtures/base.fixture';
 import {
   assertDeleteHiddenInViews,
   gestorAmCredentials,
@@ -14,7 +14,9 @@ test('@bloque5 @E0-LOGIN-GESTOR-GASTO-03.1 @am @login @gestor-asiento @critical 
     await loginAndAssertDistribuciones(page, gestorAmCredentials, 'Gestor de Asientos Manuales');
   });
 
+    // ABRIR COMUNES
   await test.step('Validar Parametrizacion > Cuentas Contables, Partidas y Centros sin icono eliminar', async () => {
     await assertDeleteHiddenInViews(page, 'Parametrización', ['Cuentas Contables', 'Partidas', 'Centros'], 'Parametrización');
   });
-});
+  
+ });

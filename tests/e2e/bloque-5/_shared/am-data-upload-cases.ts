@@ -12,17 +12,17 @@ export type AmDataUploadCase = {
 
 export const AM_DATA_UPLOAD_CASES: Record<string, AmDataUploadCase> = {
   'E8-AM-01.1': {
-    caseId: 'E8-AM-01.1', section: 'Parametrizaci', view: 'Cuentas Contables',
+    caseId: 'E8-AM-01.1', section: 'Parametrización', view: 'Cuentas Contables',
     entityName: 'Cuentas Contables', modalTitle: /Cargar Cuentas Contables/i,
     expectedResult: 'validationError', catalogFileDescription: 'Cuentas Contables con datos obligatorios incompletos',
   },
   'E8-AM-01.2': {
-    caseId: 'E8-AM-01.2', section: 'Parametrizaci', view: 'Partidas',
+    caseId: 'E8-AM-01.2', section: 'Parametrización', view: 'Partidas',
     entityName: 'Partidas', modalTitle: /Cargar Partidas/i,
     expectedResult: 'validationError', catalogFileDescription: 'Partidas con datos obligatorios incompletos',
   },
   'E8-AM-01.3': {
-    caseId: 'E8-AM-01.3', section: 'Parametrizaci', view: 'Centros',
+    caseId: 'E8-AM-01.3', section: 'Parametrización', view: 'Centros',
     entityName: 'Centros', modalTitle: /Cargar Centros/i,
     expectedResult: 'validationError', catalogFileDescription: 'Centros con datos obligatorios incompletos',
   },
@@ -37,17 +37,17 @@ export const AM_DATA_UPLOAD_CASES: Record<string, AmDataUploadCase> = {
     expectedResult: 'validationError', catalogFileDescription: 'Unidad de Cuenta AM con datos obligatorios incompletos',
   },
   'E9-AM-01.1': {
-    caseId: 'E9-AM-01.1', section: 'Parametrizaci', view: 'Cuentas Contables',
+    caseId: 'E9-AM-01.1', section: 'Parametrización', view: 'Cuentas Contables',
     entityName: 'Cuentas Contables', modalTitle: /Cargar Cuentas Contables/i,
     expectedResult: 'success', catalogFileDescription: 'REAL Cuentas Contables AM',
   },
   'E9-AM-01.2': {
-    caseId: 'E9-AM-01.2', section: 'Parametrizaci', view: 'Partidas',
+    caseId: 'E9-AM-01.2', section: 'Parametrización', view: 'Partidas',
     entityName: 'Partidas', modalTitle: /Cargar Partidas/i,
     expectedResult: 'success', catalogFileDescription: 'REAL Partidas AM',
   },
   'E9-AM-01.3': {
-    caseId: 'E9-AM-01.3', section: 'Parametrizaci', view: 'Centros',
+    caseId: 'E9-AM-01.3', section: 'Parametrización', view: 'Centros',
     entityName: 'Centros', modalTitle: /Cargar Centros/i,
     expectedResult: 'success', catalogFileDescription: 'REAL Centros AM',
   },

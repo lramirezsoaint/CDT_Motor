@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
+import { ensureAmContext } from 'tests/e2e/bloque-5/_shared/am-context';
 
 export interface NuevaDistribucionInput {
   version: string;
@@ -42,6 +43,7 @@ export class DistribucionPage {
       await this.page.goto('/', { waitUntil: 'domcontentloaded' });
     }
     await this.page.waitForLoadState('networkidle');
+    await ensureAmContext(this.page, 'upload');
     await expect(this.page).toHaveURL(/\/distribuciones/i, { timeout: 20_000 });
   }
 

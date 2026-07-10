@@ -9,10 +9,14 @@ export class LoginPage {
   }
 
   async isLoginPage(): Promise<boolean> {
-    const microsoftButton = this.page.getByRole('button', { name: /iniciar sesi\u00f3n/i }).or(
-      this.page.getByText(/inicia sesi\u00f3n/i),
-    );
-    return microsoftButton.first().isVisible().catch(() => false);
+    const loginButton = this.page
+      .getByTestId('login-btn-iniciar-sesion')
+      .or(this.page.locator('#login-btn-iniciar-sesion'))
+      .or(this.page.getByRole('button', { name: /iniciar sesi[o\u00f3]n/i }))
+      .or(this.page.getByText(/iniciar sesi[o\u00f3]n/i))
+      .first();
+
+    return loginButton.isVisible({ timeout: 3_000 }).catch(() => false);
   }
 
   async login(username: string, password: string): Promise<void> {
@@ -20,15 +24,23 @@ export class LoginPage {
     await this.loginWithMicrosoft(username, password);
   }
 
+  async loginFromCurrentPage(username: string, password: string): Promise<void> {
+    await this.loginWithMicrosoft(username, password);
+  }
+
   async loginWithMicrosoft(username: string, password: string): Promise<void> {
-    const entryButton = this.page.getByRole('button', { name: /iniciar sesi[o\u00f3]n/i });
+    const entryButton = this.page
+      .getByTestId('login-btn-iniciar-sesion')
+      .or(this.page.locator('#login-btn-iniciar-sesion'))
+      .or(this.page.getByRole('button', { name: /iniciar sesi[o\u00f3]n/i }))
+      .or(this.page.getByText(/iniciar sesi[o\u00f3]n/i))
+      .first();
 
     try {
-      await entryButton.first().waitFor({ state: 'visible', timeout: 30_000 });
-      await entryButton.first().click();
+      await entryButton.waitFor({ state: 'visible', timeout: 30_000 });
+      await entryButton.click();
     } catch (error) {
       if (this.isDistribucionesUrl()) {
-        // Si ya estamos autenticados, validamos la pantalla real de la app.
         await this.waitForDistribucionesReady();
         return;
       }

@@ -32,10 +32,7 @@ test('@bloque5 @E0-LOGIN-ADMIN-02 @am @login @admin @critical valida acceso admi
   await page.getByText('Comunes').click();
   await page.getByText('Lí­neas').click();
   await page.getByText('Grupo Producto').click();
-  await page.getByRole('link', {
-  name: 'Canales',
-  exact: true
- }).click();
+  await page.getByRole('link', {name: 'Canales', exact: true}).click();
   await page.getByText('Subcanales').click();
   await page.getByText('Maestro UoA').click();
   await page.getByText(/Unidades de Cuenta/i).click();

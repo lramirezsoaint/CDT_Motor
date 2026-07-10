@@ -2,7 +2,7 @@ import { expect, Locator, Page } from '@playwright/test';
 import { env } from '@config/env';
 
 export class Bloque5AsientosManualesPage {
-  constructor(private readonly page: Page) {}
+  constructor(private readonly page: Page) { }
 
   private readonly noResultsPattern = /no existen registros|no hay resultados|sin resultados/i;
 
@@ -484,35 +484,95 @@ export class Bloque5AsientosManualesPage {
   }
 
   async openSidebarView(sectionName: string, itemName: string): Promise<void> {
+    const sectionRegex = new RegExp(`^${this.escapeRegex(sectionName)}$`, 'i');
+
     const section = this.page
       .getByRole('listitem')
-      .filter({ has: this.page.getByRole('button', { name: new RegExp(`^${this.escapeRegex(sectionName)}$`, 'i') }) })
-      .first();
-    const sectionButton = section
-      .getByRole('button', { name: new RegExp(`^${this.escapeRegex(sectionName)}$`, 'i') })
+      .filter({
+        has: this.page.getByRole('button', { name: sectionRegex }),
+      })
       .first();
 
-    await expect(sectionButton, `Debe existir la seccion ${sectionName} en el menu lateral.`).toBeVisible({ timeout: 15_000 });
-    await sectionButton.click();
+    const sectionButton = section
+      .getByRole('button', { name: sectionRegex })
+      .first();
+
+    await expect(
+      sectionButton,
+      `Debe existir la seccion ${sectionName} en el menu lateral.`,
+    ).toBeVisible({ timeout: 15_000 });
+
+    const testId = `sidebar-section-${sectionName
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/\s+/g, '-')}`;
+
+const realSectionButton = this.page
+  .getByTestId(testId)
+  .or(sectionButton)
+  .first();
+
+await expect(
+  realSectionButton,
+  `Debe existir la seccion ${sectionName} en el menu lateral.`,
+).toBeVisible({ timeout: 15_000 });
+
+await expect
+  .poll(
+    async () => {
+      const expanded = await realSectionButton.getAttribute('aria-expanded');
+
+      if (expanded === 'true') {
+        return true;
+      }
+
+      await realSectionButton.click({ force: true }).catch(() => undefined);
+      await this.page.waitForTimeout(300);
+
+      return (await realSectionButton.getAttribute('aria-expanded')) === 'true';
+    },
+    {
+      timeout: 10_000,
+      message: `La seccion ${sectionName} debe expandirse.`,
+    },
+  )
+  .toBe(true);
 
     const aliases = this.getMenuAliases(itemName);
+
     const itemPattern = new RegExp(
-      aliases.map((alias) => this.escapeRegex(alias)).join('|'),
+      aliases.map((alias) => this.escapeRegex(alias).replace(/\s+/g, '\\s*')).join('|'),
       'i',
     );
+
     const scopedItem = section
       .getByRole('link', { name: itemPattern })
       .or(section.getByRole('button', { name: itemPattern }))
+      .or(section.getByText(itemPattern))
       .first();
+
     const globalItem = this.page
       .getByRole('link', { name: itemPattern })
       .or(this.page.getByRole('button', { name: itemPattern }))
+      .or(this.page.getByText(itemPattern))
       .first();
-    const targetItem = (await scopedItem.isVisible({ timeout: 5_000 }).catch(() => false)) ? scopedItem : globalItem;
 
-    await expect(targetItem, `Debe existir la opcion ${itemName} en ${sectionName}.`).toBeVisible({ timeout: 15_000 });
+    const targetItem = (await scopedItem.isVisible({ timeout: 5_000 }).catch(() => false))
+      ? scopedItem
+      : globalItem;
+
+    await expect(
+      targetItem,
+      `Debe existir la opcion ${itemName} en ${sectionName}.`,
+    ).toBeVisible({ timeout: 15_000 });
+
     await targetItem.click();
-    await this.page.getByText(/Cargando/i).waitFor({ state: 'hidden', timeout: 15_000 }).catch(() => undefined);
+
+    await this.page
+      .getByText(/Cargando/i)
+      .waitFor({ state: 'hidden', timeout: 15_000 })
+      .catch(() => undefined);
   }
 
   // ─── COLUMNS ────────────────────────────────────────────────────────────────

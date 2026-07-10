@@ -1,4 +1,15 @@
-import { test, expect } from '@fixtures/base.fixture';
-import { CrudCase } from '../_shared/am-crud';
-import { AM_CRUD_CASES } from '../_shared/am-crud-cases';
-CrudCase(test, expect, AM_CRUD_CASES['E35-AM-03-01.3']);
+﻿import { AddRecordCase } from '../_shared/am-add-record';
+
+AddRecordCase({
+  caseId: 'E35-AM-03-01.3',
+  section: 'Parametrizaci\u00f3n',
+  view: 'Centros',
+  role: 'gestorAM',
+  modalTitle: /Agregar Centro(?:s)?/i,
+  fields: [
+    { label: /C[o\u00f3]digo Centro/i },
+    { label: /^Centro$/i },
+    { label: /^Tipo$/i },
+  ],
+  expectedResult: 'validationError',});
+
