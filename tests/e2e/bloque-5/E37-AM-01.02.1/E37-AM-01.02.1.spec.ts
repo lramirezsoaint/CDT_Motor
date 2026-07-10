@@ -8,5 +8,4 @@ DeleteRecordCase({
   expectedResult: 'success',
   warningMessage: /seguro.*eliminar este registro|desea eliminar este registro/i,
   expectedMessage: /registro eliminado correctamente|eliminado correctamente/i,
-  skipReason: 'TODO [ROL/DATA]: el catalogo requiere Administrador AM y registro objetivo creado; la validacion solicitada corre con chromium-gestorAM.',});
-
+  skipReason: 'No existe el boton de eliminar',});

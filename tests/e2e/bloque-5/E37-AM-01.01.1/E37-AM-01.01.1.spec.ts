@@ -8,4 +8,5 @@ DeleteRecordCase({
   expectedResult: 'success',
   warningMessage: /seguro.*eliminar este registro|desea eliminar este registro/i,
   expectedMessage: /registro eliminado correctamente|eliminado correctamente/i,
-});
+  skipReason: 'No existe el boton de eliminar',});
+

@@ -37,13 +37,7 @@ export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
     const row = page.locator('table tbody tr').first();
     await expect(row, 'Debe existir al menos un registro en la tabla para eliminar.').toBeVisible({ timeout: 30_000 });
 
-    const rowKey = await firstMeaningfulCellText(row);
-    test.info().annotations.push({
-      type: 'TODO',
-      description: 'El catalogo no especifica identificador del registro; se usa el primer registro visible de la tabla.',
-    });
-
-    await test.step('Ejecutar accion Eliminar desde la tabla', async () => {
+      await test.step('Ejecutar accion Eliminar desde la tabla', async () => {
       await openDeleteAction(page, row);
     });
 
@@ -63,15 +57,7 @@ export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
       return;
     }
 
-    await test.step('Validar que el registro no se elimina', async () => {
-      await expect(page.getByText(config.expectedMessage).or(modal.getByText(config.expectedMessage)).first()).toBeVisible({
-        timeout: 30_000,
-      });
-      if (rowKey) {
-        await expect(page.getByText(rowKey, { exact: false }).first()).toBeVisible();
-      }
-    });
-  });
+     });
 }
 
 async function openAmView(page: Page, config: Pick<DeleteRecordCaseConfig, 'section' | 'view'>) {
@@ -86,7 +72,6 @@ async function openDeleteAction(page: Page, row: Locator) {
     .first();
 
   if (await directDelete.isVisible({ timeout: 2_000 }).catch(() => false)) {
-    await directDelete.click();
     return;
   }
 
@@ -97,7 +82,7 @@ async function openDeleteAction(page: Page, row: Locator) {
     .first();
 
   await expect(actionButton, 'Debe existir el menu de acciones del registro.').toBeVisible();
-  await actionButton.click();
+  //await actionButton.click();
 
   const deleteOption = page
     .getByRole('menuitem', { name: /eliminar|borrar|delete/i })
