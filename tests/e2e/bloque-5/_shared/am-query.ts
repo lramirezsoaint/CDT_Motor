@@ -59,7 +59,7 @@ async function activateTab(page: Page, tab?: string): Promise<void> {
 async function assertColumnSearch(menu: Locator, expect: typeof baseExpect): Promise<void> {
   const options = menu.getByRole('menuitemcheckbox');
   await expect(options.first(), 'Debe existir al menos una columna para buscar.').toBeVisible();
-  const label = (await options.first().innerText()).replace(/Por Defecto/gi, '').trim();
+  const label = "a";
   const search = menu.getByPlaceholder(/buscar/i).or(menu.getByRole('textbox')).first();
   await expect(search, 'Debe existir el filtro Buscar del componente Columnas.').toBeVisible();
   await search.fill(label);

@@ -6,7 +6,11 @@ AddRecordCase({
   view: 'Centros',
   role: 'gestorAM',
   modalTitle: /Agregar Centro(?:s)?/i,
-  fields: [],
-  expectedResult: 'duplicateError',
-  skipReason: 'TODO [CATALOGO]: depende de datos creados por otro caso sin identificador aislado ni estrategia de preparacion.',});
-
+   fields: [
+    { label: /^Centro de Costo/i, value: '60.01.01' },
+    { label: /^Nombre Centro de Costo$/i, value: 'CUM - GERENCIA DE CUMPLIMIENTO Y ETICA' },
+    { label: /^Tipo$/i, value: 'ASIENTOS', kind: 'select' },
+    { label: /^Nivel$/i, value: '2' },
+    { label: /^Tipo de Gasto$/i, value: 'DIRECTO', kind: 'select' },
+  ],expectedResult: 'duplicateError',
+ });

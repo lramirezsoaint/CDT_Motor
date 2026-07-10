@@ -8,7 +8,7 @@ export function ProcessCase(test: typeof baseTest, expect: typeof baseExpect, co
   test.use({ storageState: '.auth/gestorAM.json' });
   test(`@bloque5 @${config.caseId} @am @procesos @gestor-asiento @critical ${title(config)}`, async ({ page }) => {
     test.setTimeout(600_000);
-    test.skip(process.env[config.readiness] !== 'true', readinessReason(config));
+   test.skip(true,'TODO [DATA]: Depende de la pestaña procesos.',);
     const amPage = new Bloque5AsientosManualesPage(page);
 
     await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {

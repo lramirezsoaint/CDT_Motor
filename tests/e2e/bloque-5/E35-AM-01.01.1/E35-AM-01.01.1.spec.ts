@@ -7,7 +7,7 @@ AddRecordCase({
   role: 'gestorAM',
   modalTitle: /Agregar Cuenta(?:s)? Contable(?:s)?/i,
   fields: [
-    { label: /Cuenta Contable/i, value: '40.4.2.1.00.00' },
+    { label: /Cuenta Contable/i, value: '40.1.1.01.02.01' },
     { label: /Nombre Cuenta Contable/i, value: 'REPARACION Y MANTENIMIENTO' },
     { label: /Tipo de Gasto/i, value: 'IF', kind: 'select' },
     { label: /NIIF17 Atribuible/i, value: 'ATRIBUIBLE', kind: 'select' },
@@ -20,5 +20,5 @@ AddRecordCase({
     { label: /Concepto NIIF17/i, value: 'Ingresos Financieros Netos' },
   ],
   expectedResult: 'success',
-  expectedTableValues: ['40.4.2.1.00.00', 'REPARACION Y MANTENIMIENTO'],
+  expectedTableValues: ['40.1.1.01.02.01', 'REPARACION Y MANTENIMIENTO'],
   });

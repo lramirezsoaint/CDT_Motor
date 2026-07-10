@@ -7,7 +7,7 @@ EditRecordCase({
   role: 'gestorAM',
   modalTitle: /Editar Cuenta(?:s)? Contable(?:s)?/i,
   fields: [
-    { label: /Nombre|Partida|Centro|Factor/i, value: 'AUTOMATION' },
+    { label: /Nombre Cuenta Contable/i, value: 'AUTOMATION CAMBIO' },
   ],
   expectedResult: 'success',
 });

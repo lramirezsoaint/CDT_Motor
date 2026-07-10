@@ -3,7 +3,7 @@
 DeleteRecordCase({
   caseId: 'E37-AM-01.01.2',
   section: 'Parametrizaci\u00f3n',
-  view: 'Partidas',
+   view: /Partidas?/i,
   role: 'gestorAM',
   expectedResult: 'success',
   warningMessage: /seguro.*eliminar este registro|desea eliminar este registro/i,

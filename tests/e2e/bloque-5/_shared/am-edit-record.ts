@@ -15,7 +15,7 @@ type EditField = {
 type EditRecordCaseConfig = {
   caseId: string;
   section: string;
-  view: string;
+  view: string|RegExp;
   role: 'gestorAM';
   modalTitle: RegExp;
   fields: EditField[];
@@ -69,7 +69,7 @@ export function EditRecordCase(config: EditRecordCaseConfig) {
           const control = fieldLocator(modal, field);
           const visible = await control.isVisible({ timeout: 2_000 }).catch(() => false);
           if (!visible) continue;
-          if (field.value) {
+          if (field.kind === 'delete' || field.value !== undefined) {
             await fillField(page, modal, field);
           } else {
             await control.focus().catch(() => undefined);
@@ -146,11 +146,30 @@ async function fillField(page: Page, modal: Locator, field: EditField) {
   }
 
   if (field.kind === 'delete') {
-    await control.fill('a');
+    await clearField(control);
     return;
   }
 
   await control.fill(field.value ?? '');
+}
+
+async function clearField(control: Locator) {
+  const nestedEditable = control.locator('input,textarea').first();
+  const hasNestedEditable = await nestedEditable.isVisible({ timeout: 1_000 }).catch(() => false);
+  const target = hasNestedEditable ? nestedEditable : control;
+
+  await expect(target, 'Debe existir el campo editable para poder borrar su valor.').toBeVisible();
+
+  try {
+    await target.fill('');
+  } catch (error) {
+    await target.click();
+    await target.press('Control+A');
+    await target.press('Delete');
+  }
+
+  await expect(target, 'El campo definido debe quedar vacio para disparar la validacion.').toHaveValue('');
+  await target.blur().catch(() => undefined);
 }
 
 function tagsFor(config: Pick<EditRecordCaseConfig, 'caseId'>) {
@@ -161,6 +180,10 @@ function sectionName(value: string) {
   return /^parametrizaci/i.test(value) ? 'Parametrizaci\u00f3n' : value;
 }
 
-function escapeRegExp(value: string) {
+function escapeRegExp(value: string | RegExp): string {
+  if (value instanceof RegExp) {
+    return value.source;
+  }
+
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

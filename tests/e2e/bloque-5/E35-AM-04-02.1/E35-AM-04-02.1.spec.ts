@@ -6,7 +6,16 @@ AddRecordCase({
   view: 'Unidad de Cuenta AM',
   role: 'gestorAM',
   modalTitle: /Agregar Unidad de Cuenta AM/i,
-  fields: [],
+  fields: [
+    { label: /Prioridad/i, value: '1', kind: 'select' },
+    { label: /Código Concepto/i, value: '01.01.00', kind: 'select' },
+    { label: /Moneda/i, value: 'PEN', kind: 'select' },
+    { label: /Dígito de Cuenta/i, value: '44' },
+    { label: /Código Ramo/i, value: '1', kind: 'select' },
+    { label: /Grupo Producto/i, value: 'AFP ANTIGUO', kind: 'select' },
+    { label: /Subcanal/i, value: 'AFP ANTIGUO', kind: 'select' },
+    { label: /Unidad de Cuenta/i, value: '1', kind: 'select' },
+    { label: /Factor/i, value: '1' },
+  ],
   expectedResult: 'duplicateError',
-  skipReason: 'TODO [CATALOGO]: depende de datos creados por otro caso sin identificador aislado ni estrategia de preparacion.',});
-
+  });

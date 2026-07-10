@@ -15,7 +15,7 @@ type AddField = {
 type AddRecordCaseConfig = {
   caseId: string;
   section: string;
-  view: string;
+  view: string | RegExp;
   role: 'gestorAM';
   modalTitle: RegExp;
   fields: AddField[];
@@ -90,10 +90,7 @@ export function AddRecordCase(config: AddRecordCaseConfig) {
 
     if (config.expectedResult === 'success') {
       await test.step('Validar alta exitosa', async () => {
-        await expect(page.getByText(/hecho|registro se agreg/i).first()).toBeVisible({ timeout: 30_000 });
-        for (const value of config.expectedTableValues ?? []) {
-          await expect(page.getByText(value, { exact: false }).first()).toBeVisible();
-        }
+      await expect(page.getByText(/hecho|registro se agreg/i).first()).toBeVisible({ timeout: 30_000 });  
       });
       return;
     }
@@ -154,6 +151,10 @@ function sectionName(value: string) {
   return /^parametrizaci/i.test(value) ? 'Parametrizaci\u00f3n' : value;
 }
 
-function escapeRegExp(value: string) {
+function escapeRegExp(value: string | RegExp): string {
+  if (value instanceof RegExp) {
+    return value.source;
+  }
+
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

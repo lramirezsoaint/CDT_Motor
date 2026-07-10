@@ -6,7 +6,17 @@ AddRecordCase({
   view: 'Cuentas Contables',
   role: 'gestorAM',
   modalTitle: /Agregar Cuenta(?:s)? Contable(?:s)?/i,
-  fields: [],
-  expectedResult: 'duplicateError',
-  skipReason: 'TODO [CATALOGO]: depende de datos creados por otro caso sin identificador aislado ni estrategia de preparacion.',});
-
+  fields: [
+    { label: /Cuenta Contable/i, value: '40.1.1.01.02.01' },
+    { label: /Nombre Cuenta Contable/i, value: 'REPARACION Y MANTENIMIENTO' },
+    { label: /Tipo de Gasto/i, value: 'IF', kind: 'select' },
+    { label: /NIIF17 Atribuible/i, value: 'ATRIBUIBLE', kind: 'select' },
+    { label: /NIIF17 Tipo/i, value: 'GA', kind: 'select' },
+    { label: /NIIF17 Clase/i, value: 'FI', kind: 'select' },
+    { label: /Concepto/i, value: '30.05.04' },
+    { label: /Concepto N1/i, value: 'Ingresos Financieros Netos' },
+    { label: /Concepto N2/i, value: 'Arrendamiento' },
+    { label: /Concepto N3/i, value: 'Otros costos relacionados a Arrendamiento' },
+    { label: /Concepto NIIF17/i, value: 'Ingresos Financieros Netos' },
+  ],expectedResult: 'duplicateError',
+  });

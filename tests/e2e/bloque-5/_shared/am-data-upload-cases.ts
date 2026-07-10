@@ -3,7 +3,7 @@ import type { AmUploadResult } from './am-upload';
 export type AmDataUploadCase = {
   caseId: string;
   section: string;
-  view: string;
+  view: string|RegExp;
   entityName: string;
   modalTitle: RegExp;
   expectedResult: Extract<AmUploadResult, 'success' | 'validationError'>;
@@ -17,7 +17,7 @@ export const AM_DATA_UPLOAD_CASES: Record<string, AmDataUploadCase> = {
     expectedResult: 'validationError', catalogFileDescription: 'Cuentas Contables con datos obligatorios incompletos',
   },
   'E8-AM-01.2': {
-    caseId: 'E8-AM-01.2', section: 'Parametrización', view: 'Partidas',
+    caseId: 'E8-AM-01.2', section: 'Parametrización',  view: /Partidas?/i,
     entityName: 'Partidas', modalTitle: /Cargar Partidas/i,
     expectedResult: 'validationError', catalogFileDescription: 'Partidas con datos obligatorios incompletos',
   },
@@ -42,7 +42,7 @@ export const AM_DATA_UPLOAD_CASES: Record<string, AmDataUploadCase> = {
     expectedResult: 'success', catalogFileDescription: 'REAL Cuentas Contables AM',
   },
   'E9-AM-01.2': {
-    caseId: 'E9-AM-01.2', section: 'Parametrización', view: 'Partidas',
+    caseId: 'E9-AM-01.2', section: 'Parametrización',  view: /Partidas?/i,
     entityName: 'Partidas', modalTitle: /Cargar Partidas/i,
     expectedResult: 'success', catalogFileDescription: 'REAL Partidas AM',
   },

@@ -31,7 +31,7 @@ test('@bloque5 @E40-DIS-03 @am @distribucion @gestor-asiento @critical valida er
   });
 
   await test.step('Validar mensaje de formato no valido', async () => {
-    await expect(page.getByText(/Algunos datos tienen un formato no v[aá]lido|formato no v[aá]lido|caracteres extra[nñ]os/i).first()).toBeVisible({
+    await expect(page.getByText(/El valor ingresado no es v[aá]lido|Formato no admitido/i).first()).toBeVisible({
       timeout: 30_000,
     });
   });

@@ -10,5 +10,4 @@ EditRecordCase({
     { label: /Nombre|Partida|Centro|Factor/i, value: 'AUTOMATION' },
   ],
   expectedResult: 'success',
-  skipReason: 'TODO [DATA]: el catalogo requiere un registro objetivo creado/preparado y no define un identificador estable para editar.',});
-
+  });

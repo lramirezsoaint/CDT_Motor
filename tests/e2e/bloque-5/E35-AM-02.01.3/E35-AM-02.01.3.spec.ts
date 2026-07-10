@@ -6,8 +6,13 @@ AddRecordCase({
   view: 'Centros',
   role: 'gestorAM',
   modalTitle: /Agregar Centro(?:s)?/i,
-  fields: [],
+  fields: [
+    { label: /^Centro de Costo/i, value: '60.01.01' },
+    { label: /^Nombre Centro de Costo$/i, value: 'CUM - GERENCIA DE CUMPLIMIENTO Y ETICA' },
+    { label: /^Tipo$/i, value: 'ASIENTOS', kind: 'select' },
+    { label: /^Nivel$/i, value: '2' },
+    { label: /^Tipo de Gasto$/i, value: 'DIRECTO', kind: 'select' },
+  ],
   expectedResult: 'duplicateError',
   expectedMessages: [/registro que intentas agregar ya existe|registro duplicado/i],
-  skipReason: 'TODO [CATALOGO]: requiere copiar valores de un registro existente o del CP E35-AM-01.01.3 sin identificador estable.',});
-
+  });

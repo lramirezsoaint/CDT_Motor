@@ -3,7 +3,7 @@
 AddRecordCase({
   caseId: 'E35-AM-03-01.2',
   section: 'Parametrizaci\u00f3n',
-  view: 'Partidas',
+  view: /Partidas?/i,
   role: 'gestorAM',
   modalTitle: /Agregar Partida(?:s)?/i,
   fields: [

@@ -7,8 +7,7 @@ EditRecordCase({
   role: 'gestorAM',
   modalTitle: /Editar Unidad de Cuenta AM/i,
   fields: [
-    { label: /Nombre|Partida|Centro|Factor/i, kind: 'delete' },
+    { label: /Nombre/i, kind: 'delete' },
   ],
   expectedResult: 'validationError',
-  skipReason: 'TODO [DATA]: el catalogo requiere un registro objetivo creado/preparado y no define un identificador estable para editar.',});
-
+ });

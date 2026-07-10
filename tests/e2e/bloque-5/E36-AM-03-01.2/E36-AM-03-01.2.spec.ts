@@ -3,12 +3,11 @@
 EditRecordCase({
   caseId: 'E36-AM-03-01.2',
   section: 'Parametrizaci\u00f3n',
-  view: 'Partidas',
+  view: /Partidas?/i,
   role: 'gestorAM',
   modalTitle: /Editar Partida(?:s)?/i,
   fields: [
-    { label: /Nombre|Partida|Centro|Factor/i, kind: 'delete' },
+    { label: /^Partida$/i, kind: 'delete' },
   ],
   expectedResult: 'validationError',
-  skipReason: 'TODO [DATA]: el catalogo requiere un registro objetivo creado/preparado y no define un identificador estable para editar.',});
-
+  });

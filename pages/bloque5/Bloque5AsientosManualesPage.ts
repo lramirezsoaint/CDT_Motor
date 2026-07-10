@@ -764,9 +764,13 @@ await expect
     await expect(this.moduleTrigger).toHaveText(/Asientos Manuales/i, { timeout: 15_000 });
   }
 
-  private escapeRegex(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  private escapeRegex(value: string | RegExp): string {
+  if (value instanceof RegExp) {
+    return value.source;
   }
+
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
   private getMenuAliases(itemName: string): string[] {
     const aliases = new Set([itemName]);
