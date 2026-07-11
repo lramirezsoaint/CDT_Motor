@@ -1,7 +1,8 @@
 import fs from 'fs';
+import path from 'path';
 import * as XLSX from 'xlsx';
 import { test as baseTest, expect as baseExpect } from '@fixtures/base.fixture';
-import type { Page } from '@playwright/test';
+import type { Page, TestInfo } from '@playwright/test';
 import type { AmFileLifecycleCase } from './am-file-lifecycle-cases';
 import {
   amUploadFixtureExistsByResult,
@@ -19,7 +20,7 @@ export function FileLifecycleCase(
   config: AmFileLifecycleCase,
 ): void {
   test.use({ storageState: '.auth/gestorAM.json' });
-  test(`@bloque5 @${config.caseId} @am ${flowTag(config)} @gestor-asiento @regression ${title(config)}`, async ({ page }) => {
+  test(`@bloque5 @${config.caseId} @am ${flowTag(config)} @gestor-asiento @regression ${title(config)}`, async ({ page }, testInfo) => {
     test.setTimeout(360_000);
     const fixture = fixtureFile(config);
     test.skip(requiresFixture(config) && !fixture, fixtureReason(config));
@@ -34,13 +35,14 @@ export function FileLifecycleCase(
     });
     await test.step(`${title(config)} en ${config.section} > ${config.view}`, async () => {
       await openAmView(page, config);
+      await activateTab(page, config.tab);
       if (config.flow === 'download' || config.flow === 'downloadIntegrity') {
-        const downloaded = await downloadFile(page, config, expect);
+        const downloaded = await downloadFile(page, config, expect, testInfo);
         if (config.flow === 'downloadIntegrity') assertWorkbookIntegrity(downloaded, config, expect);
         return;
       }
       if (config.flow === 'reloadDownloaded') {
-        const downloaded = await downloadFile(page, config, expect);
+        const downloaded = await downloadFile(page, config, expect, testInfo);
         await uploadFile(page, config, downloaded, 'success');
         return;
       }
@@ -52,6 +54,22 @@ export function FileLifecycleCase(
       await uploadFile(page, config, fixture!, config.flow === 'dependencyError' ? 'validationError' : 'success');
     });
   });
+}
+
+async function activateTab(page: Page, tab?: string): Promise<void> {
+  if (!tab) return;
+
+  const target = page
+    .getByRole('tab', { name: new RegExp(tab, 'i') })
+    .or(page.getByRole('button', { name: new RegExp(tab, 'i') }))
+    .first();
+
+  await baseExpect(target, `Debe existir la vista ${tab}.`).toBeVisible({ timeout: 20_000 });
+  await target.click();
+  await page
+    .getByText(/Cargando/i)
+    .waitFor({ state: 'hidden', timeout: 15_000 })
+    .catch(() => undefined);
 }
 
 function fixtureFile(config: AmFileLifecycleCase): string | undefined {
@@ -82,18 +100,55 @@ async function uploadFile(page: Page, config: AmFileLifecycleCase, file: string,
   await confirmAmUploadByResult(dialog, config.entityName, result);
 }
 
-async function downloadFile(page: Page, config: AmFileLifecycleCase, expect: typeof baseExpect): Promise<string> {
-  const button = page.getByRole('button', { name: /descargar/i })
-    .or(page.locator('[data-testid*="download"], button[id*="download"], [aria-label*="descargar" i]')).first();
+async function downloadFile(
+  page: Page,
+  config: AmFileLifecycleCase,
+  expect: typeof baseExpect,
+  testInfo: TestInfo,
+): Promise<string> {
+  const button = downloadButton(page, config);
   await expect(button, `Debe existir Descargar en ${config.entityName}.`).toBeVisible({ timeout: 20_000 });
-  await expect(button, `Descargar debe estar habilitado en ${config.entityName}.`).toBeEnabled();
+  await expect(button, `Descargar debe estar habilitado en ${config.entityName}.`).toBeEnabled({ timeout: 30_000 });
   const [download] = await Promise.all([page.waitForEvent('download'), button.click()]);
-  expect(download.suggestedFilename(), 'La descarga debe ser Excel o CSV.').toMatch(/\.(xlsx?|csv)$/i);
+  const fileName = download.suggestedFilename();
+  expect(fileName, 'La descarga debe ser Excel o CSV.').toMatch(/\.(xlsx?|csv)$/i);
   expect(await download.failure(), 'La descarga no debe fallar.').toBeNull();
-  const downloadedPath = await download.path();
-  expect(downloadedPath, 'Debe existir acceso al archivo descargado.').toBeTruthy();
-  expect(fs.statSync(downloadedPath!).size, 'El archivo descargado no debe estar vacio.').toBeGreaterThan(0);
-  return downloadedPath!;
+  const downloadedPath = testInfo.outputPath(path.basename(fileName));
+  await download.saveAs(downloadedPath);
+  expect(fs.statSync(downloadedPath).size, 'El archivo descargado no debe estar vacio.').toBeGreaterThan(0);
+  return downloadedPath;
+}
+
+function downloadButton(page: Page, config: AmFileLifecycleCase) {
+  const testId = downloadTestId(config.entityName);
+  const specific = testId ? page.getByTestId(testId) : page.locator('__never__');
+
+  return specific
+    .or(page.getByRole('button', { name: /descargar/i }))
+    .or(page.locator('[data-testid*="download"], button[id*="download"], [aria-label*="descargar" i]'))
+    .first();
+}
+
+function downloadTestId(entityName: string): string | undefined {
+  const testIds: Record<string, string> = {
+    centros: 'btn-centros-download',
+    'cuentas contables': 'btn-cuentas-contables-download',
+    'exactus procesado': 'btn-exactus-procesado-download',
+    exactus: 'btn-exactus-download',
+    partidas: 'btn-partidas-download',
+    'unidad de cuenta am': 'btn-unidad-de-cuenta-am-download',
+  };
+
+  return testIds[normalizeEntityName(entityName)];
+}
+
+function normalizeEntityName(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function assertWorkbookIntegrity(file: string, config: AmFileLifecycleCase, expect: typeof baseExpect): void {

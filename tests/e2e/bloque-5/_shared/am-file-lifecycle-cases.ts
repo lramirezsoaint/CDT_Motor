@@ -11,6 +11,7 @@ export type AmFileLifecycleCase = {
   flow: AmFileLifecycleFlow;
   section: string;
   view: string;
+  tab?: string;
   entityName: string;
   modalTitle: RegExp;
   catalogFileDescription?: string;
@@ -18,10 +19,10 @@ export type AmFileLifecycleCase = {
 
 const row = (
   caseId: string, flow: AmFileLifecycleFlow, section: string, view: string,
-  entityName = view, catalogFileDescription?: string,
+  entityName = view, catalogFileDescription?: string, tab?: string, modalTitle?: RegExp,
 ): AmFileLifecycleCase => ({
-  caseId, flow, section, view, entityName, catalogFileDescription,
-  modalTitle: new RegExp(`Cargar ${entityName.replace(' sin Procesar', '')}`, 'i'),
+  caseId, flow, section, view, tab, entityName, catalogFileDescription,
+  modalTitle: modalTitle ?? new RegExp(`Cargar ${entityName.replace(' sin Procesar', '')}`, 'i'),
 });
 
 export const AM_FILE_LIFECYCLE_CASES: Record<string, AmFileLifecycleCase> = Object.fromEntries([
@@ -41,17 +42,26 @@ export const AM_FILE_LIFECYCLE_CASES: Record<string, AmFileLifecycleCase> = Obje
   row('E10-AM-01.1', 'download', 'Parametrización', 'Cuentas Contables'),
   row('E10-AM-01.2', 'download', 'Parametrización', 'Partidas'),
   row('E10-AM-01.3', 'download', 'Parametrización', 'Centros'),
-  row('E10-AM-02.1', 'download', 'Aprovisionamiento', 'Exactus', 'Exactus sin Procesar'),
+  row('E10-AM-02.1', 'download', 'Aprovisionamiento', 'Exactus'),
   row('E10-AM-02.2', 'download', 'Aprovisionamiento', 'Unidad de Cuenta AM'),
   row('E11-AM-01.1', 'downloadIntegrity', 'Parametrización', 'Cuentas Contables'),
   row('E11-AM-01.2', 'downloadIntegrity', 'Parametrización', 'Partidas'),
   row('E11-AM-01.3', 'downloadIntegrity', 'Parametrización', 'Centros'),
-  row('E11-AM-02.1', 'downloadIntegrity', 'Aprovisionamiento', 'Exactus', 'Exactus sin Procesar'),
+  row('E11-AM-02.1', 'downloadIntegrity', 'Aprovisionamiento', 'Exactus'),
   row('E11-AM-02.2', 'downloadIntegrity', 'Aprovisionamiento', 'Unidad de Cuenta AM'),
   row('E71-AM-01.1', 'reloadDownloaded', 'Parametrización', 'Cuentas Contables'),
   row('E71-AM-01.2', 'reloadDownloaded', 'Parametrización', 'Partidas'),
   row('E71-AM-01.3', 'reloadDownloaded', 'Parametrización', 'Centros'),
-  row('E71-AM-02.1', 'reloadDownloaded', 'Aprovisionamiento', 'Exactus', 'Exactus sin Procesar'),
-  row('E71-AM-02.2', 'reloadDownloaded', 'Aprovisionamiento', 'Exactus procesado'),
+  row('E71-AM-02.1', 'reloadDownloaded', 'Aprovisionamiento', 'Exactus'),
+  row(
+    'E71-AM-02.2',
+    'reloadDownloaded',
+    'Aprovisionamiento',
+    'Exactus',
+    'Exactus procesado',
+    undefined,
+    'Exactus procesado',
+    /Cargar Exactus(?: procesado)?/i,
+  ),
   row('E71-AM-02.3', 'reloadDownloaded', 'Aprovisionamiento', 'Unidad de Cuenta AM'),
 ].map((config) => [config.caseId, config]));
