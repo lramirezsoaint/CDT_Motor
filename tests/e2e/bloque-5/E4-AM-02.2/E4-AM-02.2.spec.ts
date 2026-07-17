@@ -3,8 +3,6 @@ import { VALID_AM_UPLOAD_CASES } from '../_shared/am-valid-upload-cases';
 import { runValidAmUpload, validAmFixtureExists, validAmFixtureMissingReason } from '../_shared/am-valid-upload';
 
 const uploadCase = VALID_AM_UPLOAD_CASES['E4-AM-02.2'];
-test.use({ storageState: '.auth/gestorAM.json' });
-
 test('@bloque5 @E4-AM-02.2 @am @upload_valido @gestor-asiento @critical carga Exactus procesado', async ({ page }) => {
   test.skip(!validAmFixtureExists(uploadCase), validAmFixtureMissingReason(uploadCase));
   await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {

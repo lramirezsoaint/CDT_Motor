@@ -1,9 +1,7 @@
-﻿import { test, expect } from '@fixtures/base.fixture';
+import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
-
-test.use({ storageState: '.auth/gestorGT.json' });
 test('@bloque2 @E42-DIS-01 @distribucion VISUALIZAR-PROGRESO-DISTRIBUCION', async ({ page }) => {
 
  try {

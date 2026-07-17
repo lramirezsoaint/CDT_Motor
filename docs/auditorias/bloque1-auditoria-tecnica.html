@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Auditoría técnica Bloque 1</title>
+  <style>
+    @page { size: A4; margin: 16mm 14mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #1f2937;
+      background: #fff;
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+    h1, h2, h3 { color: #111827; line-height: 1.18; margin: 0 0 8px; }
+    h1 { font-size: 27pt; }
+    h2 { font-size: 16pt; border-bottom: 1px solid #d1d5db; padding-bottom: 5px; margin-top: 22px; }
+    h3 { font-size: 12pt; margin-top: 15px; }
+    p { margin: 0 0 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; }
+    th, td { border: 1px solid #d1d5db; padding: 5px 6px; vertical-align: top; }
+    th { background: #f3f4f6; color: #111827; font-weight: 700; }
+    tr { page-break-inside: avoid; }
+    ul { margin: 6px 0 12px 18px; padding: 0; }
+    li { margin: 3px 0; }
+    code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; color: #111827; }
+    .cover {
+      min-height: 240mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+    }
+    .eyebrow { text-transform: uppercase; font-size: 9pt; font-weight: 700; color: #475569; letter-spacing: .08em; }
+    .subtitle { font-size: 13pt; color: #374151; max-width: 150mm; margin-top: 10px; }
+    .meta { margin-top: 22px; color: #4b5563; }
+    .callout { border-left: 4px solid #2563eb; background: #eff6ff; padding: 9px 11px; margin: 10px 0 14px; }
+    .risk { border-left: 4px solid #dc2626; background: #fef2f2; padding: 9px 11px; margin: 10px 0 14px; }
+    .ok { border-left: 4px solid #16a34a; background: #f0fdf4; padding: 9px 11px; margin: 10px 0 14px; }
+    .score { font-weight: 700; color: #111827; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="eyebrow">Motor de Distribución · Playwright Framework</div>
+    <h1>Auditoría técnica completa<br>Bloque 1</h1>
+    <p class="subtitle">Inspección de specs, helpers, Page Objects, fixtures, configuración, imports, tags, roles, cobertura de catálogo, diagnóstico y mantenibilidad.</p>
+    <div class="meta">
+      <p><strong>Ruta auditada:</strong> <code>tests/e2e/bloque-1/</code></p>
+      <p><strong>Modo:</strong> análisis estático y generación de informe, sin ejecutar refactors ni pruebas</p>
+      <p><strong>Fecha:</strong> 16 de julio de 2026</p>
+    </div>
+  </section>
+
+  <h2>1. Resumen Ejecutivo</h2>
+  <table>
+    <tr><th>Métrica</th><th>Resultado</th></tr>
+    <tr><td>Specs en <code>tests/e2e/bloque-1</code></td><td>101</td></tr>
+    <tr><td>Helpers en <code>_shared</code></td><td>11</td></tr>
+    <tr><td>Casos del catálogo Markdown</td><td>140</td></tr>
+    <tr><td>Casos implementados contra catálogo</td><td>100</td></tr>
+    <tr><td>Casos pendientes contra catálogo</td><td>40</td></tr>
+    <tr><td>Specs extra fuera de catálogo</td><td>0</td></tr>
+    <tr><td>Casos duplicados en catálogo</td><td>0</td></tr>
+    <tr><td><code>test.skip()</code> real</td><td>3</td></tr>
+    <tr><td><code>test.fixme()</code></td><td>0</td></tr>
+    <tr><td><code>test.fail()</code></td><td>0</td></tr>
+    <tr><td><code>test.todo()</code></td><td>0</td></tr>
+    <tr><td>Proyecto efectivo</td><td><code>chromium</code></td></tr>
+    <tr><td>Rol efectivo dominante</td><td><code>admin</code></td></tr>
+    <tr><td>Calidad general</td><td><span class="score">74/100</span></td></tr>
+    <tr><td>Mantenibilidad</td><td>★★★ Regular</td></tr>
+    <tr><td>Cobertura</td><td>71.4% contra catálogo Markdown</td></tr>
+    <tr><td>Arquitectura</td><td>★★★ Regular</td></tr>
+    <tr><td>Reutilización</td><td>★★★ Regular</td></tr>
+  </table>
+  <div class="risk">
+    <strong>Conclusión principal:</strong> Bloque 1 cubre buena parte del flujo Comunes con rol Administrador, pero tiene mayor complejidad local que Bloque 3: specs grandes, lógica Playwright directa, XPath, <code>networkidle</code>, timeouts altos y skips reales por funcionalidad no disponible o no implementada.
+  </div>
+
+  <h2>2. Cobertura de Casos</h2>
+  <table>
+    <tr><th>Grupo</th><th>Specs</th><th>Estado</th><th>Helper utilizado</th><th>Proyecto</th><th>Rol</th><th>Comentarios</th></tr>
+    <tr><td><code>E4-C</code></td><td>13</td><td>Implementado</td><td><code>comunes-upload</code></td><td><code>chromium</code></td><td>admin</td><td>Cargas válidas y flujo de subir nuevo archivo.</td></tr>
+    <tr><td><code>E5-C</code></td><td>6</td><td>Implementado parcial</td><td><code>comunes-upload-negative</code></td><td><code>chromium</code></td><td>admin</td><td>Implementa grupo <code>E5-C-02</code>; falta <code>E5-C-01</code>.</td></tr>
+    <tr><td><code>E6-C</code></td><td>6</td><td>Implementado parcial</td><td><code>comunes-upload-negative</code></td><td><code>chromium</code></td><td>admin</td><td>Falta <code>E6-C-01.6</code>.</td></tr>
+    <tr><td><code>E8-C</code></td><td>0</td><td>No implementado</td><td>N/A</td><td>N/A</td><td>N/A</td><td>Casos de datos incompletos pendientes.</td></tr>
+    <tr><td><code>E9-C</code></td><td>5</td><td>Implementado parcial</td><td><code>comunes-upload</code></td><td><code>chromium</code></td><td>admin</td><td>Faltan UoA BBA/VFA y Configuración de Parches.</td></tr>
+    <tr><td><code>E10/E11-C</code></td><td>14</td><td>Implementado</td><td><code>comunes-download*</code></td><td><code>chromium</code></td><td>admin</td><td>Descarga e integridad de archivos.</td></tr>
+    <tr><td><code>E35-C</code></td><td>20</td><td>Implementado</td><td><code>comunes-add*</code>, upload</td><td><code>chromium</code></td><td>admin</td><td>Alta positiva, duplicados, validaciones y sobrescritura.</td></tr>
+    <tr><td><code>E36-C</code></td><td>10</td><td>Implementado</td><td><code>comunes-edit*</code></td><td><code>chromium</code></td><td>admin</td><td>Specs más grandes y complejos del bloque.</td></tr>
+    <tr><td><code>E37-C</code></td><td>9</td><td>Implementado parcial</td><td><code>comunes-status-action</code></td><td><code>chromium</code></td><td>admin</td><td>Faltan casos para Maestro UoA y Configuración de Parches.</td></tr>
+    <tr><td><code>E40/E41/E43/E44-DIS</code></td><td>5</td><td>Implementado parcial</td><td>Directo / <code>DistribucionPage</code></td><td><code>chromium</code></td><td>admin</td><td><code>E43-DIS-01</code> está en skip.</td></tr>
+    <tr><td><code>E56/E60/E63</code></td><td>12</td><td>Implementado parcial</td><td>Directo / columnas / búsqueda</td><td><code>chromium</code></td><td>admin</td><td>Paginación y autocompletado tienen skips condicionales.</td></tr>
+  </table>
+
+  <h2>3. Casos Skip</h2>
+  <table>
+    <tr><th>Caso</th><th>Archivo</th><th>Tipo</th><th>Motivo observado</th><th>Evaluación</th></tr>
+    <tr><td><code>E43-DIS-01</code></td><td><code>E43-DIS-01.spec.ts</code></td><td><code>test.skip</code></td><td>Eliminación de distribución creada requiere precondición controlada.</td><td>Necesario si no existe distribución aislada; riesgo de quedar olvidado.</td></tr>
+    <tr><td><code>E56-C-01.1</code></td><td><code>E56-C-01.1.spec.ts</code></td><td><code>test.skip(true)</code></td><td>La vista no expone paginador visible en la UI actual.</td><td>Condicional útil, pero reduce cobertura real.</td></tr>
+    <tr><td><code>E63-C-BUS</code></td><td><code>E63-C-BUS.spec.ts</code></td><td><code>test.skip(true)</code></td><td>Autocompletado no implementado en la UI actual para buscador de Distribución.</td><td>Necesario mientras UI no soporte la función; debe trazarse como pendiente funcional.</td></tr>
+  </table>
+  <p>No se detectaron <code>test.fixme()</code>, <code>describe.skip()</code>, <code>test.fail()</code> ni <code>test.todo()</code>.</p>
+
+  <h2>4. Cobertura del Catálogo</h2>
+  <table>
+    <tr><th>Fuente</th><th>Total casos</th><th>Implementados</th><th>Faltantes</th><th>Duplicados</th><th>Observación</th></tr>
+    <tr><td><code>catalogo_casos_prueba_bloque1.md</code></td><td>140</td><td>100</td><td>40</td><td>0</td><td>Fuente coherente con la mayoría de specs; el caso <code>E63-C-BUS</code> tiene dos specs bajo el mismo ID.</td></tr>
+  </table>
+  <h3>Faltantes principales</h3>
+  <p><code>E0-LOGIN-ADMIN-01</code>, <code>E0-LOGIN-ADMIN-02</code>, <code>E40-DIS-02 subida</code>, <code>E58-C-01.1</code> a <code>E58-C-01.5</code>, <code>E59-C-01.2</code> a <code>E59-C-01.6</code>, <code>E5-C-01.1</code> a <code>E5-C-01.6</code>, <code>E6-C-01.6</code>, <code>E8-C-01.1</code> a <code>E8-C-01.6</code>, <code>E61-C-01.1</code> a <code>E61-C-01.6</code>, <code>E9-C-01.6</code>, <code>E9-C-01.7</code>, <code>E37-C-01.5</code>, <code>E37-C-01.6</code>, <code>E37-C-02.6</code>, <code>E62-ERROR-02</code>, <code>E62-ERROR-03</code>, <code>E62-ERROR-04</code>.</p>
+
+  <h2>5. Calidad de Specs</h2>
+  <table>
+    <tr><th>Familia</th><th>Cumple patrón</th><th>Usa helpers</th><th>Lógica repetida</th><th>Spec grande</th><th>Playwright que debería ir a shared</th><th>Page Objects</th></tr>
+    <tr><td>Cargas <code>E4/E5/E6/E9</code></td><td>Sí</td><td>Sí</td><td>Media</td><td>No/Medio</td><td>Parcial</td><td>Uso funcional de helpers.</td></tr>
+    <tr><td>Descargas <code>E10/E11</code></td><td>Sí</td><td>Sí</td><td>Baja</td><td>No</td><td>No</td><td>Validación centralizada.</td></tr>
+    <tr><td>Altas <code>E35</code></td><td>Parcial</td><td>Sí</td><td>Media</td><td>Medio</td><td>Algunos casos</td><td>Helpers robustos pero specs largos.</td></tr>
+    <tr><td>Edición <code>E36</code></td><td>Parcial</td><td>Parcial</td><td>Alta</td><td>Sí</td><td>Sí</td><td>Mucho Playwright local.</td></tr>
+    <tr><td>Estado/eliminación <code>E37</code></td><td>Sí</td><td>Sí</td><td>Media</td><td>No</td><td>Parcial</td><td>Centralizado en helper.</td></tr>
+    <tr><td>Distribución <code>E40-E44</code></td><td>Parcial</td><td>Poco</td><td>Media</td><td>No</td><td>Sí</td><td>Depende de <code>DistribucionPage</code>.</td></tr>
+    <tr><td>Búsqueda/paginación <code>E56/E63</code></td><td>Parcial</td><td>Poco</td><td>Alta</td><td>Sí</td><td>Sí</td><td>Skip condicional por UI.</td></tr>
+  </table>
+
+  <h2>6. Reutilización</h2>
+  <ul>
+    <li>La lógica de carga está razonablemente concentrada en <code>comunes-upload.ts</code>, <code>comunes-upload-negative.ts</code> y <code>comunes-upload-overwrite.ts</code>.</li>
+    <li>Las altas y edición usan helpers, pero varios specs <code>E36-C-*</code> contienen demasiada lógica propia.</li>
+    <li>La navegación a Comunes está duplicada entre <code>ComunesPage</code>, <code>comunes-upload.ts</code> y global Sidebar.</li>
+    <li>Hay uso repetido de búsqueda de filas con <code>nth()</code>, lectura de tablas y normalización de texto.</li>
+    <li>Parte de la lógica debería vivir en <code>_globalshared</code>: navegación, upload genérico, descarga, selectors y asserts de tabla.</li>
+  </ul>
+
+  <h2>7. Auditoría de _shared</h2>
+  <table>
+    <tr><th>Helper</th><th>Responsabilidad</th><th>Uso</th><th>Duplicidad</th><th>Complejidad</th><th>Posible simplificación</th></tr>
+    <tr><td><code>comunes-upload.ts</code></td><td>Navegación a Comunes, carga, paths, validación de tabla y éxito.</td><td>Alto</td><td>Media</td><td>Alta</td><td>Separar navegación, archivos y asserts.</td></tr>
+    <tr><td><code>comunes-upload-negative.ts</code></td><td>Casos de carga inválida.</td><td>Medio</td><td>Baja</td><td>Media</td><td>Unificar mensajes esperados por tipo.</td></tr>
+    <tr><td><code>comunes-upload-overwrite.ts</code></td><td>Sobrescritura de archivos.</td><td>Medio</td><td>Media</td><td>Media</td><td>Compartir descarga/recarga con global upload.</td></tr>
+    <tr><td><code>comunes-download.ts</code></td><td>Descarga simple y validación de archivo.</td><td>Alto</td><td>Baja</td><td>Media</td><td>Reutilizar global download assertions.</td></tr>
+    <tr><td><code>comunes-download-integrity.ts</code></td><td>Integridad de archivo descargado.</td><td>Medio</td><td>Baja</td><td>Media</td><td>Validar columnas esperadas por entidad.</td></tr>
+    <tr><td><code>comunes-add-positive.ts</code></td><td>Alta positiva, combos, mensajes y búsqueda de filas.</td><td>Alto</td><td>Media</td><td>Alta</td><td>Extraer helpers de tabla y combobox.</td></tr>
+    <tr><td><code>comunes-add-negative.ts</code></td><td>Altas inválidas y validaciones de campos.</td><td>Medio</td><td>Media</td><td>Media</td><td>Centralizar errores esperados.</td></tr>
+    <tr><td><code>comunes-edit.ts</code></td><td>Edición, campos, combos y valores.</td><td>Alto</td><td>Media</td><td>Alta</td><td>Reducir XPath fallback y mover a Page Object.</td></tr>
+    <tr><td><code>comunes-edit-negative.ts</code></td><td>Errores de edición.</td><td>Medio</td><td>Media</td><td>Media</td><td>Reusar localizadores de <code>comunes-edit</code>.</td></tr>
+    <tr><td><code>comunes-status-action.ts</code></td><td>Inactivación, bloqueo y eliminación.</td><td>Medio</td><td>Baja</td><td>Alta</td><td>Separar acciones positivas/negativas.</td></tr>
+    <tr><td><code>comunes-columns.ts</code></td><td>Modal Columnas, selección, estados y headers.</td><td>Medio</td><td>Media</td><td>Media</td><td>Unificar con global/shared columnas si aparece en otros bloques.</td></tr>
+  </table>
+
+  <h2>8. Uso de GlobalShared</h2>
+  <table>
+    <tr><th>Área</th><th>Estado</th><th>Comentario</th></tr>
+    <tr><td>Login</td><td>Parcial</td><td>Bloque 1 depende principalmente de storage state del proyecto <code>chromium</code>; no hay specs login implementados aunque el catálogo los marca como <code>Si</code>.</td></tr>
+    <tr><td>Sidebar</td><td>Parcial</td><td>Existe global Sidebar, pero también hay navegación local en <code>ComunesPage</code> y helpers.</td></tr>
+    <tr><td>Diagnóstico</td><td>Bueno</td><td><code>base.fixture</code> integra <code>diagnostic-error</code>.</td></tr>
+    <tr><td>Uploads</td><td>Parcial</td><td>Bloque 1 tiene helpers propios y no reutiliza completamente <code>_globalshared/upload/upload-flow.ts</code>.</td></tr>
+    <tr><td>Downloads</td><td>Parcial</td><td>Hay helpers propios; podría aprovechar <code>_globalshared/download/download-assertions.ts</code>.</td></tr>
+    <tr><td>Selectors</td><td>Regular</td><td>Se usan XPath y legacy selectors en puntos clave.</td></tr>
+  </table>
+
+  <h2>9. Calidad Playwright</h2>
+  <table>
+    <tr><th>Práctica</th><th>Ubicación detectada</th><th>Riesgo</th></tr>
+    <tr><td><code>networkidle</code></td><td><code>ComunesPage.ts</code>, <code>DistribucionPage.ts</code>, <code>comunes-upload.ts</code>, <code>E56</code>, <code>E63</code></td><td>Puede volver los tests lentos o inestables.</td></tr>
+    <tr><td>XPath absoluto</td><td><code>ComunesPage.ts</code>, <code>DistribucionPage.ts</code>, legacy selectors</td><td>Muy frágil ante cambios de layout.</td></tr>
+    <tr><td>XPath relativo</td><td><code>comunes-edit.ts</code>, <code>comunes-edit-negative.ts</code>, algunos specs <code>E36</code> y <code>E63</code></td><td>Acoplamiento al DOM cercano.</td></tr>
+    <tr><td><code>nth()</code></td><td>Specs <code>E36</code>, <code>E60</code>, <code>E63</code> y helpers de tablas</td><td>Depende del orden visual de columnas/filas.</td></tr>
+    <tr><td>Timeouts altos</td><td>180s, 240s, 300s, 360s, 420s, 480s</td><td>Feedback lento y ocultamiento de bloqueos.</td></tr>
+    <tr><td><code>test.info().annotations</code></td><td>Altas, edición, upload y paginación</td><td>Útil para evidencia, pero no debe sustituir asserts.</td></tr>
+  </table>
+
+  <h2>10. Diagnóstico</h2>
+  <div class="ok">
+    Los specs importan <code>@fixtures/base.fixture</code>, por lo que heredan diagnóstico, clasificación de error y evidencias globales configuradas en Playwright.
+  </div>
+  <table>
+    <tr><th>Elemento</th><th>Estado</th><th>Detalle</th></tr>
+    <tr><td><code>base.fixture</code></td><td>Sí</td><td>Usado de forma consistente.</td></tr>
+    <tr><td><code>diagnostic-error</code></td><td>Sí</td><td>Clasifica AUTH, NAV, DATA, PROCESSING, PERMISSION, ENV y ASSERTION.</td></tr>
+    <tr><td>Screenshots</td><td>Sí</td><td><code>only-on-failure</code>.</td></tr>
+    <tr><td>Trace</td><td>Sí</td><td><code>retain-on-failure</code>.</td></tr>
+    <tr><td>Video</td><td>Sí</td><td><code>on</code>.</td></tr>
+    <tr><td>Riesgo</td><td>Medio</td><td>Errores <code>[DATA]</code> y skips condicionales dependen mucho del estado del ambiente.</td></tr>
+  </table>
+
+  <h2>11. Roles</h2>
+  <table>
+    <tr><th>Rol</th><th>Proyecto</th><th>Relación con Bloque 1</th><th>Evaluación</th></tr>
+    <tr><td>Administrador</td><td><code>chromium</code></td><td><code>testMatch</code> incluye <code>**/bloque-1/**/*.spec.ts</code>.</td><td>Correcto.</td></tr>
+    <tr><td>Gestor GF</td><td><code>chromium-gestorGF</code></td><td>Bloque 1 excluido.</td><td>Correcto.</td></tr>
+    <tr><td>Gestor GT</td><td><code>chromium-gestorGT</code></td><td>Bloque 1 excluido.</td><td>Correcto.</td></tr>
+    <tr><td>Gestor AM</td><td><code>chromium-gestorAM</code></td><td>Bloque 1 excluido.</td><td>Correcto.</td></tr>
+  </table>
+  <p>La configuración de rol es coherente con el alcance de Comunes. El problema está en cobertura: los login admin están en catálogo, pero no hay specs <code>E0-LOGIN-ADMIN-01/02</code> en Bloque 1.</p>
+
+  <h2>12. Tags</h2>
+  <ul>
+    <li>Todos los specs auditados contienen <code>@bloque1</code>.</li>
+    <li>Se observan tags de flujo: <code>@upload_valido</code>, <code>@upload_invalido</code>, <code>@download_catalogo</code>, <code>@registrar</code>, <code>@editar</code>, <code>@eliminar</code>, <code>@columnas</code>, <code>@busqueda</code>, <code>@paginacion</code> y <code>@distribucion</code>.</li>
+    <li>No se ve uso sistemático de <code>@critical</code> ni <code>@regression</code>.</li>
+    <li>Algunos archivos muestran tags duplicados en títulos o describe/test, lo cual no rompe ejecución pero ensucia reportes.</li>
+  </ul>
+
+  <h2>13. Imports</h2>
+  <ul>
+    <li>Predomina import desde <code>@fixtures/base.fixture</code>, patrón correcto.</li>
+    <li>Specs grandes <code>E36-C-*</code> importan tipos de Playwright y helpers, pero retienen mucha lógica local.</li>
+    <li><code>ComunesPage.ts</code> usa <code>legacySelectors</code> y XPath fallback.</li>
+    <li>No se ejecutó compilación TypeScript; la detección de imports sin usar fue estática.</li>
+  </ul>
+
+  <h2>14. Page Objects</h2>
+  <table>
+    <tr><th>Page Object</th><th>Complejidad</th><th>Hallazgos</th></tr>
+    <tr><td><code>ComunesPage.ts</code></td><td>Media</td><td>Pequeño, pero usa XPath absoluto, <code>networkidle</code> y fallback a Distribuciones.</td></tr>
+    <tr><td><code>DistribucionPage.ts</code></td><td>Alta</td><td>Usado por distribución; hereda riesgos ya vistos: XPath absoluto, <code>networkidle</code>, <code>nth()</code> y acoplamiento con AM.</td></tr>
+    <tr><td><code>Sidebar</code></td><td>Media</td><td>Global existe, pero no centraliza toda navegación de Bloque 1.</td></tr>
+  </table>
+
+  <h2>15. Complejidad</h2>
+  <h3>Specs más complejos</h3>
+  <p><code>E36-C-01.2</code> (17.8 KB), <code>E36-C-03.2</code> (16.7 KB), <code>E36-C-03.1</code> (15.2 KB), <code>E36-C-01.5</code> (14.9 KB), <code>E36-C-01.3</code> (14.6 KB), <code>E36-C-01.1</code> (13.4 KB), <code>E63-C-BUS</code> (10.8 KB), <code>E56-C-01.1</code> (9.4 KB).</p>
+  <h3>Helpers más complejos</h3>
+  <p><code>comunes-status-action.ts</code>, <code>comunes-add-positive.ts</code>, <code>comunes-upload.ts</code>, <code>comunes-download-integrity.ts</code>, <code>comunes-edit.ts</code>, <code>comunes-columns.ts</code>.</p>
+  <h3>Pages más complejas</h3>
+  <p><code>DistribucionPage.ts</code>, <code>ComunesPage.ts</code>.</p>
+
+  <h2>16. Mantenibilidad</h2>
+  <table>
+    <tr><th>Dimensión</th><th>Calificación</th><th>Justificación</th></tr>
+    <tr><td>Arquitectura</td><td>★★★ Regular</td><td>Helpers útiles, pero specs grandes y mucha lógica directa.</td></tr>
+    <tr><td>Reutilización</td><td>★★★ Regular</td><td>Buena en uploads/downloads; irregular en edición, búsqueda y navegación.</td></tr>
+    <tr><td>Legibilidad</td><td>★★★ Regular</td><td>Specs cortos conviven con specs de 10-18 KB.</td></tr>
+    <tr><td>Escalabilidad</td><td>★★★ Regular</td><td>Escala por familias, pero la edición requiere más abstracción.</td></tr>
+    <tr><td>Consistencia</td><td>★★★ Regular</td><td>Tags correctos; skips y catálogo con login marcado implementado sin spec.</td></tr>
+    <tr><td>Cobertura</td><td>★★★ Regular</td><td>100/140 casos implementados.</td></tr>
+  </table>
+
+  <h2>17. Riesgos</h2>
+  <ul>
+    <li>Falsos pendientes por <code>test.skip</code> condicional en paginación/autocompletado.</li>
+    <li>Specs grandes de edición difíciles de mantener y revisar.</li>
+    <li>Fragilidad por XPath, <code>nth()</code> y <code>networkidle</code>.</li>
+    <li>Dependencia fuerte de datos visibles en Comunes y Distribución.</li>
+    <li>Casos login del catálogo marcados como implementados sin spec correspondiente.</li>
+    <li>Faltantes funcionales relevantes: predecesores <code>E58</code>, datos incompletos <code>E8</code>, tamaño máximo <code>E61</code> y errores de sistema <code>E62</code>.</li>
+  </ul>
+
+  <h2>18. Recomendaciones</h2>
+  <h3>Cambios críticos</h3>
+  <ul>
+    <li>Resolver los 3 skips reales con decisión explícita: automatizar, marcar pendiente formal o excluir del catálogo ejecutable.</li>
+    <li>Corregir cobertura de login Admin: implementar specs o ajustar el catálogo.</li>
+    <li>Atacar los specs <code>E36-C-*</code> más grandes para reducir lógica local.</li>
+  </ul>
+  <h3>Cambios recomendados</h3>
+  <ul>
+    <li>Centralizar navegación a Comunes y eliminar XPath absoluto donde existan roles/data-testid.</li>
+    <li>Reducir <code>networkidle</code> y reemplazarlo por assertions web-first.</li>
+    <li>Extraer helpers comunes de tabla, filas, headers y búsqueda.</li>
+    <li>Normalizar errores <code>[DATA]</code> para distinguir datos faltantes de bugs reales.</li>
+  </ul>
+  <h3>Mejoras futuras</h3>
+  <ul>
+    <li>Completar familias faltantes <code>E58</code>, <code>E8</code>, <code>E61</code> y <code>E62</code>.</li>
+    <li>Agregar reporte automático de cobertura catálogo vs specs.</li>
+    <li>Agregar tags <code>@critical</code> y <code>@regression</code> a casos de negocio clave.</li>
+  </ul>
+  <h3>Optimizaciones</h3>
+  <ul>
+    <li>Reducir timeouts de 300-480 segundos con señales UI más precisas.</li>
+    <li>Reutilizar <code>_globalshared/upload</code> y <code>_globalshared/download</code> donde sea compatible.</li>
+    <li>Separar Page Object de Distribución de lógica específica de AM para evitar contaminación transversal.</li>
+  </ul>
+
+  <h2>19. Cierre</h2>
+  <table>
+    <tr><th>Bloque 1</th><th>Resultado</th></tr>
+    <tr><td>Casos implementados</td><td>100</td></tr>
+    <tr><td>Casos pendientes</td><td>40</td></tr>
+    <tr><td>Casos Skip</td><td>3</td></tr>
+    <tr><td>Helpers</td><td>11</td></tr>
+    <tr><td>Specs</td><td>101</td></tr>
+    <tr><td>Duplicidades catálogo</td><td>0</td></tr>
+    <tr><td>Problemas críticos</td><td>3</td></tr>
+    <tr><td>Calidad general</td><td>74/100</td></tr>
+    <tr><td>Mantenibilidad</td><td>Regular</td></tr>
+    <tr><td>Cobertura</td><td>71.4%</td></tr>
+    <tr><td>Arquitectura</td><td>Regular</td></tr>
+    <tr><td>Reutilización</td><td>Regular</td></tr>
+  </table>
+</body>
+</html>

@@ -13,8 +13,6 @@ type AmReloadDownloadedCaseConfig = {
 };
 
 export function AmReloadDownloadedCase(config: AmReloadDownloadedCaseConfig) {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test(`${buildTags({ bloque: '@bloque5', caseId: config.caseId, flowTag: config.flowTag ?? '@upload_valido' })} recarga archivo descargado`, async ({
     page,
   }) => {

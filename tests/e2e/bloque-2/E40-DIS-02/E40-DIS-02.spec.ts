@@ -1,9 +1,7 @@
-ï»¿import { test, expect } from '@fixtures/base.fixture';
+import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
-
-test.use({ storageState: '.auth/gestorGT.json' });
 test('@bloque2 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ page }) => {
 
  try {
@@ -17,7 +15,7 @@ test('@bloque2 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ pag
  await expect(page).toHaveURL(/\/distribuciones/i);
 
  await page.getByRole('button', {
- name: /nueva distribuciÃ³n/i
+ name: /nueva distribución/i
  }).click();
 
  const modal = page.getByRole('dialog');
@@ -25,7 +23,7 @@ test('@bloque2 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ pag
  await expect(modal).toBeVisible();
 
  await expect(
- modal.getByText(/crear distribuciÃ³n/i)
+ modal.getByText(/crear distribución/i)
  ).toBeVisible();
 
  const crearButton = modal.getByRole('button', {
@@ -53,7 +51,7 @@ test('@bloque2 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ pag
  .getByTestId(`periodo-option-${periodo}`)
  .click();
 
- await modal.getByLabel(/versiÃ³n/i)
+ await modal.getByLabel(/versión/i)
   .fill('1');
 
  await modal.getByLabel(/tasa de cambio/i)

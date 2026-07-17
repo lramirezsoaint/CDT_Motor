@@ -1,9 +1,7 @@
-﻿import { test, expect } from '@fixtures/base.fixture';
+import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
-
-test.use({ storageState: '.auth/gestorGT.json' });
 test('@bloque2 @E41-DIS-01 @distribucion VISUALIZAR-PROGRESO-DISTRIBUCION', async ({ page }) => {
 
  try {
@@ -26,7 +24,7 @@ await selectGtDistribution(page);
  .first()
  .click();
 
- // 3. Se levanta modal con información de progreso
+ // 3. Se levanta modal con informaci�n de progreso
  const modal = page.getByRole('dialog');
 
  await expect(modal).toBeVisible();

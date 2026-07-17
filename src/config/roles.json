@@ -24,7 +24,7 @@
     "id": "gestorAM",
     "envPrefix": "MOTOR_GESTOR_AM",
     "projectName": "chromium-gestorAM",
-    "testMatch": ["**/bloque-5/**/*.spec.ts"],
+    "testMatch": ["**/bloque-5/**/*.spec.ts", "**/bloque-demo/**/*.spec.ts"],
     "testIgnore": ["**/auth/**/*.spec.ts", "**/bloque-1/**/*.spec.ts", "**/bloque-2/**/*.spec.ts", "**/bloque-3/**/*.spec.ts", "**/procesos/**/*.spec.ts"]
   }
 ]

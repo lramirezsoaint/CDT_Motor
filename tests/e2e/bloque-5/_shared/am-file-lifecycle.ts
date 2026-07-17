@@ -19,7 +19,6 @@ export function FileLifecycleCase(
   expect: typeof baseExpect,
   config: AmFileLifecycleCase,
 ): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
   test(`@bloque5 @${config.caseId} @am ${flowTag(config)} @gestor-asiento @regression ${title(config)}`, async ({ page }, testInfo) => {
     test.setTimeout(360_000);
     const fixture = fixtureFile(config);

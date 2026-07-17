@@ -115,10 +115,11 @@ export function resolveRoleAuthFile(role: RoleConfig, rootDir: string, options: 
   }
 
   if (!fs.existsSync(authFile)) {
-    throw new Error(
-      `Missing authentication state for role "${role.id}": expected ${authFile}. ` +
-        `Run scripts/auth/create-auth.js or create .auth/${role.id}.json before executing Playwright.`,
+    console.warn(
+      `[auth:fallback] No existe storageState para rol "${role.id}" en ${authFile}. ` +
+        'El test iniciara sin sesion guardada y la fixture intentara login por credenciales.',
     );
+    return undefined;
   }
 
   let raw: { cookies?: unknown[]; origins?: unknown[] };
@@ -127,11 +128,19 @@ export function resolveRoleAuthFile(role: RoleConfig, rootDir: string, options: 
     raw = JSON.parse(fs.readFileSync(authFile, 'utf8'));
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`Auth state inválido para rol "${role.id}" en ${authFile}. Regenera .auth/${role.id}.json. ${message}`);
+    console.warn(
+      `[auth:fallback] Auth state invalido para rol "${role.id}" en ${authFile}. ` +
+        `El test iniciara sin sesion guardada y la fixture intentara login por credenciales. ${message}`,
+    );
+    return undefined;
   }
 
   if ((raw.cookies?.length ?? 0) === 0 && (raw.origins?.length ?? 0) === 0) {
-    throw new Error(`Auth state vacío para rol "${role.id}". Regenera .auth/${role.id}.json`);
+    console.warn(
+      `[auth:fallback] Auth state vacio para rol "${role.id}" en ${authFile}. ` +
+        'El test iniciara sin sesion guardada y la fixture intentara login por credenciales.',
+    );
+    return undefined;
   }
 
   return authFile;

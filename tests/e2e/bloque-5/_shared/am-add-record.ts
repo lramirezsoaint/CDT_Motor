@@ -26,8 +26,6 @@ type AddRecordCaseConfig = {
 };
 
 export function AddRecordCase(config: AddRecordCaseConfig) {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test(`${tagsFor(config)} agrega registro y valida resultado ${config.expectedResult}`, async ({ page }) => {
     test.setTimeout(240_000);
     test.skip(Boolean(config.skipReason), config.skipReason);

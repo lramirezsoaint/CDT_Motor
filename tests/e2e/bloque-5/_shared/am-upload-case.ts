@@ -13,8 +13,6 @@ function tagsFor(caseId: string, flowTag: FlowTag) {
 }
 
 export function defineAmUploadCase(uploadCase: AmUploadCase): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test.describe(`@bloque5 @${uploadCase.caseId}`, () => {
     test(`${tagsFor(uploadCase.caseId, uploadCase.flowTag ?? '@upload_valido')} debe cargar archivo ${uploadCase.entityName}`, async ({ page }) => {
       test.setTimeout(360_000);
@@ -33,8 +31,6 @@ export function defineAmUploadCase(uploadCase: AmUploadCase): void {
 }
 
 export function defineAmUploadErrorCase(uploadCase: AmErrorUploadCase): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test.describe(`@bloque5 @${uploadCase.caseId}`, () => {
     test(`${tagsFor(uploadCase.caseId, uploadCase.flowTag ?? '@upload_invalido')} debe rechazar carga de ${uploadCase.entityName}`, async ({ page }) => {
       test.setTimeout(360_000);
@@ -54,8 +50,6 @@ export function defineAmUploadErrorCase(uploadCase: AmErrorUploadCase): void {
 }
 
 export function defineAmUploadOverwriteCase(uploadCase: AmOverwriteUploadCase): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test.describe(`@bloque5 @${uploadCase.caseId}`, () => {
     test(`${tagsFor(uploadCase.caseId, uploadCase.flowTag ?? '@upload_valido')} debe sobreescribir ${uploadCase.entityName} sin duplicar`, async ({ page }) => {
       test.setTimeout(360_000);

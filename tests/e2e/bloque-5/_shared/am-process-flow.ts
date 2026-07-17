@@ -5,7 +5,6 @@ import type { AmProcessAutomationCase } from './am-process-cases';
 import { ensureAmSession } from './am-upload';
 
 export function ProcessCase(test: typeof baseTest, expect: typeof baseExpect, config: AmProcessAutomationCase): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
   test(`@bloque5 @${config.caseId} @am @procesos @gestor-asiento @critical ${title(config)}`, async ({ page }) => {
     test.setTimeout(600_000);
    test.skip(true,'TODO [DATA]: Depende de la pestaña procesos.',);

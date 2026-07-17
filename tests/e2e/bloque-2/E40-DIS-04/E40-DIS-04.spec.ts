@@ -1,9 +1,7 @@
-锘縤mport { test, expect } from '@fixtures/base.fixture';
+import { test, expect } from '@fixtures/base.fixture';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { selectGtDistribution } from '../_shared/gt-distribution';
-
-test.use({ storageState: '.auth/gestorGT.json' });
 test('@bloque2 @E40-DIS-04 @distribucion CREAR-DISTRIBUCION-REAL-NIIF-SUGERENCIA', async ({ page }) => {
 
  try {
@@ -17,7 +15,7 @@ await selectGtDistribution(page);
  await expect(page).toHaveURL(/\/distribuciones/i);
 
  await page.getByRole('button', {
- name: /nueva distribuci贸n/i
+ name: /nueva distribuci髇/i
  }).click();
 
  const modal = page.getByRole('dialog');
@@ -25,7 +23,7 @@ await selectGtDistribution(page);
  await expect(modal).toBeVisible();
 
  await expect(
- modal.getByText(/crear distribuci贸n/i)
+ modal.getByText(/crear distribuci髇/i)
  ).toBeVisible();
 
  const crearButton = modal.getByRole('button', {
@@ -49,7 +47,7 @@ await selectGtDistribution(page);
  }).click();
 
  
- // Opci脙鲁n A: aplicar sugerencia
+ // Opci贸n A: aplicar sugerencia
  await modal.getByRole('button', {
  name: /aplicar/i
  }).click();
@@ -64,7 +62,7 @@ await selectGtDistribution(page);
  .getByTestId(`periodo-option-${periodo}`)
  .click();
 
- await modal.getByLabel(/versi贸n/i)
+ await modal.getByLabel(/versi髇/i)
  .fill('1');
 
  await modal.getByLabel(/tasa de cambio/i)

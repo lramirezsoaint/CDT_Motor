@@ -4,8 +4,6 @@ import { rejectedAmFixtureExists, rejectedAmFixtureMissingReason, runRejectedAmU
 import { ensureAmContext } from '../_shared/am-context';
 
 const uploadCase = REJECTED_AM_UPLOAD_CASES['E5-AM-01.3'];
-test.use({ storageState: '.auth/gestorAM.json' });
-
 test('@bloque5 @E5-AM-01.3 @am @upload_invalido @gestor-asiento @critical rechaza cabeceras incorrectas en Centros', async ({ page }) => {
   test.skip(!rejectedAmFixtureExists(uploadCase), rejectedAmFixtureMissingReason(uploadCase));
   await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {

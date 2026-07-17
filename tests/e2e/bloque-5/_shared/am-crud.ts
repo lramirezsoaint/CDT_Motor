@@ -11,8 +11,6 @@ import {
 import { ensureAmContext } from './am-context';
 
 export function CrudCase(test: typeof baseTest, _expect: typeof expect, config: AmCrudCase): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test(`@bloque5 @${config.caseId} @am @crud @gestor-asiento @regression ${title(config)}`, async ({ page }) => {
     test.setTimeout(360_000);
 

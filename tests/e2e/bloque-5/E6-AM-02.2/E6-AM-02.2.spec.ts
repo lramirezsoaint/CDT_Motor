@@ -4,8 +4,6 @@ import { rejectedAmFixtureExists, rejectedAmFixtureMissingReason, runRejectedAmU
 import { ensureAmContext } from '../_shared/am-context';
 
 const uploadCase = REJECTED_AM_UPLOAD_CASES['E6-AM-02.2'];
-test.use({ storageState: '.auth/gestorAM.json' });
-
 test('@bloque5 @E6-AM-02.2 @am @upload_vacio @gestor-asiento @critical rechaza Unidad de Cuenta AM sin datos', async ({ page }) => {
   test.skip(!rejectedAmFixtureExists(uploadCase), rejectedAmFixtureMissingReason(uploadCase));
   await test.step('Acceder a Distribucion con selector Asientos Manuales', async () => {

@@ -15,8 +15,6 @@ type GfReloadDownloadedCaseConfig = {
 };
 
 export function GfReloadDownloadedCase(config: GfReloadDownloadedCaseConfig) {
- test.use({ storageState: '.auth/gestorGF.json' });
-
  test(`${buildTags({ bloque: '@bloque3', caseId: config.caseId, flowTag: config.flowTag ?? '@upload_valido' })} recarga archivo descargado`, async ({
  page,
  }) => {

@@ -26,8 +26,6 @@ type EditRecordCaseConfig = {
 };
 
 export function EditRecordCase(config: EditRecordCaseConfig) {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test(`${tagsFor(config)} edita registro y valida resultado ${config.expectedResult}`, async ({ page }) => {
     test.setTimeout(240_000);
     test.skip(Boolean(config.skipReason), config.skipReason);

@@ -6,7 +6,6 @@ import type { AmQueryCase } from './am-query-cases';
 import { ensureAmSession } from './am-upload';
 
 export function QueryCase(test: typeof baseTest, expect: typeof baseExpect, config: AmQueryCase): void {
-  test.use({ storageState: '.auth/gestorAM.json' });
   test(`@bloque5 @${config.caseId} @am @consulta @gestor-asiento @regression ${title(config)}`, async ({ page }) => {
     test.setTimeout(240_000);
     test.skip(config.flow === 'blocked', config.blockedReason);

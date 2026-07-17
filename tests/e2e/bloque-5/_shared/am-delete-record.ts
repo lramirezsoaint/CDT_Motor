@@ -17,8 +17,6 @@ type DeleteRecordCaseConfig = {
 };
 
 export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
-  test.use({ storageState: '.auth/gestorAM.json' });
-
   test(`${tagsFor(config)} elimina registro y valida resultado ${config.expectedResult}`, async ({ page }) => {
     test.setTimeout(180_000);
     test.skip(Boolean(config.skipReason), config.skipReason);
