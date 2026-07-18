@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-03.02.2',
  section: 'Aprovisionamiento',
- view: 'AP Vida',
- operation: 'add',
+ view: 'AMED',
+ modalTitle: /Agregar AMED/i,
  expectedResult: 'validationError',
- modalTitle: /Agregar AP Vida/i,
 });
+
+
+

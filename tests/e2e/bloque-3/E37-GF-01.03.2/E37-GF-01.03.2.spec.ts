@@ -1,11 +1,15 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { DeleteRecordCase } from '../_shared/gf-delete-record';
 
-GfRecordCase({
+DeleteRecordCase({
  caseId: 'E37-GF-01.03.2',
  section: 'Asignaciones',
- view: 'Driver Reservas a UoA',
- operation: 'delete',
- expectedResult: 'success',
+ view: 'Driver UoA - VIDA',
  role: 'admin',
- modalTitle: /Agregar Driver.*UoA/i,
+ expectedResult: 'success',
+ warningMessage: /[¿?]?Est[aá] seguro que desea eliminar este registro/i,
+ expectedMessage: /Registro eliminado con exito|registro.*eliminado.*exito/i,
 });
+
+
+
+

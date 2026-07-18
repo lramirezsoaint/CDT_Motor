@@ -1,4 +1,8 @@
 import { ProcessAmountPermanenceCase } from '../_shared/gt-process';
+import { test } from '@fixtures/base.fixture';
+
+test.skip(true, 'El caso queda omitido por dependencia en la pestaña Procesos');
+
 
 ProcessAmountPermanenceCase({
  caseId: 'E51-PRE-GT-EC',

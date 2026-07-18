@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-03-02.3',
  section: 'Aprovisionamiento',
- view: 'maestro de negocio.*embebidos',
- operation: 'add',
+ view: 'AP Vida',
+ modalTitle: /Agregar AP Vida|AP Vida/i,
  expectedResult: 'validationError',
- modalTitle: /Agregar Maestro de Negocio.*Embebidos/i,
 });
+
+
+

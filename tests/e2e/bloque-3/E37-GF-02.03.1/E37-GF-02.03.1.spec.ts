@@ -1,11 +1,15 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { DeleteRecordCase } from '../_shared/gf-delete-record';
 
-GfRecordCase({
+DeleteRecordCase({
  caseId: 'E37-GF-02.03.1',
  section: 'Asignaciones',
  view: 'Especiales NIIF',
- operation: 'delete',
- expectedResult: 'processError',
  role: 'admin',
- modalTitle: /Agregar Especiales NIIF/i,
+ expectedResult: 'processError',
+ warningMessage: /[¿?]?Est[aá] seguro que desea eliminar este registro/i,
+ expectedMessage: /Actualmente hay un proceso en ejecucion|no es posible editar o eliminar|proceso en ejecucion/i,
 });
+
+
+
+

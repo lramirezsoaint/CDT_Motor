@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-03-03.2',
  section: 'Asignaciones',
- view: 'Driver Reservas a UoA',
- operation: 'edit',
+ view: 'Driver UoA - VIDA',
+ modalTitle: /Editar Driver (?:Reservas a )?UoA|Editar Driver UoA/i,
  expectedResult: 'validationError',
- modalTitle: /Editar Driver.*UoA/i,
 });
+
+
+

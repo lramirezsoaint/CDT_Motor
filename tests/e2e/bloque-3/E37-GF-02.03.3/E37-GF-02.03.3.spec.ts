@@ -1,11 +1,15 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { DeleteRecordCase } from '../_shared/gf-delete-record';
 
-GfRecordCase({
+DeleteRecordCase({
  caseId: 'E37-GF-02.03.3',
  section: 'Asignaciones',
- view: 'Distribucion UoA Generales Multiramo',
- operation: 'delete',
- expectedResult: 'processError',
+ view: 'Distribución UoA Generales Multiramo',
  role: 'admin',
- modalTitle: /Agregar Distribuci[oó]n UoA/i,
+ expectedResult: 'processError',
+ warningMessage: /[¿?]?Est[aá] seguro que desea eliminar este registro/i,
+ expectedMessage: /Actualmente hay un proceso en ejecucion|no es posible editar o eliminar|proceso en ejecucion/i,
 });
+
+
+
+

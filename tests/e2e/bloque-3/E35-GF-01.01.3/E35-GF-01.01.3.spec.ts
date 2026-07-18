@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-01.01.3',
  section: 'Parametrización',
  view: 'Maestro Reservas Producto',
- operation: 'add',
- expectedResult: 'success',
  modalTitle: /Agregar Maestro Reservas Producto/i,
+ expectedResult: 'success',
 });
+
+
+

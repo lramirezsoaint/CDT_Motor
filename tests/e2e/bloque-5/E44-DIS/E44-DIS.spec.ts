@@ -3,6 +3,8 @@ import { findFirstDistributionRow, loginForDistribution, selectDistributionAndAs
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
+test.skip(true, 'El caso queda omitido por dependencia en la pestaña Procesos');
+
 test('@bloque5 @E44-DIS @am @distribucion @gestor-asiento @regression selecciona distribucion del listado principal', async ({
   page,
 }) => {

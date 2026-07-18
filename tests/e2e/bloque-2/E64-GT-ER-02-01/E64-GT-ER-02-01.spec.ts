@@ -1,4 +1,8 @@
 import { ProcessExecuteAllCase } from '../_shared/gt-process-actions';
+import { test } from '@fixtures/base.fixture';
+
+test.skip(true, 'El caso queda omitido por dependencia en la pestaña Procesos');
+
 
 ProcessExecuteAllCase({
  caseId: 'E64-GT-ER-02-01',

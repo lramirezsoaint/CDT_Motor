@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-03.01.1',
  section: 'Parametrización',
  view: 'Cuentas Contables',
- operation: 'add',
- expectedResult: 'validationError',
  modalTitle: /Agregar Cuenta(?:s)? Contable(?:s)?/i,
+ expectedResult: 'validationError',
 });
+
+
+

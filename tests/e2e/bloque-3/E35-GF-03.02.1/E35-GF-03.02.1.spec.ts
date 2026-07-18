@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-03.02.1',
  section: 'Aprovisionamiento',
- view: 'AMED',
- operation: 'add',
+ view: 'Maestro de Negocio y Embebidos',
+ modalTitle: /Agregar Maestro (?:de )?(?:Negocio|Negocios).*Embebidos|Agregar Maestro de Embebidos/i,
  expectedResult: 'validationError',
- modalTitle: /Agregar AMED/i,
 });
+
+
+

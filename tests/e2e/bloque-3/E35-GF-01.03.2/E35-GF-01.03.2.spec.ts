@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-01.03.2',
  section: 'Asignaciones',
- view: 'Driver Reservas a UoA',
- operation: 'add',
+ view: 'Driver UoA - VIDA',
+ modalTitle: /Agregar Driver (?:Reservas a )?UoA|Agregar Driver UoA/i,
  expectedResult: 'success',
- modalTitle: /Agregar Driver.*UoA/i,
 });
+
+
+

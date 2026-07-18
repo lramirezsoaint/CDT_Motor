@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-01.01.2',
  section: 'Parametrización',
  view: 'Centros',
- operation: 'add',
- expectedResult: 'success',
  modalTitle: /Agregar Centros?/i,
+ expectedResult: 'success',
 });
+
+
+

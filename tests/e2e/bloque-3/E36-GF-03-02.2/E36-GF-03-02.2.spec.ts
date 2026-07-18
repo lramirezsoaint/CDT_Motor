@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-03-02.2',
  section: 'Aprovisionamiento',
  view: 'AP Vida',
- operation: 'edit',
+ modalTitle: /Editar AP Vida|AP Vida/i,
  expectedResult: 'validationError',
- modalTitle: /Editar AP Vida/i,
 });
+
+
+

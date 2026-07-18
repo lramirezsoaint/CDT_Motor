@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-01-02.3',
  section: 'Aprovisionamiento',
- view: 'maestro de negocio.*embebidos',
- operation: 'edit',
+ view: 'Maestro de Negocio y Embebidos',
+ modalTitle: /Editar Maestro (?:de )?(?:Negocio|Negocios).*Embebidos|Editar Maestro de Embebidos/i,
  expectedResult: 'success',
- modalTitle: /Editar Maestro.*Embebidos/i,
 });
+
+
+

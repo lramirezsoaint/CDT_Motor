@@ -1,11 +1,14 @@
-import { UploadCase } from '../_shared/gf-upload';
+﻿import { UploadCase } from '../_shared/gf-upload';
 
 UploadCase({
  caseId: 'E35-GF-04-01.1',
  section: 'Parametrización',
  view: 'Cuentas Contables',
- modalTitle: /cargar cuentas contables/i,
+ modalTitle: /cargar Cuentas\ Contables/i,
  fileFolder: 'E4-GF-01.1',
  fileName: 'REAL Cuentas Contables GF.xlsx',
  expectedResult: 'success',
 });
+
+
+

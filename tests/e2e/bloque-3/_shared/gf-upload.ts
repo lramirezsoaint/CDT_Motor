@@ -2,6 +2,7 @@ import { expect, test } from './bloque3.fixture';
 import type { Locator, Page } from '@playwright/test';
 import { ensureGfContext } from './gf-context';
 import { buildTags, flowTagForUploadResult, FlowTag } from '../../_globalshared/tags/tags';
+import { viewTitlePattern } from './gf-ui';
 import fs from 'fs';
 import path from 'path';
 
@@ -59,7 +60,7 @@ export async function openGfView(page: Page, config: Pick<GfUploadCase, 'section
  await page.getByRole('link', { name: new RegExp(config.view, 'i') }).click();
 
  await expect(
- page.getByRole('heading', { name: new RegExp(config.view, 'i') }).or(page.getByText(new RegExp(config.view, 'i'))).first(),
+ page.getByRole('heading', { name: viewTitlePattern(config.view) }).or(page.getByText(viewTitlePattern(config.view))).first(),
  `Debe abrir la vista ${config.section} > ${config.view}.`,
  ).toBeVisible({ timeout: 30_000 });
 }

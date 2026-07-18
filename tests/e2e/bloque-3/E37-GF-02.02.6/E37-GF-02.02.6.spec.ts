@@ -1,11 +1,15 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { DeleteRecordCase } from '../_shared/gf-delete-record';
 
-GfRecordCase({
+DeleteRecordCase({
  caseId: 'E37-GF-02.02.6',
  section: 'Aprovisionamiento',
- view: 'maestro de negocio.*embebidos',
- operation: 'delete',
- expectedResult: 'processError',
+ view: 'Maestro de Negocio y Embebidos',
  role: 'admin',
- modalTitle: /Agregar Maestro de Negocio.*Embebidos/i,
+ expectedResult: 'processError',
+ warningMessage: /[¿?]?Est[aá] seguro que desea eliminar este registro/i,
+ expectedMessage: /Actualmente hay un proceso en ejecucion|no es posible editar o eliminar|proceso en ejecucion/i,
 });
+
+
+
+

@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-01-01.3',
  section: 'Parametrización',
  view: 'Maestro Reservas Producto',
- operation: 'edit',
- expectedResult: 'success',
  modalTitle: /Editar Maestro Reservas Producto/i,
+ expectedResult: 'success',
 });
+
+
+

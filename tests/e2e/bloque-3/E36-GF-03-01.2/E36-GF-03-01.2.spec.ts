@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-03-01.2',
  section: 'Parametrización',
  view: 'Centros',
- operation: 'edit',
- expectedResult: 'validationError',
  modalTitle: /Editar Centros?/i,
+ expectedResult: 'validationError',
 });
+
+
+

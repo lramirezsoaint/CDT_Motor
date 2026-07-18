@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-03-03.3',
  section: 'Asignaciones',
- view: 'Distribucion UoA Generales Multiramo',
- operation: 'add',
+ view: 'Distribución UoA Generales Multiramo',
+ modalTitle: /Agregar Distribuci[oó]n UoA Generales Multiramo/i,
  expectedResult: 'validationError',
- modalTitle: /Agregar Distribuci[oó]n UoA/i,
 });
+
+
+

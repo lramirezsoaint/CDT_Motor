@@ -1,11 +1,15 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { DeleteRecordCase } from '../_shared/gf-delete-record';
 
-GfRecordCase({
+DeleteRecordCase({
  caseId: 'E37-GF-01.03.1',
  section: 'Asignaciones',
  view: 'Especiales NIIF',
- operation: 'delete',
- expectedResult: 'success',
  role: 'admin',
- modalTitle: /Agregar Especiales NIIF/i,
+ expectedResult: 'success',
+ warningMessage: /[¿?]?Est[aá] seguro que desea eliminar este registro/i,
+ expectedMessage: /Registro eliminado con exito|registro.*eliminado.*exito/i,
 });
+
+
+
+

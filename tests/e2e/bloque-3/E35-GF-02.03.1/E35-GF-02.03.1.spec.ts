@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { AddRecordCase } from '../_shared/gf-add-record';
 
-GfRecordCase({
+AddRecordCase({
  caseId: 'E35-GF-02.03.1',
  section: 'Asignaciones',
  view: 'Especiales NIIF',
- operation: 'add',
- expectedResult: 'duplicateError',
  modalTitle: /Agregar Especiales NIIF/i,
+ expectedResult: 'duplicateError',
 });
+
+
+

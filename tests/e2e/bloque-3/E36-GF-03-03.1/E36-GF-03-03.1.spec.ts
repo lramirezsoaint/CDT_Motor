@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-03-03.1',
  section: 'Asignaciones',
  view: 'Especiales NIIF',
- operation: 'edit',
- expectedResult: 'validationError',
  modalTitle: /Editar Especiales NIIF/i,
+ expectedResult: 'validationError',
 });
+
+
+

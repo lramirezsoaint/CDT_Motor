@@ -1,10 +1,12 @@
-import { GfRecordCase } from '../_shared/gf-record-actions';
+﻿import { EditRecordCase } from '../_shared/gf-edit-record';
 
-GfRecordCase({
+EditRecordCase({
  caseId: 'E36-GF-01-03.3',
  section: 'Asignaciones',
- view: 'Distribucion UoA Generales Multiramo',
- operation: 'edit',
+ view: 'Distribución UoA Generales Multiramo',
+ modalTitle: /Editar Distribuci[oó]n UoA Generales Multiramo/i,
  expectedResult: 'success',
- modalTitle: /Editar Distribuci[oó]n UoA/i,
 });
+
+
+
