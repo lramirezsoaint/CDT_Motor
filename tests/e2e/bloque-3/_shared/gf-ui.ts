@@ -38,6 +38,8 @@ export async function openGfView(page: Page, config: Pick<GfCaseBase, 'section' 
  await page.getByText(config.section, { exact: false }).click();
  const linkName = /Maestro Reservas Producto/i.test(config.view)
  ? /Maestro Producto|Maestro Reservas Producto/i
+ : /Driver UoA|Driver Reservas a UoA/i.test(config.view)
+ ? /Driver Reservas a UoA|Driver UoA(?: - VIDA)?/i
  : new RegExp(config.view, 'i');
  await page.getByRole('link', { name: linkName }).click();
  await waitForGfLoading(page);
@@ -46,6 +48,10 @@ export async function openGfView(page: Page, config: Pick<GfCaseBase, 'section' 
 export function viewTitlePattern(view: string) {
  if (/Maestro de Negocio(?: y)? Embebidos/i.test(view)) {
  return /Maestro de Negocios y Embebidos|Maestro de Negocio y Embebidos/i;
+ }
+
+ if (/Driver UoA|Driver Reservas a UoA/i.test(view)) {
+ return /Driver Reservas a UoA|Driver UoA(?: - VIDA)?/i;
  }
 
  return new RegExp(view, 'i');

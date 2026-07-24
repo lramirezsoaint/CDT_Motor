@@ -12,6 +12,7 @@ type DeleteRecordCaseConfig = GfCaseBase & {
  expectedResult: DeleteResult;
  warningMessage: RegExp;
  expectedMessage: RegExp;
+ targetRow?: RegExp;
 };
 
 export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
@@ -40,7 +41,7 @@ export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
  await expect(page.getByRole('heading', { name: viewTitlePattern(config.view) })).toBeVisible({ timeout: 30_000 });
  });
 
- const row = page.locator('table tbody tr').first();
+ const row = targetRowLocator(page, config);
  await expect(row, 'Debe existir al menos un registro en la tabla para eliminar.').toBeVisible({ timeout: 30_000 });
  const rowKey = await firstMeaningfulCellText(row);
  test.info().annotations.push({
@@ -112,6 +113,11 @@ async function openDeleteAction(page: Page, row: Locator) {
 
  await expect(deleteOption, 'Debe existir la opcion Eliminar en el menu de acciones.').toBeVisible();
  await deleteOption.click();
+}
+
+function targetRowLocator(page: Page, config: DeleteRecordCaseConfig) {
+ const rows = page.locator('table tbody tr');
+ return config.targetRow ? rows.filter({ hasText: config.targetRow }).first() : rows.first();
 }
 
 async function firstMeaningfulCellText(row: Locator) {

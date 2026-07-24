@@ -12,6 +12,7 @@ type AddField = {
  label: RegExp;
  value?: string;
  kind?: FieldKind;
+ testId?: string;
 };
 
 type AddRecordCaseConfig = GfCaseBase & {
@@ -58,7 +59,8 @@ export function AddRecordCase(config: AddRecordCaseConfig) {
 
  if (config.expectedResult === 'validationError') {
  await test.step('Activar validaciones de obligatoriedad/formato', async () => {
- for (const field of config.fields ?? []) {
+ const fields = config.fields?.length ? config.fields : defaultFieldsFor(config.view, dataKey, config.expectedResult);
+ for (const field of fields) {
  const control = fieldLocator(modal, field);
  const visible = await control.isVisible({ timeout: 2_000 }).catch(() => false);
  if (visible) {
@@ -75,8 +77,9 @@ export function AddRecordCase(config: AddRecordCaseConfig) {
  }
 
  await test.step('Completar campos del formulario', async () => {
- if (config.fields?.length) {
- for (const field of config.fields) {
+ const fields = config.fields?.length ? config.fields : defaultFieldsFor(config.view, dataKey, config.expectedResult);
+ if (fields.length) {
+ for (const field of fields) {
  if (!field.value) {
  test.info().annotations.push({ type: 'TODO', description: `Dato no definido en catalogo para ${field.label}` });
  continue;
@@ -120,48 +123,86 @@ export function AddRecordCase(config: AddRecordCaseConfig) {
 }
 
 function fieldLocator(modal: Locator, field: AddField) {
- return modal
+ const locator = modal
  .getByLabel(field.label)
  .or(modal.getByPlaceholder(field.label))
  .or(modal.getByRole('textbox', { name: field.label }))
  .or(modal.getByRole('combobox', { name: field.label }))
- .first();
+ .or(modal.locator('label').filter({ hasText: field.label }).locator('..').locator('input,textarea,[role="combobox"]'));
+
+ return field.testId ? modal.getByTestId(field.testId).or(locator).first() : locator.first();
 }
 
 async function fillField(page: Page, modal: Locator, field: AddField) {
  const control = fieldLocator(modal, field);
  await expect(control, `Debe existir el campo ${field.label}`).toBeVisible();
  await control.scrollIntoViewIfNeeded().catch(() => undefined);
- const role = await control.getAttribute('role').catch(() => '');
- const tagName = await control.evaluate((element) => element.tagName.toLowerCase()).catch(() => '');
- if (field.kind === 'select' || role === 'combobox' || tagName === 'button') {
+ if (field.kind === 'select') {
  await control.click();
  const value = field.value ?? '';
  const option = page
  .getByRole('option', { name: new RegExp(`^${escapeRegExp(value)}$`, 'i') })
- .or(page.locator('[data-radix-popper-content-wrapper], [role="listbox"]').getByText(new RegExp(`^${escapeRegExp(value)}$`, 'i')))
+ .or(page.locator('[data-radix-popper-content-wrapper]').getByText(new RegExp(`^${escapeRegExp(value)}$`, 'i')))
+ .or(page.locator('[role="listbox"]').getByText(new RegExp(`^${escapeRegExp(value)}$`, 'i')))
  .first();
- if (await option.isVisible({ timeout: 5_000 }).catch(() => false)) {
+
+ if (await option.isVisible({ timeout: 10_000 }).catch(() => false)) {
  await option.click();
  return;
  }
+ }
 
- const firstOption = page.getByRole('option').first();
- await expect(firstOption, `Debe existir al menos una opcion para ${field.label}`).toBeVisible({ timeout: 10_000 });
- await firstOption.click();
+ const role = await control.getAttribute('role').catch(() => '');
+ const tagName = await control.evaluate((element) => element.tagName.toLowerCase()).catch(() => '');
+ if (tagName === 'button') {
+ await selectButtonCombobox(page, control, field.value ?? '', `Debe existir al menos una opcion para ${field.label}`);
+ return;
+ }
+ if (field.kind === 'select' || role === 'combobox' || tagName === 'button') {
+ await selectOption(page, control, field.value ?? '', `Debe existir al menos una opcion para ${field.label}`);
  return;
  }
  await control.fill(field.value ?? '');
 }
 
+async function selectButtonCombobox(page: Page, trigger: Locator, value: string, message: string) {
+ const optionTexts = await trigger.locator('xpath=../following-sibling::select[1]/option').allTextContents().catch(() => []);
+ const optionIndex = optionTexts.findIndex((text) => text.trim().toLowerCase() === value.trim().toLowerCase());
+
+ if (optionIndex < 0) {
+ await selectOption(page, trigger, value, message);
+ return;
+ }
+
+ await trigger.scrollIntoViewIfNeeded().catch(() => undefined);
+ await trigger.click();
+ await page.keyboard.press('Home').catch(() => undefined);
+ for (let index = 0; index < optionIndex; index += 1) {
+ await page.keyboard.press('ArrowDown');
+ }
+ await page.keyboard.press('Enter');
+}
+
 async function fillVisibleFormControls(page: Page, modal: Locator, caseId: string, view: string, expectedResult: AddResult) {
- for (const field of defaultFieldsFor(view, caseId, expectedResult)) {
+ const fields = defaultFieldsFor(view, caseId, expectedResult);
+ for (const field of fields) {
  const control = fieldLocator(modal, field);
+ if (/Especiales NIIF/i.test(view)) {
+ await expect(control, `Debe mostrarse el campo requerido ${field.label}.`).toBeVisible({ timeout: 15_000 });
+ await expect(control, `Debe habilitarse el campo requerido ${field.label}.`).toBeEnabled({ timeout: 15_000 });
+ await fillField(page, modal, field);
+ continue;
+ }
+
  const visible = await control.isVisible({ timeout: 1_000 }).catch(() => false);
  const enabled = visible && await control.isEnabled().catch(() => false);
  if (enabled) {
  await fillField(page, modal, field);
  }
+ }
+
+ if (/Especiales NIIF/i.test(view)) {
+ return;
  }
 
  const unique = caseId.replace(/[^A-Z0-9]/gi, '').slice(-10);
@@ -193,6 +234,55 @@ async function fillVisibleFormControls(page: Page, modal: Locator, caseId: strin
  }
 }
 
+async function selectOption(page: Page, trigger: Locator, value: string, message: string) {
+ await trigger.scrollIntoViewIfNeeded().catch(() => undefined);
+ await trigger.click();
+ const exactPattern = new RegExp(`^${escapeRegExp(value)}$`, 'i');
+ const options = await optionsForTrigger(page, trigger);
+ const exactOption = page
+ .locator('[data-radix-popper-content-wrapper]')
+ .getByText(exactPattern)
+ .or(options.getByText(exactPattern))
+ .first();
+
+ if (value && await exactOption.isVisible({ timeout: 5_000 }).catch(() => false)) {
+ await exactOption.click({ force: true });
+ await page.keyboard.press('Escape').catch(() => undefined);
+ return;
+ }
+
+ const firstOption = options
+ .filter({ hasNotText: /^$/ })
+ .first()
+ .or(page.locator('[data-radix-popper-content-wrapper]').getByText(/\S/).first());
+ await expect(firstOption, message).toBeVisible({ timeout: 10_000 });
+ await firstOption.click({ force: true });
+ await page.keyboard.press('Escape').catch(() => undefined);
+}
+
+async function optionsForTrigger(page: Page, trigger: Locator) {
+ const controls = await trigger.getAttribute('aria-controls').catch(() => null);
+ const id = await trigger.getAttribute('id').catch(() => null);
+ const listboxId = controls ?? (id ? `${id}-listbox` : null);
+
+ if (listboxId) {
+ const options = page.locator(`[id="${cssAttributeValue(listboxId)}"]`).getByRole('option');
+ if (await options.first().isVisible({ timeout: 1_000 }).catch(() => false)) {
+ return options;
+ }
+ }
+
+ return openPopover(page).getByRole('option');
+}
+
+function openPopover(page: Page) {
+ return page.locator('[data-radix-popper-content-wrapper] [data-state="open"], [role="listbox"]').last();
+}
+
+function cssAttributeValue(value: string) {
+ return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
 function escapeRegExp(value: string) {
  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -211,6 +301,11 @@ function defaultFieldsFor(view: string, caseId: string, expectedResult: AddResul
  { label: /Concepto N1/i, value: 'Ingresos Financieros Netos' },
  { label: /Concepto N2/i, value: 'Utilidad venta inmuebles, muebles y equipo' },
  { label: /Concepto N3/i, value: 'Utilidad/ Perdida venta de Inmuebles' },
+ { label: /Concepto NIIF17/i, value: 'Gastos Generales/Técnicos', kind: 'select' },
+ { label: /Tipo de cuenta/i, value: 'IF', kind: 'select' },
+ { label: /M[eé]todo de Distribuci[oó]n VIDA/i, value: 'Premium', kind: 'select' },
+ { label: /M[eé]todo de Distribuci[oó]n Generales/i, value: 'COSTARRENPPS', kind: 'select' },
+ { label: /NIIF17 CBR/i, value: 'GA', kind: 'select' },
  ];
  }
 
@@ -247,9 +342,9 @@ function defaultFieldsFor(view: string, caseId: string, expectedResult: AddResul
  return [
  { label: /^Negocio$/i, value: 'GENERALES' },
  { label: /^L[ií]nea$/i, value: 'ASISTENCIA MEDICA' },
- { label: /^Producto$/i, value: 'INDEMNIZATORIO INDIVIDUAL' },
+ { label: /^Producto$/i, value: 'AMED001' },
  { label: /^Canal$/i, value: 'ALIANZAS' },
- { label: /^Subcanal$/i, value: 'FALABELLA' },
+ { label: /^Subcanal$/i, value: 'ALZ002' },
  { label: /Embebido/i, value: 'EMBEBIDO' },
  { label: /Tipo Negocio/i, value: 'PERSONA' },
  ];
@@ -257,9 +352,9 @@ function defaultFieldsFor(view: string, caseId: string, expectedResult: AddResul
 
  if (/AMED/i.test(view)) {
  return [
- { label: /C[oó]digo Contable|CODCTACTB/i, value: '46.2.5.02.02.01' },
+ { label: /C[oó]digo Contable|CODCTACTB/i, value: '44.1.7.02.09.09' },
  { label: /AUM/i, value: '27.972' },
- { label: /ING.*FINANCIERO|Ingreso/i, value: '63,7' },
+ { label: /ING.*FINANCIERO|Ingreso Financiero/i, value: '63,7' },
  { label: /Tasa/i, value: '2,64%' },
  ];
  }
@@ -282,43 +377,36 @@ function defaultFieldsFor(view: string, caseId: string, expectedResult: AddResul
 
  if (/Especiales NIIF/i.test(view)) {
  return [
- { label: /C[oó]digo L[ií]nea|CODLINEA/i, value: 'LPER' },
- { label: /^L[ií]nea$/i, value: 'LINEAS PERSONALES' },
- { label: /C[oó]digo Producto|CODPRODUCTO/i, value: 'LPER019' },
- { label: /^Producto$/i, value: 'AP VIDA' },
- { label: /C[oó]digo Canal|CODCANAL/i, value: 'DFV' },
- { label: /^Canal$/i, value: 'CANALES DIRECTOS' },
- { label: /C[oó]digo Subcanal|CODSUBCANAL/i, value: 'DFV008' },
- { label: /^Subcanal$/i, value: 'AGENCIAS EXCLUSIVAS' },
- { label: /M[eé]todo Valoraci[oó]n/i, value: '1' },
- { label: /Porcentaje/i, value: '65' },
- { label: /Dig.*Cuenta/i, value: '-' },
- { label: /Tipo Distribuci[oó]n/i, value: 'POLIZAS' },
- { label: /NIIF17 Atribuible/i, value: 'SI' },
- { label: /NIIF17 Tipo/i, value: 'GA' },
- { label: /Concepto N1/i, value: 'Egresos Tecnicos netos' },
- { label: /Concepto N2/i, value: 'Servicios' },
- { label: /C[oó]digo Concepto/i, value: '10.14.00' },
- { label: /CECO/i, value: '06.99.80' },
+ { label: /C[oó]digo L[ií]nea|CODLINEA/i, value: 'AFP', testId: 'codigoLinea' },
+ { label: /C[oó]digo Producto|CODPRODUCTO/i, value: 'AFP001', testId: 'codigoProducto' },
+ { label: /C[oó]digo Canal|CODCANAL/i, value: 'AFP', testId: 'codigoCanal' },
+ { label: /C[oó]digo Subcanal|CODSUBCANAL/i, value: 'AFP001', testId: 'codigoSubcanal' },
+ { label: /M[eé]todo(?: de)? Valoraci[oó]n/i, value: 'PAA', testId: 'metodoValoracion' },
+ { label: /Porcentaje/i, value: '22.583', testId: 'porcentaje' },
+ { label: /Tipo Distribuci[oó]n/i, value: 'POLIZAS', testId: 'tipoDistribucion' },
+ { label: /NIIF\s*17\s*Atribuible/i, value: 'Atribuible', testId: 'niif17Atribuible' },
+ { label: /NIIF\s*17\s*Tipo/i, value: 'GA', testId: 'niif17Tipo' },
+ { label: /Concepto N1/i, value: 'Egresos Tecnicos netos', testId: 'conceptoN1' },
+ { label: /Concepto N2/i, value: 'Rescates', testId: 'conceptoN2' },
+ { label: /C[oó]digo Concepto/i, value: '01.05.00', testId: 'codigoConcepto' },
+ { label: /D[ií]gito de cuenta/i, value: '46', testId: 'digCuenta' },
+ { label: /CECO/i, value: '07.99.43', testId: 'ceco' },
  ];
  }
 
  if (/Driver UoA/i.test(view)) {
  return [
- { label: /C[oó]digo Concepto/i, value: '07.01.00' },
- { label: /^Concepto$/i, value: 'Ajuste de Reservas' },
- { label: /^UOA$/i, value: 'IFRS_GRP_2021_PREMIUM BBA_PEN_GM_Gross_Prof' },
- { label: /Grupo Producto NIIF/i, value: 'PREMIUM BBA | VFA | PU' },
- { label: /Producto NIIF17/i, value: 'PREMIUM BBA' },
+ { label: /C[oó]digo Concepto/i, value: '30.02.02', kind: 'select' },
+ { label: /^Unidad de Cuenta$/i, value: 'IFRS_GRP_2021_ACCIDENTES PERSONALES LP_PEN_GM_Gross_Oner', kind: 'select' },
+ { label: /Grupo\s*-\s*Producto NIIF Distribuido/i, value: 'PREMIUM BBA | VFA | PU', kind: 'select' },
  { label: /Driver UOA/i, value: '0.0625' },
  ];
  }
 
- if (/Distribuci[oó]n UoA Generales Multiramo/i.test(view)) {
+ if (/UoA Generales Multiramo/i.test(view)) {
  return [
- { label: /C[oó]digo Producto|CODPRODUCTO/i, value: 'LCOM017' },
- { label: /Nombre/i, value: duplicate ? 'PYME CORREDOR' : `MULTIRAMO GF ${token}` },
- { label: /^UOA$/i, value: 'IFRS_GRP_2021_UNIQUE INCENDIO_PEN_PAA_Gross_Prof' },
+ { label: /C[oó]digo Producto|CODPRODUCTO/i, value: 'LCOM011', kind: 'select' },
+ { label: /Unidad de Cuenta|^UOA$/i, value: 'IFRS_GRP_2021_UNIQUE INCENDIO_PEN_PAA_Gross_Prof', kind: 'select' },
  { label: /Factor/i, value: '1.62' },
  ];
  }

@@ -7,7 +7,6 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  await expect(page)
  .toHaveURL(/\/distribuciones/i);
 
- 
  // 2. Nueva Distribución
  await page.getByRole('button', {
  name: /nueva distribución/i
@@ -29,10 +28,9 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  await expect(crearButton).toBeDisabled();
 
  // 4. Completar formulario
- const periodo = '202501';
- const tipo = 'Real Local';
+ const periodo = '202601';
+ const tipo = 'Real NIIF';
  const seccion = 'Flujo del mes';
- const version =  String((Date.now() % 15) + 1);
  const nombre = `${periodo}_${tipo}_${seccion}_${Date.now()}`;
 
  await modal.getByLabel(/nombre/i)
@@ -51,7 +49,7 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  .click();
 
  await modal.getByLabel(/versión/i)
- .fill(version);
+ .fill('1');
 
  await modal.getByLabel(/tasa de cambio/i)
  .fill('13.98');
@@ -72,10 +70,12 @@ test('@bloque3 @E40-DIS-01 @distribucion CREAR-DISTRIBUCION-EXITOSA', async ({ p
  // 6. Mensaje de éxito
  await expect(
  page.getByText(
- /¡hecho! el registro se agregó sin problemas/i
+ /éxito! el registro se agregó sin problemas/i
  )
  ).toBeVisible({
  timeout: 30000
  });
 
 });
+
+

@@ -14,7 +14,7 @@ test('@bloque3 @E40-DIS-02 @distribucion CREAR-DISTRIBUCION-ERROR', async ({ pag
   await modal.getByLabel(/nombre/i).fill('202501_Real Local_Flujo del mes');
 
   await modal.getByLabel(/tipo/i).click();
-  await page.getByRole('option', { name: 'Real Local' }).click();
+  await page.getByRole('option', { name: 'Real NIIF' }).click();
 
   await modal.getByLabel(/periodo/i).click();
   await page.getByTestId('periodo-option-202501').click();

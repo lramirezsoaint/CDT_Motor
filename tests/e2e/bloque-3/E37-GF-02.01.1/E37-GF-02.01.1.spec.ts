@@ -6,8 +6,9 @@ DeleteRecordCase({
  view: 'Cuentas Contables',
  role: 'admin',
  expectedResult: 'processError',
+ targetRow: /46\.2\.5\.02\.02\.01/,
  warningMessage: /[¿?]?Est[aá] seguro que desea eliminar este registro/i,
- expectedMessage: /Actualmente hay un proceso en ejecucion|no es posible editar o eliminar|proceso en ejecucion/i,
+ expectedMessage: /Actualmente hay un proceso en ejecuci[oó]n|no es posible editar o eliminar|proceso en ejecuci[oó]n/i,
 });
 
 
