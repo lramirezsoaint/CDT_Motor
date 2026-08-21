@@ -30,10 +30,27 @@ const PROJECT_BY_ROLE: Array<{ pattern: RegExp; project: string; role: string }>
 }));
 
 export function buildDiagnosticError(context: DiagnosticContext, originalError: unknown): Error {
+ const message = buildDiagnosticText(context);
+ const error = new Error(message);
+ error.stack = message;
+ return error;
+}
+
+export function buildDiagnosticReport(context: DiagnosticContext, originalError: unknown): string {
  const original = formatOriginalError(originalError);
  const originalStack = getOriginalStack(originalError);
- const diagnostic = [
- 'DIAGNÓSTICO',
+ const diagnostic = buildDiagnosticText(context);
+
+ return [
+ diagnostic,
+ original ? `\nERROR ORIGINAL\n${original}` : undefined,
+ originalStack ? `\nSTACK ORIGINAL\n${originalStack}` : undefined,
+ ].filter(Boolean).join('\n');
+}
+
+export function buildDiagnosticText(context: DiagnosticContext): string {
+ return [
+ 'DIAGNOSTICO',
  `Caso: ${context.caseId}`,
  `Fase: ${context.phase}`,
  `Causa probable: ${context.cause}`,
@@ -45,36 +62,16 @@ export function buildDiagnosticError(context: DiagnosticContext, originalError: 
  `Archivo: ${context.fileName ?? 'No inferido'}`,
  `Vista: ${context.view ?? context.section ?? 'No inferido'}`,
  ].join('\n');
-
- const message = [diagnostic, original ? `\nERROR ORIGINAL\n${original}` : undefined].filter(Boolean).join('\n');
- const error = new Error(message);
- error.stack = [message, originalStack ? `\nSTACK ORIGINAL\n${originalStack}` : undefined].filter(Boolean).join('\n');
- return error;
 }
 
 export function buildDiagnosticErrorFromTestInfo(input: DiagnosticInput): Error {
- const testIdentity = getTestIdentity(input.testInfo);
- const currentUrl = input.currentUrl ?? getCurrentUrl(input.page);
- const cause = classifyFailure(input.originalError, [testIdentity, currentUrl].filter(Boolean).join('\n'));
- const expectedProject = inferExpectedProject(testIdentity, input.testInfo.project.name);
- const functionalTarget = inferFunctionalTarget(testIdentity);
+ const diagnostic = buildDiagnosticFromTestInfo(input);
+ return buildDiagnosticError(diagnostic.context, input.originalError);
+}
 
- return buildDiagnosticError(
- {
- caseId: inferCaseId(input.testInfo),
- phase: normalizePhase(FAILURE_PHASE[cause]),
- cause,
- message: buildCauseMessage(cause),
- expectedProject: expectedProject.project,
- actualProject: input.testInfo.project.name,
- role: expectedProject.role,
- currentUrl,
- fileName: input.testInfo.file,
- section: functionalTarget.section,
- view: functionalTarget.view,
- },
- input.originalError,
- );
+export function buildDiagnosticReportFromTestInfo(input: DiagnosticInput): string {
+ const diagnostic = buildDiagnosticFromTestInfo(input);
+ return buildDiagnosticReport(diagnostic.context, input.originalError);
 }
 
 export function classifyFailure(originalError: unknown, testIdentity = ''): FailureCause {
@@ -144,6 +141,30 @@ export function classifyFailure(originalError: unknown, testIdentity = ''): Fail
  return 'ASSERTION_FAILURE';
 }
 
+function buildDiagnosticFromTestInfo(input: DiagnosticInput): { context: DiagnosticContext } {
+ const testIdentity = getTestIdentity(input.testInfo);
+ const currentUrl = input.currentUrl ?? getCurrentUrl(input.page);
+ const cause = classifyFailure(input.originalError, [testIdentity, currentUrl].filter(Boolean).join('\n'));
+ const expectedProject = inferExpectedProject(testIdentity, input.testInfo.project.name);
+ const functionalTarget = inferFunctionalTarget(testIdentity);
+
+ return {
+ context: {
+ caseId: inferCaseId(input.testInfo),
+ phase: normalizePhase(FAILURE_PHASE[cause]),
+ cause,
+ message: buildCauseMessage(cause),
+ expectedProject: expectedProject.project,
+ actualProject: input.testInfo.project.name,
+ role: expectedProject.role,
+ currentUrl,
+ fileName: input.testInfo.file,
+ section: functionalTarget.section,
+ view: functionalTarget.view,
+ },
+ };
+}
+
 function buildCauseMessage(cause: FailureCause): string {
  switch (cause) {
  case 'AUTH_FAILURE':
@@ -191,7 +212,7 @@ function inferExpectedProject(testIdentity: string, actualProject: string): { pr
 function inferFunctionalTarget(testIdentity: string): { section?: string; view?: string } {
  const normalizedIdentity = testIdentity.replace(/\s+/g, ' ');
  const sectionViewMatch = normalizedIdentity.match(
- /(Comunes|Parametrizaci[oó]n|Aprovisionamiento|Asignaciones|Procesos|Reportes)\s*>\s*([^@\n\r]+)/i,
+ /(Comunes|Parametrizaci.n|Aprovisionamiento|Asignaciones|Procesos|Reportes)\s*>\s*([^@\n\r]+)/i,
  );
 
  if (sectionViewMatch) {
@@ -201,7 +222,7 @@ function inferFunctionalTarget(testIdentity: string): { section?: string; view?:
  };
  }
 
- const namedViewMatch = normalizedIdentity.match(/(?:archivo|vista|modulo|m[oó]dulo)\s+([A-ZÁÉÍÓÚÑ][^@|.]+)/i);
+ const namedViewMatch = normalizedIdentity.match(/(?:archivo|vista|modulo|m.dulo)\s+([^@|.]+)/i);
  if (namedViewMatch) {
  return { view: namedViewMatch[1].trim() };
  }

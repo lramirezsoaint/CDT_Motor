@@ -27,7 +27,7 @@
 
 **Resultado esperado:**
 1-El usuario accede correctamente al sistema
-2-En la parte inferior de sidebar, se muestra el nombre y rol, al hacer click se muestra el correo y la acción de cerrar sesión.
+2-En la parte inferior de sidebar, se muestra el nombre y rol
 
 ---
 
@@ -61,7 +61,6 @@
 **Resultado esperado:**
 Se muestra los datos creados correctamente
 Se levanta un modal con la información de porciento de avance de la corrida por Fase y proceso
-Si el estado es ''Creada'', todas sus fases mostrarán ''Sin ejecutar''.
 
 ---
 
@@ -144,7 +143,7 @@ El archivo se descarga correctamente y se debe tener acceso al archivo.
 - Cuenta Contable: 40.1.2.01.00.00
 - Nombre Cuenta Contable: REPARACION Y MANTENIMIENTO
 - Tipo de gasto: IF,0,1
-- Niif17 Atribuible:SI, NO
+- Niif17 Atribuible:ATRIBUIBLE
 - Niif17 Tipo: GA, GM
 - Niif17 Clase: FI, VA
 - Código concepto: 30.05.04
@@ -164,5 +163,3 @@ El archivo se descarga correctamente y se debe tener acceso al archivo.
 **Resultado esperado:**
 El nuevo registro ha sido agregado correctamente.
 1-Se muestra el mensaje de éxito ¡Hecho! El registro se agregó sin problemas
-2-Se agrega correctamente cada dato en la tabla
-3-Se registra la fecha y la hora

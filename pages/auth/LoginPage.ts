@@ -54,7 +54,6 @@ export class LoginPage {
       throw error;
     }
 
-    await this.page.waitForURL(/login\.microsoftonline\.com|\.pacificotest\.com\.pe\/login/, { timeout: 60_000 });
     if (this.isDistribucionesUrl()) {
       await this.waitForDistribucionesReady();
       return;

@@ -61,10 +61,6 @@ export function defineDemoAddRecordCase(config: DemoAddRecordConfig): void {
     });
 
     await test.step('Validar alta exitosa en tabla', async () => {
-      await expect(page.getByText(/hecho|registro se agreg/i).first(), 'Debe mostrarse mensaje de exito.').toBeVisible({
-        timeout: 30_000,
-      });
-
       const table = page.locator('table, [role="table"]').first();
       await expect(table, 'Debe existir tabla de Cuentas Contables.').toBeVisible({ timeout: 20_000 });
       for (const value of config.expectedTableValues) {

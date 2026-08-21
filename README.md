@@ -327,6 +327,308 @@ Para agregar un nuevo rol al framework:
   ```
 ---
 
+## Gestion automatica de incidentes
+
+El framework puede diagnosticar fallos de Playwright y preparar o enviar incidentes a un proveedor externo. El flujo funcional es:
+
+```text
+Playwright failure
+-> classifier
+-> policy
+-> incident provider
+-> dedup
+-> create/duplicate
+-> evidence
+-> incident-provider-summary
+```
+
+Providers soportados:
+
+| Provider | Uso |
+| --- | --- |
+| `azure` | Azure DevOps |
+| `jira` | Jira Cloud |
+| `trello` | Trello |
+| `none` | Deshabilita provider externo |
+
+### Variables generales
+
+| Variable | Default seguro | Descripcion |
+| --- | --- | --- |
+| `INCIDENT_PROVIDER` | `azure` en la configuracion actual | Provider activo: `none`, `azure`, `jira` o `trello`. Usar `none` para desarrollo local sin integracion externa. |
+| `AUTO_CREATE_INCIDENTS` | `false` | Habilita la creacion automatica solo cuando todos los gates se cumplen. |
+| `INCIDENT_MODE` | `preview` | `preview` genera diagnostico sin crear; `create` permite crear si tambien pasan los gates. |
+| `INCIDENT_ATTACH_EVIDENCE` | `false` | Habilita adjuntar screenshot y trace cuando existan. |
+| `INCIDENT_ATTACH_VIDEO` | `false` | Habilita adjuntar video. Requiere `INCIDENT_ATTACH_EVIDENCE=true`. |
+| `INCIDENT_MAX_VIDEO_MB` | `50` | Tamano maximo de video antes de omitir el upload. |
+| `INCIDENT_REQUEST_TIMEOUT_MS` | `15000` | Timeout maximo para requests HTTP de providers. |
+| `DEBUG_INCIDENTS` | `false` | Activa logs tecnicos sanitizados de clasificacion, requests, dedup, attachments y lifecycle. No debe imprimir tokens, PATs ni headers `Authorization`. |
+
+### Gates de seguridad
+
+Un incidente automatico solo se crea cuando se cumple todo lo siguiente:
+
+| Gate | Valor requerido |
+| --- | --- |
+| Decision | `BUG_AUTO` |
+| Confidence | `HIGH` |
+| `AUTO_CREATE_INCIDENTS` | `true` |
+| `INCIDENT_MODE` | `create` |
+| `INCIDENT_PROVIDER` | distinto de `none` |
+| Provider validate-only | `false` |
+
+Si cualquiera de estos gates no se cumple, no se crea incidente real. El resultado queda como preview, validacion, skip o duplicado segun corresponda.
+
+### Azure DevOps
+
+Variables:
+
+| Variable | Descripcion |
+| --- | --- |
+| `AZURE_DEVOPS_ORGANIZATION` | Organizacion Azure DevOps destino. |
+| `AZURE_DEVOPS_PROJECT` | Proyecto Azure DevOps destino. |
+| `AZURE_DEVOPS_PAT` | Personal Access Token. Es secreto y nunca debe versionarse. |
+| `AZURE_DEVOPS_VALIDATE_ONLY` | Ejecuta creacion Azure en modo validate-only cuando aplica. |
+| `AZURE_DEVOPS_ATTACH_EVIDENCE` | Legacy/fallback para evidencias. `INCIDENT_ATTACH_EVIDENCE` tiene prioridad si esta definido. |
+| `AZURE_DEVOPS_ATTACH_VIDEO` | Legacy/fallback para video. `INCIDENT_ATTACH_VIDEO` tiene prioridad si esta definido. |
+| `AZURE_DEVOPS_MAX_VIDEO_MB` | Legacy/fallback para tamano maximo de video. `INCIDENT_MAX_VIDEO_MB` tiene prioridad si esta definido. |
+| `AZURE_DEVOPS_REQUEST_TIMEOUT_MS` | Legacy/fallback para timeout HTTP. `INCIDENT_REQUEST_TIMEOUT_MS` tiene prioridad si esta definido. |
+| `AZURE_DEVOPS_CLOSED_STATES` | Estados cerrados para dedup, separados por coma. Si queda vacio se usan defaults internos. |
+
+### Jira
+
+Variables:
+
+| Variable | Descripcion |
+| --- | --- |
+| `JIRA_BASE_URL` | URL raiz de Jira Cloud. Ejemplo: `https://empresa.atlassian.net`. |
+| `JIRA_PROJECT_KEY` | Key del proyecto Jira. Ejemplo: `SCRUM`. |
+| `JIRA_EMAIL` | Correo de la cuenta usada para Basic Auth. |
+| `JIRA_API_TOKEN` | API Token de Atlassian. No usar contrasena. Es secreto y nunca debe versionarse. |
+| `JIRA_ISSUE_TYPE` | Tipo de issue a crear. Debe coincidir con un issue type disponible en el proyecto. Ejemplos: `Bug`, `Error`, `Task`. |
+| `JIRA_VALIDATE_ONLY` | `true` permite validacion/dedup read-only sin creacion real. `false` permite crear solo si tambien pasan los gates generales. |
+
+Harnesses manuales de Jira:
+
+| Variable | Uso |
+| --- | --- |
+| `JIRA_RUN_REAL_VALIDATION` | Habilita validacion manual de conexion. |
+| `JIRA_RUN_REAL_DEDUP_TEST` | Habilita prueba manual read-only de dedup. |
+| `JIRA_RUN_REAL_CREATE` | Habilita creacion manual controlada. No dejar en `true`. |
+| `JIRA_RUN_REAL_ATTACHMENT_TEST` | Habilita prueba manual controlada de attachments. |
+| `JIRA_TEST_ISSUE_KEY` | Issue destino para pruebas manuales de attachments. |
+
+Estos flags son temporales, no deben quedar en `true` permanentemente y no forman parte del flujo normal de Playwright.
+
+### Trello
+
+Variables:
+
+| Variable | Descripcion |
+| --- | --- |
+| `TRELLO_BASE_URL` | URL base de la API. Default: `https://api.trello.com/1`. |
+| `TRELLO_API_KEY` | API Key de la app/Power-Up de Trello. Tratar como secreto si la politica del equipo lo requiere. |
+| `TRELLO_TOKEN` | Token autorizado del usuario. Es secreto. |
+| `TRELLO_BOARD_ID` | ID o shortLink del board destino. |
+| `TRELLO_LIST_ID` | ID de la lista donde se crearan las cards. |
+| `TRELLO_VALIDATE_ONLY` | `true` permite validacion/dedup sin creacion real. `false` permite crear solo si tambien pasan los gates generales. |
+| `TRELLO_MAX_ATTACHMENT_MB` | Limite maximo por attachment. Default conservador para Trello Free: `10` MB. |
+
+Harnesses manuales de Trello:
+
+| Variable | Uso |
+| --- | --- |
+| `TRELLO_RUN_REAL_AUTH_TEST` | Habilita validacion manual de autenticacion. |
+| `TRELLO_RUN_REAL_VALIDATION` | Habilita validacion manual de board/lista. |
+| `TRELLO_RUN_REAL_DEDUP_TEST` | Habilita prueba manual read-only de dedup. |
+| `TRELLO_RUN_REAL_CREATE` | Habilita creacion manual controlada. No dejar en `true`. |
+| `TRELLO_RUN_REAL_ATTACHMENT_TEST` | Habilita prueba manual controlada de attachments. |
+| `TRELLO_RUN_LISTS` | Lista boards/listas para configurar IDs. |
+| `TRELLO_TEST_CARD_ID` | Card destino para pruebas manuales de attachments. |
+
+Estos flags son temporales, no deben quedar en `true` permanentemente y no forman parte del flujo normal de Playwright.
+
+### Ejemplos de configuracion
+
+Azure DevOps sin secretos:
+
+```env
+INCIDENT_PROVIDER=azure
+AUTO_CREATE_INCIDENTS=false
+INCIDENT_MODE=preview
+
+AZURE_DEVOPS_ORGANIZATION=
+AZURE_DEVOPS_PROJECT=
+AZURE_DEVOPS_PAT=
+```
+
+Jira sin secretos:
+
+```env
+INCIDENT_PROVIDER=jira
+AUTO_CREATE_INCIDENTS=false
+INCIDENT_MODE=preview
+
+JIRA_BASE_URL=https://empresa.atlassian.net
+JIRA_PROJECT_KEY=SCRUM
+JIRA_EMAIL=
+JIRA_API_TOKEN=
+JIRA_ISSUE_TYPE=Error
+JIRA_VALIDATE_ONLY=true
+```
+
+Trello sin secretos:
+
+```env
+INCIDENT_PROVIDER=trello
+AUTO_CREATE_INCIDENTS=false
+INCIDENT_MODE=preview
+
+TRELLO_API_KEY=
+TRELLO_TOKEN=
+TRELLO_BOARD_ID=
+TRELLO_LIST_ID=
+TRELLO_VALIDATE_ONLY=true
+TRELLO_MAX_ATTACHMENT_MB=10
+```
+
+### Modos recomendados
+
+Desarrollo / local seguro:
+
+```env
+INCIDENT_PROVIDER=none
+AUTO_CREATE_INCIDENTS=false
+INCIDENT_MODE=preview
+```
+
+Preview con provider:
+
+```env
+INCIDENT_PROVIDER=jira
+AUTO_CREATE_INCIDENTS=false
+INCIDENT_MODE=preview
+```
+
+Ejecucion real controlada:
+
+```env
+INCIDENT_PROVIDER=jira
+AUTO_CREATE_INCIDENTS=true
+INCIDENT_MODE=create
+JIRA_VALIDATE_ONLY=false
+```
+
+Usar `create` solo de forma consciente, con credenciales correctas y validando que el provider no este en validate-only.
+
+### Evidencias
+
+El flujo puede adjuntar screenshot, trace y video cuando existen y cuando la configuracion lo permite. El video requiere `INCIDENT_ATTACH_EVIDENCE=true` e `INCIDENT_ATTACH_VIDEO=true`.
+
+Estados posibles de evidencias:
+
+| Estado | Significado |
+| --- | --- |
+| `LINKED` | Evidencia adjuntada o vinculada correctamente. |
+| `ALREADY_LINKED` | Ya existia una evidencia equivalente y no se volvio a adjuntar. |
+| `SKIPPED` | Omitida por configuracion o por condicion esperada. |
+| `FILE_NOT_FOUND` | El archivo esperado no existe. |
+| `EMPTY_FILE` | El archivo existe pero esta vacio. |
+| `UPLOAD_ERROR` | Fallo el upload al provider. |
+| `LINK_ERROR` | Fallo el vinculo entre evidencia e incidente. |
+| `FILE_TOO_LARGE` | El archivo excede el limite permitido. |
+
+Ejemplo de resumen:
+
+```text
+Screenshot:
+YA EXISTIA - NO SE VOLVIO A ADJUNTAR
+
+Trace:
+NO ADJUNTADO - ARCHIVO MAYOR A 10 MB
+```
+
+### Dedup
+
+La firma funcional comun evita crear duplicados por la misma causa:
+
+```text
+QA-AUTO-SIGNATURE:
+caseId|probableCause|view
+```
+
+Ejemplo:
+
+```text
+E37-AM-01.01.1|OPTION_NOT_AVAILABLE|Cuentas Contables
+```
+
+El dedup no usa solo el titulo. Azure compara la firma en `Description`, Jira la compara en `Description`/ADF y Trello la compara en `desc`.
+
+### Dedup de evidencias
+
+Los attachments tambien evitan duplicados:
+
+| Provider | Estrategia |
+| --- | --- |
+| Azure DevOps | Metadata/comment con `QA-AUTO-EVIDENCE`. |
+| Jira | Filename determinista. |
+| Trello | Filename determinista. |
+
+### Reportes de incidentes
+
+El reporter agrega attachments de Playwright para inspeccion:
+
+| Attachment | Contenido |
+| --- | --- |
+| `incident-preview` | Detalle tecnico completo del incidente. |
+| `incident-provider-summary` | Resumen del provider: `provider`, `status`, `incidentId`, URL, screenshot, trace y video. |
+
+### Seguridad
+
+No versionar:
+
+| Secreto o dato sensible |
+| --- |
+| `.env` |
+| `PAT` / `AZURE_DEVOPS_PAT` |
+| `JIRA_API_TOKEN` |
+| `TRELLO_TOKEN` |
+| `TRELLO_API_KEY` si se considera sensible |
+| Headers `Authorization` |
+
+`.env.example` nunca debe contener secretos reales. El archivo `.env` esta incluido en `.gitignore`.
+
+### Comandos de validacion manual
+
+Los siguientes comandos estan pensados para validaciones manuales controladas. Dejar los flags en `false` despues de usarlos.
+
+Jira read-only:
+
+```powershell
+$env:JIRA_RUN_REAL_VALIDATION='true'
+npx tsx scripts/jira/validate-jira-connection.ts
+
+$env:JIRA_RUN_REAL_DEDUP_TEST='true'
+npx tsx scripts/jira/test-jira-dedup.ts
+```
+
+Trello read-only:
+
+```powershell
+$env:TRELLO_RUN_REAL_AUTH_TEST='true'
+npx tsx scripts/trello/test-trello-auth.ts
+
+$env:TRELLO_RUN_LISTS='true'
+npx tsx scripts/trello/list-board-lists.ts
+
+$env:TRELLO_RUN_REAL_VALIDATION='true'
+npx tsx scripts/trello/validate-trello-connection.ts
+
+$env:TRELLO_RUN_REAL_DEDUP_TEST='true'
+npx tsx scripts/trello/test-trello-dedup.ts
+```
+
   ### Diagnostico de fallos en el reporte HTML
 
   Todos los specs deben importar `test` desde `@fixtures/base.fixture`. Ese fixture agrega una capa global de diagnóstico cuando un test falla y hace que la sección **Error** del reporte HTML incluya un bloque funcional.

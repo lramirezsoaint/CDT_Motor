@@ -17,7 +17,9 @@ type DeleteRecordCaseConfig = {
 };
 
 export function DeleteRecordCase(config: DeleteRecordCaseConfig) {
-  test(`${tagsFor(config)} elimina registro y valida resultado ${config.expectedResult}`, async ({ page }) => {
+  const specContext = inferSpecContext();
+
+  test(buildTestTitle(config, specContext), async ({ page }) => {
     test.setTimeout(180_000);
     test.skip(Boolean(config.skipReason), config.skipReason);
 
@@ -70,6 +72,7 @@ async function openDeleteAction(page: Page, row: Locator) {
     .first();
 
   if (await directDelete.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    await directDelete.click();
     return;
   }
 
@@ -80,7 +83,7 @@ async function openDeleteAction(page: Page, row: Locator) {
     .first();
 
   await expect(actionButton, 'Debe existir el menu de acciones del registro.').toBeVisible();
-  //await actionButton.click();
+  await actionButton.click();
 
   const deleteOption = page
     .getByRole('menuitem', { name: /eliminar|borrar|delete/i })
@@ -106,8 +109,41 @@ async function firstMeaningfulCellText(row: Locator) {
   return '';
 }
 
-function tagsFor(config: Pick<DeleteRecordCaseConfig, 'caseId'>) {
-  return `@bloque5 @${config.caseId} @am @eliminar @gestor-asiento @regression`;
+function buildTestTitle(config: Pick<DeleteRecordCaseConfig, 'caseId' | 'expectedResult'>, specContext: SpecContext) {
+  return `[${specContext.blockLabel}] ${config.caseId} - elimina registro y valida resultado ${config.expectedResult} ${tagsFor(config, specContext)}`;
+}
+
+function tagsFor(config: Pick<DeleteRecordCaseConfig, 'caseId'>, specContext: SpecContext) {
+  return `${specContext.blockTag} @${config.caseId} @am @eliminar @gestor-asiento @regression`;
+}
+
+type SpecContext = {
+  blockLabel: string;
+  blockTag: string;
+};
+
+function inferSpecContext(): SpecContext {
+  const specFile = inferCallingSpecFile();
+  const blockName = specFile?.match(/tests[\\/]+e2e[\\/]+(bloque-[^\\/]+)/i)?.[1] ?? 'bloque-5';
+
+  if (/bloque-demo/i.test(blockName)) {
+    return { blockLabel: 'Bloque demo', blockTag: '@bloque-demo' };
+  }
+
+  const numericBlock = blockName.match(/bloque-(\d+)/i)?.[1];
+  if (numericBlock) {
+    return { blockLabel: `Bloque ${numericBlock}`, blockTag: `@bloque${numericBlock}` };
+  }
+
+  return { blockLabel: blockName, blockTag: `@${blockName}` };
+}
+
+function inferCallingSpecFile(): string | undefined {
+  const stack = new Error().stack ?? '';
+  return stack
+    .split(/\r?\n/)
+    .map((line) => line.match(/([A-Z]:\\.*?\.spec\.ts|\S+\.spec\.ts)/i)?.[1])
+    .find(Boolean);
 }
 
 function sectionName(value: string) {

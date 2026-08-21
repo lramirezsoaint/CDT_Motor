@@ -22,9 +22,13 @@
   "include": [
     "playwright.config.ts",
     "setup/**/*.ts",
+    "reporters/**/*.ts",
+    "integrations/**/*.ts",
+    "azure-devops/**/*.ts",
     "tests/**/*.ts",
     "pages/**/*.ts",
     "src/**/*.ts",
+    "scripts/**/*.ts",
     "scripts/**/*.cjs"
   ]
 }

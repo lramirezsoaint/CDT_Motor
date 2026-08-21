@@ -14,7 +14,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : Number(process.env.PW_WORKERS) || 2,
 
   reporter: [
-    ['html', { outputFolder: 'playwright-report', open: 'never', theme: 'dark' }],
+    ['./reporters/incident-reporter.ts', { html: { outputFolder: 'playwright-report', open: 'never', theme: 'dark' } }],
     ['json', { outputFile: 'reports/playwright-results.json' }],
     ['list'],
   ],

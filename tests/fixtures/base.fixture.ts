@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { test as base, expect, type Page, type TestInfo } from '@playwright/test';
 import { ComunesPage } from '@pages/comunes/ComunesPage';
 import { DistribucionPage } from '@pages/distribucion/DistribucionPage';
@@ -6,7 +7,10 @@ import { Sidebar } from '@components/Sidebar';
 import { LoginPage } from '@pages/auth/LoginPage';
 import { env } from '@config/env';
 import { getRoleByProject } from '@config/roles';
-import { buildDiagnosticErrorFromTestInfo } from '../e2e/_globalshared/diagnostics/diagnostic-error';
+import {
+  buildDiagnosticErrorFromTestInfo,
+  buildDiagnosticReportFromTestInfo,
+} from '../e2e/_globalshared/diagnostics/diagnostic-error';
 
 export const test = base.extend<{
   comunesPage: ComunesPage;
@@ -14,13 +18,8 @@ export const test = base.extend<{
   procesosGastosFinancierosPage: ProcesosGastosFinancierosPage;
   sidebar: Sidebar;
 }>({
-  page: async ({ page }, use, testInfo) => {
-    try {
-      await use(page);
-    } catch (error) {
-      const currentUrl = page.url?.();
-      throw buildDiagnosticErrorFromTestInfo({ page, testInfo, originalError: error, currentUrl });
-    }
+  page: async ({ page }, use) => {
+    await use(page);
   },
   comunesPage: async ({ page }, use) => {
     await use(new ComunesPage(page));
@@ -48,11 +47,12 @@ test.afterEach(async ({ page }, testInfo) => {
   }
 
   const originalError = testInfo.errors[0];
-  if (String(originalError.message ?? '').includes('DIAGNÓSTICO')) {
+  if (String(originalError.message ?? '').includes('DIAGNOSTICO')) {
     return;
   }
 
   const currentUrl = page.url?.();
+  await attachDiagnosticContext(testInfo, buildDiagnosticReportFromTestInfo({ page, testInfo, originalError, currentUrl }));
   throw buildDiagnosticErrorFromTestInfo({ page, testInfo, originalError, currentUrl });
 });
 
@@ -121,4 +121,17 @@ function authenticatedShell(page: Page) {
 
 function isLoginUrl(value: string) {
   return /login\.microsoftonline\.com|microsoftonline|\/login|signin|redirect=/i.test(value);
+}
+
+async function attachDiagnosticContext(testInfo: TestInfo, body: string): Promise<void> {
+  if (testInfo.attachments.some((attachment) => attachment.name === 'error-context')) {
+    return;
+  }
+
+  const filePath = testInfo.outputPath('error-context.md');
+  fs.writeFileSync(filePath, `${body}\n`, 'utf8');
+  await testInfo.attach('error-context', {
+    path: filePath,
+    contentType: 'text/markdown',
+  });
 }
